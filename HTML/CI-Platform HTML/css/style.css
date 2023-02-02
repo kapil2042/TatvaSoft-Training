@@ -28,27 +28,53 @@ label{
     background: inherit;
 }
 .btn-ci-primary:hover{
-    color: #001f7d;
-    border: 2px solid #001f7d;
-    background: inherit;
+    color: #ffffff;
+    border: 2px solid #F88634;
+    background-color: #F88634;
 }
 .eye{
     position: absolute;
-    bottom: 7px;
+    bottom: 8px;
     right: 10px;
     cursor: pointer;
     padding: 5px;
 }
-.fs-7{
-    font-size: 14px;
-}
 a{
     text-decoration: none;
     color: #414141;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
 }
 a:hover{
     color: #2d2d3e;
-    font-size: 14px;
+    font-size: 16px;
     text-shadow: 0 0 0.5px #2B64B1;
+}
+.carousel-caption h1, .carousel-caption p{
+    color: #ffffff;
+    text-align: left;
+}
+.fs-7{
+    font-size: 14px!important;
+}
+.row-res{
+    height: 100vh;
+}
+.privacy{
+    height: 90%!important;
+}
+
+@media screen and (max-width:992px){
+    .row-res{
+        height: auto;
+    }
+}
+@media screen and (max-width:650px) {
+    .carousel-caption h1{
+        font-size: 22px;
+    }
+    .carousel-caption p{
+        font-size: 12px!important;
+        margin-bottom: -25px!important;
+    }
 }

@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoginPage</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/loginPage.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/custom.js"></script>
@@ -15,46 +14,61 @@
 
 <body>
     <div class="container-fluid p-0 m-0">
-        <div class="row m-0 justify-content-between align-items-center">
-            <div class="col-8 p-0">
-                <div id="loginCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
+        <div class="row-res row m-0 justify-content-between align-items-center">
+            <div class="col-12 col-lg-9 p-0 h-100">
+                <div id="loginCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+                    <ol class="carousel-indicators d-lg-flex d-none">
                         <li data-bs-target="#loginCarousel" data-bs-slide-to="0" class="active" aria-current="true"
                             aria-label="First slide"></li>
                         <li data-bs-target="#loginCarousel" data-bs-slide-to="1" aria-label="Second slide"></li>
                         <li data-bs-target="#loginCarousel" data-bs-slide-to="2" aria-label="Third slide"></li>
                     </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
+                    <div class="carousel-inner h-100" role="listbox">
+                        <div class="carousel-item active h-100">
                             <img src="./Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
-                                class="w-100 d-block" alt="First slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>Title</h3>
-                                <p>Description</p>
+                                class="w-100 d-block h-100" alt="First slide">
+                            <div class="carousel-caption d-block">
+                                <h1>Sed ut perspiciatis unde omnis iste natus voluptatem.</h1>
+                                <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                    officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item h-100">
                             <img src="./Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
-                                class="w-100 d-block" alt="Second slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>Title</h3>
-                                <p>Description</p>
+                                class="w-100 d-block h-100" alt="Second slide">
+                            <div class="carousel-caption d-block">
+                                <h1>Sed ut perspiciatis unde omnis iste natus voluptatem.</h1>
+                                <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                    officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item h-100">
                             <img src="./Assets/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
-                                class="w-100 d-block" alt="Third slide">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>Title</h3>
-                                <p>Description</p>
+                                class="w-100 d-block h-100" alt="Third slide">
+                            <div class="carousel-caption d-block">
+                                <h1>Sed ut perspiciatis unde omnis iste natus voluptatem.</h1>
+                                <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                    officia deserunt mollit anim id est laborum.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 p-0">
-                <div class="w-100 p-5">
-                    <form action="#" method="post">
+            <div class="col-12 col-lg-3 p-0 h-100">
+                <div class="w-100 p-5 privacy d-flex align-items-center">
+                    <form action="#" method="post" class="w-100">
                         <div class="mb-3">
                             <label for="email-id" class="form-label">Email Address</label>
                             <input type="email" name="email" id="email-id" class="form-control"
@@ -64,21 +78,22 @@
                             <label for="login-pass" class="form-label">Password</label>
                             <input type="password" class="form-control" name="pass" id="login-pass"
                                 placeholder="**********" required>
-                            <span onmouseover="showPass()" onmouseout="hidePass()"><img src="./Assets/eye.png" alt="eye"
-                                    class="eye"></span>
+                            <span onmouseover="showPass('login-pass')" onmouseout="hidePass('login-pass')"><img
+                                    src="./Assets/eye.png" alt="eye" class="eye"></span>
                         </div>
                         <button type="submit" class="btn-ci-primary mt-2 w-100">Login</button>
                         <div class="text-center p-2">
                             <label><a href="./forgotPass.html">Lost your password?</a></label>
                             <br>
-                            <label class="fs-7">Don't have an account?<a href="#">Create Account</a></label>
+                            <label class="fs-6 mt-3">Don't have an account?<a href="./Register.html">Create
+                                    Account</a></label>
                         </div>
                     </form>
-                    <div class="text-center">
-                        <label>
-                            <a href="#">Privacy Policy</a> 
-                        </label>
-                    </div>
+                </div>
+                <div class="text-center">
+                    <label>
+                        <a href="#">Privacy Policy</a>
+                    </label>
                 </div>
             </div>
         </div>
