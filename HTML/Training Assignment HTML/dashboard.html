@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="menu-bar">
+                <a href="#" id="showmenu">
+                    <img src="images/menu-bar.svg" alt="menu-bar">
+                </a>
+            </div>
+            <div class="header-logo d-none d-sm-block">
+                <img src="images/header-logo.svg" alt="header-logo">
+            </div>
+            <div class="header-logo d-block d-sm-none">
+                <img src="images/header-logo-responsive.svg" alt="header-logo-responsive">
+            </div>
+            <div class="search">
+                <img src="images/search-icon.svg" alt="search" class="search-icon">
+                <input type="search" name="search" id="search" class="search-box" placeholder="Search">
+            </div>
+            <div class="notification">
+                <img src="images/notification-icon.svg" alt="notification-icon">
+            </div>
+            <div class="userdiv">
+                <img src="images/profile.png" alt="user">
+                <span class="d-none d-md-inline">John Doe</span>
+                <img src="images/downward-arrow.svg" alt="">
+            </div>
+        </nav>
+    </header>
+    <div class="main-body-dashboard">
+
+        <aside class="d-none d-sm-block">
+            <div class="left-menu-active">
+                <img src="./images/dashboard-active.svg" alt="dashboard-active">&nbsp;
+                <span class="menutext">Dashboard</span>
+            </div>
+            <a href="./innerpage.html">
+                <div class="left-menu">
+                    <img src="./images/graph-default.svg" alt="graph-default">&nbsp;
+                    <span class="menutext">Analysis</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/inbox-default.svg" alt="inbox-default">&nbsp;
+                    <span class="menutext">Inbox</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/clock-default.svg" alt="clock-default">&nbsp;
+                    <span class="menutext">History</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/user-default.svg" alt="user-default">&nbsp;
+                    <span class="menutext">Users</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/maintenance-default.svg" alt="maintenance-default">&nbsp;
+                    <span class="menutext">Maintenance</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/setting-default.svg" alt="setting-default">&nbsp;
+                    <span class="menutext">Setting</span>
+                </div>
+            </a>
+        </aside>
+
+        <section class="position-relative">
+            <div class="mobile-menu d-sm-none">
+                <div class="mobile-menu-list-active">
+                    <div>
+                        <img src="./images/dashboard-active.svg" alt="dashboard-active">
+                    </div>
+                    <span>Dashboard</span>
+                </div>
+                <a href="./innerpage.html" class="text-decoration-none text-black">
+                    <div class="mobile-menu-list">
+                        <div>
+                            <img src="./images/graph-default.svg" alt="graph-default">
+                        </div>
+                        <span>Analysis</span>
+                    </div>
+                </a>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/inbox-default.svg" alt="inbox-default">
+                    </div>
+                    <span>Inbox</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/clock-default.svg" alt="clock-default">
+                    </div>
+                    <span>History</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/user-default.svg" alt="user-default">
+                    </div>
+                    <span>Users</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/maintenance-default.svg" alt="maintenance-default">
+                    </div>
+                    <span>Maintenance</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/setting-default.svg" alt="setting-default">
+                    </div>
+                    <span>Setting</span>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div>
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="w-100 h-auto d-flex flex-wrap justify-content-between">
+                    <div class="fr-content">
+                        <img src="./images/star.svg" alt="star">
+                        <div class="fr-details">
+                            <h4>23,456</h4>
+                            <p>New Product</p>
+                        </div>
+                    </div>
+                    <div class="fr-content">
+                        <img src="./images/new-product.svg" alt="new-product">
+                        <div class="fr-details">
+                            <h4>2345</h4>
+                            <p>Add Product</p>
+                        </div>
+                    </div>
+                    <div class="fr-content">
+                        <img src="./images/total-product.svg" alt="total-product">
+                        <div class="fr-details">
+                            <h4>32,456</h4>
+                            <p>Total Product</p>
+                        </div>
+                    </div>
+                    <div class="fr-content">
+                        <img src="./images/dollar-filled.svg" alt="dollar-filled">
+                        <div class="fr-details">
+                            <h4>5678</h4>
+                            <p>Today's Sale</p>
+                        </div>
+                    </div>
+                    <div class="fr-content">
+                        <img src="./images/money-bag.svg" alt="star">
+                        <div class="fr-details">
+                            <h4>32,534</h4>
+                            <p>Total Sale</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0 mt-3">
+                    <div class="col-12 col-sm-12 col-lg-8 p-0">
+                        <div class="bar-chart h-100">
+                            <div class="bar-chart-header">
+                                <b>Sale</b>
+                                <div>
+                                    <span class="bar-chart-default">Weekly</span>
+                                    <span class="bar-chart-default">Monthly</span>
+                                    <span class="bar-chart-active">Yearly</span>
+                                </div>
+                            </div>
+                            <img src="./images/data-graph.png" alt="data-graph" class="mt-3">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-lg-4 mt-lg-0 mt-3 p-0">
+                        <div class="p-3 bg-white h-100 ms-lg-3 ms-0">
+                            <div class="fs-5 fw-bold">
+                                Sales by Country
+                            </div>
+                            <div class="w-100">
+                                <img src="./images/pie-chart.svg" alt="pie-chart" class="w-100">
+                                <div class="pie-chart-bottem">
+                                    <div class="radio-pie"><img src="./images/red.svg"
+                                            alt="radio-checked-icon"><span>United
+                                            State of America</span></div>
+                                    <div class="radio-pie"><img src="./images/green.svg"
+                                            alt="radio-checked-icon"><span>Canada</span></div>
+                                    <div class="radio-pie"><img src="./images/orange.svg"
+                                            alt="radio-checked-icon"><span>Russia</span></div>
+                                    <div class="radio-pie"><img src="./images/yellow.svg"
+                                            alt="radio-checked-icon"><span>India</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-table mt-3">
+                    <div class="tab-head">
+                        <h4>Invoice</h4>
+                        <span>View All</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>INVOICE</th>
+                                    <th>COMPANY NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>DUE DATE</th>
+                                    <th>STATUS</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>651535</td>
+                                    <td>Public Adjusting Firm</td>
+                                    <td>abc.xyz@example.com</td>
+                                    <td>20 May, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$47,800</td>
+                                </tr>
+                                <tr>
+                                    <td>156276</td>
+                                    <td>Other</td>
+                                    <td>jessica@example.com</td>
+                                    <td>8 Sep, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$10,570</td>
+                                </tr>
+                                <tr>
+                                    <td>651535</td>
+                                    <td>Public Adjusting Firm</td>
+                                    <td>abc.xyz@example.com</td>
+                                    <td>20 May, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$47,800</td>
+                                </tr>
+                                <tr>
+                                    <td>156276</td>
+                                    <td>Other</td>
+                                    <td>jessica@example.com</td>
+                                    <td>8 Sep, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$10,570</td>
+                                </tr>
+                                <tr>
+                                    <td>651535</td>
+                                    <td>Public Adjusting Firm</td>
+                                    <td>abc.xyz@example.com</td>
+                                    <td>20 May, 2020</td>
+                                    <td><span class="faild">Failed</span></td>
+                                    <td>$47,800</td>
+                                </tr>
+                                <tr>
+                                    <td>156276</td>
+                                    <td>Other</td>
+                                    <td>jessica@example.com</td>
+                                    <td>8 Sep, 2020</td>
+                                    <td><span class="pending">Pending</span></td>
+                                    <td>$10,570</td>
+                                </tr>
+                                <tr>
+                                    <td>651535</td>
+                                    <td>Public Adjusting Firm</td>
+                                    <td>abc.xyz@example.com</td>
+                                    <td>20 May, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$47,800</td>
+                                </tr>
+                                <tr>
+                                    <td>156276</td>
+                                    <td>Other</td>
+                                    <td>jessica@example.com</td>
+                                    <td>8 Sep, 2020</td>
+                                    <td><span class="faild">Failed</span></td>
+                                    <td>$10,570</td>
+                                </tr>
+                                <tr>
+                                    <td>651535</td>
+                                    <td>Public Adjusting Firm</td>
+                                    <td>abc.xyz@example.com</td>
+                                    <td>20 May, 2020</td>
+                                    <td><span class="paid">Paid</span></td>
+                                    <td>$47,800</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>

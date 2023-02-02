@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="menu-bar">
+                <a href="#" id="showmenu">
+                    <img src="images/menu-bar.svg" alt="menu-bar">
+                </a>
+            </div>
+            <div class="header-logo d-none d-sm-block">
+                <img src="images/header-logo.svg" alt="header-logo">
+            </div>
+            <div class="header-logo d-block d-sm-none">
+                <img src="images/header-logo-responsive.svg" alt="header-logo-responsive">
+            </div>
+            <div class="search">
+                <img src="images/search-icon.svg" alt="search" class="search-icon">
+                <input type="search" name="search" id="search" class="search-box" placeholder="Search">
+            </div>
+            <div class="notification">
+                <img src="images/notification-icon.svg" alt="notification-icon">
+            </div>
+            <div class="userdiv">
+                <img src="images/profile.png" alt="user">
+                <span class="d-none d-md-inline">John Doe</span>
+                <img src="images/downward-arrow.svg" alt="">
+            </div>
+        </nav>
+    </header>
+    <div class="main-body-dashboard">
+
+        <aside class="d-none d-sm-block">
+            <a href="./dashboard.html">
+                <div class="left-menu">
+                    <img src="./images/dashboard-default.svg" alt="dashboard-default">&nbsp;
+                    <span class="menutext">Dashboard</span>
+                </div>
+            </a>
+            <div class="left-menu-active">
+                <img src="./images/graph-active.svg" alt="graph-active">&nbsp;
+                <span class="menutext">Analysis</span>
+            </div>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/inbox-default.svg" alt="inbox-default">&nbsp;
+                    <span class="menutext">Inbox</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/clock-default.svg" alt="clock-default">&nbsp;
+                    <span class="menutext">History</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/user-default.svg" alt="user-default">&nbsp;
+                    <span class="menutext">Users</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/maintenance-default.svg" alt="maintenance-default">&nbsp;
+                    <span class="menutext">Maintenance</span>
+                </div>
+            </a>
+            <a href="#">
+                <div class="left-menu">
+                    <img src="./images/setting-default.svg" alt="setting-default">&nbsp;
+                    <span class="menutext">Setting</span>
+                </div>
+            </a>
+        </aside>
+
+        <section class="position-relative">
+            <div class="mobile-menu d-sm-none">
+                <a href="./dashboard.html" class="text-decoration-none text-black">
+                    <div class="mobile-menu-list">
+                        <div>
+                            <img src="./images/dashboard-default.svg" alt="dashboard-default">
+                        </div>
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+                <div class="mobile-menu-list-active">
+                    <div>
+                        <img src="./images/graph-active.svg" alt="graph-active">
+                    </div>
+                    <span>Analysis</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/inbox-default.svg" alt="inbox-default">
+                    </div>
+                    <span>Inbox</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/clock-default.svg" alt="clock-default">
+                    </div>
+                    <span>History</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/user-default.svg" alt="user-default">
+                    </div>
+                    <span>Users</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/maintenance-default.svg" alt="maintenance-default">
+                    </div>
+                    <span>Maintenance</span>
+                </div>
+                <div class="mobile-menu-list">
+                    <div>
+                        <img src="./images/setting-default.svg" alt="setting-default">
+                    </div>
+                    <span>Setting</span>
+                </div>
+            </div>
+            <div>
+                <h2>Analysis</h2>
+            </div>
+            <div class="innerpage-content">
+                <label for="" class="form-label fs-5 fw-bold mb-2">One Column</label>
+                <div class="col-12 legend-content">
+                    <input type="text" class="form-control fs-7 legend" placeholder=" ">
+                    <label for="">Name</label>
+                </div>
+                <div class="col-12 legend-content mt-3">
+                    <select name="" id="" class="form-select fs-7d">
+                        <option value="">Dropdown</option>
+                        <option value="">Dropdown</option>
+                        <option value="">Dropdown</option>
+                    </select>
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="legend-content">
+                        <textarea name="" id="" rows="4" class="form-control fs-textarea legend-textarea"
+                        placeholder=" "></textarea>
+                        <label for="">Multiple Line</label>
+                    </div>
+                </div>
+                <br>
+                <label for="" class="form-label fs-5 fw-bold mb-2">Two Column</label>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="legend-content">
+                            <input type="text" class="legend form-control fs-7" placeholder=" ">
+                            <label for="">Name</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mt-sm-0 mt-4">
+                        <div class="legend-content">
+                            <input type="text" class="form-control fs-7 legend" placeholder=" " value="johndoe">
+                            <label for="">Username</label>
+                        </div>
+                    </div>
+                </div>
+                <label for="" class="form-label"></label>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="legend-content">
+                            <input type="text" class="form-control fs-7 legend" placeholder=" ">
+                            <label for="">Password</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 mt-sm-0 mt-4">
+                        <select name="" id="" class="form-select fs-7d">
+                            <option value="">Dropdown</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <label for="" class="form-label fs-5 fw-bold mb-2">Three Column</label>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="legend-content">
+                            <input type="text" class="form-control fs-7 legend" placeholder=" " autofocus>
+                            <label for="">Focus</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mt-sm-0 mt-md-0 mt-4">
+                        <div class="legend-content">
+                            <input type="password" class="form-control fs-7 legend" placeholder=" " value="fcghdgh">
+                            <label for="">Password</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 mt-sm-4 mt-md-0 mt-4">
+                        <div class="legend-content">
+                            <input type="text" class="fs-7 disable legend" disabled value="John Doe">
+                            <label for="" class="legend">Disabled</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <label for="" class="form-label fs-5 fw-bold mb-2">Four Column</label>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="legend-content">
+                            <input type="text" class="legend form-control border border-danger fs-7" value="UI Designer"
+                                placeholder=" ">
+                            <label for="" class="text-danger">Designation</label>
+                        </div>
+                        <label for="" class="form-label required text-danger">Enter Valid Data</label>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 mt-sm-0 mt-md-0 mt-4">
+                        <div class="legend-content">
+                            <input type="text" class="form-control fs-7 legend" placeholder=" ">
+                            <label for="">Name</label>
+                        </div>
+                        <label for="" class="form-label required text-secondary">Enter your full name as per ID</label>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 mt-sm-4 mt-md-0 mt-4">
+                        <div class="legend-content">
+                            <input type="text" class="legend form-control fs-7" value="John Doe" placeholder=" ">
+                            <label for="">Username</label>
+                        </div>
+                        <label for=""></label>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 mt-sm-4 mt-md-0 mt-4">
+                        <select name="" id="" class="form-select fs-7d">
+                            <option value="">Dropdown</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <label for="" class="form-label fs-5 fw-bold mb-2">Other Design Elements</label>
+                    <br>
+                    <label for="" class="form-label fw-bold">File Upload</label>
+                    <br>
+                    <div class="d-flex">
+                        <input type="file" name="file-input" id="file-input" multiple>
+                        <label class="btn btn-outline-danger rounded-5 px-4" for="file-input"><img
+                            src="./images/cloud-upload-icon.svg" alt="">Upload</label>
+                            <div id="file-list" class="fs-7 text-secondary">No choosen file</div>
+                        </div>
+                    <br>
+                    <label for="" class="form-label fw-bold">Radio Button</label>
+                    <div class="d-flex">
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radio" id="">
+                            <label class="form-check-label" for="">
+                                Option 1
+                            </label>
+                        </div>
+                        <div class="form-check mx-5">
+                            <input class="form-check-input" type="radio" checked name="radio" id="">
+                            <label class="form-check-label" for="">
+                                Option 2
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <label for="" class="form-label fw-bold">Checkbox</label>
+                    <div class="d-flex">
+                        <div class="form-check">
+                            <input class="form-check-input check" type="checkbox" value="" id="">
+                            <label class="form-check-label" for="">
+                                Option 1
+                            </label>
+                        </div>
+                        <div class="form-check mx-5">
+                            <input class="form-check-input check" type="checkbox" value="" id="" checked>
+                            <label class="form-check-label" for="">
+                                Option 2
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <label for="" class="form-label fw-bold">Snackbar</label>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="error-snackbar">
+                                <img src="./images/error-icon.svg" alt="error-icon" class="snack-img">
+                                <span class="snack-sapn">This is an error message</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                            <div class="info-snackbar">
+                                <img src="./images/info-icon.svg" alt="info-icon" class="snack-img">
+                                <span class="snack-sapn">This is an information message!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="warning-snackbar">
+                                <img src="./images/warning-icon.svg" alt="warning-icon" class="snack-img">
+                                <span class="snack-sapn">This is an Warning message!</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+                            <div class="succ-snackbar">
+                                <img src="./images/success-icon.svg" alt="success-icon" class="snack-img">
+                                <span class="snack-sapn">This is an success message!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <label for="" class="form-label fw-bold">Call to action</label>
+                    <br>
+                    <input type="button" class="btn primary" name="" id="" value="Primary">
+                    <input type="button" class="btn secondary" name="" id="" value="Secondary">
+                    <br>
+                    <br>
+                    <label for="" class="form-label fw-bold">Tabs</label>
+                    <br>
+                    <div id="tabs">
+                        <ul class="d-flex list-unstyled">
+                            <li><a id="tb1" role="button" href="#tabs-1"
+                                    class="px-3 py-2 text-decoration-none text-danger text-secondary border-danger border-bottom border-3">Tab1</a>
+                            </li>
+                            <li><a id="tb2" role="button" href="#tabs-2"
+                                    class="px-3 py-2 text-decoration-none text-secondary">Tab2</a>
+                            </li>
+                            <li><a id="tb3" role="button" href="#tabs-3"
+                                    class="px-3 py-2 text-decoration-none text-secondary">Tab3</a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div id="tabs-1">
+                            Tab 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, quibusdam esse. Facilis
+                            modi at, voluptates commodi provident illo, laudantium velit atque quisquam pariatur omnis
+                            accusantium vitae ad, ipsum amet minima consequatur dolor unde dolorem officiis fuga
+                            praesentium. Vel autem, deserunt aliquid vitae suscipit exercitationem accusamus unde error
+                            aspernatur eum ad.
+                        </div>
+                        <div id="tabs-2">
+                            Tab 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero corporis expedita
+                            facilis velit eligendi laudantium enim voluptas? Officia, libero provident natus fugit
+                            suscipit ipsum officiis ipsa et quae in amet atque porro expedita at corrupti cumque. Itaque
+                            qui cum sit laudantium. Porro reprehenderit quasi assumenda natus ipsum aperiam doloremque
+                            nobis!
+                        </div>
+                        <div id="tabs-3">
+                            Tab 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cum a fugiat
+                            quos architecto, ducimus exercitationem mollitia sint harum. Molestias maiores rerum,
+                            voluptatum iure inventore at minus ea obcaecati? Quia rem neque recusandae similique. Eum,
+                            quibusdam ab fugiat mollitia incidunt in facere beatae non sunt molestiae delectus commodi
+                            culpa fugit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
