@@ -17,22 +17,14 @@ function checkName(chkname) {
                 str1 += String.fromCharCode(a);
             }
         }
+        if(a==32){
+            if(str.charCodeAt(i-1)!=32 && i!=0)
+            str1 += String.fromCharCode(a);
+        }
+        if(a==46){
+            if(str.charCodeAt(i-1)!=46 && str.charCodeAt(i-1)!=32 && i!=0)
+            str1 += String.fromCharCode(a);
+        }
     }
     document.getElementById(chkname).value =str1;
 }
-// function validPhone(phone) {
-//     var txtPhone = phone.value;
-//     if (typeof txtPhone != "string") {
-//         var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
-//         var mobileno = /^((\\+91-?)|0)?[0-9]{10}$/;
-//         if ((txtPhone.match(phoneno)) || (txtPhone.match(mobileno))) {
-//             document.getElementById("demo").innerHTML = "Valid";
-//         }
-//         else {
-//             document.getElementById("demo").innerHTML = "Not Valid";
-//         }
-//     }
-//     else{
-//         txtPhone = "";
-//     }
-// }
