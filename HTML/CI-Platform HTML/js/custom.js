@@ -4,14 +4,22 @@ function showPass(idpass) {
 function hidePass(idpass) {
     document.getElementById(idpass).setAttribute("type", "password");
 }
-// function checkName(chkname){
-//     var str = chkname.value;
-//     for (var i = 0; i < str.length; i++) {
-//         if(!((str.charCodeAt(i))>=65 && (str.charCodeAt(i))<=90) && ((str.charCodeAt(i))>=97 && (str.charCodeAt(i))<=122)){
-//             console.log("yes");
-//         }
-//     }
-// }
+function inRange(x, min, max) {
+    return ((x - min) * (x - max) <= 0);
+}
+function checkName(chkname) {
+    var str = document.getElementById(chkname).value;
+    var str1="";
+    for (var i = 0; i < str.length; i++) {
+        a = str.charCodeAt(i);
+        if (inRange(a, 65, 122)) {
+            if (!inRange(a, 91, 96)){
+                str1 += String.fromCharCode(a);
+            }
+        }
+    }
+    document.getElementById(chkname).value =str1;
+}
 // function validPhone(phone) {
 //     var txtPhone = phone.value;
 //     if (typeof txtPhone != "string") {
