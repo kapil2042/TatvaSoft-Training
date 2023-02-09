@@ -10,6 +10,8 @@ BEGIN
 	WHERE CustomerID = @customer_id;
 END
 
+--insert query
+
 INSERT INTO Orders("CustomerID","EmployeeID","OrderDate","RequiredDate",
 				"ShippedDate","ShipVia","Freight","ShipName","ShipAddress",
 				"ShipCity","ShipRegion","ShipPostalCode","ShipCountry")
@@ -17,11 +19,10 @@ INSERT INTO Orders("CustomerID","EmployeeID","OrderDate","RequiredDate",
 			N'Bon app''',N'12, rue des Bouchers',N'Marseille',
 			NULL,N'13008',N'France')
 
-SELECT * FROM Orders WHERE Freight =1
+--update query
 
-update Orders set Freight = 12 where Freight= 10
+UPDATE Orders SET Freight = 200 WHERE OrderID=10286
 
-DELETE FROM Orders WHERE Freight = 12
 
 --2nd write a SQL query to Create Stored procedure in the Northwind database to retrieve Employee Sales by Country
 
@@ -108,8 +109,18 @@ spInsertCustomerOrderDetails 10522,12,20,30,0
 --7th write a SQL query to Create Stored procedure in the Northwind database to update Customer Order Details
 
 CREATE PROCEDURE spUpdateCustomerOrderDetails
+	@order_id int,
+	@product_id int,
+	@unit_price money,
+	@qty smallint,
+	@discount real
 AS
 BEGIN
-	SELECT * FROM Employees
+	UPDATE [Order Details] SET UnitPrice=@unit_price, 
+								Quantity=@qty,
+								Discount=@discount
+						WHERE OrderID=@order_id AND ProductID=@product_id;
+	SELECT * FROM [Order Details] WHERE OrderID=@order_id AND ProductID=@product_id;
 END
 
+spUpdateCustomerOrderDetails 10522,12,20,30,0

@@ -4,29 +4,35 @@ INSTEAD OF UPDATE
 AS
 BEGIN
 	DECLARE @cust_id nvarchar(5)
-	DECLARE @oldfreight money
 	DECLARE @newfreight money
 	DECLARE @avgFreight money
 	SELECT @cust_id = CustomerID FROM INSERTED
-	SELECT @oldfreight = Freight FROM Orders
 	SELECT @newfreight = Freight FROM INSERTED
 
-	IF @oldfreight = @newfreight
+	EXEC spCheckFreightWithAvg @cust_id, @avgFreight output
+
+	IF @newfreight IS NOT NULL AND @newfreight >= @avgFreight
 	BEGIN
-		return;
+		RAISERROR ('Freight value exceeds the average freight value' ,10,1)
 	END
 	ELSE
 	BEGIN
-
-		EXEC spCheckFreightWithAvg @cust_id, @avgFreight output
-
-		IF @newfreight IS NOT NULL AND @newfreight >= @avgFreight
-		BEGIN
-			RAISERROR ('Freight value exceeds the average freight value' ,10,1)
-		END
-		ELSE
-		BEGIN
-			UPDATE Orders SET Freight = (SELECT Freight FROM INSERTED) WHERE CustomerID = @cust_id;
-		END
+		UPDATE Orders
+		SET CustomerID = ins.CustomerID,
+			EmployeeID = ins.EmployeeID,
+			OrderDate = ins.OrderDate,
+			RequiredDate = ins.RequiredDate,
+			ShippedDate = ins.ShippedDate,
+			ShipVia = ins.ShipVia,
+				Freight = ins.Freight,
+			ShipName = ins.ShipName,
+			ShipAddress = ins.ShipAddress,
+			ShipCity = ins.ShipCity,
+			ShipRegion = ins.ShipRegion,
+			ShipPostalCode = ins.ShipPostalCode,
+			ShipCountry = ins.ShipCountry
+		FROM Orders
+		INNER JOIN INSERTED AS ins
+		ON Orders.orderID = ins.orderID
 	END
 END
