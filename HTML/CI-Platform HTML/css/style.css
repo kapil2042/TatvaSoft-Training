@@ -61,7 +61,7 @@ a:hover{
     height: 100vh;
 }
 .privacy{
-    height: 90%!important;
+    height: 95%!important;
     max-height: 100vh;
 }
 
@@ -77,5 +77,10 @@ a:hover{
     .carousel-caption p{
         font-size: 12px!important;
         margin-bottom: -25px!important;
+    }
+}
+@media screen and (min-width:1000px) and (max-height:740px){
+    .privacy{
+        overflow-y: scroll;
     }
 }

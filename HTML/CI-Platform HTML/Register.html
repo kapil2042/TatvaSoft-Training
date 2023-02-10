@@ -70,58 +70,59 @@
             </div>
             <div class="col-12 col-lg-3 p-0 h-100">
                 <div class="w-100 px-5 py-2 privacy d-flex align-items-center">
-                    <form action="#" method="post" class="w-100">
-                        <div class="mb-2">
+                    <form action="#" method="post" class="w-100 pt-5">
+                        <div class="mb-3 mb-lg-2">
                             <label for="fname" class="form-label fs-7">First Name</label>
-                            <input type="text" name="fname" id="fname" class="form-control fs-7"
-                                placeholder="Name" onkeyup="checkName('fname')" onblur="checkName('fname')" required>
+                            <input type="text" name="fname" id="fname" class="form-control fs-7" placeholder="Name"
+                                onkeyup="checkName('fname')" onblur="checkName('fname')" required>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3 mb-lg-2">
                             <label for="lname" class="form-label fs-7">Last Name</label>
-                            <input type="text" name="lname" id="lname" class="form-control fs-7"
-                                placeholder="Surname" onkeyup="checkName('lname')" onblur="checkName('lname')" required>
+                            <input type="text" name="lname" id="lname" class="form-control fs-7" placeholder="Surname"
+                                onkeyup="checkName('lname')" onblur="checkName('lname')" required>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3 mb-lg-2">
                             <label for="phone" class="form-label fs-7">Phone Number</label>
                             <input type="text" name="phone" id="phone" class="form-control fs-7"
-                                placeholder="9876543210" pattern="(\+[0-9]{2})?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$" required>
+                                placeholder="9876543210" pattern="(\+[0-9]{2})?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$"
+                                required>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3 mb-lg-2">
                             <label for="email-id" class="form-label fs-7">Email Address</label>
                             <input type="email" name="email" id="email-id" class="form-control fs-7"
                                 placeholder="abc@xyz.com" required>
                         </div>
-                        <div class="mb-3 position-relative">
+                        <div class="mb-3 mb-lg-2 position-relative">
                             <label for="new-pass" class="form-label">New Password</label>
                             <input type="password" class="form-control" name="pass" id="new-pass"
                                 placeholder="**********" required>
                             <span onmouseover="showPass('new-pass')" onmouseout="hidePass('new-pass')"><img
                                     src="./Assets/eye.png" alt="eye" class="eye"></span>
                         </div>
-                        <div class="mb-3 position-relative">
+                        <div class="mb-3 mb-lg-2 position-relative">
                             <label for="cnf-pass" class="form-label">Confirm New Password</label>
                             <input type="password" class="form-control" name="pass" id="cnf-pass"
                                 placeholder="**********" required>
                             <span onmouseover="showPass('cnf-pass')" onmouseout="hidePass('cnf-pass')"><img
                                     src="./Assets/eye.png" alt="eye" class="eye"></span>
                         </div>
-                        <button type="submit" class="btn-ci-primary mt-2 w-100">Reset my Password</button>
-                        <div class="text-center p-2">
-                            <label><a href="./forgotPass.html">Lost your password?</a></label>
+                        <button type="submit" class="btn-ci-primary mt-3 mt-lg-2 w-100">Reset my Password</button>
+                        <div class="text-center">
+                            <label class="mt-3 mt-lg-2"><a href="./forgotPass.html">Lost your password?</a></label>
                             <br>
-                            <label class="fs-6 mt-3">Already registered?<a href="./index.html"> Login now</a></label>
+                            <label class="fs-6 mt-3 mt-lg-2">Already registered?<a href="./index.html"> Login
+                                    now</a></label>
                         </div>
                     </form>
-                    </div>
-                    <div class="text-center mb-1">
-                        <label>
-                            <a href="#">Privacy Policy</a>
-                            <p id="demo"></p>
-                        </label>
-                    </div>
+                </div>
+                <div class="text-center">
+                    <label>
+                        <a href="#">Privacy Policy</a>
+                    </label>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
