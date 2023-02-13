@@ -62,7 +62,6 @@ a:hover{
 }
 .privacy{
     height: 95%!important;
-    max-height: 100vh;
 }
 
 @media screen and (max-width:992px){
@@ -79,7 +78,7 @@ a:hover{
         margin-bottom: -25px!important;
     }
 }
-@media screen and (min-width:1000px) and (max-height:740px){
+@media screen and (max-height:710px){
     .privacy{
         overflow-y: scroll;
     }

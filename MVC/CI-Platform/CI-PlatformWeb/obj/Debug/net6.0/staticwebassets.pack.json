@@ -201,8 +201,12 @@
       "PackagePath": "staticwebassets\\images\\drop-down.png"
     },
     {
-      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\eye.png",
-      "PackagePath": "staticwebassets\\images\\eye.png"
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\eye_close.png",
+      "PackagePath": "staticwebassets\\images\\eye_close.png"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\eye_open.png",
+      "PackagePath": "staticwebassets\\images\\eye_open.png"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\facebook.png",
@@ -445,8 +449,20 @@
       "PackagePath": "staticwebassets\\images\\xlsx.png"
     },
     {
-      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\match_pass.js",
+      "PackagePath": "staticwebassets\\js\\match_pass.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\name._validate.js",
+      "PackagePath": "staticwebassets\\js\\name._validate.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\password_hide_show.js",
+      "PackagePath": "staticwebassets\\js\\password_hide_show.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\phone_validate.js",
+      "PackagePath": "staticwebassets\\js\\phone_validate.js"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\lib\\bootstrap\\LICENSE",

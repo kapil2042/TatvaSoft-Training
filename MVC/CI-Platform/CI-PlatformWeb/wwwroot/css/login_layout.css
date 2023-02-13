@@ -24,7 +24,6 @@
 
 .privacy {
     height: 95% !important;
-    max-height: 100vh;
 }
 
 @media screen and (max-width:992px) {
@@ -45,8 +44,11 @@
     }
 }
 
-@media screen and (min-width:1000px) and (min-height:740px) {
-    .privacy {
+@media screen and (max-height:710px) {
+    .reg-responsive {
         overflow-y: scroll;
+    }
+    .reg-responsive form {
+        height:100%!important;
     }
 }
