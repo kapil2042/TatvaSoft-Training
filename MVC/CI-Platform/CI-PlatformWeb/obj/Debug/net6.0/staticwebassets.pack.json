@@ -465,6 +465,10 @@
       "PackagePath": "staticwebassets\\js\\phone_validate.js"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

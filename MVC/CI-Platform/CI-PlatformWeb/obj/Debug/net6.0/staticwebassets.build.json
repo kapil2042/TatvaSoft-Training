@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w0RkypdLmRwdswHVp8Jnxv+wQrLKZHhBnFywyKA/Gbs=",
+  "Hash": "IhUu7dM0BQSq57DPIHMef/FRqUyxGIiK5hXCKrJkoQI=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -2004,6 +2004,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\phone_validate.js"
+    },
+    {
+      "Identity": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\site.js",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
       "Identity": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
