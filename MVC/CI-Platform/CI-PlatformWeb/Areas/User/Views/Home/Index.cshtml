@@ -2,7 +2,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="border-bottom">
+    <div class="container-md container-fluid">
+        <div class="row">
+            <div class="col-4 col-md-6">
+                <div class="my-2 position-relative d-flex">
+                    <label for="search">
+                        <img src="~/images/search.png" alt="search" class="search-icon">
+                    </label>
+                    <input type="search" name="search" id="search" class="search-box border-0" placeholder="Search mission...">
+                </div>
+            </div>
+            <div class="col-8 col-md-6">
+                <div class="row h-100">
+                    <div class="col-3 dropdown d-flex align-items-center border-start">
+                        <div class="w-100 dropdown-toggle d-inline-flex justify-content-between align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="pe-1 text-secondary">Country</span>
+                            <img src="~/images/drop-down.png" />
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Action</a></li>
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Another action</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-3 dropdown d-flex align-items-center border-start">
+                        <div class="w-100 dropdown-toggle d-inline-flex justify-content-between align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="pe-1 text-secondary">City</span>
+                            <img src="~/images/drop-down.png" />
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Action</a></li>
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Another action</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-3 dropdown d-flex align-items-center border-start">
+                        <div class="w-100 dropdown-toggle d-inline-flex justify-content-between align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="pe-1 text-secondary">Theme</span>
+                            <img src="~/images/drop-down.png" />
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Action</a></li>
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Another action</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-3 dropdown d-flex align-items-center border-start border-end">
+                        <div class="w-100 dropdown-toggle d-inline-flex justify-content-between align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="pe-1 text-secondary">Skills</span>
+                            <img src="~/images/drop-down.png" />
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Action</a></li>
+                            <li><a class="dropdown-item" asp-area="User" asp-controller="Home" asp-action="Privacy">Another action</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
