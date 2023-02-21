@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\login_layout.css"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\mission_page.css",
+      "PackagePath": "staticwebassets\\css\\mission_page.css"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -341,6 +345,10 @@
       "PackagePath": "staticwebassets\\images\\previous.png"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\right-arrow-white.png",
+      "PackagePath": "staticwebassets\\images\\right-arrow-white.png"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\right-arrow.png",
       "PackagePath": "staticwebassets\\images\\right-arrow.png"
     },
@@ -371,6 +379,10 @@
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\settings.png",
       "PackagePath": "staticwebassets\\images\\settings.png"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\skill.png",
+      "PackagePath": "staticwebassets\\images\\skill.png"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\star-empty.png",
@@ -449,8 +461,20 @@
       "PackagePath": "staticwebassets\\images\\xlsx.png"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\filter.js",
+      "PackagePath": "staticwebassets\\js\\filter.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\grid_list_toggle.js",
+      "PackagePath": "staticwebassets\\js\\grid_list_toggle.js"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\match_pass.js",
       "PackagePath": "staticwebassets\\js\\match_pass.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\media.js",
+      "PackagePath": "staticwebassets\\js\\media.js"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\name._validate.js",
