@@ -3,6 +3,12 @@
     border: 0 !important;
 }
 
+    .card:hover {
+        box-shadow: 0px 0px 25px #F886346B;
+        border: 0 !important;
+        margin:-5px;
+    }
+
 .card-title {
     margin-bottom: 5px;
     order: 1;
@@ -27,15 +33,18 @@
     object-fit: cover;
 }
 
+.card-min-h {
+    min-height: 220px;
+}
+
 .city-name {
     height: 20px;
     position: absolute;
     right: 10px;
     top: 10px;
-    background-color: #000000;
+    background-color: rgba(0,0,0,0.5);
     padding-inline: 10px;
     border-radius: 30px;
-    opacity: 50%;
     color: white;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -47,19 +56,33 @@
     .city-name p {
         padding: 0;
         margin: 0;
-        opacity: 100%;
         color: #ffffff;
         font-size: 14px;
     }
 
 .like-mission {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    bottom: 50px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 4px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+}
+
+.share-mission {
+    height: 30px;
+    width: 30px;
     position: absolute;
     right: 10px;
     bottom: 10px;
-    background-color: #000000;
-    padding: 5px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 4px;
+    border: none;
     border-radius: 50%;
-    opacity: 50%;
     color: white;
 }
 
@@ -266,6 +289,11 @@
     text-align: center;
 }
 
+    .overlay-content .dropdown-menu {
+        max-height: 250px;
+        overflow-y: scroll;
+    }
+
 .overlay a {
     padding: 8px;
     text-decoration: none;
@@ -281,10 +309,8 @@
     }
 
 .overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+    font-size: 36px;
+    margin-left: 15px;
 }
 
 
