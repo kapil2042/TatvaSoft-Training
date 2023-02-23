@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $("#grid").click(function () {
-        $(".list").removeClass("card-min-h");
         $(".missions-view").addClass("col-sm-6 col-lg-4");
         $(".col-listview-img").removeClass("col-4");
         $(".col-listview-body").removeClass("col-8");
@@ -11,7 +10,6 @@ $(document).ready(function () {
         $("#grid").addClass('grid-active');
     });
     $("#list").click(function () {
-        $(".list").addClass("card-min-h");
         $(".missions-view").removeClass("col-sm-6 col-lg-4");
         $(".col-listview-img").addClass("col-4");
         $(".col-listview-body").addClass("col-8 pb-3 ps-0");

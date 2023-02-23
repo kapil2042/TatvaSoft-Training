@@ -22,6 +22,10 @@ namespace CI_Platform.Controllers
         {
             return View();
         }
+        public IActionResult Mission_volunteering()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

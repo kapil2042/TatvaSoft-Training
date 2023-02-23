@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\CI-PlatformWeb.bundle.scp.css"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\img.css",
+      "PackagePath": "staticwebassets\\css\\img.css"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\login_layout.css",
       "PackagePath": "staticwebassets\\css\\login_layout.css"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\mission_page.css",
       "PackagePath": "staticwebassets\\css\\mission_page.css"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\mission_volunteer.css",
+      "PackagePath": "staticwebassets\\css\\mission_volunteer.css"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\site.css",
@@ -463,6 +471,10 @@
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\filter.js",
       "PackagePath": "staticwebassets\\js\\filter.js"
+    },
+    {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\gallary.js",
+      "PackagePath": "staticwebassets\\js\\gallary.js"
     },
     {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\grid_list_toggle.js",
