@@ -10,3 +10,5 @@ D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\refint\CI-Platform.Models.dll
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.pdb
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\ref\CI-Platform.Models.dll
+D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.runtimeconfig.json
+D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.genruntimeconfig.cache

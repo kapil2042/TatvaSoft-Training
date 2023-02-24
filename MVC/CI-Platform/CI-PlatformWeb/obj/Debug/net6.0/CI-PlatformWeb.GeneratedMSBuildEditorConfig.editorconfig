@@ -16,40 +16,40 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Home/Mission_volunteering.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xIb21lXE1pc3Npb25fdm9sdW50ZWVyaW5nLmNzaHRtbA==
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Home/Mission_volunteering.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXEhvbWVcTWlzc2lvbl92b2x1bnRlZXJpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xIb21lXFByaXZhY3kuY3NodG1s
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXEhvbWVcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Login/ForgotPass.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xMb2dpblxGb3Jnb3RQYXNzLmNzaHRtbA==
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Login/ForgotPass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXExvZ2luXEZvcmdvdFBhc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Login/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xMb2dpblxJbmRleC5jc2h0bWw=
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXExvZ2luXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Login/Registration.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xMb2dpblxSZWdpc3RyYXRpb24uY3NodG1s
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Login/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXExvZ2luXFJlZ2lzdHJhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/Login/ResetPass.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xMb2dpblxSZXNldFBhc3MuY3NodG1s
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Login/ResetPass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXExvZ2luXFJlc2V0UGFzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/User/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/Error.cshtml]

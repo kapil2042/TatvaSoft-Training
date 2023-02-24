@@ -4,6 +4,77 @@
     "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\CI-PlatformWeb.csproj": {}
   },
   "projects": {
+    "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj",
+        "projectName": "CI-Platform.Data",
+        "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj",
+        "packagesPath": "C:\\Users\\kapil\\.nuget\\packages\\",
+        "outputPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kapil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
+                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -39,6 +110,18 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +138,74 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj",
+        "projectName": "CI-Platform.Utility",
+        "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj",
+        "packagesPath": "C:\\Users\\kapil\\.nuget\\packages\\",
+        "outputPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\kapil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -83,8 +233,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj": {
+                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj"
+              },
               "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
                 "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
+              },
+              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj": {
+                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj"
               }
             }
           }
@@ -99,6 +255,16 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.12, )"
@@ -123,7 +289,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
