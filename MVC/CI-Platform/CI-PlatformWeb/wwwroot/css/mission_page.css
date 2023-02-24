@@ -3,11 +3,11 @@
     border: 0 !important;
 }
 
-    .card:hover {
-        box-shadow: 0px 0px 25px #F886346B;
-        border: 0 !important;
-        margin:-5px;
-    }
+.card:hover {
+    box-shadow: 0px 0px 25px #F886346B;
+    border: 0 !important;
+    margin: -5px;
+}
 
 .card-title {
     margin-bottom: 5px;
@@ -27,22 +27,12 @@
     order: 2;
 }
 
-.card-img-top {
-    width: 100%;
-    min-height: 15vw;
-    object-fit: cover;
-}
-
-.card-min-h {
-    min-height: 220px;
-}
-
 .city-name {
     height: 20px;
     position: absolute;
     right: 10px;
     top: 10px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding-inline: 10px;
     border-radius: 30px;
     color: white;
@@ -53,12 +43,12 @@
     gap: 3px;
 }
 
-    .city-name p {
-        padding: 0;
-        margin: 0;
-        color: #ffffff;
-        font-size: 14px;
-    }
+.city-name p {
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+    font-size: 14px;
+}
 
 .like-mission {
     height: 30px;
@@ -66,7 +56,7 @@
     position: absolute;
     right: 10px;
     bottom: 50px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 4px;
     border: none;
     border-radius: 50%;
@@ -79,7 +69,7 @@
     position: absolute;
     right: 10px;
     bottom: 10px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 4px;
     border: none;
     border-radius: 50%;
@@ -107,13 +97,13 @@
     order: 3;
 }
 
-    .rating div {
-        color: #414141;
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: start;
-    }
+.rating div {
+    color: #414141;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
 
 .rating-img {
     height: 100%;
@@ -134,18 +124,15 @@
     justify-content: center;
 }
 
-    .timeline div {
-        display: flex;
-        align-items: center;
-        height: 30px;
-        border: 1px solid #adadad;
-        border-radius: 30px;
-        padding-inline: 20px;
-        background-color: #ffffff;
-    }
-
-
-
+.timeline div {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: 1px solid #adadad;
+    border-radius: 30px;
+    padding-inline: 20px;
+    background-color: #ffffff;
+}
 
 .list-view .card-title {
     order: 2;
@@ -159,16 +146,16 @@
     order: 1;
 }
 
-    .list-view .rating img {
-        display: block !important;
-        height: 18px !important;
-        margin-right: 5px !important;
-    }
+.list-view .rating img {
+    display: block !important;
+    height: 18px !important;
+    margin-right: 5px !important;
+}
 
-    .list-view .rating span {
-        display: flex !important;
-        margin-right: 10px !important;
-    }
+.list-view .rating span {
+    display: flex !important;
+    margin-right: 10px !important;
+}
 
 .list-view .timeline {
     display: none !important;
@@ -243,83 +230,4 @@
 
 .list-view .card-img-top {
     min-height: 100% !important;
-}
-
-.filter-btn {
-    border: 1px solid #757575;
-}
-
-    .filter-btn:focus {
-        border: 1px solid #F88634;
-        background-color: #D9D9D9 !important;
-    }
-
-.sort-by {
-    height: 30px;
-    min-width: 180px;
-    padding-inline: 8px;
-}
-
-.grid-active {
-    background-color: #D9D9D9 !important;
-}
-
-
-
-
-
-
-
-.overlay {
-    height: 0%;
-    width: 100%;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    background-color: rgb(255, 255, 255);
-    background-color: rgba(255, 255, 255, 0.9);
-    overflow-y: hidden;
-    transition: 0.5s;
-}
-
-.overlay-content {
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
-
-    .overlay-content .dropdown-menu {
-        max-height: 250px;
-        overflow-y: scroll;
-    }
-
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #414141;
-    display: block;
-    transition: 0.3s;
-}
-
-    .overlay a:hover,
-    .overlay a:focus {
-        color: #414141;
-    }
-
-.overlay .closebtn {
-    font-size: 36px;
-    margin-left: 15px;
-}
-
-
-@media screen and (max-width:871px) {
-    #grid {
-        display: none;
-    }
-
-    #list {
-        display: none;
-    }
 }

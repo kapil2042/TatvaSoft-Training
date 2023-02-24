@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\story_page.css",
+      "PackagePath": "staticwebassets\\css\\story_page.css"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

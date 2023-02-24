@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uFOiD7faPSupzCw46YgmOLR9ovcR/qrLRb48PsHaT84=",
+  "Hash": "OzVmORYnENO4E+/+qsEQRRk6YI+KWf45fjb96RErvhs=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\story_page.css",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "css/story_page.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\story_page.css"
     },
     {
       "Identity": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\favicon.ico",
