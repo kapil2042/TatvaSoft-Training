@@ -1,10 +1,24 @@
 using CI_Platform.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiPlatformContext>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.ExpireTimeSpan = TimeSpan.FromHours(4);
+        option.LoginPath = "/Volunteer/Login/Index";
+        option.AccessDeniedPath = "/Volunteer/Home/Index";
+    });
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromMinutes(10);
+    option.Cookie.HttpOnly= true;
+    option.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -20,7 +34,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

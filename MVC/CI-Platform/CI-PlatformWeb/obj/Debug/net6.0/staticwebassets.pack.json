@@ -357,6 +357,10 @@
       "PackagePath": "staticwebassets\\images\\previous.png"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\profile.png",
+      "PackagePath": "staticwebassets\\images\\profile.png"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\right-arrow-white.png",
       "PackagePath": "staticwebassets\\images\\right-arrow-white.png"
     },

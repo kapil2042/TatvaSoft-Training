@@ -51,34 +51,45 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                       asp-action="Privacy">Another action</a>
+                                       asp-action="Privacy">Logout</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
-                <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
-                    <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
-                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="avtar-nav">
-                            <img src="~/images/user-img.png" />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
+                        <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
+                             data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avtar-nav">
+                                <img src="~/images/profile.png" />
+                            </div>
+                            <span class="px-2 text-secondary d-none d-sm-block">@User.Identity.Name</span>
+                            <img class="d-none d-sm-block" src="~/images/drop-down.png" />
                         </div>
-                        <span class="px-2 text-secondary d-none d-sm-block">Name</span>
-                        <img class="d-none d-sm-block" src="~/images/drop-down.png" />
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
                                asp-action="Privacy">Action</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home" asp-action="Privacy">
-                                Another
-                                action
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="Login" asp-action="Logout">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <a asp-action="Index" asp-area="Volunteer" asp-controller="Login" class="d-flex align-items-center avatar-hover px-1 px-sm-3 py-1">
+                        <div class="avtar-nav">
+                            <img src="~/images/profile.png" />
+                        </div>
+                        <span class="px-2 text-secondary d-none d-sm-block">Login</span>
+                    </a>
+                }
             </div>
         </nav>
     </header>

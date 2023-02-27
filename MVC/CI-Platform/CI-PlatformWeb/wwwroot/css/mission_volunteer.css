@@ -6,13 +6,13 @@
     justify-content: center;
 }
 
-.star div {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    padding-inline: 10px;
-    background-color: #ffffff;
-}
+    .star div {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        padding-inline: 10px;
+        background-color: #ffffff;
+    }
 
 .vol-mission-detail {
     height: 100px;
@@ -27,14 +27,14 @@
     margin: auto;
 }
 
-.recent-vol img {
-    position: absolute;
-    object-fit: cover;
-    width: 150%;
-    left: -25%;
-    top: -35%;
-    text-align: center;
-}
+    .recent-vol img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+    }
 
 .recent-vol-name {
     line-height: 100%;
@@ -44,14 +44,14 @@
     height: 40px;
 }
 
-.recent-vol-page .btn {
-    border-radius: 0;
-}
+    .recent-vol-page .btn {
+        border-radius: 0;
+    }
 
-.recent-vol-page .btn:focus {
-    box-shadow: 0 0 0 1px #F88634;
-    border: none !important;
-}
+        .recent-vol-page .btn:focus {
+            box-shadow: 0 0 0 1px #F88634;
+            border: none !important;
+        }
 
 .related-mission {
     width: 100% !important;
@@ -92,11 +92,11 @@
     margin: auto;
 }
 
-.comment-avatar img {
-    position: absolute;
-    object-fit: cover;
-    width: 150%;
-    left: -25%;
-    top: -35%;
-    text-align: center;
-}
+    .comment-avatar img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        left: 0;
+        top: 0;
+        text-align: center;
+    }
