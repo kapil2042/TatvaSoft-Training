@@ -3722,17 +3722,17 @@
           "bin/placeholder/CI-Platform.Models.dll": {}
         }
       },
-      "CI-Platform.Utility/1.0.0": {
+      "CI-Platform.Repository/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3"
+          "CI-Platform.Data": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/CI-Platform.Utility.dll": {}
+          "bin/placeholder/CI-Platform.Repository.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CI-Platform.Utility.dll": {}
+          "bin/placeholder/CI-Platform.Repository.dll": {}
         }
       }
     }
@@ -10550,17 +10550,18 @@
       "path": "../CI-Platform.Models/CI-Platform.Models.csproj",
       "msbuildProject": "../CI-Platform.Models/CI-Platform.Models.csproj"
     },
-    "CI-Platform.Utility/1.0.0": {
+    "CI-Platform.Repository/1.0.0": {
       "type": "project",
-      "path": "../CI-Platform.Utility/CI-Platform.Utility.csproj",
-      "msbuildProject": "../CI-Platform.Utility/CI-Platform.Utility.csproj"
+      "path": "../CI-Platform.Repository/CI-Platform.Repository.csproj",
+      "msbuildProject": "../CI-Platform.Repository/CI-Platform.Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "CI-Platform.Data >= 1.0.0",
       "CI-Platform.Models >= 1.0.0",
-      "CI-Platform.Utility >= 1.0.0",
+      "CI-Platform.Repository >= 1.0.0",
+      "Microsoft.EntityFrameworkCore.Design >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.12"
@@ -10599,8 +10600,8 @@
             "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
               "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
             },
-            "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj": {
-              "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Utility\\CI-Platform.Utility.csproj"
+            "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj": {
+              "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj"
             }
           }
         }
@@ -10615,6 +10616,12 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[7.0.3, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.3, )"

@@ -9,6 +9,7 @@
       "CI-Platform.Data/1.0.0": {
         "dependencies": {
           "CI-Platform.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Design": "7.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.3"
         },

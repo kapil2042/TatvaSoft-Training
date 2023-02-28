@@ -35,8 +35,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     bool isValid = (userdata.Email.Equals(user.Email) && userdata.Password.Equals(user.Password));
                     if (isValid)
                     {
-                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.Email) },
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, user.Email) },
                             CookieAuthenticationDefaults.AuthenticationScheme);
+                        identity.AddClaim(new Claim(ClaimTypes.Name, userdata.FirstName));
+                        identity.AddClaim(new Claim(ClaimTypes.Surname, userdata.LastName));
                         var principle = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                         HttpContext.Session.SetString("Email", user.Email);
@@ -68,6 +70,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
         public IActionResult ForgotPass()
         {
+            if (TempData["error"] != null)
+                ViewBag.error = TempData["error"];
             return View();
         }
         [HttpPost]
@@ -76,15 +80,63 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var data = _db.Users.Where(x => x.Email == email).SingleOrDefault();
             if (data != null)
             {
-                var mailBody = "Your Password <b>" + data.Password + "</b>";
+                var dataToken = _db.UserTokens.Where(x => x.Email == email).SingleOrDefault();
+                string token = TokenGenrate();
+                UserToken emailtoken = new UserToken();
+                if (dataToken != null)
+                {
+                    dataToken.UserToken1 = token;
+                    dataToken.Used = 0;
+                    dataToken.GeneratedAt = DateTime.Now;
+                }
+                else
+                {
+                    emailtoken.Email = email;
+                    emailtoken.UserToken1 = token;
+                    emailtoken.Used = 0;
+                    emailtoken.GeneratedAt = DateTime.Now;
+                    _db.UserTokens.Add(emailtoken);
+                }
+                _db.SaveChanges();
+                var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = email, token = token });
+                var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44365" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
                 Email(mailBody, email);
+            }
+            else
+            {
+                ViewBag.error = "Email Not Found";
             }
             return View();
         }
-        public IActionResult ResetPass()
+        public IActionResult ResetPass(string email, string token)
         {
+            var dataToken = _db.UserTokens.Where(x => x.Email == email).SingleOrDefault();
+            if (dataToken != null)
+            {
+                if (dataToken.UserToken1 == token)
+                {
+                    ViewBag.email = email;
+                    return View();
+                }
+            }
+            TempData["error"] = "Something was changed in Url or Url was expired! Please try again!";
+            return RedirectToAction("ForgotPass", "Login", new { Area = "Volunteer" });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPass(FormCollection form)
+        {
+            var user = _db.Users.Where(x => x.Email == form["email"]).SingleOrDefault();
+            if (user != null)
+            {
+                user.Password = form["pass"];
+                user.UpdatedAt = DateTime.Now;
+                _db.SaveChanges();
+            }
             return View();
         }
+
         public IActionResult Registration()
         {
             return View();
@@ -128,11 +180,24 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("ciplatform123@gmail.com", "otoskohgreaywwof");
+                smtp.Credentials = new NetworkCredential("ciplatform123@gmail.com", "qdkcganrxcfzyaqh");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(message);
             }
             catch (Exception) { }
+        }
+
+
+        public static string TokenGenrate()
+        {
+            string[] str = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "_", "*", "$", "!" };
+            string token = "";
+            Random r = new Random();
+            for (int i = 0; i < 20; i++)
+            {
+                token += str[r.Next(0, str.Length)];
+            }
+            return token;
         }
     }
 }

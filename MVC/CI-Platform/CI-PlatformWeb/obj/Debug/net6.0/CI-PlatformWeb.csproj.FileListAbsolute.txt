@@ -291,5 +291,5 @@ D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\runt
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Data.dll
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Data.pdb
-D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Utility.dll
-D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Utility.pdb
+D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Repository.dll
+D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\CI-Platform.Repository.pdb
