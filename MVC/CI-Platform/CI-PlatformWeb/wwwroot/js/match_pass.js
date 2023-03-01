@@ -17,7 +17,8 @@
         }
         else {
             $("#pass-error").html("");
-            $('#regi').prop('disabled', false);
+            if (password.length >= 8 && password.length <= 15)
+                $('#regi').prop('disabled', false);
         }
         if (confirmPassword == "")
             $("#pass-error").html("");

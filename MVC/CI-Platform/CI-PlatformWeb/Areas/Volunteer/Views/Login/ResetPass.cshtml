@@ -10,6 +10,7 @@
         </div>
         <form method="post" class="w-100">
             <input type="email" name="email" value="@ViewBag.email" hidden/>
+            <input type="text" name="token" value="@ViewBag.token" hidden/>
             <div class="mb-3 mb-lg-2 position-relative">
                 <label for="new-pass" class="form-label">New Password</label>
                 <input type="password" class="form-control" name="pass" id="new-pass"
@@ -30,7 +31,7 @@
                 </span>
             </div>
             <div id="pass-error"></div>
-            <button type="submit" id="regi" class="btn-ci-primary mt-2 w-100" disabled>Change Password</button>
+            <button type="submit" id="regi" class="btn-ci-primary mt-2 w-100">Change Password</button>
             <div class="text-center">
                 <label class="mt-3"><a asp-area="Volunteer" asp-controller="Login" asp-action="Index">Login</a></label>
             </div>

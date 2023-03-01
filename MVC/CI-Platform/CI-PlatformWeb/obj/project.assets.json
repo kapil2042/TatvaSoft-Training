@@ -3722,17 +3722,19 @@
           "bin/placeholder/CI-Platform.Models.dll": {}
         }
       },
-      "CI-Platform.Repository/1.0.0": {
+      "CI-Platform.Repositories/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "CI-Platform.Data": "1.0.0"
+          "CI-Platform.Data": "1.0.0",
+          "CI-Platform.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3"
         },
         "compile": {
-          "bin/placeholder/CI-Platform.Repository.dll": {}
+          "bin/placeholder/CI-Platform.Repositories.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CI-Platform.Repository.dll": {}
+          "bin/placeholder/CI-Platform.Repositories.dll": {}
         }
       }
     }
@@ -10550,17 +10552,17 @@
       "path": "../CI-Platform.Models/CI-Platform.Models.csproj",
       "msbuildProject": "../CI-Platform.Models/CI-Platform.Models.csproj"
     },
-    "CI-Platform.Repository/1.0.0": {
+    "CI-Platform.Repositories/1.0.0": {
       "type": "project",
-      "path": "../CI-Platform.Repository/CI-Platform.Repository.csproj",
-      "msbuildProject": "../CI-Platform.Repository/CI-Platform.Repository.csproj"
+      "path": "../CI-Platform.Repositories/CI-Platform.Repositories.csproj",
+      "msbuildProject": "../CI-Platform.Repositories/CI-Platform.Repositories.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "CI-Platform.Data >= 1.0.0",
       "CI-Platform.Models >= 1.0.0",
-      "CI-Platform.Repository >= 1.0.0",
+      "CI-Platform.Repositories >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
@@ -10600,8 +10602,8 @@
             "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
               "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
             },
-            "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj": {
-              "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj"
+            "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj": {
+              "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj"
             }
           }
         }

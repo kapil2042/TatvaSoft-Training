@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-PlatformWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,14 +50,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Login/ResetPass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXExvZ2luXFJlc2V0UGFzcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Tatvasoft Project/GITHUB/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/Error.cshtml]

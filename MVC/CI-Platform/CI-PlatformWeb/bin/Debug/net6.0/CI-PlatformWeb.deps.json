@@ -10,7 +10,7 @@
         "dependencies": {
           "CI-Platform.Data": "1.0.0",
           "CI-Platform.Models": "1.0.0",
-          "CI-Platform.Repository": "1.0.0",
+          "CI-Platform.Repositories": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.3",
@@ -2439,12 +2439,14 @@
           "CI-Platform.Models.dll": {}
         }
       },
-      "CI-Platform.Repository/1.0.0": {
+      "CI-Platform.Repositories/1.0.0": {
         "dependencies": {
-          "CI-Platform.Data": "1.0.0"
+          "CI-Platform.Data": "1.0.0",
+          "CI-Platform.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.3"
         },
         "runtime": {
-          "CI-Platform.Repository.dll": {}
+          "CI-Platform.Repositories.dll": {}
         }
       }
     }
@@ -3739,7 +3741,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CI-Platform.Repository/1.0.0": {
+    "CI-Platform.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

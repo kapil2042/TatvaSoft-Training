@@ -23,6 +23,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             return View();
         }
+
         [Authorize]
         public IActionResult Mission_volunteering()
         {

@@ -57,7 +57,6 @@
                         </li>
                     </ul>
                 </div>
-                @using System.Security.Claims
                 @{
                     var identity = User.Identity as ClaimsIdentity;
                     var name = identity?.FindFirst(ClaimTypes.Name)?.Value;

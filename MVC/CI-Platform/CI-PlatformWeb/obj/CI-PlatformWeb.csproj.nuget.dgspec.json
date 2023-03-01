@@ -154,14 +154,14 @@
         }
       }
     },
-    "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj": {
+    "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj",
-        "projectName": "CI-Platform.Repository",
-        "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj",
+        "projectUniqueName": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
+        "projectName": "CI-Platform.Repositories",
+        "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
         "packagesPath": "C:\\Users\\kapil\\.nuget\\packages\\",
-        "outputPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\obj\\",
+        "outputPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kapil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -180,6 +180,9 @@
             "projectReferences": {
               "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj": {
                 "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj"
+              },
+              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
+                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
               }
             }
           }
@@ -193,6 +196,24 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -243,8 +264,8 @@
               "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
                 "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
               },
-              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj": {
-                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repository\\CI-Platform.Repository.csproj"
+              "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj": {
+                "projectPath": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj"
               }
             }
           }
