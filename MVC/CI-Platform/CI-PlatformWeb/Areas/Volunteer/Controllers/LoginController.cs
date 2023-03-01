@@ -173,7 +173,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 }
                 _loginRepository.Save();
                 var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = email, token = token });
-                var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44365" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
+                var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
                 _loginRepository.SendMail(mailBody, email);
                 ViewBag.success = "Mail sent Successfully! Plese check mail";
             }
