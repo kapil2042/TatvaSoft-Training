@@ -18,7 +18,6 @@ public partial class City
 
     [Column("name")]
     [StringLength(255)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]

@@ -24,7 +24,6 @@ public partial class MissionApplicatoin
 
     [Column("approval_status")]
     [StringLength(10)]
-    [Unicode(false)]
     public string? ApprovalStatus { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

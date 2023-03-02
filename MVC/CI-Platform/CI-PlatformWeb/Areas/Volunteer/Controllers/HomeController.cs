@@ -16,6 +16,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult Index()
         {
+            if (TempData["Logout"] != null)
+                ViewBag.success = TempData["Logout"];
             return View();
         }
 

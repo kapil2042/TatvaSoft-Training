@@ -18,17 +18,14 @@ public partial class MissionMedium
 
     [Column("media_name")]
     [StringLength(64)]
-    [Unicode(false)]
     public string? MediaName { get; set; }
 
     [Column("media_type")]
     [StringLength(4)]
-    [Unicode(false)]
     public string? MediaType { get; set; }
 
     [Column("media_path")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? MediaPath { get; set; }
 
     [Column("media_default")]

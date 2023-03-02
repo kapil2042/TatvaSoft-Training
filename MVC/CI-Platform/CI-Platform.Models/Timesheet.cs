@@ -33,7 +33,6 @@ public partial class Timesheet
 
     [Column("status")]
     [StringLength(20)]
-    [Unicode(false)]
     public string Status { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]

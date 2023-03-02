@@ -15,32 +15,26 @@ public partial class User
 
     [Column("first_name")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? FirstName { get; set; }
 
     [Column("last_name")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? LastName { get; set; }
 
     [Column("email")]
     [StringLength(128)]
-    [Unicode(false)]
     public string Email { get; set; } = null!;
 
     [Column("password")]
     [StringLength(255)]
-    [Unicode(false)]
     public string Password { get; set; } = null!;
 
     [Column("phone_number")]
     [StringLength(15)]
-    [Unicode(false)]
     public string PhoneNumber { get; set; } = null!;
 
     [Column("avatar")]
     [StringLength(2048)]
-    [Unicode(false)]
     public string? Avatar { get; set; }
 
     [Column("why_i_volunteer", TypeName = "text")]
@@ -48,12 +42,10 @@ public partial class User
 
     [Column("employee_id")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? EmployeeId { get; set; }
 
     [Column("department")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? Department { get; set; }
 
     [Column("city_id")]
@@ -67,12 +59,10 @@ public partial class User
 
     [Column("linked_in_url")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? LinkedInUrl { get; set; }
 
     [Column("title")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? Title { get; set; }
 
     [Column("status")]

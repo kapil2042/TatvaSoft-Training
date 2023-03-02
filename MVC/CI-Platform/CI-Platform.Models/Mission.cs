@@ -24,7 +24,6 @@ public partial class Mission
 
     [Column("title")]
     [StringLength(128)]
-    [Unicode(false)]
     public string Title { get; set; } = null!;
 
     [Column("short_description", TypeName = "text")]
@@ -41,7 +40,6 @@ public partial class Mission
 
     [Column("mission_type")]
     [StringLength(10)]
-    [Unicode(false)]
     public string MissionType { get; set; } = null!;
 
     [Column("status")]
@@ -49,7 +47,6 @@ public partial class Mission
 
     [Column("organization_name")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? OrganizationName { get; set; }
 
     [Column("organization_details", TypeName = "text")]
@@ -57,7 +54,6 @@ public partial class Mission
 
     [Column("availability")]
     [StringLength(10)]
-    [Unicode(false)]
     public string? Availability { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

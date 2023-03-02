@@ -15,22 +15,18 @@ public partial class Admin
 
     [Column("fisrt_name")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? FisrtName { get; set; }
 
     [Column("last_name")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? LastName { get; set; }
 
     [Column("email")]
     [StringLength(128)]
-    [Unicode(false)]
     public string Email { get; set; } = null!;
 
     [Column("password")]
     [StringLength(256)]
-    [Unicode(false)]
     public string Password { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]

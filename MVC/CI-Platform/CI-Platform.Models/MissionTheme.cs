@@ -15,7 +15,6 @@ public partial class MissionTheme
 
     [Column("title")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? Title { get; set; }
 
     [Column("status")]

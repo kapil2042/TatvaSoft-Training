@@ -15,7 +15,6 @@ public partial class Banner
 
     [Column("image")]
     [StringLength(512)]
-    [Unicode(false)]
     public string Image { get; set; } = null!;
 
     [Column("text", TypeName = "text")]

@@ -15,7 +15,6 @@ public partial class CmsPage
 
     [Column("title")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? Title { get; set; }
 
     [Column("description", TypeName = "text")]
@@ -23,7 +22,6 @@ public partial class CmsPage
 
     [Column("slug")]
     [StringLength(255)]
-    [Unicode(false)]
     public string Slug { get; set; } = null!;
 
     [Column("status")]

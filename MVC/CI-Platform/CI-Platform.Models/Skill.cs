@@ -15,7 +15,6 @@ public partial class Skill
 
     [Column("skill_name")]
     [StringLength(64)]
-    [Unicode(false)]
     public string SkillName { get; set; } = null!;
 
     [Column("status")]

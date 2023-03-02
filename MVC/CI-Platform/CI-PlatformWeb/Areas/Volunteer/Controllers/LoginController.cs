@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILoginRepository _loginRepository;
@@ -19,8 +21,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         public IActionResult Index(string ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
-            if (TempData["Logout"] != null)
-                ViewBag.success = TempData["Logout"];
             if (TempData["Registration"] != null)
                 ViewBag.success = TempData["Registration"];
             if (TempData["resetpass"] != null)

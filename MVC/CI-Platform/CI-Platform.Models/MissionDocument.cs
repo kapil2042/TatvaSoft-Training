@@ -18,17 +18,14 @@ public partial class MissionDocument
 
     [Column("document_name")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? DocumentName { get; set; }
 
     [Column("document_type")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? DocumentType { get; set; }
 
     [Column("document_path")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? DocumentPath { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

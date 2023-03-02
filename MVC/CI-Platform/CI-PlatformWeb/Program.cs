@@ -2,12 +2,15 @@ using CI_Platform.Data;
 using CI_Platform.Repositories.Interfaces;
 using CI_Platform.Repositories.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<CiPlatformContext>();
+builder.Services.AddDbContext<CiPlatformContext>(option => option.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

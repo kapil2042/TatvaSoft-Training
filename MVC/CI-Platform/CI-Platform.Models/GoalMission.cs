@@ -18,7 +18,6 @@ public partial class GoalMission
 
     [Column("goal_objective_text")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? GoalObjectiveText { get; set; }
 
     [Column("goal_value")]

@@ -12,12 +12,10 @@ public partial class PasswordReset
 {
     [Column("email")]
     [StringLength(191)]
-    [Unicode(false)]
     public string Email { get; set; } = null!;
 
     [Column("token")]
     [StringLength(191)]
-    [Unicode(false)]
     public string Token { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]

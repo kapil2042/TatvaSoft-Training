@@ -18,12 +18,10 @@ public partial class StoryMedium
 
     [Column("media_type")]
     [StringLength(4)]
-    [Unicode(false)]
     public string MediaType { get; set; } = null!;
 
     [Column("media_path")]
     [StringLength(255)]
-    [Unicode(false)]
     public string MediaPath { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]

@@ -21,7 +21,6 @@ public partial class Story
 
     [Column("title")]
     [StringLength(255)]
-    [Unicode(false)]
     public string? Title { get; set; }
 
     [Column("description", TypeName = "text")]
@@ -29,7 +28,6 @@ public partial class Story
 
     [Column("status")]
     [StringLength(10)]
-    [Unicode(false)]
     public string? Status { get; set; }
 
     [Column("published_at", TypeName = "datetime")]

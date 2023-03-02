@@ -477,6 +477,10 @@
       "PackagePath": "staticwebassets\\images\\xlsx.png"
     },
     {
+      "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\emailValidate.js",
+      "PackagePath": "staticwebassets\\js\\emailValidate.js"
+    },
+    {
       "Id": "D:\\Tatvasoft Project\\GITHUB\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\filter.js",
       "PackagePath": "staticwebassets\\js\\filter.js"
     },

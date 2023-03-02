@@ -15,12 +15,10 @@ public partial class Country
 
     [Column("name")]
     [StringLength(255)]
-    [Unicode(false)]
     public string Name { get; set; } = null!;
 
     [Column("ISO")]
     [StringLength(16)]
-    [Unicode(false)]
     public string? Iso { get; set; }
 
     [Column("created_at", TypeName = "datetime")]
