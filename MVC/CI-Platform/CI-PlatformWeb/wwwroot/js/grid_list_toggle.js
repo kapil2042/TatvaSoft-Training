@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#grid").click(function () {
-        $(".missions-view").addClass("col-sm-6 col-lg-4");
+        $(".missions-view").addClass("col-sm-6 col-lg-4 d-flex");
         $(".col-listview-img").removeClass("col-4");
         $(".col-listview-body").removeClass("col-8");
         $(".col-listview-img").addClass("col-12");
@@ -10,7 +10,7 @@ $(document).ready(function () {
         $("#grid").addClass('grid-active');
     });
     $("#list").click(function () {
-        $(".missions-view").removeClass("col-sm-6 col-lg-4");
+        $(".missions-view").removeClass("col-sm-6 col-lg-4 d-flex");
         $(".col-listview-img").addClass("col-4");
         $(".col-listview-body").addClass("col-8 pb-3 ps-0");
         $(".col-listview-img").removeClass("col-12");

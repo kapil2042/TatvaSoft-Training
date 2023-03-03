@@ -1,4 +1,5 @@
 ﻿using CI_Platform.Models;
+using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,15 +8,20 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IHomeRepository _homeRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IHomeRepository homeRepository)
         {
-            _logger = logger;
+            _homeRepository = homeRepository;
         }
 
         public IActionResult Index()
         {
+            ViewData["country"] = _homeRepository.GetCountries();
+            ViewData["city"] = _homeRepository.GetCities();
+            ViewData["skill"] = _homeRepository.GetSkills();
+            ViewData["theme"] = _homeRepository.GetMissionThemes();
+            ViewData["mission"] = _homeRepository.GetMissions();
             if (TempData["Logout"] != null)
                 ViewBag.success = TempData["Logout"];
             return View();
