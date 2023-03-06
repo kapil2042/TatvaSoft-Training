@@ -42,5 +42,15 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Missions.ToList();
         }
+
+        public List<GoalMission> GetGoalMissions()
+        {
+            return _db.GoalMissions.ToList();
+        }
+
+        public List<Timesheet> GetSumOfAction()
+        {
+            return _db.Timesheets.ToList();
+        }
     }
 }

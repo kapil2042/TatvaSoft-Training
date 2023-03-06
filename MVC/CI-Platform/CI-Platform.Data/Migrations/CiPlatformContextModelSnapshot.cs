@@ -44,27 +44,23 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(128)")
+                        .HasColumnType("nvarchar(128)")
                         .HasColumnName("email");
 
                     b.Property<string>("FisrtName")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("fisrt_name");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("last_name");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(256)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(256)")
+                        .HasColumnType("nvarchar(256)")
                         .HasColumnName("password");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -99,8 +95,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasMaxLength(512)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(512)")
+                        .HasColumnType("nvarchar(512)")
                         .HasColumnName("image");
 
                     b.Property<int?>("SortOrder")
@@ -149,8 +144,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("name");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -191,8 +185,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("slug");
 
                     b.Property<int?>("Status")
@@ -203,8 +196,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -229,8 +221,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("ApprovalStatus")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("nvarchar(10)")
                         .HasColumnName("approval_status")
                         .HasDefaultValueSql("('PENDING')");
 
@@ -287,15 +278,13 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Iso")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("ISO");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("name");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -370,8 +359,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("GoalObjectiveText")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("goal_objective_text");
 
                     b.Property<int>("GoalValue")
@@ -405,8 +393,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Availability")
                         .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("nvarchar(10)")
                         .HasColumnName("availability");
 
                     b.Property<long>("CityId")
@@ -438,8 +425,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("MissionType")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("nvarchar(10)")
                         .HasColumnName("mission_type");
 
                     b.Property<string>("OrganizationDetails")
@@ -448,8 +434,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("OrganizationName")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("organization_name");
 
                     b.Property<string>("ShortDescription")
@@ -473,8 +458,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(128)")
+                        .HasColumnType("nvarchar(128)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -508,8 +492,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("ApprovalStatus")
                         .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("nvarchar(10)")
                         .HasColumnName("approval_status");
 
                     b.Property<DateTime>("CreatedAt")
@@ -565,20 +548,17 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("DocumentName")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("document_name");
 
                     b.Property<string>("DocumentPath")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("document_path");
 
                     b.Property<string>("DocumentType")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("document_type");
 
                     b.Property<long>("MissionId")
@@ -671,20 +651,17 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("MediaName")
                         .HasMaxLength(64)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(64)")
+                        .HasColumnType("nvarchar(64)")
                         .HasColumnName("media_name");
 
                     b.Property<string>("MediaPath")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("media_path");
 
                     b.Property<string>("MediaType")
                         .HasMaxLength(4)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(4)")
+                        .HasColumnType("nvarchar(4)")
                         .HasColumnName("media_type");
 
                     b.Property<long>("MissionId")
@@ -816,8 +793,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -852,8 +828,7 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("SkillName")
                         .IsRequired()
                         .HasMaxLength(64)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(64)")
+                        .HasColumnType("nvarchar(64)")
                         .HasColumnName("skill_name");
 
                     b.Property<byte?>("Status")
@@ -906,15 +881,13 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("Status")
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(10)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("nvarchar(10)")
                         .HasColumnName("status")
                         .HasDefaultValueSql("('DRAFT')");
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -1004,15 +977,13 @@ namespace CI_Platform.Data.Migrations
                     b.Property<string>("MediaPath")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("media_path");
 
                     b.Property<string>("MediaType")
                         .IsRequired()
                         .HasMaxLength(4)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(4)")
+                        .HasColumnType("nvarchar(4)")
                         .HasColumnName("media_type");
 
                     b.Property<long>("StoryId")
@@ -1070,8 +1041,7 @@ namespace CI_Platform.Data.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
+                        .HasColumnType("nvarchar(20)")
                         .HasColumnName("status")
                         .HasDefaultValueSql("('SUBMIT_FOR_APPROVAL')");
 
@@ -1108,8 +1078,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Avatar")
                         .HasMaxLength(2048)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(2048)")
+                        .HasColumnType("nvarchar(2048)")
                         .HasColumnName("avatar");
 
                     b.Property<long>("CityId")
@@ -1136,53 +1105,45 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Department")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("department");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(128)")
+                        .HasColumnType("nvarchar(128)")
                         .HasColumnName("email");
 
                     b.Property<string>("EmployeeId")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("employee_id");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("first_name");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(16)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(16)")
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnName("last_name");
 
                     b.Property<string>("LinkedInUrl")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("linked_in_url");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("password");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(15)")
+                        .HasColumnType("nvarchar(15)")
                         .HasColumnName("phone_number");
 
                     b.Property<string>("ProfileText")
@@ -1195,8 +1156,7 @@ namespace CI_Platform.Data.Migrations
 
                     b.Property<string>("Title")
                         .HasMaxLength(255)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")

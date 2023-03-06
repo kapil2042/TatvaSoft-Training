@@ -17,3 +17,22 @@ D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\n
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Data.pdb
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Models.pdb
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.csproj.CopyComplete
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Repositories.deps.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Repositories.runtimeconfig.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Repositories.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\ref\CI-Platform.Repositories.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Repositories.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Data.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Data.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\bin\Debug\net6.0\CI-Platform.Models.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.csproj.AssemblyReference.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.AssemblyInfoInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.AssemblyInfo.cs
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.csproj.CoreCompileInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.csproj.CopyComplete
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\ref\CI-Platform.Repositories.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Repositories\obj\Debug\net6.0\CI-Platform.Repositories.genruntimeconfig.cache

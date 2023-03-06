@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using CI_Platform.Models.ViewModels;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
@@ -37,7 +38,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 if (userdata.Status == 1)
                 {
-                    bool isValid = (userdata.Email.Equals(user.Email) && userdata.Password.Equals(user.Password));
+                    bool isValid = (userdata.Email.Equals(user.Email) && _loginRepository.Decode(userdata.Password).Equals(user.Password));
                     if (isValid)
                     {
                         var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, user.Email) },
@@ -81,32 +82,39 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Registration(User user)
+        public IActionResult Registration(VMUserRegistration user)
         {
-            if (_loginRepository.getUserByEmail(user.Email) != null)
+            if (ModelState.IsValid)
             {
-                ViewBag.error = user.Email + " was already Registered!";
+                if (_loginRepository.getUserByEmail(user.Email) != null)
+                {
+                    ViewBag.error = user.Email + " was already Registered!";
+                }
+                else
+                {
+                    _loginRepository.InsertUser(user);
+                    _loginRepository.Save();
+                    TempData["Registration"] = "User Registred Successfully! Please Login!";
+                    return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
+                }
+                return View();
             }
             else
             {
-                _loginRepository.InsertUser(user);
-                _loginRepository.Save();
-                TempData["Registration"] = "User Registred Successfully! Please Login!";
-                return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
+                return View(user);
             }
-            return View();
         }
 
         public IActionResult ResetPass(string email, string token)
         {
-            var dataToken = _loginRepository.getTokenByEmail(email);
+            var dataToken = _loginRepository.getTokenByEmail(_loginRepository.Decode(email));
             if (dataToken != null)
             {
                 var date1 = DateTime.Now;
                 var date2 = date1.AddHours(-4);
                 if (dataToken.UserToken1 == token && dataToken.GeneratedAt > date2 && dataToken.GeneratedAt < date1)
                 {
-                    ViewBag.email = email;
+                    ViewBag.email = _loginRepository.Decode(email);
                     ViewBag.token = token;
                     return View();
                 }
@@ -125,7 +133,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 var dataToken = _loginRepository.getTokenByEmail(email);
                 if (dataToken.UserToken1 == token)
                 {
-                    user.Password = pass;
+                    user.Password = _loginRepository.Encode(pass);
                     user.UpdatedAt = DateTime.Now;
                     dataToken.Used = 1;
                     _loginRepository.UpdateUser(user);
@@ -172,7 +180,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     _loginRepository.InsertToken(emailtoken);
                 }
                 _loginRepository.Save();
-                var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = email, token = token });
+                var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = _loginRepository.Encode(email), token = token });
                 var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
                 _loginRepository.SendMail(mailBody, email);
                 ViewBag.success = "Mail sent Successfully! Plese check mail";

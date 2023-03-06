@@ -34,7 +34,7 @@
                             @foreach (var i in country)
                             {
                                 <li>
-                                    <a class="dropdown-item" id="@i.Name" onclick="country(this.id)">@i.Name</a>
+                                    <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
                                 </li>
                             }
                         </ul>
@@ -49,8 +49,7 @@
                             @foreach (var i in city)
                             {
                                 <li>
-                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                   asp-action="Privacy">@i.Name</a>
+                                    <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
                                 </li>
                             }
                         </ul>
@@ -65,8 +64,7 @@
                             @foreach (var i in theme)
                             {
                                 <li>
-                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                   asp-action="Privacy">@i.Title</a>
+                                    <a class="dropdown-item" id="@i.Title" onclick="addccst(this.id)">@i.Title</a>
                                 </li>
                             }
                         </ul>
@@ -81,8 +79,7 @@
                             @foreach (var i in skill)
                             {
                                 <li>
-                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                   asp-action="Privacy">@i.SkillName</a>
+                                    <a class="dropdown-item" id="@i.SkillName" onclick="addccst(this.id)">@i.SkillName</a>
                                 </li>
                             }
                         </ul>
@@ -92,9 +89,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function country(x) {
-        console.log(x);
-    }
-</script>

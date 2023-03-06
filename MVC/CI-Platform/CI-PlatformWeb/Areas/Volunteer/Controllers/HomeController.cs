@@ -22,6 +22,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             ViewData["skill"] = _homeRepository.GetSkills();
             ViewData["theme"] = _homeRepository.GetMissionThemes();
             ViewData["mission"] = _homeRepository.GetMissions();
+            ViewData["goalmission"] = _homeRepository.GetGoalMissions();
+            ViewData["sumofaction"] = _homeRepository.GetSumOfAction();
             if (TempData["Logout"] != null)
                 ViewBag.success = TempData["Logout"];
             return View();
@@ -35,6 +37,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [Authorize]
         public IActionResult Mission_volunteering()
         {
+            ViewData["country"] = _homeRepository.GetCountries();
+            ViewData["city"] = _homeRepository.GetCities();
+            ViewData["skill"] = _homeRepository.GetSkills();
+            ViewData["theme"] = _homeRepository.GetMissionThemes();
+            ViewData["mission"] = _homeRepository.GetMissions();
             return View();
         }
 

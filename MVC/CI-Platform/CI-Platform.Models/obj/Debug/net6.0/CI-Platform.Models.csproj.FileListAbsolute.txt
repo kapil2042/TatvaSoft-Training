@@ -12,3 +12,17 @@ D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.pdb
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.genruntimeconfig.cache
 D:\Tatvasoft Project\GITHUB\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\ref\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.deps.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.runtimeconfig.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\ref\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.csproj.AssemblyReference.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.AssemblyInfoInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.AssemblyInfo.cs
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.csproj.CoreCompileInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\ref\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.genruntimeconfig.cache

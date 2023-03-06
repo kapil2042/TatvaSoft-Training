@@ -19,7 +19,7 @@
                 @foreach (var i in country)
                 {
                     <li>
-                        <a class="dropdown-item" id="@i.Name" onclick="country(this.id)">@i.Name</a>
+                        <a class="dropdown-item" id="@i.Name">@i.Name</a>
                     </li>
                 }
             </ul>
@@ -30,7 +30,7 @@
                 <span class="pe-1">City</span>
                 <img src="~/images/drop-down.png" />
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="citydrop">
                 @foreach (var i in city)
                 {
                     <li>
