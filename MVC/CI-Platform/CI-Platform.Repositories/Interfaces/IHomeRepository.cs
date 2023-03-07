@@ -15,6 +15,11 @@ namespace CI_Platform.Repositories.Interfaces
         List<Skill> GetSkills();
         List<Mission> GetMissions();
         List<GoalMission> GetGoalMissions();
-        List<Timesheet> GetSumOfAction();
+        List<Timesheet> GetTimeSheet();
+        List<MissionSkill> GetMissionSkills();
+        List<Mission> GetMissionsAtoZ();
+        List<Mission> GetMissionsZtoA();
+        List<Mission> GetMissionsNew();
+        List<Mission> GetMissionsOld();
     }
 }

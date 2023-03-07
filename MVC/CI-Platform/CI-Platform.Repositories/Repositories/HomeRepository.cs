@@ -48,9 +48,34 @@ namespace CI_Platform.Repositories.Repositories
             return _db.GoalMissions.ToList();
         }
 
-        public List<Timesheet> GetSumOfAction()
+        public List<Timesheet> GetTimeSheet()
         {
             return _db.Timesheets.ToList();
+        }
+
+        public List<MissionSkill> GetMissionSkills()
+        {
+            return _db.MissionSkills.ToList();
+        }
+
+        public List<Mission> GetMissionsAtoZ()
+        {
+            return _db.Missions.OrderBy(x => x.Title).ToList();
+        }
+
+        public List<Mission> GetMissionsZtoA()
+        {
+            return _db.Missions.OrderByDescending(x => x.Title).ToList();
+        }
+
+        public List<Mission> GetMissionsNew()
+        {
+            return _db.Missions.OrderBy(x => x.CreatedAt).ToList();
+        }
+
+        public List<Mission> GetMissionsOld()
+        {
+            return _db.Missions.OrderByDescending(x => x.CreatedAt).ToList();
         }
     }
 }

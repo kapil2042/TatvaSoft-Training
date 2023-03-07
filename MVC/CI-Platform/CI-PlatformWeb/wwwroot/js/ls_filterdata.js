@@ -3,6 +3,20 @@ function addccst(ccst) {
     localStorage.removeItem("i18nextLng");
     localStorage.setItem('ccst' + ccst, ccst);
     allStorage();
+    //$.ajax({
+    //    type: "GET",
+    //    url: 'Volunteer/Home/Index',
+    //    data: { country = country },
+    //    success: function (data) {
+
+    //    },
+    //    failure: function (e) {
+    //        errorMessage(e.responseText);
+    //    },
+    //    error: function (e) {
+    //        errorMessage(e.responseText);
+    //    }
+    //});
 }
 
 function removeccst(ccst) {

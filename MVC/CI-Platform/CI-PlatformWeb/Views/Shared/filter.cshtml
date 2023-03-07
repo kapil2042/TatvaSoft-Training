@@ -1,12 +1,4 @@
-﻿@{
-    var country = (List<Country>)ViewData["country"];
-    var city = (List<City>)ViewData["city"];
-    var theme = (List<MissionTheme>)ViewData["theme"];
-    var skill = (List<Skill>)ViewData["skill"];
-}
-
-
-<div id="myfilter" class="overlay">
+﻿<div id="myfilter" class="overlay">
     <a class="closefilter closebtn" onclick="closefilter()">&times;</a>
     <div class="overlay-content">
         <div class="dropdown">
@@ -16,7 +8,7 @@
                 <img src="~/images/drop-down.png" />
             </a>
             <ul class="dropdown-menu">
-                @foreach (var i in country)
+                @foreach (var i in Model.countries)
                 {
                     <li>
                         <a class="dropdown-item" id="@i.Name">@i.Name</a>
@@ -31,7 +23,7 @@
                 <img src="~/images/drop-down.png" />
             </a>
             <ul class="dropdown-menu" id="citydrop">
-                @foreach (var i in city)
+                @foreach (var i in Model.cities)
                 {
                     <li>
                         <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
@@ -47,7 +39,7 @@
                 <img src="~/images/drop-down.png" />
             </a>
             <ul class="dropdown-menu">
-                @foreach (var i in theme)
+                @foreach (var i in Model.themes)
                 {
                     <li>
                         <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
@@ -63,7 +55,7 @@
                 <img src="~/images/drop-down.png" />
             </a>
             <ul class="dropdown-menu">
-                @foreach (var i in skill)
+                @foreach (var i in Model.skills)
                 {
                     <li>
                         <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
@@ -80,47 +72,16 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
+                    <a asp-route-sort="AZ" asp-area="Volunteer" asp-action="Index" asp-controller="Home">A To Z</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
-                </li><li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
+                    <a asp-route-sort="ZA" asp-area="Volunteer" asp-action="Index" asp-controller="Home">Z To A</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
-                </li><li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
+                    <a asp-route-sort="NEW" asp-area="Volunteer" asp-action="Index" asp-controller="Home">Newest First</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
-                </li><li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
-                </li><li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
-                </li><li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Action</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">Another action</a>
+                    <a asp-route-sort="OLD" asp-area="Volunteer" asp-action="Index" asp-controller="Home">Oldest First</a>
                 </li>
             </ul>
         </div>

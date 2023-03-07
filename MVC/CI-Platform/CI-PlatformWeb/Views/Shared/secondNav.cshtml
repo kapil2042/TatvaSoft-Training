@@ -1,11 +1,4 @@
-﻿@{
-    var country = (List<Country>)ViewData["country"];
-    var city = (List<City>)ViewData["city"];
-    var theme = (List<MissionTheme>)ViewData["theme"];
-    var skill = (List<Skill>)ViewData["skill"];
-}
-
-<div class="border-bottom shadow-sm mb-1 mb-sm-3">
+﻿<div class="border-bottom shadow-sm mb-1 mb-sm-3">
     <div class="container-lg container-fluid">
         <div class="row align-items-center align-items-sm-stretch">
             <div class="col-10 col-md-6 col-sm-4">
@@ -31,7 +24,7 @@
                             <img src="~/images/drop-down.png" />
                         </div>
                         <ul class="dropdown-menu m-height">
-                            @foreach (var i in country)
+                            @foreach (var i in Model.countries)
                             {
                                 <li>
                                     <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
@@ -46,7 +39,7 @@
                             <img src="~/images/drop-down.png" />
                         </div>
                         <ul class="dropdown-menu m-height">
-                            @foreach (var i in city)
+                            @foreach (var i in Model.cities)
                             {
                                 <li>
                                     <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
@@ -61,7 +54,7 @@
                             <img src="~/images/drop-down.png" />
                         </div>
                         <ul class="dropdown-menu m-height">
-                            @foreach (var i in theme)
+                            @foreach (var i in Model.themes)
                             {
                                 <li>
                                     <a class="dropdown-item" id="@i.Title" onclick="addccst(this.id)">@i.Title</a>
@@ -76,7 +69,7 @@
                             <img src="~/images/drop-down.png" />
                         </div>
                         <ul class="dropdown-menu m-height">
-                            @foreach (var i in skill)
+                            @foreach (var i in Model.skills)
                             {
                                 <li>
                                     <a class="dropdown-item" id="@i.SkillName" onclick="addccst(this.id)">@i.SkillName</a>
