@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Mission_volunteering";
 }
+@model VMMissions
 <link rel="stylesheet" href="~/css/mission_volunteer.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/mission_page.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/img.css" asp-append-version="true">
@@ -104,10 +105,9 @@
 
         <div class="col-lg-6 col-12 text-muted ps-md-5 py-3 py-md-0">
             <div class="vol-title mb-4">
-                <h3>Title</h3>
+                <h3>@Model.m.Title</h3>
                 <p class="p-0 m-0 fs-7">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum id possimus maiores
-                    error vero. Corporis, doloremque laborum? Voluptate, quisquam.
+                    @Model.m.Description
                 </p>
             </div>
             <div class="position-relative mb-4">

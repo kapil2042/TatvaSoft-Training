@@ -6,8 +6,10 @@
                     <label for="search">
                         <img src="~/images/search.png" alt="search" class="search-icon">
                     </label>
-                    <input type="search" name="search" id="search" class="search-box border-0"
-                           placeholder="Search mission...">
+                    <form asp-area="Volunteer" asp-action="Index" asp-controller="Home" class="w-100">
+                        <input type="search" name="search" id="search" class="search-box border-0"
+                               placeholder="Search mission...">
+                    </form>
                 </div>
             </div>
             <div class="col-2 d-block d-sm-none py-1">

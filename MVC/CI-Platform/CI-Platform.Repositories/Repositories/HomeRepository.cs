@@ -25,7 +25,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Country> GetCountries()
         {
-            return _db.Countries.ToList(); 
+            return _db.Countries.ToList();
         }
 
         public List<Skill> GetSkills()
@@ -58,24 +58,19 @@ namespace CI_Platform.Repositories.Repositories
             return _db.MissionSkills.ToList();
         }
 
-        public List<Mission> GetMissionsAtoZ()
+        public List<Mission> GetMissionsBySearch(string s)
         {
-            return _db.Missions.OrderBy(x => x.Title).ToList();
+            return _db.Missions.Where(x => x.Title.Contains(s)).ToList();
         }
 
-        public List<Mission> GetMissionsZtoA()
+        public List<MissionRating> GetMissionsRating()
         {
-            return _db.Missions.OrderByDescending(x => x.Title).ToList();
+            return _db.MissionRatings.ToList();
         }
 
-        public List<Mission> GetMissionsNew()
+        public Mission GetMissionsById(int id)
         {
-            return _db.Missions.OrderBy(x => x.CreatedAt).ToList();
-        }
-
-        public List<Mission> GetMissionsOld()
-        {
-            return _db.Missions.OrderByDescending(x => x.CreatedAt).ToList();
+            return _db.Missions.Where(x => x.MissionId == id).FirstOrDefault();
         }
     }
 }

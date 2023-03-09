@@ -14,12 +14,11 @@ namespace CI_Platform.Repositories.Interfaces
         List<MissionTheme> GetMissionThemes();
         List<Skill> GetSkills();
         List<Mission> GetMissions();
+        Mission GetMissionsById(int id);
         List<GoalMission> GetGoalMissions();
         List<Timesheet> GetTimeSheet();
         List<MissionSkill> GetMissionSkills();
-        List<Mission> GetMissionsAtoZ();
-        List<Mission> GetMissionsZtoA();
-        List<Mission> GetMissionsNew();
-        List<Mission> GetMissionsOld();
+        List<Mission> GetMissionsBySearch(string s);
+        List<MissionRating> GetMissionsRating();
     }
 }

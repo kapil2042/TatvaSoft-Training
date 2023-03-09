@@ -16,7 +16,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _homeRepository = homeRepository;
         }
 
-        public IActionResult Index(string? search, string? country, string id, int pg = 1)
+        public IActionResult Index(string? search, string id, int pg = 1)
         {
             if (TempData["Logout"] != null)
                 ViewBag.success = TempData["Logout"];
@@ -28,29 +28,43 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.goal = _homeRepository.GetGoalMissions();
             model.timesheet = _homeRepository.GetTimeSheet();
             model.missionSkills = _homeRepository.GetMissionSkills();
+            model.missionRatings = _homeRepository.GetMissionsRating();
 
             List<Mission> m = _homeRepository.GetMissions();
 
-            if (id != null)
+            //if (search == null || search == "")
+            //{
+            //    search = (string?)TempData["search"];
+            //}
+            //TempData["search"] = search;
+            
+            if(search != "" && search != null)
             {
-                switch (id)
+                m = _homeRepository.GetMissionsBySearch(search);
+                if (m.Count() > 0)
                 {
-                    case "AZ":
-                        m = _homeRepository.GetMissionsAtoZ();
-                        break;
-                    case "ZA":
-                        m = _homeRepository.GetMissionsZtoA();
-                        break;
-                    case "NEW":
-                        m = _homeRepository.GetMissionsNew();
-                        break;
-                    case "OLD":
-                        m = _homeRepository.GetMissionsOld();
-                        break;
-                    default:
-                        m = _homeRepository.GetMissions();
-                        break;
+                    model.mission = m;
                 }
+                else
+                {
+                    m = _homeRepository.GetMissions();
+                    ViewBag.nomission = 1;
+                }
+            }
+            switch (id)
+            {
+                case "AZ":
+                    m = m.OrderBy(x => x.Title).ToList();
+                    break;
+                case "ZA":
+                    m = m.OrderByDescending(x => x.Title).ToList();
+                    break;
+                case "NEW":
+                    m = m.OrderBy(x => x.StartDate).ToList();
+                    break;
+                case "OLD":
+                    m = m.OrderByDescending(x => x.StartDate).ToList();
+                    break;
             }
 
             const int pageSize = 6;
@@ -59,6 +73,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 pg = 1;
             }
             int recsCount = m.Count();
+            ViewBag.count = recsCount;
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var data = m.Skip(recSkip).Take(pager.PageSize).ToList();
@@ -73,14 +88,19 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
         [Authorize]
-        public IActionResult Mission_volunteering()
+        public IActionResult Mission_volunteering(int id)
         {
-            ViewData["country"] = _homeRepository.GetCountries();
-            ViewData["city"] = _homeRepository.GetCities();
-            ViewData["skill"] = _homeRepository.GetSkills();
-            ViewData["theme"] = _homeRepository.GetMissionThemes();
-            ViewData["mission"] = _homeRepository.GetMissions();
-            return View();
+            VMMissions model = new VMMissions();
+            model.countries = _homeRepository.GetCountries();
+            model.cities = _homeRepository.GetCities();
+            model.skills = _homeRepository.GetSkills();
+            model.themes = _homeRepository.GetMissionThemes();
+            model.goal = _homeRepository.GetGoalMissions();
+            model.timesheet = _homeRepository.GetTimeSheet();
+            model.missionSkills = _homeRepository.GetMissionSkills();
+            model.missionRatings = _homeRepository.GetMissionsRating();
+            model.m = _homeRepository.GetMissionsById(id);
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

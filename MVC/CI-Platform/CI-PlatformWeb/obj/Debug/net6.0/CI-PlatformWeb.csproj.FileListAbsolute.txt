@@ -583,3 +583,8 @@ D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\obj\Debug\net6.0\CI-P
 D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\obj\Debug\net6.0\ref\CI-PlatformWeb.dll
 D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\obj\Debug\net6.0\CI-PlatformWeb.pdb
 D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\obj\Debug\net6.0\CI-PlatformWeb.genruntimeconfig.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\obj\Debug\net6.0\CI-PlatformWeb.MvcApplicationPartsAssemblyInfo.cs

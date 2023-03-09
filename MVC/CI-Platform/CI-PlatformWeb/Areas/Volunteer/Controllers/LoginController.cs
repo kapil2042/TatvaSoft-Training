@@ -51,7 +51,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         if (ReturnUrl != null)
                         {
                             var viewurl = ReturnUrl.Split('/');
-                            return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1] });
+                            return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1], id = viewurl[4] });
                         }
                         else
                         {
