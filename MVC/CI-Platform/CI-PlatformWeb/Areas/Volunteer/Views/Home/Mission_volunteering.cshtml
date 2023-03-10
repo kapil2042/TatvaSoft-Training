@@ -114,7 +114,22 @@
                 <hr class="my-2 border">
                 <div class="timeline">
                     <div class="fs-7">
-                        Plant 10,000 Trees
+                        @if (Model.m.MissionType == "TIME")
+                        {
+
+                            @: From @Model.m.StartDate.Value.ToShortDateString() until @Model.m.EndDate.Value.ToShortDateString()
+                        }
+                        else
+                        {
+                            @foreach (var j in Model.goal)
+                            {
+                                @if (j.MissionId == Model.m.MissionId)
+                                {
+                                    @j.GoalObjectiveText
+
+                                }
+                            }
+                        }
                     </div>
                 </div>
             </div>
@@ -129,16 +144,37 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center h-100 w-50">
-                    <div class="px-2 w-25 text-end">
-                        <img src="~/images/achieved.png" alt="">
-                    </div>
-                    <div class="w-75">
-                        <div class="progress w-75">
-                            <div class="progress-bar bg-ci-primary" role="progressbar" style="width: 75%"
-                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    @if (@Model.m.MissionType == "TIME")
+                    {
+                        <div class="px-2 w-25 text-end">
+                            <img src="~/images/deadline.png" alt="">
                         </div>
-                        <span class="fs-7">Seats left</span>
-                    </div>
+                        <div class="w-50">
+                            <div class="deadline">
+                                <h6 class="p-0 m-0">@Model.m.StartDate.Value.AddDays(-1).ToShortDateString()</h6>
+                                <span class="fs-7">Deadline</span>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var j in Model.goal)
+                        {
+                            @if (j.MissionId == Model.m.MissionId)
+                            {
+                                <div class="px-2 w-25 text-end">
+                                    <img src="~/images/achieved.png" alt="">
+                                </div>
+                                <div class="w-75">
+                                    <div class="progress w-75">
+                                        <div class="progress-bar bg-ci-primary" role="progressbar" style="width: 75%"
+                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="fs-7">Seats left</span>
+                                </div>
+                            }
+                        }
+                    }
                 </div>
             </div>
             <hr class="my-2 border border-secondary">

@@ -385,6 +385,7 @@ public partial class CiPlatformContext : DbContext
 
             entity.Property(e => e.MissionApplicationId).HasColumnName("mission_application_id");
             entity.Property(e => e.AppliedAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("applied_at");
             entity.Property(e => e.ApprovalStatus)

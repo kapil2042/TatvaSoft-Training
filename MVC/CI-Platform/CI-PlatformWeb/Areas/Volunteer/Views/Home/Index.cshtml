@@ -4,6 +4,7 @@
 @model VMMissions
 
 <link rel="stylesheet" href="~/css/mission_page.css" asp-append-version="true" />
+<script src="~/js/ajax.js" asp-append-version="true"></script>
 <partial name="filter" model="Model"></partial>
 
 <partial name="secondNav" model="Model"></partial>
@@ -18,7 +19,6 @@
 }
 else
 {
-
     <div class="container-lg container-fluid py-3">
         <div class="d-flex flex-wrap align-items-center" id="filterlist">
             <span class="fs-7 border px-2 rounded-pill text-secondary d-inline-flex align-items-center">
@@ -55,15 +55,38 @@ else
         </div>
     </div>
     <div class="container-lg container-fluid">
-        <div class="row">
+        <div class="row" id="searchResults">
             @foreach (var i in Model.mission)
             {
+
+                var a1 = Model.timesheet.Where(x => x.MissionId == i.MissionId).Sum(x => x.Action);
+                var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
+                var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
+
                 <div class="col-12 col-sm-6 col-lg-4 missions-view mt-3 mb-3 d-flex align-items-stretch">
                     <a asp-area="Volunteer" asp-action="Mission_volunteering" asp-controller="Home" asp-route-id="@i.MissionId">
                         <div class="card h-100">
                             <div class="row list position-relative card-min-h">
                                 <div class="col-listview-img col-12">
                                     <div class="position-relative w-100 h-100">
+                                        @if (Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
+                                        {
+                                            <div class="mission-status bg-ci-success">
+                                                <p>APPLIED</p>
+                                            </div>
+                                        }
+                                        else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
+                                        {
+                                            <div class="mission-status bg-ci-primary">
+                                                <p>CLOSED</p>
+                                            </div>
+                                        }
+                                        else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                        {
+                                            <div class="mission-status bg-ci-primary">
+                                                <p>CLOSED</p>
+                                            </div>
+                                        }
                                         <div class="city-name">
                                             <img src="~/images/pin.png" alt="" class="w-100 h-100">
                                             <p>@i.City.Name</p>
@@ -85,17 +108,20 @@ else
                                 <div class="col-listview-body col-12">
                                     <div class="card-body">
                                         <h5 class="card-title">@i.Title</h5>
-                                        <p class="card-text">
+                                        <p class="card-text mb-2">
                                             @i.ShortDescription
                                         </p>
                                         <div class="rating">
-                                            <div class="h-100">
+                                            <div class="h-100 mb-2">
                                                 <img src="~/images/pin1.png" alt="pin1" class="d-none">
                                                 <span class="pin d-none">@i.Country.Name</span>
                                                 <img src="~/images/web.png" alt="web" class="d-none">
                                                 <span class="theme d-none">@i.Theme.Title</span>
-                                                <img src="~/images/organization.png" alt="organization" class="d-none">
-                                                <span class="orga">@i.OrganizationName</span>
+                                                @if (i.OrganizationName != null)
+                                                {
+                                                    <img src="~/images/organization.png" alt="organization" class="d-none">
+                                                    <span class="orga">@i.OrganizationName</span>
+                                                }
                                             </div>
                                             <span class="rating-img">
                                                 @{
@@ -128,23 +154,29 @@ else
                                     <div class="time-goal">
                                         <hr>
                                         <div class="timeline">
+                                            @{
+                                                var gd = Model.goal.Where(x => x.MissionId == i.MissionId).FirstOrDefault();
+                                            }
                                             @if (@i.MissionType == "TIME")
                                             {
-                                                <div class="fs-7">
-                                                    From @i.StartDate.Value.ToShortDateString() until @i.EndDate.Value.ToShortDateString()
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                @foreach (var j in Model.goal)
+                                                if (i.StartDate < DateTime.Now && i.EndDate > DateTime.Now)
                                                 {
-                                                    @if (j.MissionId == i.MissionId)
-                                                    {
-                                                        <div class="fs-7">
-                                                            @j.GoalObjectiveText
-                                                        </div>
-                                                    }
+                                                    <div class="fs-7">
+                                                        Ongoing Opportunity
+                                                    </div>
                                                 }
+                                                else
+                                                {
+                                                    <div class="fs-7">
+                                                        From @i.StartDate.Value.ToShortDateString() until @i.EndDate.Value.ToShortDateString()
+                                                    </div>
+                                                }
+                                            }
+                                            else if (gd != null)
+                                            {
+                                                <div class="fs-7">
+                                                    @gd.GoalObjectiveText
+                                                </div>
                                             }
                                         </div>
                                         <div class="seat-left m-3 mt-4 d-flex justify-content-between align-content-center">
@@ -158,10 +190,6 @@ else
                                                         <span class="fs-7">Seats left</span>
                                                     </div>
                                                 </div>
-                                                @{
-                                                    var a1 = Model.timesheet.Where(x => x.MissionId == i.MissionId).Sum(x => x.Action);
-                                                    var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
-                                                }
                                                 <div class="d-flex align-items-center deadline-listview">
                                                     @if (@i.MissionType == "TIME")
                                                     {
@@ -173,23 +201,17 @@ else
                                                             <span class="fs-7">Deadline</span>
                                                         </div>
                                                     }
-                                                    else
+                                                    else if (gd != null)
                                                     {
-                                                        @foreach (var j in Model.goal)
-                                                        {
-                                                            @if (j.MissionId == i.MissionId)
-                                                            {
-                                                                <div class="px-2">
-                                                                    <img src="~/images/achieved.png" alt="">
-                                                                </div>
-                                                                <div class="deadline">
-                                                                    <div class="progress rounded-pill">
-                                                                        <div class="progress-bar bg-ci-primary" role="progressbar" style="width: @(Convert.ToDouble(a1)/Convert.ToDouble(b1)*100)%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                    </div>
-                                                                    <span class="fs-7">@a1 Achieved</span>
-                                                                </div>
-                                                            }
-                                                        }
+                                                        <div class="px-2">
+                                                            <img src="~/images/achieved.png" alt="">
+                                                        </div>
+                                                        <div class="deadline">
+                                                            <div class="progress rounded-pill">
+                                                                <div class="progress-bar bg-ci-primary" role="progressbar" style="width: @avg%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                            <span class="fs-7">@a1 Achieved</span>
+                                                        </div>
                                                     }
                                                 </div>
                                                 <div class="d-none align-items-center h-100 range-listview">
@@ -197,8 +219,21 @@ else
                                                         <img src="~/images/calender.png" alt="">
                                                     </div>
                                                     <div class="range">
-                                                        <h6 class="p-0 m-0">From @i.StartDate.Value.ToShortDateString()</h6>
-                                                        <h6 class="p-0 m-0">Until @i.EndDate.Value.ToShortDateString()</h6>
+                                                        @if (i.MissionType.Equals("GOAL") && avg < 100)
+                                                        {
+                                                            <h6 class="p-0 m-0">Ongoing</h6>
+                                                            <h6 class="p-0 m-0">Opportunity</h6>
+                                                        }
+                                                        else if (i.StartDate < DateTime.Now && i.EndDate > DateTime.Now && i.MissionType.Equals("TIME"))
+                                                        {
+                                                            <h6 class="p-0 m-0">Ongoing</h6>
+                                                            <h6 class="p-0 m-0">Opportunity</h6>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h6 class="p-0 m-0">From @i.StartDate.Value.ToShortDateString()</h6>
+                                                            <h6 class="p-0 m-0">Until @i.EndDate.Value.ToShortDateString()</h6>
+                                                        }
                                                     </div>
                                                 </div>
                                                 <div class="d-none align-items-center h-100 skill-listview">
@@ -222,17 +257,59 @@ else
                                             </div>
                                             <div class="d-none button-listview align-items-center pe-2">
                                                 <div class="listview-button">
-                                                    <button class="btn-ci-primary d-inline-flex align-items-center">
-                                                        Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
-                                                    </button>
+                                                    @if (Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
+                                                    {
+                                                        <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                            View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                        </button>
+                                                    }
+                                                    else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
+                                                    {
+                                                        <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                            View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                        </button>
+                                                    }
+                                                    else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                                    {
+                                                        <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                            View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                            Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                        </button>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
                                         <hr class="my-2">
                                         <div class="text-center pb-2 button">
-                                            <button class="btn-ci-primary">
-                                                Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
-                                            </button>
+                                            @if (Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
+                                            {
+                                                <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                    View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                </button>
+                                            }
+                                            else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
+                                            {
+                                                <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                    View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                </button>
+                                            }
+                                            else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                            {
+                                                <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                    View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn-ci-primary d-inline-flex align-items-center">
+                                                    Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                </button>
+                                            }
                                         </div>
                                     </div>
                                 </div>

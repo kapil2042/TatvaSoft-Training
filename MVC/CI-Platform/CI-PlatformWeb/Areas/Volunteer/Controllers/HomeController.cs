@@ -4,6 +4,7 @@ using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
@@ -18,6 +19,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult Index(string? search, string id, int pg = 1)
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             if (TempData["Logout"] != null)
                 ViewBag.success = TempData["Logout"];
             VMMissions model = new VMMissions();
@@ -29,6 +32,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.timesheet = _homeRepository.GetTimeSheet();
             model.missionSkills = _homeRepository.GetMissionSkills();
             model.missionRatings = _homeRepository.GetMissionsRating();
+            model.missionApplicatoin = _homeRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid));
 
             List<Mission> m = _homeRepository.GetMissions();
 
@@ -37,8 +41,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             //    search = (string?)TempData["search"];
             //}
             //TempData["search"] = search;
-            
-            if(search != "" && search != null)
+
+            if (search != "" && search != null)
             {
                 m = _homeRepository.GetMissionsBySearch(search);
                 if (m.Count() > 0)
@@ -47,7 +51,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 }
                 else
                 {
-                    m = _homeRepository.GetMissions();
                     ViewBag.nomission = 1;
                 }
             }
@@ -78,7 +81,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             int recSkip = (pg - 1) * pageSize;
             var data = m.Skip(recSkip).Take(pager.PageSize).ToList();
             model.mission = data;
-            this.ViewBag.pager = pager;
+            ViewBag.pager = pager;
             return View(model);
         }
 
@@ -92,7 +95,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             VMMissions model = new VMMissions();
             model.countries = _homeRepository.GetCountries();
-            model.cities = _homeRepository.GetCities();
             model.skills = _homeRepository.GetSkills();
             model.themes = _homeRepository.GetMissionThemes();
             model.goal = _homeRepository.GetGoalMissions();
@@ -107,6 +109,30 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public JsonResult Search(string q)
+        {
+            if (q == null)
+            {
+                var results = _homeRepository.GetMissions();
+                return Json(results);
+            }
+            else
+            {
+                var results = _homeRepository.GetMissionsBySearch(q);
+                if(results == null)
+                {
+                    ViewBag.nomission = 1;
+                }
+                return Json(results);
+            }
+        }
+
+        public JsonResult GetCityByCountry(int country)
+        {
+            var results = _homeRepository.GetCitiesBycountry(country);
+            return Json(results);
         }
     }
 }

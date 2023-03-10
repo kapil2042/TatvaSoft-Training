@@ -18,14 +18,19 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
+        public List<Country> GetCountries()
+        {
+            return _db.Countries.ToList();
+        }
+
         public List<City> GetCities()
         {
             return _db.Cities.ToList();
         }
 
-        public List<Country> GetCountries()
+        public List<City> GetCitiesBycountry(int country)
         {
-            return _db.Countries.ToList();
+            return _db.Cities.Where(x => x.CountryId == country).ToList();
         }
 
         public List<Skill> GetSkills()
@@ -71,6 +76,11 @@ namespace CI_Platform.Repositories.Repositories
         public Mission GetMissionsById(int id)
         {
             return _db.Missions.Where(x => x.MissionId == id).FirstOrDefault();
+        }
+
+        public List<MissionApplicatoin> GetMissionApplicatoinsByUserId(int id)
+        {
+            return _db.MissionApplicatoins.Where(x => x.UserId == id).ToList();
         }
     }
 }

@@ -20,7 +20,7 @@ public partial class MissionApplicatoin
     public long UserId { get; set; }
 
     [Column("applied_at", TypeName = "datetime")]
-    public DateTime? AppliedAt { get; set; }
+    public DateTime AppliedAt { get; set; }
 
     [Column("approval_status")]
     [StringLength(10)]

@@ -45,6 +45,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                             CookieAuthenticationDefaults.AuthenticationScheme);
                         identity.AddClaim(new Claim(ClaimTypes.Name, userdata.FirstName));
                         identity.AddClaim(new Claim(ClaimTypes.Surname, userdata.LastName));
+                        identity.AddClaim(new Claim(ClaimTypes.Sid, Convert.ToString(userdata.UserId)));
                         var principle = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                         HttpContext.Session.SetString("Email", user.Email);

@@ -7,8 +7,8 @@
                         <img src="~/images/search.png" alt="search" class="search-icon">
                     </label>
                     <form asp-area="Volunteer" asp-action="Index" asp-controller="Home" class="w-100">
-                        <input type="search" name="search" id="search" class="search-box border-0"
-                               placeholder="Search mission...">
+                        <input type="search" name="search" id="searchInput" class="search-box border-0"
+                               placeholder="Search mission..." onkeyup="searchbar()">
                     </form>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                             @foreach (var i in Model.countries)
                             {
                                 <li>
-                                    <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
+                                    <a class="dropdown-item" id="@i.CountryId" onclick="citybycountry(this.id)">@i.Name</a>
                                 </li>
                             }
                         </ul>
@@ -40,13 +40,7 @@
                             <span class="pe-1 text-secondary">City</span>
                             <img src="~/images/drop-down.png" />
                         </div>
-                        <ul class="dropdown-menu m-height">
-                            @foreach (var i in Model.cities)
-                            {
-                                <li>
-                                    <a class="dropdown-item" id="@i.Name" onclick="addccst(this.id)">@i.Name</a>
-                                </li>
-                            }
+                        <ul class="dropdown-menu m-height" id="citieslist2">
                         </ul>
                     </div>
                     <div class="col-3 dropdown d-flex align-items-center border-start px-1 px-sm-2">

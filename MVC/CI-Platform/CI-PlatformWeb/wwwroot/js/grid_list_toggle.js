@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#grid").click(function () {
         $(".missions-view").addClass("col-sm-6 col-lg-4 d-flex");
         $(".col-listview-img").removeClass("col-4");
-        $(".col-listview-body").removeClass("col-8");
+        $(".col-listview-body").removeClass("col-8 ps-0");
         $(".col-listview-img").addClass("col-12");
         $(".col-listview-body").addClass("col-12");
         $(".list").removeClass('list-view');

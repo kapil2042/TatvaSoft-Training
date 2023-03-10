@@ -64,6 +64,7 @@ a {
     padding-bottom: 5px;
     padding-inline: 20px;
     background: inherit;
+    white-space: nowrap;
 }
 
     .btn-ci-primary:hover {
@@ -80,6 +81,7 @@ a {
     padding-bottom: 5px;
     padding-inline: 20px;
     background: inherit;
+    white-space: nowrap;
 }
 
     .btn-ci-white:hover {
@@ -96,6 +98,7 @@ a {
     padding-bottom: 5px;
     padding-inline: 20px;
     background: inherit;
+    white-space: nowrap;
 }
 
     .btn-ci-secondary:hover {
@@ -126,6 +129,10 @@ a {
 
 .bg-ci-primary {
     background-color: #F88634 !important;
+}
+
+.bg-ci-success {
+    background-color: #14C506 !important;
 }
 
 .fs-7 {

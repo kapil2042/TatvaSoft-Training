@@ -11,7 +11,7 @@
                 @foreach (var i in Model.countries)
                 {
                     <li>
-                        <a class="dropdown-item" id="@i.Name">@i.Name</a>
+                        <a class="dropdown-item" id="@i.CountryId" onclick="citybycountry(this.id)">@i.Name</a>
                     </li>
                 }
             </ul>
@@ -22,14 +22,8 @@
                 <span class="pe-1">City</span>
                 <img src="~/images/drop-down.png" />
             </a>
-            <ul class="dropdown-menu" id="citydrop">
-                @foreach (var i in Model.cities)
-                {
-                    <li>
-                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">@i.Name</a>
-                    </li>
-                }
+            <ul class="dropdown-menu" id="citieslist1">
+               
             </ul>
         </div>
         <div class="dropdown">

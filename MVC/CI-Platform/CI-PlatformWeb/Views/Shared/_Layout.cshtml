@@ -115,6 +115,18 @@
     <script src="~/js/grid_list_toggle.js" asp-append-version="true"></script>
     <script src="~/js/media.js" asp-append-version="true"></script>
     <script src="~/js/ls_filterdata.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(()=>{
+        @if (ViewBag.error != null)
+        {
+            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 3000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+        }
+        @if (ViewBag.success != null)
+        {
+            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 3000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+        }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
