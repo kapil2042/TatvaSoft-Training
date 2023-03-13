@@ -23,7 +23,6 @@
                 <img src="~/images/drop-down.png" />
             </a>
             <ul class="dropdown-menu" id="citieslist1">
-               
             </ul>
         </div>
         <div class="dropdown">
@@ -36,8 +35,12 @@
                 @foreach (var i in Model.themes)
                 {
                     <li>
-                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">@i.Title</a>
+                        <a class="dropdown-item" href="#">
+                            <div class="form-check">
+                                <input class="form-check-input otherthencity" name="theme" type="checkbox" value="@i.Title" id="Checkme + @i.MissionThemeId" onchange="myfilter(fpg = 1, fid = 0)"/>
+                                <label class="form-check-label" for="Checkme + @i.MissionThemeId">@i.Title</label>
+                            </div>
+                        </a>
                     </li>
                 }
             </ul>
@@ -52,8 +55,12 @@
                 @foreach (var i in Model.skills)
                 {
                     <li>
-                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                       asp-action="Privacy">@i.SkillName</a>
+                        <a class="dropdown-item" href="#">
+                            <div class="form-check">
+                                <input class="form-check-input otherthencity" name="skill" type="checkbox" value="@i.SkillName" id="Checkme + @i.SkillId" onchange="myfilter(fpg = 1, fid = 0)"/>
+                                <label class="form-check-label" for="Checkme + @i.SkillId">@i.SkillName</label>
+                            </div>
+                        </a>
                     </li>
                 }
             </ul>

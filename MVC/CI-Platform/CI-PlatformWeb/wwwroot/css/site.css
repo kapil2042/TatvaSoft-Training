@@ -56,6 +56,15 @@ a {
         box-shadow: 0px 0px 10px #F886341F;
     }
 
+.form-check-input:checked {
+    background-color: #F88634;
+    border-color: #F88634;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
 .btn-ci-primary {
     color: #F88634;
     border: 2px solid #F88634;
@@ -250,6 +259,11 @@ a {
     background-color: #F88634;
     color: #ffffff;
 }
+
+    .dropdown-menu li a:hover label {
+        cursor: pointer;
+        color: #ffffff;
+    }
 
 .card-img-top {
     width: 100%;

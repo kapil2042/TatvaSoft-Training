@@ -1,42 +1,141 @@
-﻿var a = document.getElementById("filterlist");
-var dictionary = {};
-function addccst(ccst) {
-    localStorage.removeItem("i18nextLng");
-    localStorage.setItem('ccst' + ccst, ccst);
-    allStorage();
-    //$.ajax({
-    //    type: "GET",
-    //    url: 'Volunteer/Home/Index',
-    //    data: { country = country },
-    //    success: function (data) {
-
-    //    },
-    //    failure: function (e) {
-    //        errorMessage(e.responseText);
-    //    },
-    //    error: function (e) {
-    //        errorMessage(e.responseText);
-    //    }
-    //});
-}
-
-function removeccst(ccst) {
-    localStorage.removeItem('ccst' + ccst);
-    allStorage();
+﻿var cbs = document.querySelectorAll('.otherthencity');
+for (var i = 0; i < cbs.length; i++) {
+    cbs[i].addEventListener('change', function () {
+        if (this.checked) {
+            $("input[type=checkbox][value='" + this.value + "']").prop('checked', true);
+            addElement(this, this.value);
+            myfilter(fpg = 1, fid = 0);
+        }
+        else {
+            $("input[type=checkbox][value='" + this.value + "']").prop('checked', false);
+            removeElement(this.value);
+            myfilter(fpg = 1, fid = 0);
+        }
+    });
 }
 
 
-function allStorage() {
-    a.innerHTML = "";
-    for (var i = 0; i < localStorage.length; i++) {
-        var item = localStorage.getItem(localStorage.key(i));
-        a.innerHTML += '<span class="fs-7 border px-2 me-2 mb-2 rounded-pill text-secondary d-inline-flex flex-nowrap align-items-center">' + item + '<a id="' + item + '" onclick="removeccst(this.id)"><img src="../images/cancel.png" alt="" class="ms-2"></a></span >';
-    }
-    if (localStorage.length != 0)
-        a.innerHTML += '<span class="d-flex align-items-center h-100 mb-2"><a onclick="clearLocal()" class="text-secondary ms-2 fs-7">Clear all</a></span>';
+function addElement(current, value) {
+    let filtersSection = document.querySelector("#filterlist");
+
+    let createdTag = document.createElement('span');
+    createdTag.classList.add('filter-list');
+    createdTag.classList.add('fs-7');
+    createdTag.classList.add('border');
+    createdTag.classList.add('px-2');
+    createdTag.classList.add('me-2');
+    createdTag.classList.add('mb-2');
+    createdTag.classList.add('rounded-pill');
+    createdTag.classList.add('text-secondary');
+
+    createdTag.innerHTML = value;
+
+    createdTag.setAttribute('id', value);
+    let crossButton = document.createElement('a');
+    crossButton.classList.add("filter-close-button");
+    crossButton.style.textDecoration = 'none';
+    crossButton.classList.add('btn-light');
+    crossButton.classList.add('ms-1');
+    let cross = '&times;'
+
+
+    crossButton.addEventListener('click', function () {
+        let elementToBeRemoved = document.getElementById(value);
+
+        $("input[type=checkbox][value='" + value + "']").prop('checked', false);
+
+        elementToBeRemoved.remove();
+    })
+
+    crossButton.innerHTML = cross;
+
+
+    createdTag.appendChild(crossButton);
+    filtersSection.appendChild(createdTag);
+    myfilter(fpg = 1, fid = 0);
 }
 
-function clearLocal() {
-    localStorage.clear();
-    allStorage();
+function ClearAllElement() {
+
+    var filtersSection = document.querySelector("#filterlist");
+    var filtersSectioncity = document.querySelector("#filterlistcity");
+    filtersSectioncity.innerHTML = "";
+    filtersSection.innerHTML = "";
+
+    $(".citycheck").prop('checked', false);
+    $(".otherthencity").prop('checked', false);
+    myfilter(fpg = 1, fid = 0);
+}
+
+
+function removeElement(value) {
+
+    let filtersSection = document.querySelector("#filterlist");
+    let elementToBeRemoved = document.getElementById(value);
+    filtersSection.removeChild(elementToBeRemoved);
+    myfilter(fpg = 1, fid = 0);
+}
+
+
+
+
+
+function addElementcity(current, value) {
+    let filtersSectioncity = document.querySelector("#filterlistcity");
+
+    let createdTag = document.createElement('span');
+    createdTag.classList.add('filter-list');
+    createdTag.classList.add('fs-7');
+    createdTag.classList.add('border');
+    createdTag.classList.add('px-2');
+    createdTag.classList.add('me-2');
+    createdTag.classList.add('mb-2');
+    createdTag.classList.add('rounded-pill');
+    createdTag.classList.add('text-secondary');
+
+    createdTag.innerHTML = value;
+
+    createdTag.setAttribute('id', value);
+    let crossButton = document.createElement('a');
+    crossButton.classList.add("filter-close-button");
+    crossButton.style.textDecoration = 'none';
+    crossButton.classList.add('btn-light');
+    crossButton.classList.add('ms-1');
+    let cross = '&times;'
+
+
+    crossButton.addEventListener('click', function () {
+        let elementToBeRemoved = document.getElementById(value);
+
+        $("input[type=checkbox][value='" + value + "']").prop('checked', false);
+
+        elementToBeRemoved.remove();
+    })
+
+    crossButton.innerHTML = cross;
+
+
+    createdTag.appendChild(crossButton);
+    filtersSectioncity.appendChild(createdTag);
+    myfilter(fpg = 1, fid = 0);
+}
+
+
+
+function ClearAllElementcity() {
+
+    var filtersSectioncity = document.querySelector("#filterlistcity");
+    filtersSectioncity.innerHTML = "";
+
+    $(".citycheck").prop('checked', false);
+    myfilter(fpg = 1, fid = 0);
+}
+
+
+function removeElementcity(value) {
+
+    let filtersSectioncity = document.querySelector("#filterlistcity");
+    let elementToBeRemoved = document.getElementById(value);
+    filtersSectioncity.removeChild(elementToBeRemoved);
+    myfilter(fpg = 1, fid = 0,c=);
 }
