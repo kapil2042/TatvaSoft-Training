@@ -6,7 +6,7 @@
                     <label for="search">
                         <img src="~/images/search.png" alt="search" class="search-icon">
                     </label>
-                    <form asp-area="Volunteer" asp-action="Index" asp-controller="Home" class="w-100">
+                    <form onsubmit="return false" class="w-100">
                         <input type="search" name="search" id="searchInput" class="search-box border-0"
                                placeholder="Search mission..." onkeyup="myfilter(fpg = 1, fid = 0);">
                     </form>

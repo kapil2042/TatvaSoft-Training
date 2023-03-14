@@ -61,14 +61,22 @@
                     var identity = User.Identity as ClaimsIdentity;
                     var name = identity?.FindFirst(ClaimTypes.Name)?.Value;
                     var surname = identity?.FindFirst(ClaimTypes.Surname)?.Value;
+                    var avtar = identity?.FindFirst(ClaimTypes.Thumbprint)?.Value;
                 }
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
                         <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
-                             data-bs-toggle="dropdown" aria-expanded="false">
+                         data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="avtar-nav">
-                                <img src="~/images/profile.png" />
+                                @if (avtar != null)
+                                {
+                                    <img src="~/images/@avtar" alt="user image"/>
+                                }
+                                else
+                                {
+                                    <img src="~/images/profile.png" />
+                                }
                             </div>
                             <span class="px-2 text-secondary d-none d-sm-block">@name @surname</span>
                             <img class="d-none d-sm-block" src="~/images/drop-down.png" />

@@ -65,7 +65,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Mission> GetMissionsBySearch(string s)
         {
-            return _db.Missions.Where(x => x.Title.Contains(s)).ToList();
+            return _db.Missions.Where(x => x.Title.ToLower().Contains(s)).ToList();
         }
 
         public List<MissionRating> GetMissionsRating()

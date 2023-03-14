@@ -29,7 +29,7 @@
             var cbs = document.querySelectorAll('.citycheck');
             ClearAllElementcity();
             document.querySelector("#filterlistcity").innerHTML = `<span class="fs-7 border px-2 me-2 mb-2 rounded-pill text-secondary"> ${$("#" + country + "").text()} </span>`;
-            
+
             for (var i = 0; i < cbs.length; i++) {
                 cbs[i].addEventListener('change', function () {
                     if (this.checked) {
@@ -46,8 +46,8 @@
             }
 
         }
+        myfilter(fpg = 1, fid = 0, c = $("#" + country + "").text());
     };
     xhr.open('GET', 'Volunteer/Home/GetCityByCountry?country=' + country, true);
     xhr.send();
-    myfilter(fpg = 1, fid = 0, c = $("#" + country + "").text());
 }

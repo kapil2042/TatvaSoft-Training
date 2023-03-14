@@ -45,6 +45,7 @@ function addElement(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
+        myfilter(fpg = 1, fid = 0);
     })
 
     crossButton.innerHTML = cross;
@@ -110,6 +111,7 @@ function addElementcity(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
+        myfilter(fpg = 1, fid = 0);
     })
 
     crossButton.innerHTML = cross;
@@ -137,5 +139,5 @@ function removeElementcity(value) {
     let filtersSectioncity = document.querySelector("#filterlistcity");
     let elementToBeRemoved = document.getElementById(value);
     filtersSectioncity.removeChild(elementToBeRemoved);
-    myfilter(fpg = 1, fid = 0,c=);
+    myfilter(fpg = 1, fid = 0);
 }

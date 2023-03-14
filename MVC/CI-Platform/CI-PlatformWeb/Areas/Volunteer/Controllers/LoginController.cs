@@ -26,6 +26,9 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 ViewBag.success = TempData["Registration"];
             if (TempData["resetpass"] != null)
                 ViewBag.success = TempData["resetpass"];
+            if (TempData["mailsent"] != null)
+                ViewBag.success = TempData["mailsent"];
+
             return View();
         }
 
@@ -46,6 +49,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         identity.AddClaim(new Claim(ClaimTypes.Name, userdata.FirstName));
                         identity.AddClaim(new Claim(ClaimTypes.Surname, userdata.LastName));
                         identity.AddClaim(new Claim(ClaimTypes.Sid, Convert.ToString(userdata.UserId)));
+                        identity.AddClaim(new Claim(ClaimTypes.Thumbprint, userdata.Avatar));
                         var principle = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                         HttpContext.Session.SetString("Email", user.Email);
@@ -184,13 +188,14 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = _loginRepository.Encode(email), token = token });
                 var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
                 _loginRepository.SendMail(mailBody, email);
-                ViewBag.success = "Mail sent Successfully! Plese check mail";
+                TempData["mailsent"] = "Mail sent Successfully! Plese check mail";
+                return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
             }
             else
             {
                 ViewBag.error = "Email Not Found";
+                return View();
             }
-            return View();
         }
 
         public IActionResult Logout()

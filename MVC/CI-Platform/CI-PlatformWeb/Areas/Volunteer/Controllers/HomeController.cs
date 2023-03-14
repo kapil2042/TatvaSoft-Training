@@ -83,9 +83,9 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 //m = m.Where(x => skilllist.Contains(x.mms).ToList();
             }
 
-            if (search != "" && search != null)
+            if (!string.IsNullOrEmpty(search))
             {
-                m = _homeRepository.GetMissionsBySearch(search);
+                m = m.Where(x=>x.Title.ToLower().Contains(search)).ToList();
             }
             switch (id)
             {

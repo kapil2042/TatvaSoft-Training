@@ -41,9 +41,11 @@
             url: "/Volunteer/Home/filterMissions",
             data: { 'pg': fpg, 'id': id,'search': searchquery, 'country': country, 'cities': cities, 'theme': theme, 'skill': skill },
             success: function (res) {
-                $('#missionajax').html($($.parseHTML(res)).filter("#missions")[0].innerHTML);
+                console.log($($.parseHTML(res)).filter("#gridviewpartial"));
+                $('.gridajax').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
+                $('.listajax').html($($.parseHTML(res)).filter("#listviewpartial")[0].innerHTML);
                 $('#pagination').html($($.parseHTML(res)).filter("#paginationpartial")[0].innerHTML);
-                $('#uper').html($($.parseHTML(res)).filter("#uperpartial")[0].innerHTML);
+                $('#count').html($($.parseHTML(res)).filter("#countpartial")[0].innerHTML);
             },
             error: function (data) {
                 alert("some Error");
@@ -66,15 +68,42 @@
 <partial name="secondNav" model="Model"></partial>
 
 
-<div id="uper">
-
+<div class="container-lg container-fluid py-3 d-flex flex-wrap">
+    <div class="d-flex flex-wrap align-items-center" id="filterlistcity">
+    </div>
+    <div class="d-flex flex-wrap align-items-center" id="filterlist">
+    </div>
+</div>
+<div class="container-lg container-fluid">
+    <div class="d-inline-flex align-items-center justify-content-between w-100">
+        <div class="fs-3" id="count"></div>
+        <div class="d-none d-sm-block">
+            <select class="sort-by my-1 me-3" onchange="myfilter(fpg = 1, fid = this.value);">
+                <option value="">Sort By</option>
+                <option value="1">A To Z</option>
+                <option value="2">Z To A</option>
+                <option value="3">Newest First</option>
+                <option value="4">Oldest First</option>
+            </select>
+            <button class="p-2 border-0 bg-white rounded-circle grid-active" id="grid">
+                <img src="~/images/grid.png"
+                     alt="">
+            </button>
+            <button class="p-2 border-0 bg-white rounded-circle" id="list">
+                <img src="~/images/list.png"
+                     alt="">
+            </button>
+        </div>
+    </div>
 </div>
 
 
-<div id="missionajax" class="container-lg container-fluid">
+<div class="container-lg container-fluid">
+    <div class="row gridajax" id="searchResults">
+    </div>
+    <div class="row listajax d-none" id="searchResults">
+    </div>
 </div>
-
 
 <div id="pagination">
-
 </div>
