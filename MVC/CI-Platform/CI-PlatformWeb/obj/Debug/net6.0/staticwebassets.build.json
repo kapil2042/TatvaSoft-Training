@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OXOjcc9uiXsVAVAkjhVN5+odkj1FhEboN7jsIYWvguU=",
+  "Hash": "5a7SAjzXmqlIGmHCLBAGbUb6uliKmykBe1JJffE+on8=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -1275,6 +1275,23 @@
       "OriginalItemSpec": "wwwroot\\images\\mission.png"
     },
     {
+      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\missionimages\\Grow Trees - On the path to enviroment sustainability-1.png",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/missionimages/Grow Trees - On the path to enviroment sustainability-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\missionimages\\Grow Trees - On the path to enviroment sustainability-1.png"
+    },
+    {
       "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\my-story.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
@@ -1802,12 +1819,12 @@
       "OriginalItemSpec": "wwwroot\\images\\user1.png"
     },
     {
-      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\Kapil_1.png",
+      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\Kapil-1.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
       "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/userimages/Kapil_1.png",
+      "RelativePath": "images/userimages/Kapil-1.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1816,15 +1833,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\userimages\\Kapil_1.png"
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\Kapil-1.png"
     },
     {
-      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\user-img-large.png",
+      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\Parth-2.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
       "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/userimages/user-img-large.png",
+      "RelativePath": "images/userimages/Parth-2.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1833,7 +1850,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\userimages\\user-img-large.png"
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\Parth-2.png"
     },
     {
       "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\volunteer1.png",

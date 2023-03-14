@@ -33,6 +33,8 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<MissionRating> GetMissionsRating();
 
+        List<MissionMedium> GetMissionMedia();
+
         List<MissionApplicatoin> GetMissionApplicatoinsByUserId(int id);
     }
 }

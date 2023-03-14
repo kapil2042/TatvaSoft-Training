@@ -82,5 +82,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.MissionApplicatoins.Where(x => x.UserId == id).ToList();
         }
+
+        public List<MissionMedium> GetMissionMedia()
+        {
+            return _db.MissionMedia.ToList();
+        }
     }
 }

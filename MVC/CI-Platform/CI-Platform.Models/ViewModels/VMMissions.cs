@@ -15,7 +15,7 @@ namespace CI_Platform.Models.ViewModels
         public List<Mission> mission { get; set; }
         public List<GoalMission> goal { get; set; }
         public List<Timesheet> timesheet { get; set; }
-        public List<MissionMedium> media { get; set; }
+        public List<MissionMedium> missionMedia { get; set; }
         public List<MissionSkill> missionSkills { get; set; }
         public List<MissionRating> missionRatings { get; set; }
         public List<MissionApplicatoin> missionApplicatoin { get; set; }

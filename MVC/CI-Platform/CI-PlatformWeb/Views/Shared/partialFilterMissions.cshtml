@@ -37,6 +37,7 @@ else
             var a1 = Model.timesheet.Where(x => x.MissionId == i.MissionId).Sum(x => x.Action);
             var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
             var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
+            var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId).FirstOrDefault();
 
             <div class="col-12 col-sm-6 col-lg-4 missions-view mt-3 mb-3 d-flex align-items-stretch">
                 <a asp-area="Volunteer" asp-action="Mission_volunteering" asp-controller="Home" asp-route-id="@i.MissionId">
@@ -72,7 +73,14 @@ else
                                     <button class="share-mission">
                                         <img src="~/images/user.png" alt="" class="w-100 h-100">
                                     </button>
-                                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="a">
+                                    @if (img != null)
+                                    {
+                                        <img src="~/images/@img.MediaPath/@img.MediaName.@img.MediaType" class="card-img-top" alt="mission image">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="a">
+                                    }
                                     <div class="w-100 position-relative d-flex justify-content-center">
                                         <div class="theme-mission">
                                             @i.Theme.Title
@@ -302,6 +310,7 @@ else
             var a1 = Model.timesheet.Where(x => x.MissionId == i.MissionId).Sum(x => x.Action);
             var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
             var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
+            var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId).FirstOrDefault();
 
             <div class="col-12 missions-view mt-3 mb-3 align-items-stretch">
                 <a asp-area="Volunteer" asp-action="Mission_volunteering" asp-controller="Home" asp-route-id="@i.MissionId">
@@ -337,7 +346,14 @@ else
                                     <button class="share-mission">
                                         <img src="~/images/user.png" alt="" class="w-100 h-100">
                                     </button>
-                                    <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="a">
+                                    @if (img != null)
+                                    {
+                                        <img src="~/images/@img.MediaPath/@img.MediaName.@img.MediaType" class="card-img-top" alt="mission image">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="a">
+                                    }
                                     <div class="w-100 position-relative d-flex justify-content-center">
                                         <div class="theme-mission">
                                             @i.Theme.Title

@@ -33,6 +33,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.timesheet = _homeRepository.GetTimeSheet();
             model.missionSkills = _homeRepository.GetMissionSkills();
             model.missionRatings = _homeRepository.GetMissionsRating();
+            model.missionMedia = _homeRepository.GetMissionMedia();
             model.missionApplicatoin = _homeRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid));
             return View(model);
         }
@@ -52,6 +53,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.timesheet = _homeRepository.GetTimeSheet();
             model.missionSkills = _homeRepository.GetMissionSkills();
             model.missionRatings = _homeRepository.GetMissionsRating();
+            model.missionMedia = _homeRepository.GetMissionMedia();
             model.missionApplicatoin = _homeRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid));
 
             List<Mission> m = _homeRepository.GetMissions();
