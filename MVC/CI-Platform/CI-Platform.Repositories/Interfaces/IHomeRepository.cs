@@ -29,12 +29,20 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<MissionSkill> GetMissionSkills();
 
-        List<Mission> GetMissionsBySearch(string s);
-
         List<MissionRating> GetMissionsRating();
 
         List<MissionMedium> GetMissionMedia();
 
         List<MissionApplicatoin> GetMissionApplicatoinsByUserId(int id);
+
+        List<FavoriteMission> GetFavoriteMissionsByUserId(int id);
+
+        FavoriteMission GetFavoriteMissionsByUserIdAndMissionId(int id,int mid);
+
+        void LikeMission(FavoriteMission favoriteMission);
+
+        void UnlikeMission(FavoriteMission favoriteMission);
+
+        void Save();
     }
 }

@@ -63,11 +63,6 @@ namespace CI_Platform.Repositories.Repositories
             return _db.MissionSkills.ToList();
         }
 
-        public List<Mission> GetMissionsBySearch(string s)
-        {
-            return _db.Missions.Where(x => x.Title.ToLower().Contains(s)).ToList();
-        }
-
         public List<MissionRating> GetMissionsRating()
         {
             return _db.MissionRatings.ToList();
@@ -86,6 +81,31 @@ namespace CI_Platform.Repositories.Repositories
         public List<MissionMedium> GetMissionMedia()
         {
             return _db.MissionMedia.ToList();
+        }
+
+        public List<FavoriteMission> GetFavoriteMissionsByUserId(int id)
+        {
+            return _db.FavoriteMissions.Where(x => x.UserId == id).ToList();
+        }
+
+        public FavoriteMission GetFavoriteMissionsByUserIdAndMissionId(int id, int mid)
+        {
+            return _db.FavoriteMissions.Where(x => x.UserId == id && x.MissionId == mid).FirstOrDefault();
+        }
+
+        public void LikeMission(FavoriteMission favoriteMission)
+        {
+            _db.FavoriteMissions.Add(favoriteMission);
+        }
+
+        public void UnlikeMission(FavoriteMission favoriteMission)
+        {
+            _db.FavoriteMissions.Remove(favoriteMission);
+        }
+
+        public void Save()
+        {
+            _db.SaveChanges();
         }
     }
 }

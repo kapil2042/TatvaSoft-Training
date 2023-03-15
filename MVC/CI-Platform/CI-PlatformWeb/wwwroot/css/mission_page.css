@@ -87,6 +87,10 @@
     color: white;
 }
 
+    .like-mission:hover img{
+        content: url("../images/red_heart.png");
+    }
+
 .share-mission {
     height: 30px;
     width: 30px;

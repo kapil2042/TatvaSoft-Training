@@ -1,15 +1,72 @@
-﻿var cbs = document.querySelectorAll('.otherthencity');
+﻿var cou = "";
+var fpg = 1;
+var fid = 0;
+function citybycountry(country) {
+    var cityResults1 = document.getElementById('citieslist1');
+    var cityResults2 = document.getElementById('citieslist2');
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var results = JSON.parse(this.responseText);
+            cityResults1.innerHTML = "";
+            cityResults2.innerHTML = "";
+            // Process and display search results
+            $.each(results, function (index, item) {
+                cityResults1.innerHTML += `<li>
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
+                                            <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
+                                            <label class="form-check-label" for="Checkme + ${item.cityId}">${item.name}</label>
+                                        </div>
+                                    </a>
+                                </li>`;
+                cityResults2.innerHTML += `<li>
+                                    <a class="dropdown-item" href="#">
+                                        <div class="form-check">
+                                            <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
+                                            <label class="form-check-label" for="Checkme + ${item.cityId}">${item.name}</label>
+                                        </div>
+                                    </a>
+                                </li>`;
+            });
+            cou = $("#" + country + "").text()
+            var cbs = document.querySelectorAll('.citycheck');
+            ClearAllElementcity();
+            document.querySelector("#filterlistcity").innerHTML = `<span class="fs-7 border px-2 me-2 mb-2 rounded-pill text-secondary"> ${cou} </span>`;
+            for (var i = 0; i < cbs.length; i++) {
+                cbs[i].addEventListener('change', function () {
+                    if (this.checked) {
+                        $("input[type=checkbox][value='" + this.value + "']").prop('checked', true);
+                        addElementcity(this, this.value);
+                        myfilter(fpg = fpg, fid = fid, c = cou);
+                    }
+                    else {
+                        $("input[type=checkbox][value='" + this.value + "']").prop('checked', false);
+                        removeElementcity(this.value);
+                        myfilter(fpg = fpg, fid = fid, c = cou);
+                    }
+                });
+            }
+            myfilter(fpg = fpg, fid = fid, c = cou);
+        }
+    };
+    xhr.open('GET', 'Volunteer/Home/GetCityByCountry?country=' + country, true);
+    xhr.send();
+}
+
+
+var cbs = document.querySelectorAll('.otherthencity');
 for (var i = 0; i < cbs.length; i++) {
     cbs[i].addEventListener('change', function () {
         if (this.checked) {
             $("input[type=checkbox][value='" + this.value + "']").prop('checked', true);
             addElement(this, this.value);
-            myfilter(fpg = 1, fid = 0);
+            myfilter(fpg = fpg, fid = fid, c = cou);
         }
         else {
             $("input[type=checkbox][value='" + this.value + "']").prop('checked', false);
             removeElement(this.value);
-            myfilter(fpg = 1, fid = 0);
+            myfilter(fpg = fpg, fid = fid, c = cou);
         }
     });
 }
@@ -45,7 +102,7 @@ function addElement(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
-        myfilter(fpg = 1, fid = 0);
+        myfilter(fpg = fpg, fid = fid, c = cou);
     })
 
     crossButton.innerHTML = cross;
@@ -53,7 +110,6 @@ function addElement(current, value) {
 
     createdTag.appendChild(crossButton);
     filtersSection.appendChild(createdTag);
-    myfilter(fpg = 1, fid = 0);
 }
 
 function ClearAllElement() {
@@ -65,7 +121,7 @@ function ClearAllElement() {
 
     $(".citycheck").prop('checked', false);
     $(".otherthencity").prop('checked', false);
-    myfilter(fpg = 1, fid = 0);
+    myfilter(fpg = fpg, fid = fid, c = cou);
 }
 
 
@@ -74,7 +130,6 @@ function removeElement(value) {
     let filtersSection = document.querySelector("#filterlist");
     let elementToBeRemoved = document.getElementById(value);
     filtersSection.removeChild(elementToBeRemoved);
-    myfilter(fpg = 1, fid = 0);
 }
 
 
@@ -111,7 +166,7 @@ function addElementcity(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
-        myfilter(fpg = 1, fid = 0);
+        myfilter(fpg = fpg, fid = fid, c = cou);
     })
 
     crossButton.innerHTML = cross;
@@ -119,7 +174,6 @@ function addElementcity(current, value) {
 
     createdTag.appendChild(crossButton);
     filtersSectioncity.appendChild(createdTag);
-    myfilter(fpg = 1, fid = 0);
 }
 
 
@@ -130,7 +184,7 @@ function ClearAllElementcity() {
     filtersSectioncity.innerHTML = "";
 
     $(".citycheck").prop('checked', false);
-    myfilter(fpg = 1, fid = 0);
+    myfilter(fpg = fpg, fid = fid, c = cou);
 }
 
 
@@ -139,5 +193,18 @@ function removeElementcity(value) {
     let filtersSectioncity = document.querySelector("#filterlistcity");
     let elementToBeRemoved = document.getElementById(value);
     filtersSectioncity.removeChild(elementToBeRemoved);
-    myfilter(fpg = 1, fid = 0);
+}
+
+function favunfavmission(mid) {
+    $.ajax({
+        type: 'POST',
+        url: "/Volunteer/Home/Favourite_Mission",
+        data: { 'missoinid': mid },
+        success: function (res) {
+            myfilter(fpg = fpg, fid = fid, c = cou);
+        },
+        error: function (data) {
+            toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+        }
+    });
 }

@@ -34,6 +34,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.missionSkills = _homeRepository.GetMissionSkills();
             model.missionRatings = _homeRepository.GetMissionsRating();
             model.missionMedia = _homeRepository.GetMissionMedia();
+            model.favoriteMission = _homeRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid));
             model.missionApplicatoin = _homeRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid));
             return View(model);
         }
@@ -54,6 +55,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.missionSkills = _homeRepository.GetMissionSkills();
             model.missionRatings = _homeRepository.GetMissionsRating();
             model.missionMedia = _homeRepository.GetMissionMedia();
+            model.favoriteMission = _homeRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid));
             model.missionApplicatoin = _homeRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid));
 
             List<Mission> m = _homeRepository.GetMissions();
@@ -154,6 +156,27 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var results = _homeRepository.GetCitiesBycountry(country);
             return Json(results);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void Favourite_Mission(int missoinid)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var data = _homeRepository.GetFavoriteMissionsByUserIdAndMissionId(Convert.ToInt32(uid), missoinid);
+            if(data != null)
+            {
+                _homeRepository.UnlikeMission(data);
+            }
+            else
+            {
+                FavoriteMission favoriteMission = new FavoriteMission();
+                favoriteMission.MissionId = missoinid;
+                favoriteMission.UserId = Convert.ToInt32(uid);
+                _homeRepository.LikeMission(favoriteMission);
+            }
+            _homeRepository.Save();
         }
     }
 }

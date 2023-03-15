@@ -140,6 +140,10 @@ a {
     background-color: #F88634 !important;
 }
 
+.bg-ci-danger {
+    background-color: #f83434 !important;
+}
+
 .bg-ci-success {
     background-color: #14C506 !important;
 }
