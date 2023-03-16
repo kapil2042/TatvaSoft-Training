@@ -1,0 +1,17 @@
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Data.deps.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Data.runtimeconfig.json
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Data.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\ref\CI-Platform.Data.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Data.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Models.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\bin\Release\net6.0\CI-Platform.Models.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.csproj.AssemblyReference.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.AssemblyInfoInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.AssemblyInfo.cs
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.csproj.CoreCompileInputs.cache
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.csproj.CopyComplete
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\ref\CI-Platform.Data.dll
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.pdb
+D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Data\obj\Release\net6.0\CI-Platform.Data.genruntimeconfig.cache

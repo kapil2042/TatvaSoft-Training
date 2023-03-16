@@ -20,6 +20,5 @@ namespace CI_Platform.Models.ViewModels
         public List<MissionRating> ?missionRatings { get; set; }
         public List<MissionApplicatoin> ?missionApplicatoin { get; set; }
         public List<FavoriteMission> ?favoriteMission { get; set; }
-        public Mission ?m { get; set; }
     }
 }

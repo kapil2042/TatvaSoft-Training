@@ -1,6 +1,7 @@
 ﻿using CI_Platform.Data;
 using CI_Platform.Models;
 using CI_Platform.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,46 @@ namespace CI_Platform.Repositories.Repositories
             return _db.FavoriteMissions.Where(x => x.UserId == id && x.MissionId == mid).FirstOrDefault();
         }
 
+        public GoalMission GetGoalMissionByMissionId(int id)
+        {
+            return _db.GoalMissions.Where(x => x.MissionId == id).FirstOrDefault();
+        }
+
+        public List<Timesheet> GetTimesheetByMissionId(int id)
+        {
+            return _db.Timesheets.Where(x => x.MissionId == id).ToList();
+        }
+
+        public List<MissionSkill> GetMissionSkillsByMissionId(int id)
+        {
+            return _db.MissionSkills.Where(x => x.MissionId == id).ToList();
+        }
+
+        public MissionRating GetMissionRatingByUserIdAndMissionId(int id, int mid)
+        {
+            return _db.MissionRatings.Where(x=>x.MissionId == mid && x.UserId == id).FirstOrDefault();
+        }
+
+        public double GetSumOfMissionRatingByMissionId(int id)
+        {
+            return (double)_db.MissionRatings.Where(x => x.MissionId == id).Select(x => x.Rating).ToList().Sum();
+        }
+
+        public int GetTotalMissionRatingByMissionId(int id)
+        {
+            return _db.MissionRatings.Where(x => x.MissionId == id).Select(x => x.Rating).ToList().Count();
+        }
+
+        public List<MissionMedium> GetMissionMediaByMissionId(int id)
+        {
+            return _db.MissionMedia.Where(x => x.MissionId == id).ToList();
+        }
+
+        public MissionApplicatoin GetMissionApplicatoinByUserIdAndMissionId(int id, int mid)
+        {
+            return _db.MissionApplicatoins.Where(x => x.MissionId == mid && x.UserId == id).FirstOrDefault();
+        }
+
         public void LikeMission(FavoriteMission favoriteMission)
         {
             _db.FavoriteMissions.Add(favoriteMission);
@@ -103,9 +144,29 @@ namespace CI_Platform.Repositories.Repositories
             _db.FavoriteMissions.Remove(favoriteMission);
         }
 
+        public void Rating(MissionRating missionRating)
+        {
+            _db.MissionRatings.Add(missionRating);
+        }
+
+        public void UpdateRating(MissionRating missionRating)
+        {
+            _db.MissionRatings.Update(missionRating);
+        }
+
         public void Save()
         {
             _db.SaveChanges();
+        }
+
+        public List<MissionDocument> GetFavoriteMissionDocumentsByMissionId(int mid)
+        {
+            return _db.MissionDocuments.ToList();
+        }
+
+        public List<MissionApplicatoin> GetMissionApplicatoinsByMissionId(int mid)
+        {
+            return _db.MissionApplicatoins.Where(x=>x.MissionId == mid && x.ApprovalStatus == "APPROVE").OrderByDescending(x=>x.AppliedAt).Include(x=>x.User).ToList();
         }
     }
 }

@@ -134,15 +134,25 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [Authorize]
         public IActionResult Mission_volunteering(int id)
         {
-            VMMissions model = new VMMissions();
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            VMMissionVol model = new VMMissionVol();
             model.countries = _homeRepository.GetCountries();
+            model.cities = _homeRepository.GetCities();
             model.skills = _homeRepository.GetSkills();
             model.themes = _homeRepository.GetMissionThemes();
-            model.goal = _homeRepository.GetGoalMissions();
-            model.timesheet = _homeRepository.GetTimeSheet();
-            model.missionSkills = _homeRepository.GetMissionSkills();
-            model.missionRatings = _homeRepository.GetMissionsRating();
-            model.m = _homeRepository.GetMissionsById(id);
+            model.mission = _homeRepository.GetMissionsById(id);
+            model.goalMissions = _homeRepository.GetGoalMissionByMissionId(id);
+            model.timesheet = _homeRepository.GetTimesheetByMissionId(id);
+            model.missionMedia = _homeRepository.GetMissionMediaByMissionId(id);
+            model.missionSkills = _homeRepository.GetMissionSkillsByMissionId(id);
+            model.missionRating = _homeRepository.GetMissionRatingByUserIdAndMissionId(Convert.ToInt32(uid),id);
+            model.sum = _homeRepository.GetSumOfMissionRatingByMissionId(id);
+            model.total = _homeRepository.GetTotalMissionRatingByMissionId(id);
+            model.favoriteMission = _homeRepository.GetFavoriteMissionsByUserIdAndMissionId(Convert.ToInt32(uid), id);
+            model.missionApplicatoin = _homeRepository.GetMissionApplicatoinByUserIdAndMissionId(Convert.ToInt32(uid), id);
+            model.volunteerDetails = _homeRepository.GetMissionApplicatoinsByMissionId(id);
+            
             return View(model);
         }
 
@@ -175,6 +185,30 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 favoriteMission.MissionId = missoinid;
                 favoriteMission.UserId = Convert.ToInt32(uid);
                 _homeRepository.LikeMission(favoriteMission);
+            }
+            _homeRepository.Save();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void Rating_Mission(int missoinid,int rat)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var data = _homeRepository.GetMissionRatingByUserIdAndMissionId(Convert.ToInt32(uid), missoinid);
+            if (data != null)
+            {
+                data.UpdatedAt = DateTime.Now;
+                data.Rating = rat;
+                _homeRepository.UpdateRating(data);
+            }
+            else
+            {
+                MissionRating missionRating = new MissionRating();
+                missionRating.MissionId = missoinid;
+                missionRating.UserId = Convert.ToInt32(uid);
+                missionRating.Rating = rat;
+                _homeRepository.Rating(missionRating);
             }
             _homeRepository.Save();
         }

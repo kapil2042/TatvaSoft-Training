@@ -68,7 +68,7 @@ else
                                     <p>@i.City.Name</p>
                                 </div>
                                 <button class="like-mission" onclick="favunfavmission(@i.MissionId)">
-                                    @if(Model.favoriteMission.Where(x=>x.MissionId == i.MissionId).FirstOrDefault()!=null)
+                                    @if (Model.favoriteMission.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
                                     {
                                         <img src="~/images/red_heart.png" alt="" class="w-100 h-100">
                                     }
@@ -114,24 +114,16 @@ else
                                             var sumr = Model.missionRatings.Where(x => x.MissionId == i.MissionId).Select(x => x.Rating).ToList().Sum();
                                             var g = Model.missionRatings.Where(x => x.MissionId == i.MissionId).ToList().Count();
                                             var r = Math.Ceiling(Convert.ToDouble(sumr) / Convert.ToDouble(g));
-                                            @if (r > 0)
+                                            @for (int rr = 1; rr <= 5; rr++)
                                             {
-                                                for (int rr = 1; rr <= r; rr++)
+                                                @if (r >= rr)
                                                 {
                                                     <img src="~/images/selected-star.png" alt="">
                                                 }
-                                                for (int rr = 1; rr <= (5 - r); rr++)
+                                                else
                                                 {
                                                     <img src="~/images/star.png" alt="">
                                                 }
-                                            }
-                                            else
-                                            {
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
                                             }
                                         }
                                     </span>
@@ -318,24 +310,16 @@ else
                                             var sumr = Model.missionRatings.Where(x => x.MissionId == i.MissionId).Select(x => x.Rating).ToList().Sum();
                                             var g = Model.missionRatings.Where(x => x.MissionId == i.MissionId).ToList().Count();
                                             var r = Math.Ceiling(Convert.ToDouble(sumr) / Convert.ToDouble(g));
-                                            @if (r > 0)
+                                            @for (int rr = 1; rr <= 5; rr++)
                                             {
-                                                for (int rr = 1; rr <= r; rr++)
+                                                @if (r >= rr)
                                                 {
                                                     <img src="~/images/selected-star.png" alt="">
                                                 }
-                                                for (int rr = 1; rr <= (5 - r); rr++)
+                                                else
                                                 {
                                                     <img src="~/images/star.png" alt="">
                                                 }
-                                            }
-                                            else
-                                            {
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
-                                                <img src="~/images/star.png" alt="">
                                             }
                                         }
                                     </span>
