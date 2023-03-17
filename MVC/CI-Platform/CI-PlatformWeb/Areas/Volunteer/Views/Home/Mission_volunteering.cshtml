@@ -5,99 +5,74 @@
 <link rel="stylesheet" href="~/css/mission_volunteer.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/mission_page.css" asp-append-version="true">
 <link rel="stylesheet" href="~/css/img.css" asp-append-version="true">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-    currentSlide(1);
+    $(document).ready(()=>{
+    $.ajax({
+            type: 'POST',
+            url: "/Volunteer/Home/filterMissions",
+            data: { 'pg': 1, 'id': 4,'search': "", 'country': "", 'cities': "", 'theme': "@Model.mission.Theme.Title", 'skill': "" },
+            success: function (res) {
+                $('#relatedmission').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
+            },
+            error: function (data) {
+                alert("some Error");
+            }
+        });
+    });
 </script>
-<partial name="filter"></partial>
+<partial name="filter" />
 
-<partial name="secondNav"></partial>
+<partial name="secondNav" />
 
+<partial name="sendMailModel" />
 
 <div class="container-lg container-fluid">
     <div class="row">
         <div class="col-lg-6 col-12 p-0 position-relative">
-            <div class="mySlides">
-                <img src="~/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                     style="width:100%">
-            </div>
+            <div id="carouselExampleIndicators" class="carousel h-80 slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner h-100">
+                    @{
+                        var Count1 = 0;
+                    }
+                    @for (var j = 1; j <= @Model.missionMedia.Count(); j++)
+                    {
+                        var media1 = Model.missionMedia.Where(x => x.MediaDefault == 0).FirstOrDefault();
+                        if (media1 != null)
+                        {
+                            Count1 += 1;
+                            <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
+                                <img src="~/images/@media1.MediaPath/@media1.MediaName.@media1.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
+                            </div>
+                        }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <div class="carousel-indicators" style="margin-bottom: -20px;">
+                    @{
+                        var Count2 = 0;
+                    }
+                    @for (var j = 1; j <= @Model.missionMedia.Count(); j++)
+                    {
+                        var media2 = Model.missionMedia.Where(x => x.MediaDefault == 0).FirstOrDefault();
 
-            <div class="mySlides">
-                <img src="~/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
-                     style="width:100%">
-            </div>
-            <div class="mySlides">
-                <img src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                     style="width:100%">
-            </div>
-
-            <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-            <!-- Thumbnail images -->
-            <div class="justify-content-center py-1 thumbnails-img">
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                         style="width:100%" onclick="currentSlide(1)" alt="wait">
+                        if (media2 != null)
+                        {
+                            Count2 += 1;
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
+                            aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px;">
+                                <img class="d-block w-100" src="~/images/@media2.MediaPath/@media2.MediaName.@media2.MediaType" class="img-fluid" />
+                            </button>
+                        }
+                    }
                 </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                         style="width:100%" onclick="currentSlide(2)" alt="wait">
-                </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
-                         style="width:100%" onclick="currentSlide(3)" alt="wait">
-                </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                         style="width:100%" onclick="currentSlide(4)" alt="wait">
-                </div>
-
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                         style="width:100%" onclick="currentSlide(5)" alt="wait">
-                </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                         style="width:100%" onclick="currentSlide(6)" alt="wait">
-                </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
-                         style="width:100%" onclick="currentSlide(7)" alt="wait">
-                </div>
-                <div class="column px-1">
-                    <img class="demo cursor"
-                         src="~/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png"
-                         style="width:100%" onclick="currentSlide(8)" alt="wait">
-                </div>
-
             </div>
         </div>
 
@@ -193,7 +168,7 @@
                         </span>
                     }
                 </button>
-                <button class="d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-secondary fs-7">
+                <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-secondary fs-7" data-bs-toggle="modal" data-bs-target="#mailmodal" data-id="@Model.mission.MissionId">
                     <img src="~/images/add1.png" alt="" class="me-1">
                     <span class="d-none d-sm-block d-md-none d-xl-block">
                         Recommend to a Co-Worker
@@ -364,32 +339,33 @@
                 <div class="tab-pane fade py-3" id="nav-comment" role="tabpanel"
                      aria-labelledby="nav-comment-tab">
                     <div class="comment-post w-100">
-                        <textarea name="comment" id="" cols="100" rows="5"
+                        <textarea name="comment" id="commentbox" cols="100" rows="5"
                                   class="form-control mb-3 fs-7" placeholder="Post Your Comment..."></textarea>
-                        <button class="btn-ci-primary">Post Comment</button>
+                        <button class="btn-ci-primary" onclick="postComment(@Model.mission.MissionId)">Post Comment</button>
                     </div>
                     <div class="comment-list mt-3">
-                        <div class="comment-box">
-                            <div class="row">
-                                <div class="col-2 p-0">
-                                    <div class="comment-avatar">
-                                        <img src="~/images/user-img.png" />
+                        @foreach (var i in Model.comments)
+                        {
+                            <div class="comment-box">
+                                <div class="row">
+                                    <div class="col-2 p-0">
+                                        <div class="comment-avatar">
+                                            <img src="~/images/@i.User.Avatar" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-10 ps-2 ps-md-0">
-                                    <div>
-                                        <h6 class="m-0 p-0">Name</h6>
-                                        <p class="p-0 m-0 text-muted fs-time">TimeStamp</p>
-                                    </div>
-                                    <div class="line-h mt-2">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos quasi
-                                        accusamus quis itaque harum distinctio, excepturi debitis omnis
-                                        accusantium tenetur in reiciendis dolorem, nostrum possimus placeat
-                                        ab ducimus est labore?
+                                    <div class="col-10 ps-2 ps-md-0">
+                                        <div>
+                                            <h6 class="m-0 p-0">@i.User.FirstName @i.User.LastName</h6>
+                                            <p class="p-0 m-0 text-muted fs-time">@i.CreatedAt.ToString("dddd, MMMM dd, yyyy, hh:mm tt")</p>
+                                        </div>
+                                        <div class="line-h my-2 fs-6 text-dark">
+                                            @i.CommentText
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -495,92 +471,8 @@
             Related Missions
         </h3>
     </div>
-    <div class="d-flex flex-nowrap related-mission">
-        <div class="card-related-mission">
-            <div class="card">
-                <div class="row list position-relative card-min-h">
-                    <div class="col-listview-img col-12">
-                        <div class="position-relative w-100 h-100">
-                            <div class="city-name">
-                                <img src="~/images/pin.png" alt="" class="w-100 h-100">
-                                <p>Abc</p>
-                            </div>
-                            <button class="like-mission">
-                                <img src="~/images/heart.png" alt="" class="w-100 h-100">
-                            </button>
-                            <button class="share-mission">
-                                <img src="~/images/user.png" alt="" class="w-100 h-100">
-                            </button>
-                            <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability.png"
-                                 class="card-img-top" alt="a">
-                            <div class="w-100 position-relative d-flex justify-content-center">
-                                <div class="theme-mission">
-                                    Environment
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-listview-body col-12">
-                        <div class="card-body">
-                            <h5 class="card-title">Title</h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit dolor
-                                adipisci
-                                assumenda
-                                odio maxime maiores.
-                            </p>
-                            <div class="rating">
-                                <div class="h-100">
-                                    <span class="orga">Australian Paradise</span>
-                                </div>
-                                <span class="rating-img">
-                                    <img src="~/images/selected-star.png" alt="">
-                                    <img src="~/images/selected-star.png" alt="">
-                                    <img src="~/images/selected-star.png" alt="">
-                                    <img src="~/images/star.png" alt="">
-                                    <img src="~/images/star.png" alt="">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="time-goal">
-                            <hr>
-                            <div class="timeline">
-                                <div class="fs-7">
-                                    From 20/04/2020 until 20/05/2020
-                                </div>
-                            </div>
-                            <div class="seat-left m-3 mt-4 d-flex justify-content-between align-content-center">
-                                <div class="d-flex justify-content-between flex-wrap p-0 m-0 h-100 w-100">
-                                    <div class="d-flex align-items-center h-100 seat-listview">
-                                        <div class="px-2">
-                                            <img src="~/images/Seats-left.png" alt="">
-                                        </div>
-                                        <div class="seat">
-                                            <h6 class="p-0 m-0">10</h6>
-                                            <span class="fs-7">Seats left</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center h-100 deadline-listview">
-                                        <div class="px-2">
-                                            <img src="~/images/deadline.png" alt="">
-                                        </div>
-                                        <div class="deadline">
-                                            <h6 class="p-0 m-0">09/05/2020</h6>
-                                            <span class="fs-7">Deadline</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="my-2">
-                            <div class="text-center pb-2 button">
-                                <button class="btn-ci-primary">
-                                    Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="d-flex flex-nowrap related-mission px-3">
+        <div class="row flex-nowrap" id="relatedmission">
         </div>
     </div>
 </div>
@@ -613,5 +505,25 @@
                 toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
+    }
+    function postComment(mid){
+        var ctext = document.getElementById("commentbox").value;
+        if(ctext != ""){
+            $.ajax({
+                type: 'POST',
+                url: "/Volunteer/Home/Post_Comment",
+                data: { 'missoinid': mid , 'commenttext':ctext },
+                success: function (res) {
+                    document.getElementById("commentbox").value = "";
+                    toastr.success("Your Comment Posted Successfully, You can see Your Comment in list after Approval", "Success Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                },
+                error: function (data) {
+                    toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                }
+            });
+        }
+        else{
+            toastr.error("Comment Field is Required", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+        }
     }
 </script>

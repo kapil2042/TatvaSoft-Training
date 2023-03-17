@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RhvvFwtZ/Bw9b96aYPHTWAmCbHWezrRQ/Zw3/hTij1k=",
+  "Hash": "LQHyMlIBXPZ+AGJBS3FPJ7XWRPanwxFKEhVLKEh+TQ0=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -2310,23 +2310,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\filter.js"
-    },
-    {
-      "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\gallary.js",
-      "SourceId": "CI-PlatformWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
-      "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "js/gallary.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\gallary.js"
     },
     {
       "Identity": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\grid_list_toggle.js",

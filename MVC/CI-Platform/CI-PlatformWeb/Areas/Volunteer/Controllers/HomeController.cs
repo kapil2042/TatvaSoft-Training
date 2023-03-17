@@ -83,13 +83,13 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
             if (skill != null)
             {
-                //string[] skilllist = skill.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                //m = m.Where(x => skilllist.Contains(x.mms).ToList();
+                string[] skilllist = skill.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                m = m.Where(x=>(_homeRepository.GetMissionsIdBySkillName(skilllist)).Contains(x.MissionId)).ToList();
             }
 
             if (!string.IsNullOrEmpty(search))
             {
-                m = m.Where(x=>x.Title.ToLower().Contains(search)).ToList();
+                m = m.Where(x => x.Title.ToLower().Contains(search)).ToList();
             }
             switch (id)
             {
@@ -146,13 +146,14 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             model.timesheet = _homeRepository.GetTimesheetByMissionId(id);
             model.missionMedia = _homeRepository.GetMissionMediaByMissionId(id);
             model.missionSkills = _homeRepository.GetMissionSkillsByMissionId(id);
-            model.missionRating = _homeRepository.GetMissionRatingByUserIdAndMissionId(Convert.ToInt32(uid),id);
+            model.missionRating = _homeRepository.GetMissionRatingByUserIdAndMissionId(Convert.ToInt32(uid), id);
             model.sum = _homeRepository.GetSumOfMissionRatingByMissionId(id);
             model.total = _homeRepository.GetTotalMissionRatingByMissionId(id);
             model.favoriteMission = _homeRepository.GetFavoriteMissionsByUserIdAndMissionId(Convert.ToInt32(uid), id);
             model.missionApplicatoin = _homeRepository.GetMissionApplicatoinByUserIdAndMissionId(Convert.ToInt32(uid), id);
             model.volunteerDetails = _homeRepository.GetMissionApplicatoinsByMissionId(id);
-            
+            model.comments = _homeRepository.GetCommentsByMissionId(id);
+
             return View(model);
         }
 
@@ -175,7 +176,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             var data = _homeRepository.GetFavoriteMissionsByUserIdAndMissionId(Convert.ToInt32(uid), missoinid);
-            if(data != null)
+            if (data != null)
             {
                 _homeRepository.UnlikeMission(data);
             }
@@ -191,7 +192,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         [Authorize]
         [HttpPost]
-        public void Rating_Mission(int missoinid,int rat)
+        public void Rating_Mission(int missoinid, int rat)
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
@@ -211,6 +212,29 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _homeRepository.Rating(missionRating);
             }
             _homeRepository.Save();
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public void Post_Comment(int missoinid, string commenttext)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            Comment comment = new Comment();
+            comment.UserId = Convert.ToInt32(uid);
+            comment.CommentText = commenttext;
+            comment.MissionId = missoinid;
+            comment.ApprovalStatus = "PENDING";
+            _homeRepository.PostComment(comment);
+            _homeRepository.Save();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void Recommended_Mission()
+        {
+            
         }
     }
 }

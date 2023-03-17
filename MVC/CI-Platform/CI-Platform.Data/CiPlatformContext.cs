@@ -198,9 +198,11 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.CommentId).HasColumnName("comment_id");
             entity.Property(e => e.ApprovalStatus)
                 .HasMaxLength(10)
-
                 .HasDefaultValueSql("('PENDING')")
                 .HasColumnName("approval_status");
+            entity.Property(e => e.CommentText)
+                .HasMaxLength(1024)
+                .HasColumnName("comment_text");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

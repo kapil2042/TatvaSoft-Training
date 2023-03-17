@@ -30,6 +30,7 @@
         });
 
 
+
         if(fid!=0){
             id=fid;
         }
@@ -41,7 +42,6 @@
             url: "/Volunteer/Home/filterMissions",
             data: { 'pg': fpg, 'id': id,'search': searchquery, 'country': country, 'cities': cities, 'theme': theme, 'skill': skill },
             success: function (res) {
-                console.log($($.parseHTML(res)).filter("#gridviewpartial"));
                 $('.gridajax').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
                 $('.listajax').html($($.parseHTML(res)).filter("#listviewpartial")[0].innerHTML);
                 $('#pagination').html($($.parseHTML(res)).filter("#paginationpartial")[0].innerHTML);
@@ -62,10 +62,13 @@
 
 
 <link rel="stylesheet" href="~/css/mission_page.css" asp-append-version="true" />
-<script src="~/js/ajax.js" asp-append-version="true"></script>
-<partial name="filter" model="Model"></partial>
 
-<partial name="secondNav" model="Model"></partial>
+<partial name="filter" model="Model" />
+
+<partial name="secondNav" model="Model" />
+
+<partial name="sendMailModel" />
+
 
 
 <div class="container-lg container-fluid py-3 d-flex flex-wrap">

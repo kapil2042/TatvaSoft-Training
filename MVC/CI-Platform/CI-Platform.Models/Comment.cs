@@ -23,6 +23,10 @@ public partial class Comment
     [StringLength(10)]
     public string? ApprovalStatus { get; set; }
 
+    [Column("comment_text", TypeName = "text")]
+    [StringLength(1024)]
+    public string? CommentText { get; set; }
+
     [Column("created_at", TypeName = "datetime")]
     public DateTime CreatedAt { get; set; }
 

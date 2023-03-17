@@ -75,6 +75,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHNlY29uZE5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KAPIL/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/sendMailModel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHNlbmRNYWlsTW9kZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KAPIL/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/_Login_layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbl9sYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

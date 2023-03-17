@@ -24,7 +24,6 @@ namespace CI_Platform.Models.ViewModels
         public MissionApplicatoin missionApplicatoin { get; set; }
         public List<MissionApplicatoin> volunteerDetails { get; set; }
         public List<MissionDocument> missionDocuments { get; set; }
-
-        public List<Mission> relatedMissions { get; set; }
+        public List<Comment> comments { get; set; }
     }
 }

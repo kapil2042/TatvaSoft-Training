@@ -58,12 +58,6 @@
     overflow-x: auto;
 }
 
-.card-related-mission {
-    padding: 10px;
-    width: 350px !important;
-    min-width: 350px !important;
-}
-
 .comment-post .form-control {
     height: auto !important;
 }

@@ -216,6 +216,10 @@ a {
     font-size: 14px !important;
 }
 
+.h-80 {
+    height: 80% !important;
+}
+
 .fs-time {
     font-size: 12px !important;
 }

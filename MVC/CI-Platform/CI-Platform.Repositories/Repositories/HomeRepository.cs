@@ -111,7 +111,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public MissionRating GetMissionRatingByUserIdAndMissionId(int id, int mid)
         {
-            return _db.MissionRatings.Where(x=>x.MissionId == mid && x.UserId == id).FirstOrDefault();
+            return _db.MissionRatings.Where(x => x.MissionId == mid && x.UserId == id).FirstOrDefault();
         }
 
         public double GetSumOfMissionRatingByMissionId(int id)
@@ -166,7 +166,22 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionApplicatoin> GetMissionApplicatoinsByMissionId(int mid)
         {
-            return _db.MissionApplicatoins.Where(x=>x.MissionId == mid && x.ApprovalStatus == "APPROVE").OrderByDescending(x=>x.AppliedAt).Include(x=>x.User).ToList();
+            return _db.MissionApplicatoins.Where(x => x.MissionId == mid && x.ApprovalStatus == "APPROVE").OrderByDescending(x => x.AppliedAt).Include(x => x.User).ToList();
+        }
+
+        public List<Comment> GetCommentsByMissionId(int mid)
+        {
+            return _db.Comments.Where(x => x.MissionId == mid && x.ApprovalStatus == "APPROVE").OrderByDescending(x => x.CreatedAt).Include(x => x.User).ToList();
+        }
+
+        public void PostComment(Comment comment)
+        {
+            _db.Comments.Add(comment);
+        }
+
+        public long[] GetMissionsIdBySkillName(string[] skill)
+        {
+            return _db.MissionSkills.Include(x => x.Skill).Where(x => skill.Contains(x.Skill.SkillName)).Select(x => x.MissionId).ToArray();
         }
     }
 }

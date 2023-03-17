@@ -59,6 +59,10 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<MissionDocument> GetFavoriteMissionDocumentsByMissionId(int mid);
 
+        List<Comment> GetCommentsByMissionId(int mid);
+
+        long[] GetMissionsIdBySkillName(string[] skill);
+
         void LikeMission(FavoriteMission favoriteMission);
 
         void UnlikeMission(FavoriteMission favoriteMission);
@@ -66,6 +70,8 @@ namespace CI_Platform.Repositories.Interfaces
         void Rating(MissionRating missionRating);
 
         void UpdateRating(MissionRating missionRating);
+
+        void PostComment(Comment comment);
 
         void Save();
     }
