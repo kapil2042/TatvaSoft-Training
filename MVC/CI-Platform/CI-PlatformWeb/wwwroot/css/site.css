@@ -514,3 +514,20 @@ a {
     max-height: 70vh;
     overflow-y: auto;
 }
+
+#loader {
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff !important;
+}
+
+    #loader img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }

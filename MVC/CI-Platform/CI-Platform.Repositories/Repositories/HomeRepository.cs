@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +19,11 @@ namespace CI_Platform.Repositories.Repositories
         public HomeRepository(CiPlatformContext db)
         {
             _db = db;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _db.Users.ToList();
         }
 
         public List<Country> GetCountries()
@@ -182,6 +189,31 @@ namespace CI_Platform.Repositories.Repositories
         public long[] GetMissionsIdBySkillName(string[] skill)
         {
             return _db.MissionSkills.Include(x => x.Skill).Where(x => skill.Contains(x.Skill.SkillName)).Select(x => x.MissionId).ToArray();
+        }
+
+        public void SendMails(string body, string[] mailids)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("lrs.aau.in@gmail.com");
+                foreach(var mailid in mailids)
+                {
+                    message.To.Add(mailid);
+                }
+                message.Subject = "Reset Password ~ CI-Platform";
+                message.IsBodyHtml = true;
+                message.Body = body;
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com";
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("lrs.aau.in@gmail.com", "nlugxyghjtuxmmqj");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
         }
     }
 }

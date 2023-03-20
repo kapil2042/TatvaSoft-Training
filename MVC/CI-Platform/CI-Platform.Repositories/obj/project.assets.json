@@ -3351,11 +3351,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
+      "projectUniqueName": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
       "projectName": "CI-Platform.Repositories",
-      "projectPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
+      "projectPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\CI-Platform.Repositories.csproj",
       "packagesPath": "C:\\Users\\pca112\\.nuget\\packages\\",
-      "outputPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\obj\\",
+      "outputPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Repositories\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -3377,11 +3377,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj": {
-              "projectPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj"
+            "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj": {
+              "projectPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Data\\CI-Platform.Data.csproj"
             },
-            "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
-              "projectPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
+            "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
+              "projectPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj"
             }
           }
         }

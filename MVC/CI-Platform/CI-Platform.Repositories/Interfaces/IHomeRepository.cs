@@ -9,6 +9,8 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface IHomeRepository
     {
+        List<User> GetAllUsers();
+
         List<Country> GetCountries();
 
         List<City> GetCities();
@@ -74,5 +76,7 @@ namespace CI_Platform.Repositories.Interfaces
         void PostComment(Comment comment);
 
         void Save();
+
+        void SendMails(string body, string[] mailids);
     }
 }

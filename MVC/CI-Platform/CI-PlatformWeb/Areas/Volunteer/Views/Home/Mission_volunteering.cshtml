@@ -35,16 +35,12 @@
                     @{
                         var Count1 = 0;
                     }
-                    @for (var j = 1; j <= @Model.missionMedia.Count(); j++)
+                    @foreach (var j in Model.missionMedia)
                     {
-                        var media1 = Model.missionMedia.Where(x => x.MediaDefault == 0).FirstOrDefault();
-                        if (media1 != null)
-                        {
-                            Count1 += 1;
-                            <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
-                                <img src="~/images/@media1.MediaPath/@media1.MediaName.@media1.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
-                            </div>
-                        }
+                        Count1 += 1;
+                        <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
+                            <img src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
+                        </div>
                     }
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -55,22 +51,17 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-                <div class="carousel-indicators" style="margin-bottom: -20px;">
+                <div class="carousel-indicators" style="margin-bottom: -70px;">
                     @{
                         var Count2 = 0;
                     }
-                    @for (var j = 1; j <= @Model.missionMedia.Count(); j++)
+                    @foreach (var j in Model.missionMedia)
                     {
-                        var media2 = Model.missionMedia.Where(x => x.MediaDefault == 0).FirstOrDefault();
-
-                        if (media2 != null)
-                        {
-                            Count2 += 1;
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
-                            aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px;">
-                                <img class="d-block w-100" src="~/images/@media2.MediaPath/@media2.MediaName.@media2.MediaType" class="img-fluid" />
-                            </button>
-                        }
+                        Count2 += 1;
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
+                            aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px; height: 50px;">
+                            <img class="d-block w-100 h-100" src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="img-fluid" />
+                        </button>
                     }
                 </div>
             </div>
@@ -319,17 +310,31 @@
                 <div class="tab-pane fade show active text-muted py-3" id="nav-mission" role="tabpanel"
                      aria-labelledby="nav-mission-tab">
                     @Model.mission.Description
-                    @if (Model.missionDocuments != null)
+                    @if (Model.missionDocuments.Count() > 0)
                     {
                         <h3 class="my-2 my-md-3">Documents</h3>
-                        <div class="d-flex flex-wrap align-items-center">
-                            <div class="rounded-pill text-muted border py-1 px-3 me-2 mb-2">
-                                <a href="#">
-                                    <img src="~/images/pdf.png" alt="pdf">
-                                    <span class="text-muted">lorem-ipsum.pdf</span>
-                                </a>
+                        @foreach (var i in Model.missionDocuments)
+                        {
+                            <div class="d-flex flex-wrap align-items-center">
+                                <div class="rounded-pill text-muted border py-1 px-3 me-2 mb-2">
+                                    <a href="~/doc/@i.DocumentPath/@i.DocumentName.@i.DocumentType" target="_blank">
+                                        @if (i.DocumentType == "doc" || i.DocumentType == "docx" || i.DocumentType == "txt")
+                                        {
+                                            <img src="~/images/doc.png" alt="pdf">
+                                        }
+                                        else if (i.DocumentType == "xls" || i.DocumentType == "xlsx")
+                                        {
+                                            <img src="~/images/xlsx.png" alt="pdf">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/pdf.png" alt="pdf">
+                                        }
+                                        <span class="text-muted">@i.DocumentName.@i.DocumentType</span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
                 <div class="tab-pane fade py-3" id="nav-organization" role="tabpanel"

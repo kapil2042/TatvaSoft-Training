@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {}
+    "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {}
   },
   "projects": {
-    "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
+    "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj",
+        "projectUniqueName": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj",
         "projectName": "CI-Platform.Models",
-        "projectPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj",
+        "projectPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\CI-Platform.Models.csproj",
         "packagesPath": "C:\\Users\\pca112\\.nuget\\packages\\",
-        "outputPath": "D:\\KAPIL\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\obj\\",
+        "outputPath": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-Platform.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

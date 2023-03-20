@@ -8,6 +8,7 @@ namespace CI_Platform.Models.ViewModels
 {
     public class VMMissionVol
     {
+        public List<User> users { get; set; }
         public List<Country>? countries { get; set; }
         public List<City>? cities { get; set; }
         public List<MissionTheme>? themes { get; set; }

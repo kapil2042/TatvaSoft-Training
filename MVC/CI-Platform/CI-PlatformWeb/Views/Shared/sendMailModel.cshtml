@@ -8,12 +8,35 @@
          var mId = $(this).data('id');
          $("#missinid").val( mId );
     });
-    //function recommended_mission(){
-    //    var mailids =[];
-    //    mailids= $('#mailids').val();
-    //    console.log(mailids);
-    //}
+    function recommended_mission(){
+        var mailids =[];
+        mailids= $('#mailids').val();
+        var mid = document.getElementById("missinid").value;
+        $.ajax({
+                type: 'POST',
+                url: "/Volunteer/Home/Recommended_Mission",
+                data: { 'missoinid': mid , 'mailids':mailids },
+                beforeSend: function(){
+                    $("#loader").removeClass('d-none');
+                },
+                success: function (res) {
+                    toastr.success("Mail sent Successfully!!", "Success Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                },
+                error: function (data) {
+                    toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                },
+                complete: function() {
+                    $("#loader").addClass('d-none');
+                    $("#mailmodal").modal('hide');
+                }
+            });
+    }
 </script>
+
+<div id="loader" class="d-none">
+    <img src="~/images/loader.gif" />
+</div>
+
 
 <div class="modal fade" id="mailmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -23,16 +46,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                @{
+                    var identity = User.Identity as ClaimsIdentity;
+                    var eid = identity?.FindFirst(ClaimTypes.Email)?.Value;
+                }
                 <input type="text" name="missionid" id="missinid" value="" hidden />
                 <select class="selectpicker w-100" multiple data-live-search="true" id="mailids">
-                    <option value="parth">parth</option>
-                    <option>kapil</option>
-                    <option>fgh</option>
+                    @foreach (var i in Model.users)
+                    {
+                        if (eid != i.Email)
+                        {
+                            <option value="@i.Email">
+                                @i.FirstName @i.LastName
+                            </option>
+                        }
+                    }
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-ci-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn-ci-primary" onclick="recommended_mission()">Save changes</button>
+                <button type="button" class="btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-ci-primary" onclick="recommended_mission()">Send</button>
             </div>
         </div>
     </div>
