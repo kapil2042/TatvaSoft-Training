@@ -1,0 +1,127 @@
+﻿@using CI_Platform.Models.ViewModels
+
+@model VMStory
+
+@if (ViewBag.nostory == 1)
+{
+    <div id="parstorylist">
+        <div class="text-center pt-3">
+            <h2 class="mb-3">No Story Found</h2>
+        </div>
+    </div>
+    <div id="paginationpartial"></div>
+}
+else
+{
+
+    <div id="parstorylist">
+        @foreach (var i in Model.stories)
+        {
+            <div class="col-12 col-sm-6 col-lg-4 mt-3 mb-3">
+                <div class="card" id="story-card">
+                    <div class="position-relative">
+                        <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="...">
+                        <div class="story-theme position-absolute w-100 d-flex justify-content-center align-items-center">
+                            <div class="bg-white z-1 rounded-pill px-3 py-1">
+                                @i.Mission.Theme.Title
+                            </div>
+                        </div>
+                        <div class="story-hover position-absolute top-0 d-flex justify-content-center align-items-center w-100 h-100 bg-ci-opacity">
+                            <a class="btn-ci-white bg-transparent">
+                                View Details&nbsp;<img src="~/images/right-arrow-white.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@i.Title</h5>
+                        <p class="card-text fs-7 text-muted">@i.Description</p>
+                        <div class="w-100 d-flex align-items-center">
+                            @{
+                                var u = Model.users.Where(x => x.UserId == i.UserId).FirstOrDefault();
+                            }
+                            <div class="avtar-nav">
+                                <img src="~/images/@u.Avatar" />
+                            </div>
+                            <div class="ms-2 text-muted">@u.FirstName @u.LastName</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+    VMPager pager = new VMPager();
+    int pageNo = 0;
+    if (ViewBag.pager != null)
+    {
+        pager = ViewBag.pager;
+        pageNo = pager.CurrentPage;
+    }
+
+
+    @if (pager.TotalPages > 0)
+    {
+        <nav aria-label="Page" class="my-4" id="paginationpartial">
+            <ul class="pagination-sm pagination justify-content-center">
+                @if (pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onclick="myfilter(fpg = 1, fid = 0);">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onclick="myfilter(fpg=@(pager.CurrentPage-1),fid=0)">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link disabled">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link disabled">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+                }
+                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="page-item"><a class="page-link @(pge==pager.CurrentPage ? "active":"")" onclick="myfilter(fpg=@pge,fid=0)">@pge</a></li>
+                }
+                @if (pager.CurrentPage < pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" onclick="myfilter(fpg=@(pager.CurrentPage+1),fid=0)">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next" onclick="myfilter(fpg=@(pager.TotalPages),fid=0)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link disabled">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link disabled">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+}

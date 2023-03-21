@@ -1,0 +1,101 @@
+﻿@model VMStory
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    id = 0;
+    function myfilter(fpg,fid,c){
+        if(c!=null){
+            country = c;
+        }
+        else{
+            country = "";
+        }
+
+        var cities = "";
+        $("input[name='city']:checked").each(function () {
+            cities += $(this).val() + ",";
+        });
+
+        var theme = "";
+        $("input[name='theme']:checked").each(function () {
+            theme += $(this).val() + ",";
+        });
+
+        var skill = "";
+        $("input[name='skill']:checked").each(function () {
+            skill += $(this).val() + ",";
+        });
+
+
+
+        if(fid!=0){
+            id=fid;
+        }
+
+
+        var searchquery = $("input[name='search']").val();
+        $.ajax({
+            type: 'POST',
+            url: "/Volunteer/Story/FilterStories",
+            data: { 'pg': fpg, 'id': id,'search': searchquery, 'country': country, 'cities': cities, 'theme': theme, 'skill': skill },
+            success: function (res) {
+                $('#storylist').html($($.parseHTML(res)).filter("#parstorylist")[0].innerHTML);
+                $('#pagination').html($($.parseHTML(res)).filter("#paginationpartial")[0].innerHTML);
+            },
+            error: function (data) {
+                alert("some Error");
+            }
+        });
+
+    }
+
+
+    $(document).ready(function(){
+        myfilter(fpg = 1, fid = 0);
+    })
+</script>
+
+
+<partial name="filter" />
+
+<partial name="secondNav" />
+
+<link rel="stylesheet" href="~/css/story_page.css">
+
+
+<div class="container-fluid p-0">
+    <div class="position-relative share-story-img-box">
+        <img class="w-100 h-100"
+             src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" alt="">
+        <div class="position-absolute d-flex justify-content-center align-items-center w-100 h-100 bg-ci-opacity top-0">
+            <div class="text-center w-50 text-white">
+                <p class="text-white fs-6 d-none d-sm-block">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Praesentium voluptatum eveniet, repudiandae tenetur at esse amet culpa. voluptatum
+                </p>
+                <button class="btn-ci-white bg-transparent">
+                    Share Your Story&nbsp;<img src="~/images/right-arrow-white.png" alt="">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-lg container-fluid py-3 d-flex flex-wrap">
+    <div class="d-flex flex-wrap align-items-center" id="filterlistcity">
+    </div>
+    <div class="d-flex flex-wrap align-items-center" id="filterlist">
+    </div>
+</div>
+
+
+<div class="container-lg container-fluid">
+    <div class="row" id="storylist">
+    </div>
+</div>
+
+<div id="pagination">
+</div>

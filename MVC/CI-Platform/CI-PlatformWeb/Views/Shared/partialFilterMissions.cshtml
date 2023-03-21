@@ -199,25 +199,25 @@ else
                                 <div class="text-center pb-2 button">
                                     @if (Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
                                     {
-                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                             View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                         </button>
                                     }
                                     else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
                                     {
-                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                             View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                         </button>
                                     }
                                     else if (i.MissionType.Equals("GOAL") && avg >= 100)
                                     {
-                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                             View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                         </button>
                                     }
                                     else
                                     {
-                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                             Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                         </button>
                                     }
@@ -433,25 +433,25 @@ else
                                         <div class="listview-button">
                                             @if (Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
                                             {
-                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                                     View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                                 </button>
                                             }
                                             else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
                                             {
-                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                                     View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                                 </button>
                                             }
                                             else if (i.MissionType.Equals("GOAL") && avg >= 100)
                                             {
-                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                                     View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                                 </button>
                                             }
                                             else
                                             {
-                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Home/Mission_volunteering/@i.MissionId'">
+                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                                     Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                                 </button>
                                             }

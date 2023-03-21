@@ -204,6 +204,10 @@ a {
     background-color: #14C506 !important;
 }
 
+.bg-ci-opacity {
+    background-color: #000000AF !important;
+}
+
 .text-ci-danger {
     color: #f83434 !important;
 }

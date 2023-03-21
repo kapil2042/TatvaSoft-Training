@@ -56,11 +56,18 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         if (ReturnUrl != null)
                         {
                             var viewurl = ReturnUrl.Split('/');
-                            return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1], id = viewurl[4] });
+                            if (viewurl.Length > 4)
+                            {
+                                return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1], id = viewurl[4] });
+                            }
+                            else
+                            {
+                                return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1] });
+                            }
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home", new { Area = "Volunteer" });
+                            return RedirectToAction("Index", "Mission", new { Area = "Volunteer" });
                         }
                     }
                     else
@@ -202,7 +209,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             TempData["Logout"] = "Logout Successfully";
-            return RedirectToAction("Index", "Home", new { Area = "Volunteer" });
+            return RedirectToAction("Index", "Mission", new { Area = "Volunteer" });
         }
     }
 }

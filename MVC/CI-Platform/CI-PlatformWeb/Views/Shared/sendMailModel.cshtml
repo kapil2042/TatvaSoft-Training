@@ -14,7 +14,7 @@
         var mid = document.getElementById("missinid").value;
         $.ajax({
                 type: 'POST',
-                url: "/Volunteer/Home/Recommended_Mission",
+                url: "/Volunteer/Mission/Recommended_Mission",
                 data: { 'missoinid': mid , 'mailids':mailids },
                 beforeSend: function(){
                     $("#loader").removeClass('d-none');

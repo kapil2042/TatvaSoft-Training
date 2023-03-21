@@ -50,7 +50,7 @@ function citybycountry(country) {
             myfilter(fpg = fpg, fid = fid, c = cou);
         }
     };
-    xhr.open('GET', 'Volunteer/Home/GetCityByCountry?country=' + country, true);
+    xhr.open('GET', '/Volunteer/Home/GetCityByCountry?country=' + country, true);
     xhr.send();
 }
 
@@ -198,7 +198,7 @@ function removeElementcity(value) {
 function favunfavmission(mid) {
     $.ajax({
         type: 'POST',
-        url: "/Volunteer/Home/Favourite_Mission",
+        url: "/Volunteer/Mission/Favourite_Mission",
         data: { 'missoinid': mid },
         success: function (res) {
             myfilter(fpg = fpg, fid = fid, c = cou);

@@ -10,7 +10,7 @@
     $(document).ready(()=>{
     $.ajax({
             type: 'POST',
-            url: "/Volunteer/Home/filterMissions",
+            url: "/Volunteer/Mission/FilterMissions",
             data: { 'pg': 1, 'id': 4,'search': "", 'country': "", 'cities': "", 'theme': "@Model.mission.Theme.Title", 'skill': "" },
             success: function (res) {
                 $('#relatedmission').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
@@ -28,7 +28,7 @@
 
 <partial name="sendMailModel" />
 
-<div class="container-lg container-fluid">
+<div class="container-lg container-fluid mt-5">
     <div class="row">
         <div class="col-lg-6 col-12 p-0 position-relative">
             <div id="carouselExampleIndicators" class="carousel h-80 slide carousel-fade" data-bs-ride="carousel">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex w-100">
+            <div class="d-flex w-100 mt-3">
                 <div class="d-flex align-items-center justify-content-around h-100 w-50">
                     <div class="px-2 w-50 text-end">
                         <img src="~/images/Seats-left.png" alt="">
@@ -476,7 +476,7 @@
     function favunfavmissionvol(mid) {
         $.ajax({
             type: 'POST',
-            url: "/Volunteer/Home/Favourite_Mission",
+            url: "/Volunteer/Mission/Favourite_Mission",
             data: { 'missoinid': mid },
             success: function (res) {
                 location.reload();
@@ -489,7 +489,7 @@
     function missionrating(mid,rat) {
         $.ajax({
             type: 'POST',
-            url: "/Volunteer/Home/Rating_Mission",
+            url: "/Volunteer/Mission/Rating_Mission",
             data: { 'missoinid': mid , 'rat':rat },
             success: function (res) {
                 location.reload();
@@ -504,7 +504,7 @@
         if(ctext != ""){
             $.ajax({
                 type: 'POST',
-                url: "/Volunteer/Home/Post_Comment",
+                url: "/Volunteer/Mission/Post_Comment",
                 data: { 'missoinid': mid , 'commenttext':ctext },
                 success: function (res) {
                     document.getElementById("commentbox").value = "";
@@ -523,7 +523,7 @@
     function volpag(fpg) {
         $.ajax({
             type: 'POST',
-            url: "/Volunteer/Home/GetVolunteer",
+            url: "/Volunteer/Mission/GetVolunteer",
             data: { 'mid': @Model.mission.MissionId, 'pg': fpg },
             success: function (res) {
                 $('#recvol').html($($.parseHTML(res)).filter("#parrecvol")[0].innerHTML);

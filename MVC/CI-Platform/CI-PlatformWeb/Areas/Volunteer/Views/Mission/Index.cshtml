@@ -39,7 +39,7 @@
         var searchquery = $("input[name='search']").val();
         $.ajax({
             type: 'POST',
-            url: "/Volunteer/Home/filterMissions",
+            url: "/Volunteer/Mission/FilterMissions",
             data: { 'pg': fpg, 'id': id,'search': searchquery, 'country': country, 'cities': cities, 'theme': theme, 'skill': skill },
             success: function (res) {
                 $('.gridajax').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);

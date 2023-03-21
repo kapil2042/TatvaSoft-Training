@@ -12,14 +12,16 @@ builder.Services.AddDbContext<CiPlatformContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
-builder.Services.AddScoped<IHomeRepository,HomeRepository>();
+builder.Services.AddScoped<IHomeRepository, HomeRepository>();
+builder.Services.AddScoped<IMissionRepository, MissionRepository>();
+builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
         option.ExpireTimeSpan = TimeSpan.FromHours(4);
         option.LoginPath = "/Volunteer/Login/Index";
-        option.AccessDeniedPath = "/Volunteer/Home/Index";
+        option.AccessDeniedPath = "/Volunteer/Mission/Index";
     });
 builder.Services.AddSession(option =>
 {
@@ -48,6 +50,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Volunteer}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Volunteer}/{controller=Mission}/{action=Index}/{id?}");
 
 app.Run();
