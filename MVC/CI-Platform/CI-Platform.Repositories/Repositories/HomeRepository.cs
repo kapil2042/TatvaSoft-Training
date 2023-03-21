@@ -168,7 +168,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionDocument> GetFavoriteMissionDocumentsByMissionId(int mid)
         {
-            return _db.MissionDocuments.ToList();
+            return _db.MissionDocuments.Where(x => x.MissionId == mid).ToList();
         }
 
         public List<MissionApplicatoin> GetMissionApplicatoinsByMissionId(int mid)
@@ -198,7 +198,7 @@ namespace CI_Platform.Repositories.Repositories
                 MailMessage message = new MailMessage();
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress("lrs.aau.in@gmail.com");
-                foreach(var mailid in mailids)
+                foreach (var mailid in mailids)
                 {
                     message.To.Add(mailid);
                 }

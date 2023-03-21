@@ -19,6 +19,7 @@
                 alert("some Error");
             }
         });
+    volpag(1);
     });
 </script>
 <partial name="filter" />
@@ -443,25 +444,13 @@
                             </button>
                         </div>
                         <div class="m-3">
-                            <div class="row g-3 text-muted">
-                                @foreach (var i in Model.volunteerDetails)
-                                {
-                                    <div class="col-4">
-                                        <div class="recent-vol">
-                                            <img src="~/images/@i.User.Avatar" />
-                                        </div>
-                                        <div class="text-center mt-1 recent-vol-name">@i.User.FirstName</div>
-                                    </div>
-                                }
+                            <div class="row g-3 text-muted" id="recvol">
                             </div>
                         </div>
                     </div>
+                    <div class="w-100 d-flex justify-content-between align-items-center border border-top-0 recent-vol-page" id="recvolpag">
+                    </div>
                 </div>
-            </div>
-            <div class="w-100 d-flex justify-content-between align-items-center border border-top-0 recent-vol-page">
-                <button class="btn border-end"><span aria-hidden="true">&lsaquo;</span></button>
-                <div class="fs-7">1-9 of 25 Recent Volunteers</div>
-                <button class="btn border-start"><span aria-hidden="true">&rsaquo;</span></button>
             </div>
         </div>
     </div>
@@ -482,7 +471,6 @@
     </div>
 </div>
 
-<script src="~/js/gallary.js" asp-append-version="true"></script>
 
 <script>
     function favunfavmissionvol(mid) {
@@ -530,5 +518,20 @@
         else{
             toastr.error("Comment Field is Required", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
         }
+    }
+
+    function volpag(fpg) {
+        $.ajax({
+            type: 'POST',
+            url: "/Volunteer/Home/GetVolunteer",
+            data: { 'mid': @Model.mission.MissionId, 'pg': fpg },
+            success: function (res) {
+                $('#recvol').html($($.parseHTML(res)).filter("#parrecvol")[0].innerHTML);
+                $('#recvolpag').html($($.parseHTML(res)).filter("#parrecvolpag")[0].innerHTML);
+            },
+            error: function (data) {
+                toastr.error("Error in recent volunteer", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            }
+        });
     }
 </script>

@@ -238,10 +238,35 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [HttpPost]
         public void Recommended_Mission(int missoinid, string[] mailids)
         {
-            var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", id = missoinid });
+            var link = Url.Action("Mission_volunteering", "Home", new { Area = "Volunteer", id = missoinid });
             var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
 
-            _homeRepository.SendMails(mailBody,mailids);
+            _homeRepository.SendMails(mailBody, mailids);
         }
+
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult GetVolunteer(int mid, int pg)
+        {
+            List<MissionApplicatoin> list = new List<MissionApplicatoin>();
+
+            list = _homeRepository.GetMissionApplicatoinsByMissionId(mid);
+
+            const int pageSize = 9;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int recsCount = list.Count();
+            
+            ViewBag.volcount = recsCount;
+            var pager = new VMPager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            list = list.Skip(recSkip).Take(pager.PageSize).ToList();
+            ViewBag.pager = pager;
+            return PartialView("volunteerPagination", list);
+        }
+
     }
 }

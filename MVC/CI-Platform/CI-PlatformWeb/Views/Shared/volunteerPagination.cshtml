@@ -1,0 +1,45 @@
+﻿@using CI_Platform.Models.ViewModels
+@model List<MissionApplicatoin>
+
+@{
+    VMPager pager1 = new VMPager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager1 = ViewBag.Pager;
+        pageNo = pager1.CurrentPage;
+    }
+    var totalvol = ViewBag.totalvol;
+}
+
+<div class="row g-3 text-muted" id="parrecvol">
+    @foreach (var i in Model)
+    {
+        <div class="col-4">
+            <div class="recent-vol">
+                <img src="~/images/@i.User.Avatar" />
+            </div>
+            <div class="text-center mt-1 recent-vol-name fs-7">@i.User.FirstName @i.User.LastName</div>
+        </div>
+    }
+</div>
+
+
+<div class="w-100 d-flex justify-content-between align-items-center border border-top-0 recent-vol-page" id="parrecvolpag">
+    <a class="btn border-end @(pager1.CurrentPage <= 1 ? "disabled":"")" onclick="volpag(@(pager1.CurrentPage - 1))">
+        <span aria-hidden="true">&lsaquo;</span>
+    </a>
+    <div class="fs-7">
+        @if ((pager1.CurrentPage * pager1.PageSize) > @ViewBag.volcount)
+        {
+            @:@((pager1.CurrentPage -1)*pager1.PageSize + 1) - @ViewBag.volcount of @ViewBag.volcount Recent Volunteers
+        }
+        else
+        {
+            @:@((pager1.CurrentPage -1)*pager1.PageSize + 1) - @(pager1.CurrentPage * pager1.PageSize) of @ViewBag.volcount Recent Volunteers
+        }
+    </div>
+    <a class="btn border-start @(pager1.CurrentPage >= pager1.TotalPages ? "disabled":"")" onclick="volpag(@(pager1.CurrentPage + 1))">
+        <span aria-hidden="true">&rsaquo;</span>
+    </a>
+</div>
