@@ -9,12 +9,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
     public class MissionController : Controller
     {
-        private readonly IHomeRepository _homeRepository;
+        private readonly ICommonRepository _commonRepository;
         private readonly IMissionRepository _missionRepository;
 
-        public MissionController(IHomeRepository homeRepository, IMissionRepository missionRepository)
+        public MissionController(ICommonRepository commonRepository, IMissionRepository missionRepository)
         {
-            _homeRepository = homeRepository;
+            _commonRepository = commonRepository;
             _missionRepository = missionRepository;
         }
         public IActionResult Index()
@@ -25,12 +25,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 ViewBag.success = TempData["Logout"];
             VMMissions model = new()
             {
-                users = _homeRepository.GetAllUsers(),
+                users = _commonRepository.GetAllUsers(),
                 mission = _missionRepository.GetMissions(),
-                countries = _homeRepository.GetCountries(),
-                cities = _homeRepository.GetCities(),
-                skills = _homeRepository.GetSkills(),
-                themes = _homeRepository.GetMissionThemes(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
                 goal = _missionRepository.GetGoalMissions(),
                 timesheet = _missionRepository.GetTimeSheet(),
                 missionSkills = _missionRepository.GetMissionSkills(),
@@ -50,11 +50,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMMissions model = new()
             {
-                users = _homeRepository.GetAllUsers(),
-                countries = _homeRepository.GetCountries(),
-                cities = _homeRepository.GetCities(),
-                skills = _homeRepository.GetSkills(),
-                themes = _homeRepository.GetMissionThemes(),
+                users = _commonRepository.GetAllUsers(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
                 goal = _missionRepository.GetGoalMissions(),
                 timesheet = _missionRepository.GetTimeSheet(),
                 missionSkills = _missionRepository.GetMissionSkills(),
@@ -90,7 +90,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             if (skill != null)
             {
                 string[] skilllist = skill.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                m = m.Where(x => (_homeRepository.GetMissionsIdBySkillName(skilllist)).Contains(x.MissionId)).ToList();
+                m = m.Where(x => (_commonRepository.GetMissionsIdBySkillName(skilllist)).Contains(x.MissionId)).ToList();
             }
 
             if (!string.IsNullOrEmpty(search))
@@ -139,11 +139,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMMissionVol model = new()
             {
-                users = _homeRepository.GetAllUsers(),
-                countries = _homeRepository.GetCountries(),
-                cities = _homeRepository.GetCities(),
-                skills = _homeRepository.GetSkills(),
-                themes = _homeRepository.GetMissionThemes(),
+                users = _commonRepository.GetAllUsers(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
                 mission = _missionRepository.GetMissionsById(id),
                 goalMissions = _missionRepository.GetGoalMissionByMissionId(id),
                 timesheet = _missionRepository.GetTimesheetByMissionId(id),
@@ -180,7 +180,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 favoriteMission.UserId = Convert.ToInt32(uid);
                 _missionRepository.LikeMission(favoriteMission);
             }
-            _homeRepository.Save();
+            _commonRepository.Save();
         }
 
         [Authorize]
@@ -204,7 +204,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 missionRating.Rating = rat;
                 _missionRepository.Rating(missionRating);
             }
-            _homeRepository.Save();
+            _commonRepository.Save();
         }
 
 
@@ -220,7 +220,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             comment.MissionId = missoinid;
             comment.ApprovalStatus = "PENDING";
             _missionRepository.PostComment(comment);
-            _homeRepository.Save();
+            _commonRepository.Save();
         }
 
         [Authorize]
@@ -230,7 +230,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var link = Url.Action("Mission_volunteering", "Home", new { Area = "Volunteer", id = missoinid });
             var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
 
-            _homeRepository.SendMails(mailBody, mailids);
+            _commonRepository.SendMails(mailBody, mailids);
         }
 
 

@@ -653,6 +653,9 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.DeletedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("deleted_at");
+            entity.Property(e => e.ShortDescription)
+                .HasColumnType("text")
+                .HasColumnName("short_description");
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");

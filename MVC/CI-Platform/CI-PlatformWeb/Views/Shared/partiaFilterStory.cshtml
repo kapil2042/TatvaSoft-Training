@@ -34,7 +34,7 @@ else
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">@i.Title</h5>
-                        <p class="card-text fs-7 text-muted">@i.Description</p>
+                        <p class="card-text fs-7 text-muted">@i.ShortDescription</p>
                         <div class="w-100 d-flex align-items-center">
                             @{
                                 var u = Model.users.Where(x => x.UserId == i.UserId).FirstOrDefault();

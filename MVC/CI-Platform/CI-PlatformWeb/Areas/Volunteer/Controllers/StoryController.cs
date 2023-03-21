@@ -9,12 +9,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
     public class StoryController : Controller
     {
-        private readonly IHomeRepository _homeRepository;
+        private readonly ICommonRepository _commonRepository;
         private readonly IStoryRepository _storyRepository;
 
-        public StoryController(IHomeRepository homeRepository, IStoryRepository storyRepository)
+        public StoryController(ICommonRepository commonRepository, IStoryRepository storyRepository)
         {
-            _homeRepository = homeRepository;
+            _commonRepository = commonRepository;
             _storyRepository = storyRepository;
         }
 
@@ -22,11 +22,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             VMStory story = new()
             {
-                users = _homeRepository.GetAllUsers(),
-                countries = _homeRepository.GetCountries(),
-                cities = _homeRepository.GetCities(),
-                skills = _homeRepository.GetSkills(),
-                themes = _homeRepository.GetMissionThemes(),
+                users = _commonRepository.GetAllUsers(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
                 stories = _storyRepository.GetStoryList(),
             };
             return View(story);
@@ -40,11 +40,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMStory model = new()
             {
-                users = _homeRepository.GetAllUsers(),
-                countries = _homeRepository.GetCountries(),
-                cities = _homeRepository.GetCities(),
-                skills = _homeRepository.GetSkills(),
-                themes = _homeRepository.GetMissionThemes(),
+                users = _commonRepository.GetAllUsers(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
             };
             List<Story> storyDetails = _storyRepository.GetStoryList();
 
@@ -72,7 +72,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             if (skill != null)
             {
                 string[] skilllist = skill.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                storyDetails = storyDetails.Where(x => (_homeRepository.GetMissionsIdBySkillName(skilllist)).Contains(x.MissionId)).ToList();
+                storyDetails = storyDetails.Where(x => (_commonRepository.GetMissionsIdBySkillName(skilllist)).Contains(x.MissionId)).ToList();
             }
 
             if (!string.IsNullOrEmpty(search))

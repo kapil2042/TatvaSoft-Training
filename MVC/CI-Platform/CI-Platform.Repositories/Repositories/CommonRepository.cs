@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Repositories
 {
-    public class HomeRepository : IHomeRepository
+    public class CommonRepository : ICommonRepository
     {
         private readonly CiPlatformContext _db;
 
-        public HomeRepository(CiPlatformContext db)
+        public CommonRepository(CiPlatformContext db)
         {
             _db = db;
         }

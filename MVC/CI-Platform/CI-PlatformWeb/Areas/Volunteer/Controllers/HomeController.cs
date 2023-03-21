@@ -10,11 +10,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IHomeRepository _homeRepository;
+        private readonly ICommonRepository _commonRepository;
 
-        public HomeController(IHomeRepository homeRepository)
+        public HomeController(ICommonRepository commonRepository)
         {
-            _homeRepository = homeRepository;
+            _commonRepository = commonRepository;
         }
 
         
@@ -26,7 +26,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public JsonResult GetCityByCountry(int country)
         {
-            var results = _homeRepository.GetCitiesBycountry(country);
+            var results = _commonRepository.GetCitiesBycountry(country);
             return Json(results);
         }
 

@@ -12,7 +12,7 @@ builder.Services.AddDbContext<CiPlatformContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
-builder.Services.AddScoped<IHomeRepository, HomeRepository>();
+builder.Services.AddScoped<ICommonRepository, CommonRepository>();
 builder.Services.AddScoped<IMissionRepository, MissionRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 

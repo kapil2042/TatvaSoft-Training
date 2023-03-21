@@ -23,6 +23,9 @@ public partial class Story
     [StringLength(255)]
     public string? Title { get; set; }
 
+    [Column("short_description", TypeName = "text")]
+    public string? ShortDescription { get; set; }
+
     [Column("description", TypeName = "text")]
     public string? Description { get; set; }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Interfaces
 {
-    public interface IHomeRepository
+    public interface ICommonRepository
     {
         List<User> GetAllUsers();
 
