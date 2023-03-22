@@ -98,5 +98,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             ViewBag.pager = pager;
             return PartialView("partiaFilterStory", model);
         }
+
+        public IActionResult ShareStory()
+        {
+            return View();
+        }
     }
 }
