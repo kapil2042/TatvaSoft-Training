@@ -60,5 +60,7 @@ namespace CI_Platform.Repositories.Interfaces
         void UpdateRating(MissionRating missionRating);
 
         void PostComment(Comment comment);
+
+        void InserMissionInvitation(MissionInvite invite);
     }
 }

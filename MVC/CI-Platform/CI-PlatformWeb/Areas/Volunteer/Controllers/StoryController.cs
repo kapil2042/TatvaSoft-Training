@@ -103,5 +103,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             return View();
         }
+
+        public IActionResult StoryDetails(int id)
+        {
+            return View();
+        }
+
     }
 }

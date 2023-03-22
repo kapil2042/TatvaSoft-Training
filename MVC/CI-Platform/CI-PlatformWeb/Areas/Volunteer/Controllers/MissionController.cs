@@ -227,9 +227,21 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [HttpPost]
         public void Recommended_Mission(int missoinid, string[] mailids)
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             var link = Url.Action("Mission_volunteering", "Home", new { Area = "Volunteer", id = missoinid });
             var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
 
+            foreach(var mail in mailids)
+            {
+                long toUserId = _commonRepository.GetUserIdByEmail(mail);
+                MissionInvite invite = new MissionInvite();
+                invite.MissionId = missoinid;
+                invite.FromUserId = Convert.ToInt64(uid);
+                invite.ToUserId = toUserId;
+                _missionRepository.InserMissionInvitation(invite);
+            }
+            _commonRepository.Save();
             _commonRepository.SendMails(mailBody, mailids);
         }
 

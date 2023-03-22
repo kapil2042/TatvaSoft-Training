@@ -1,35 +1,69 @@
 ﻿<div class="container-lg container-fluid mt-3">
     <h1 class="text-muted">Share your story</h1>
-    <form>
-        <div class="row text-muted">
-            <div class="col-12 col-md-6 col-sm-4">
-                <label class="form-label mt-3">Select Mission</label>
-                <select class="form-select text-muted">
-                    <option>Select Your Mission</option>
-                </select>
+    <div class="row text-muted">
+        <div class="col-12 col-md-4 col-sm-6">
+            <label class="form-label mt-3">Select Mission</label>
+            <select class="form-select text-muted">
+                <option>Select Your Mission</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-4 col-sm-6">
+            <label class="form-label mt-3">My Story Title</label>
+            <input type="text" class="form-control text-muted" placeholder="Enter story title" />
+        </div>
+        <div class="col-12 col-md-4 col-sm-6">
+            <label class="form-label mt-3">Select Date</label>
+            <input type="date" class="form-control text-muted" placeholder="Select date" />
+        </div>
+    </div>
+    <div class="row text-muted">
+        <div class="col-12">
+            <label class="form-label mt-3">Short Description</label>
+            <input type="text" class="form-control text-muted" placeholder="Enter Short Description" />
+        </div>
+    </div>
+    <div class="row text-muted">
+        <div class="col-12">
+            <label class="form-label mt-3">My Story</label>
+            <div id="editor">
             </div>
-            <div class="col-12 col-md-6 col-sm-4">
-                <label class="form-label mt-3">My Story Title</label>
-                <input type="text" class="form-control text-muted" />
-            </div>
-            <div class="col-12 col-md-6 col-sm-4">
-                <label class="form-label mt-3">Select Date</label>
-                <input type="date" class="form-control text-muted" />
+            <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
             </div>
         </div>
-        <div class="row text-muted">
-            <div class="col-12">
-                <label class="form-label mt-3">Short Description</label>
-                <input type="text" class="form-control text-muted" />
+    </div>
+    <div class="row text-muted">
+        <div class="col-12">
+            <label class="form-label mt-3">Enter Video URL</label>
+            <input type="text" class="form-control text-muted" placeholder="Enter your url" />
+        </div>
+    </div>
+    <div class="row text-muted drag-area">
+        <div class="col-12">
+            <label class="form-label mt-3">Upload your Photos</label>
+            <div class="position-relative image-uploder">
+                <label for="filestory" class="image-uploder-box">
+                    <span><img src="~/images/plus.png" /></span>
+                    <span class="m-0 fs-7">Drag And Drop Pictures here</span>
+                </label>
+                <input name="file" type="file" id="filestory" class="form-control text-muted" multiple hidden />
             </div>
         </div>
-        <div class="row text-muted">
-            <div class="col-12">
-                <label class="form-label mt-3">My Story</label>
-                <textarea cols="100" rows="5"
-                          class="form-control mb-3 fs-7" placeholder="Post Your Comment...">
-                      </textarea>
+        <div class="col-12 img-container">
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <a class="btn-ci-secondary" asp-action="Story" asp-controller="Story" asp-area="Volunteer">Cancel</a>
+            <div class="d-flex">
+                <a class="btn-ci-primary me-2">Save</a>
+                <a class="btn-ci-primary">Submit</a>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+<script src="~/js/ckeditor.js"></script>
+<script src="~/js/imageUploder.js"></script>

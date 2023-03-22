@@ -148,5 +148,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             _db.Comments.Add(comment);
         }
+
+        public void InserMissionInvitation(MissionInvite invite)
+        {
+            _db.MissionInvites.Add(invite);
+        }
     }
 }

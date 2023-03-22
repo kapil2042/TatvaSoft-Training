@@ -85,5 +85,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.MissionSkills.Include(x => x.Skill).Where(x => skill.Contains(x.Skill.SkillName)).Select(x => x.MissionId).ToArray();
         }
+
+        public long GetUserIdByEmail(string email)
+        {
+            return _db.Users.Where(x=>x.Email.Equals(email)).Select(x=>x.UserId).FirstOrDefault();
+        }
     }
 }

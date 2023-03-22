@@ -26,5 +26,7 @@ namespace CI_Platform.Repositories.Interfaces
         void SendMails(string body, string[] mailids);
 
         long[] GetMissionsIdBySkillName(string[] skill);
+
+        long GetUserIdByEmail(string email);
     }
 }

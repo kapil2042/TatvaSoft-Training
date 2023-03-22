@@ -56,6 +56,20 @@ a {
         box-shadow: 0px 0px 10px #F886341F;
     }
 
+.form-select {
+    border: 1px solid #D9D9D9;
+    color: #414141;
+    font-size: 16px;
+    height: 40px;
+    padding: auto;
+}
+
+    .form-select:focus {
+        color: #414141;
+        border: 1px solid #F88634 !important;
+        box-shadow: 0px 0px 10px #F886341F;
+    }
+
 .form-check-input:checked {
     background-color: #F88634;
     border-color: #F88634;
@@ -535,3 +549,78 @@ a {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+
+.ck-toolbar {
+    background-color: #0000000A !important;
+}
+
+.ck-editor__editable[role="textbox"] {
+    min-height: 200px;
+}
+
+.ck-editor__editable:focus {
+    border: 1px solid #F88634 !important;
+}
+
+.ck.ck-button.ck-on {
+    color: #F88634 !important;
+    background-color: #f886341a !important;
+}
+
+.ck-restricted-editing_mode_standard p {
+    line-height: 0.5 !important;
+}
+
+.image-uploder {
+    width: 100%;
+    height: 100px;
+}
+
+.image-uploder-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccceb1;
+}
+
+.img-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+    .img-container .image {
+        width: 100px;
+        margin-right: 15px;
+        height: 100px;
+        position: relative;
+        margin-bottom: 8px;
+        border: 1px solid #ccceb1;
+    }
+
+        .img-container .image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .img-container .image span {
+            position: absolute;
+            top: -2px;
+            right: 7px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+.dragover {
+    background: rgba(0, 0, 0, 0.1);
+}
