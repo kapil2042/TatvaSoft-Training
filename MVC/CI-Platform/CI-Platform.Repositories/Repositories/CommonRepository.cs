@@ -88,7 +88,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public long GetUserIdByEmail(string email)
         {
-            return _db.Users.Where(x=>x.Email.Equals(email)).Select(x=>x.UserId).FirstOrDefault();
+            return _db.Users.Where(x => x.Email.Equals(email)).Select(x => x.UserId).FirstOrDefault();
         }
     }
 }

@@ -3,6 +3,8 @@ using CI_Platform.Models.ViewModels;
 using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net;
 using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
@@ -20,6 +22,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult Story()
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMStory story = new()
             {
                 users = _commonRepository.GetAllUsers(),
@@ -27,7 +31,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 cities = _commonRepository.GetCities(),
                 skills = _commonRepository.GetSkills(),
                 themes = _commonRepository.GetMissionThemes(),
-                stories = _storyRepository.GetStoryList(),
+                stories = _storyRepository.GetStoryList(uid),
             };
             return View(story);
         }
@@ -46,7 +50,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 skills = _commonRepository.GetSkills(),
                 themes = _commonRepository.GetMissionThemes(),
             };
-            List<Story> storyDetails = _storyRepository.GetStoryList();
+            List<Story> storyDetails = _storyRepository.GetStoryList(uid);
 
             if (country != null)
             {
@@ -99,11 +103,70 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             return PartialView("partiaFilterStory", model);
         }
 
+        [Authorize]
         public IActionResult ShareStory()
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
             return View();
         }
 
+        [HttpPost]
+        [Authorize]
+        public IActionResult ShareStory(Story story, IFormFileCollection? myfile, long mission, string action)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+
+            Story newStory = new Story();
+
+            newStory.UserId = Convert.ToInt64(uid);
+
+            foreach (IFormFile file in myfile)
+            {
+                if (file != null)
+                {
+                    //Set Key Name
+                    string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+                    //Get url To Save
+                    string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", ImageName);
+
+                    using (var stream = new FileStream(SavePath, FileMode.Create))
+                    {
+                        StoryMedium sm = new StoryMedium();
+                        sm.MediaType = file.ContentType.Split('/')[1].ToLower();
+                        sm.MediaPath = ImageName;
+                        newStory.StoryMedia.Add(sm);
+                        file.CopyTo(stream);
+                    }
+                }
+            }
+            newStory.Title = story.Title;
+            newStory.MissionId = (long)mission;
+            newStory.ShortDescription = story.ShortDescription;
+            newStory.Description = WebUtility.HtmlEncode(story.Description);
+
+            if (action.Equals("Submit"))
+            {
+                newStory.Status = "PENDING";
+                newStory.PublishedAt = DateTime.Now;
+            }
+
+            ModelState.Remove("User");
+            ModelState.Remove("Mission");
+            if (ModelState.IsValid)
+            {
+                _storyRepository.InsertStory(newStory);
+                _commonRepository.Save();
+                return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
+            }
+            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
+            return View(story);
+        }
+
+        [Authorize]
         public IActionResult StoryDetails(int id)
         {
             return View();

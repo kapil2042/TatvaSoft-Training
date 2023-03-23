@@ -19,9 +19,26 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
-        public List<Story> GetStoryList()
+        public List<Story> GetStoryList(string? userId)
         {
-            return _db.Stories.Where(x => x.Status == "PUBLISHED").Include(x => x.Mission).ToList();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return _db.Stories.Where(x => x.Status == "PUBLISHED").Include(x => x.Mission).ToList();
+            }
+            else
+            {
+                return _db.Stories.Where(x => x.UserId == Convert.ToInt64(userId) && x.Status == "DRAFT" || x.Status == "PUBLISHED").Include(x => x.Mission).ToList();
+            }
+        }
+
+        public List<Mission> GetMissionByUserApply(int id)
+        {
+            return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id).Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
+        }
+
+        public void InsertStory(Story story)
+        {
+            _db.Add(story);
         }
     }
 }

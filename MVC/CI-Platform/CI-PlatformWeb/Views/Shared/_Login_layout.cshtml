@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/login_layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -94,11 +95,11 @@
         $(document).ready(()=>{
         @if (ViewBag.error != null)
         {
-            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 3000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
         }
         @if (ViewBag.success != null)
         {
-            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 3000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
         }
         });
     </script>

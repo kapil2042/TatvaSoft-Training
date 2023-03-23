@@ -20,10 +20,10 @@
                     $("#loader").removeClass('d-none');
                 },
                 success: function (res) {
-                    toastr.success("Mail sent Successfully!!", "Success Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.success("Mail sent Successfully!!", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
                 },
                 error: function (data) {
-                    toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
                 },
                 complete: function() {
                     $("#loader").addClass('d-none');

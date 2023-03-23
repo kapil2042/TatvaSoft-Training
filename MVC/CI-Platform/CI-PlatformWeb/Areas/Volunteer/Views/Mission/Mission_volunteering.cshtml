@@ -482,7 +482,7 @@
                 location.reload();
             },
             error: function (data) {
-                toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
     }
@@ -495,7 +495,7 @@
                 location.reload();
             },
             error: function (data) {
-                toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
     }
@@ -508,15 +508,15 @@
                 data: { 'missoinid': mid , 'commenttext':ctext },
                 success: function (res) {
                     document.getElementById("commentbox").value = "";
-                    toastr.success("Your Comment Posted Successfully, You can see Your Comment in list after Approval", "Success Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.success("Your Comment Posted Successfully, You can see Your Comment in list after Approval", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
                 },
                 error: function (data) {
-                    toastr.error("Please Login First", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
                 }
             });
         }
         else{
-            toastr.error("Comment Field is Required", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            toastr.error("Comment Field is Required", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
         }
     }
 
@@ -530,7 +530,7 @@
                 $('#recvolpag').html($($.parseHTML(res)).filter("#parrecvolpag")[0].innerHTML);
             },
             error: function (data) {
-                toastr.error("Error in recent volunteer", "Error Message", { timeOut: 3000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Error in recent volunteer", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
     }

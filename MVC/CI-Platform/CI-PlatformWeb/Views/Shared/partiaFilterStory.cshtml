@@ -17,9 +17,15 @@ else
     <div id="parstorylist">
         @foreach (var i in Model.stories)
         {
-            <div class="col-12 col-sm-6 col-lg-4 mt-3 mb-3">
+            <div class="col-12 col-sm-6 col-lg-4 mt-3 mb-3 d-flex align-items-stretch">
                 <div class="card" id="story-card">
                     <div class="position-relative">
+                        @if (i.Status == "DRAFT")
+                        {
+                            <div class="story-status bg-ci-primary">
+                                <p>DRAFT</p>
+                            </div>
+                        }
                         <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="card-img-top" alt="...">
                         <div class="story-theme position-absolute w-100 d-flex justify-content-center align-items-center">
                             <div class="bg-white z-1 rounded-pill px-3 py-1">

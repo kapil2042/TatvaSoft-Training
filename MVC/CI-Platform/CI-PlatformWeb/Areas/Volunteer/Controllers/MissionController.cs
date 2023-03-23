@@ -229,7 +229,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
-            var link = Url.Action("Mission_volunteering", "Home", new { Area = "Volunteer", id = missoinid });
+            var link = Url.Action("Mission_volunteering", "Mission", new { Area = "Volunteer", id = missoinid });
             var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
 
             foreach(var mail in mailids)
