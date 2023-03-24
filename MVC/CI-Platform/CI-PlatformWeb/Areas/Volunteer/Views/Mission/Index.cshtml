@@ -6,13 +6,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
     id = 0;
-    function myfilter(fpg,fid,c){
-        if(c!=null){
-            country = c;
-        }
-        else{
-            country = "";
-        }
+    function myfilter(fpg,fid){
+        var country = "";
+        $("input[name='country']:checked").each(function () {
+            country = $(this).val();
+        });
 
         var cities = "";
         $("input[name='city']:checked").each(function () {
@@ -76,6 +74,7 @@
     </div>
     <div class="d-flex flex-wrap align-items-center" id="filterlist">
     </div>
+    <a class="fs-7 text-muted d-none" onclick="ClearAllElement()" id="clearbtn">Clear All</a>
 </div>
 <div class="container-lg container-fluid">
     <div class="d-inline-flex align-items-center justify-content-between w-100">
@@ -89,12 +88,10 @@
                 <option value="4">Oldest First</option>
             </select>
             <button class="p-2 border-0 bg-white rounded-circle grid-active" id="grid">
-                <img src="~/images/grid.png"
-                     alt="">
+                <img src="~/images/grid.png" alt="">
             </button>
             <button class="p-2 border-0 bg-white rounded-circle" id="list">
-                <img src="~/images/list.png"
-                     alt="">
+                <img src="~/images/list.png" alt="">
             </button>
         </div>
     </div>

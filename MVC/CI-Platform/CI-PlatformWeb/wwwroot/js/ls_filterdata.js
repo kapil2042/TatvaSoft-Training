@@ -1,5 +1,4 @@
-﻿var cou = "";
-var fpg = 1;
+﻿var fpg = 1;
 var fid = 0;
 function citybycountry(country) {
     var cityResults1 = document.getElementById('citieslist1');
@@ -15,39 +14,43 @@ function citybycountry(country) {
                 cityResults1.innerHTML += `<li>
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
-                                            <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
-                                            <label class="form-check-label" for="Checkme + ${item.cityId}">${item.name}</label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
+                                                ${item.name}
+                                            </label>
                                         </div>
                                     </a>
                                 </li>`;
                 cityResults2.innerHTML += `<li>
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
-                                            <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
-                                            <label class="form-check-label" for="Checkme + ${item.cityId}">${item.name}</label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input citycheck" name="city" type="checkbox" value="${item.name}" id="Checkme + ${item.cityId}"/>
+                                                ${item.name}
+                                            </label>
                                         </div>
                                     </a>
                                 </li>`;
             });
-            cou = $("#" + country + "").text()
             var cbs = document.querySelectorAll('.citycheck');
             ClearAllElementcity();
-            document.querySelector("#filterlistcity").innerHTML = `<span class="fs-7 border px-2 me-2 mb-2 rounded-pill text-secondary"> ${cou} </span>`;
+            document.querySelector("#filterlistcity").innerHTML = `<span class="fs-7 border px-2 me-2 mb-2 rounded-pill text-secondary"> ${$("#" + country + "").val()} </span>`;
+            document.getElementById("clearbtn").classList.remove("d-none");
             for (var i = 0; i < cbs.length; i++) {
                 cbs[i].addEventListener('change', function () {
                     if (this.checked) {
                         $("input[type=checkbox][value='" + this.value + "']").prop('checked', true);
                         addElementcity(this, this.value);
-                        myfilter(fpg = fpg, fid = fid, c = cou);
+                        myfilter(fpg = fpg, fid = fid);
                     }
                     else {
                         $("input[type=checkbox][value='" + this.value + "']").prop('checked', false);
                         removeElementcity(this.value);
-                        myfilter(fpg = fpg, fid = fid, c = cou);
+                        myfilter(fpg = fpg, fid = fid);
                     }
                 });
             }
-            myfilter(fpg = fpg, fid = fid, c = cou);
+            myfilter(fpg = fpg, fid = fid);
         }
     };
     xhr.open('GET', '/Volunteer/Home/GetCityByCountry?country=' + country, true);
@@ -61,12 +64,12 @@ for (var i = 0; i < cbs.length; i++) {
         if (this.checked) {
             $("input[type=checkbox][value='" + this.value + "']").prop('checked', true);
             addElement(this, this.value);
-            myfilter(fpg = fpg, fid = fid, c = cou);
+            myfilter(fpg = fpg, fid = fid);
         }
         else {
             $("input[type=checkbox][value='" + this.value + "']").prop('checked', false);
             removeElement(this.value);
-            myfilter(fpg = fpg, fid = fid, c = cou);
+            myfilter(fpg = fpg, fid = fid);
         }
     });
 }
@@ -93,6 +96,7 @@ function addElement(current, value) {
     crossButton.style.textDecoration = 'none';
     crossButton.classList.add('btn-light');
     crossButton.classList.add('ms-1');
+    crossButton.classList.add('fs-7');
     let cross = '&times;'
 
 
@@ -102,7 +106,11 @@ function addElement(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
-        myfilter(fpg = fpg, fid = fid, c = cou);
+
+        if (document.getElementById("filterlist").textContent.trim() === '') {
+            document.getElementById("clearbtn").classList.add("d-none");
+        }
+        myfilter(fpg = fpg, fid = fid);
     })
 
     crossButton.innerHTML = cross;
@@ -110,6 +118,7 @@ function addElement(current, value) {
 
     createdTag.appendChild(crossButton);
     filtersSection.appendChild(createdTag);
+    document.getElementById("clearbtn").classList.remove("d-none");
 }
 
 function ClearAllElement() {
@@ -121,12 +130,15 @@ function ClearAllElement() {
 
     $(".citycheck").prop('checked', false);
     $(".otherthencity").prop('checked', false);
-    myfilter(fpg = fpg, fid = fid, c = cou);
+    $(".country").prop('checked', false);
+    document.getElementById('citieslist1').innerHTML = "";
+    document.getElementById('citieslist2').innerHTML = "";
+    document.getElementById("clearbtn").classList.add("d-none");
+    myfilter(fpg = fpg, fid = fid);
 }
 
 
 function removeElement(value) {
-
     let filtersSection = document.querySelector("#filterlist");
     let elementToBeRemoved = document.getElementById(value);
     filtersSection.removeChild(elementToBeRemoved);
@@ -138,7 +150,6 @@ function removeElement(value) {
 
 function addElementcity(current, value) {
     let filtersSectioncity = document.querySelector("#filterlistcity");
-
     let createdTag = document.createElement('span');
     createdTag.classList.add('filter-list');
     createdTag.classList.add('fs-7');
@@ -157,6 +168,7 @@ function addElementcity(current, value) {
     crossButton.style.textDecoration = 'none';
     crossButton.classList.add('btn-light');
     crossButton.classList.add('ms-1');
+    crossButton.classList.add('fs-7');
     let cross = '&times;'
 
 
@@ -166,7 +178,7 @@ function addElementcity(current, value) {
         $("input[type=checkbox][value='" + value + "']").prop('checked', false);
 
         elementToBeRemoved.remove();
-        myfilter(fpg = fpg, fid = fid, c = cou);
+        myfilter(fpg = fpg, fid = fid);
     })
 
     crossButton.innerHTML = cross;
@@ -184,7 +196,7 @@ function ClearAllElementcity() {
     filtersSectioncity.innerHTML = "";
 
     $(".citycheck").prop('checked', false);
-    myfilter(fpg = fpg, fid = fid, c = cou);
+    myfilter(fpg = fpg, fid = fid);
 }
 
 
@@ -201,7 +213,7 @@ function favunfavmission(mid) {
         url: "/Volunteer/Mission/Favourite_Mission",
         data: { 'missoinid': mid },
         success: function (res) {
-            myfilter(fpg = fpg, fid = fid, c = cou);
+            myfilter(fpg = fpg, fid = fid);
         },
         error: function (data) {
             toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });

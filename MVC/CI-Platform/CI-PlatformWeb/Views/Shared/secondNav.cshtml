@@ -12,7 +12,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-2 d-block d-sm-none py-1">
+            <div class="col-2 d-block d-sm-none py-1 text-end">
                 <button class="p-1 filter-btn rounded-3 bg-white" id="filtertoggle" onclick="openfilter()">
                     <img src="~/images/filter.png" alt="filter" width="24" height="24">
                 </button>
@@ -29,13 +29,15 @@
                             @foreach (var i in Model.countries)
                             {
                                 <li>
-                                    <a class="dropdown-item countryname" id="@i.CountryId" onclick="citybycountry(this.id)">@i.Name</a>
-                                    @*<a class="dropdown-item" href="#">
+                                    @*<a class="dropdown-item countryname" id="@i.CountryId" onclick="citybycountry(this.id)">@i.Name</a>*@
+                                    <a class="dropdown-item" href="#">
                                         <div class="form-check">
-                                        <input class="form-check-input" name="country" type="checkbox" value="@i.Name" id="Checkme + @i.CountryId" />
-                                        <label class="form-check-label" for="Checkme + @i.CountryId">@i.Name</label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input country" name="country" type="radio" value="@i.Name" id="@i.CountryId" onchange="citybycountry(this.id)" autocomplete="off" />
+                                                @i.Name
+                                            </label>
                                         </div>
-                                        </a>*@
+                                    </a>
                                 </li>
                             }
                         </ul>
@@ -61,8 +63,10 @@
                                 <li>
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
-                                            <input class="form-check-input otherthencity" name="theme" type="checkbox" value="@i.Title" id="Checkme + @i.MissionThemeId"/>
-                                            <label class="form-check-label" for="Checkme + @i.MissionThemeId">@i.Title</label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input otherthencity" name="theme" type="checkbox" value="@i.Title" id="Checkme + @i.MissionThemeId" autocomplete="off" />
+                                                @i.Title
+                                            </label>
                                         </div>
                                     </a>
                                 </li>
@@ -81,8 +85,10 @@
                                 <li>
                                     <a class="dropdown-item" href="#">
                                         <div class="form-check">
-                                            <input class="form-check-input otherthencity" name="skill" type="checkbox" value="@i.SkillName" id="Checkme + @i.SkillId" />
-                                            <label class="form-check-label" for="Checkme + @i.SkillId">@i.SkillName</label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input otherthencity" name="skill" type="checkbox" value="@i.SkillName" id="Checkme + @i.SkillId" autocomplete="off" />
+                                                @i.SkillName
+                                            </label>
                                         </div>
                                     </a>
                                 </li>
