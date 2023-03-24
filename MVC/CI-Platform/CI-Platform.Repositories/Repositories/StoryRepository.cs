@@ -40,5 +40,20 @@ namespace CI_Platform.Repositories.Repositories
         {
             _db.Add(story);
         }
+
+        public Story GetStoryById(int id)
+        {
+            return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).FirstOrDefault();
+        }
+
+        public List<StoryMedium> GetStoryMediaList(int id)
+        {
+            return _db.StoryMedia.Where(x => x.StoryId == id).ToList();
+        }
+
+        public void InserStoryInvitation(StoryInvite invite)
+        {
+            _db.StoryInvites.Add(invite);
+        }
     }
 }

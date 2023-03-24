@@ -1,21 +1,22 @@
-﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+﻿@using System.Security.Claims
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script>
     $('select').selectpicker();
-    $(document).on("click", ".send-mission-id", function () {
-         var mId = $(this).data('id');
-         $("#missinid").val( mId );
+    $(document).on("click", ".send-story-id", function () {
+         var sId = $(this).data('id');
+         $("#storyid").val( sId );
     });
-    function recommended_mission(){
+    function recommended_story(){
         var mailids =[];
         mailids= $('#mailids').val();
-        var mid = document.getElementById("missinid").value;
+        var sid = document.getElementById("storyid").value;
         $.ajax({
                 type: 'POST',
-                url: "/Volunteer/Mission/Recommended_Mission",
-                data: { 'missoinid': mid , 'mailids':mailids },
+                url: "/Volunteer/Story/Recommended_Story",
+                data: { 'storyid': sid , 'mailids':mailids },
                 beforeSend: function(){
                     $("#loader").removeClass('d-none');
                 },
@@ -27,7 +28,7 @@
                 },
                 complete: function() {
                     $("#loader").addClass('d-none');
-                    $("#mailmodal").modal('hide');
+                    $("#mailstorymodal").modal('hide');
                 }
             });
     }
@@ -38,7 +39,7 @@
 </div>
 
 
-<div class="modal fade" id="mailmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="mailstorymodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +51,7 @@
                     var identity = User.Identity as ClaimsIdentity;
                     var eid = identity?.FindFirst(ClaimTypes.Email)?.Value;
                 }
-                <input type="text" name="missionid" id="missinid" value="" hidden />
+                <input type="text" name="storyid" id="storyid" value="" hidden />
                 <select class="selectpicker w-100" multiple data-live-search="true" id="mailids">
                     @foreach (var i in Model.users)
                     {
@@ -65,7 +66,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-ci-primary" onclick="recommended_mission()">Send</button>
+                <button type="button" class="btn-ci-primary" onclick="recommended_story()">Send</button>
             </div>
         </div>
     </div>

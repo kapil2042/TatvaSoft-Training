@@ -169,8 +169,34 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [Authorize]
         public IActionResult StoryDetails(int id)
         {
-            return View();
+            VMStoryDetails storyDetails = new VMStoryDetails();
+            storyDetails.story = _storyRepository.GetStoryById(id);
+            storyDetails.users = _commonRepository.GetAllUsers();
+            storyDetails.storyMedia = _storyRepository.GetStoryMediaList(id);
+            return View(storyDetails);
         }
 
+
+        [Authorize]
+        [HttpPost]
+        public void Recommended_Story(int storyid, string[] mailids)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var link = Url.Action("StoryDetails", "Story", new { Area = "Volunteer", id = storyid });
+            var mailBody = "<h1>Story For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Story Details</b>  </a>";
+
+            foreach (var mail in mailids)
+            {
+                long toUserId = _commonRepository.GetUserIdByEmail(mail);
+                StoryInvite invite = new StoryInvite();
+                invite.StoryId = storyid;
+                invite.FromUserId = Convert.ToInt64(uid);
+                invite.ToUserId = toUserId;
+                _storyRepository.InserStoryInvitation(invite);
+            }
+            _commonRepository.Save();
+            _commonRepository.SendMails(mailBody, mailids);
+        }
     }
 }
