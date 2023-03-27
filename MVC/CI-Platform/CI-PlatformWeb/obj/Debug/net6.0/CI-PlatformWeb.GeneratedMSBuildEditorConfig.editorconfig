@@ -59,6 +59,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXE1pc3Npb25cdm9sdW50ZWVyUGFnaW5hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Story/EditStory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXFN0b3J5XEVkaXRTdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Story/partiaFilterStory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXFN0b3J5XHBhcnRpYUZpbHRlclN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -77,6 +81,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/Story/StoryDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXFN0b3J5XFN0b3J5RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/TimeSheet/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVm9sdW50ZWVyXFZpZXdzXFRpbWVTaGVldFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Volunteer/Views/_ViewImports.cshtml]

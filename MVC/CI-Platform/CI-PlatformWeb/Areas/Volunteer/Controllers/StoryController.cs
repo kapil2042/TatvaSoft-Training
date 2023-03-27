@@ -114,7 +114,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult ShareStory(Story story, IFormFileCollection? myfile, long mission, string action)
+        public IActionResult ShareStory(Story story, IFormFileCollection? myfile, string action)
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
@@ -144,7 +144,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 }
             }
             newStory.Title = story.Title;
-            newStory.MissionId = (long)mission;
+            newStory.MissionId = story.MissionId;
             newStory.ShortDescription = story.ShortDescription;
             newStory.Description = WebUtility.HtmlEncode(story.Description);
 
@@ -197,6 +197,106 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             }
             _commonRepository.Save();
             _commonRepository.SendMails(mailBody, mailids);
+        }
+
+
+        [Authorize]
+        public IActionResult EditStory(int id)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
+            Story story = new Story();
+            story = _storyRepository.GetStoryById(id);
+            story.Description = WebUtility.HtmlDecode(story.Description);
+            return View(story);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult EditStory(Story story1, IFormFileCollection? myfile, string action, string[] preloaded, int id)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+
+            var story = _storyRepository.GetStoryById(id);
+
+            List<StoryMedium> storyMedia = new List<StoryMedium>();
+            storyMedia = _storyRepository.GetStoryMediaList(id);
+            foreach (var img in storyMedia)
+            {
+                if (preloaded.Length < 1)
+                {
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", img.MediaPath);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                    _storyRepository.DeleteStoryImage(img);
+                }
+                else
+                {
+                    for (int i = 0; i < preloaded.Length; i++)
+                    {
+                        string oldImg = preloaded[i].Split('/')[3];
+
+                        if (!oldImg.Equals(img.MediaPath))
+                        {
+                            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", img.MediaPath);
+                            if (System.IO.File.Exists(imagePath))
+                            {
+                                System.IO.File.Delete(imagePath);
+                            }
+                            _storyRepository.DeleteStoryImage(img);
+                        }
+                    }
+                }
+            }
+
+
+            foreach (IFormFile file in myfile)
+            {
+                if (file != null)
+                {
+                    //Set Key Name
+                    string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+                    //Get url To Save
+                    string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", ImageName);
+
+                    using (var stream = new FileStream(SavePath, FileMode.Create))
+                    {
+                        StoryMedium sm = new StoryMedium();
+                        sm.MediaType = file.ContentType.Split('/')[1].ToLower();
+                        sm.MediaPath = ImageName;
+                        story.StoryMedia.Add(sm);
+                        file.CopyTo(stream);
+                    }
+                }
+            }
+            story.Title = story1.Title;
+            story.MissionId = story1.MissionId;
+            story.ShortDescription = story1.ShortDescription;
+            story.Description = WebUtility.HtmlEncode(story1.Description);
+            story.UpdatedAt = DateTime.Now;
+
+
+            if (action.Equals("Submit"))
+            {
+                story.Status = "PENDING";
+                story.PublishedAt = DateTime.Now;
+            }
+
+            ModelState.Remove("User");
+            ModelState.Remove("Mission");
+            if (ModelState.IsValid)
+            {
+                _storyRepository.UpdateStory(story);
+                _commonRepository.Save();
+                return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
+            }
+            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
+            return View(story);
         }
     }
 }

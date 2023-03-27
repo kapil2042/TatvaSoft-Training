@@ -13,8 +13,15 @@
         }
     },
     placeholder: 'Write Your Story Here!..',
-    htmlEmbed: {
-        showPreviews: true
+    htmlSupport: {
+        allow: [
+            {
+                name: /.*/,
+                attributes: true,
+                classes: true,
+                styles: true
+            }
+        ]
     },
     removePlugins: [
         'CKBox',

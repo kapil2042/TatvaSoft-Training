@@ -12,8 +12,10 @@ namespace CI_Platform.Repositories.Interfaces
         List<Story> GetStoryList(string? userId);
         List<Mission> GetMissionByUserApply(int id);
         void InsertStory(Story story);
+        void UpdateStory(Story story);
         Story GetStoryById(int id);
         List<StoryMedium> GetStoryMediaList(int id);
         void InserStoryInvitation(StoryInvite invite);
+        void DeleteStoryImage(StoryMedium sm);
     }
 }

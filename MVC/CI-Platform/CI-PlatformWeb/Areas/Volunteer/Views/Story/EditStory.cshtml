@@ -55,7 +55,7 @@
                 </div>*@
             <div class="field">
                 <label class="form-label mt-3">Upload your Photos</label>
-                <lable class="input-images d-block"></lable>
+                <lable class="input-images-edit d-block"></lable>
             </div>
         </div>
         <div class="row my-3">
@@ -78,10 +78,17 @@
 <script src="~/js/imageUploder.js" asp-append-version="true"></script>
 
 <script>
-        let preloaded = [
-            {id:1,src:"D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\404-Page-image.png"},
-        ];
-        $('.input-images').imageUploader({
+    @{
+        int i = 1;
+    }
+    let preloaded = [
+        @foreach (StoryMedium sm in Model.StoryMedia)
+        {
+            @:{id:@i,src:"/images/storyimages/@sm.MediaPath"},
+            i++;
+        }
+    ];
+    $('.input-images-edit').imageUploader({
         preloaded: preloaded,
         maxSize: 0.5 * 1024 * 1024,
     });

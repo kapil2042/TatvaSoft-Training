@@ -38,12 +38,17 @@ namespace CI_Platform.Repositories.Repositories
 
         public void InsertStory(Story story)
         {
-            _db.Add(story);
+            _db.Stories.Add(story);
+        }
+
+        public void UpdateStory(Story story)
+        {
+            _db.Stories.Update(story);
         }
 
         public Story GetStoryById(int id)
         {
-            return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).FirstOrDefault();
+            return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).Include(x => x.StoryMedia).FirstOrDefault();
         }
 
         public List<StoryMedium> GetStoryMediaList(int id)
@@ -54,6 +59,11 @@ namespace CI_Platform.Repositories.Repositories
         public void InserStoryInvitation(StoryInvite invite)
         {
             _db.StoryInvites.Add(invite);
+        }
+
+        public void DeleteStoryImage(StoryMedium sm)
+        {
+            _db.StoryMedia.Remove(sm);
         }
     }
 }

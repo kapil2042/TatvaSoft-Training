@@ -147,7 +147,7 @@ Copyright (c) 2019 Christian Bayer; Licensed MIT */
                     e("<input>", {
                         type: "hidden",
                         name: a.settings.preloadedInputName + "[]",
-                        value: i,
+                        value: t,
                     }).appendTo(l);
                 } else l.attr("data-index", i);
                 return (

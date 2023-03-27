@@ -285,7 +285,7 @@ a {
 }
 
 .avatar-hover:hover {
-    box-shadow: 0 0 0 0.5px #F88634 !important;
+    box-shadow: 0 0 0 1px #F88634 !important;
     border-radius: 10px;
 }
 
@@ -566,10 +566,6 @@ a {
 .ck.ck-button.ck-on {
     color: #F88634 !important;
     background-color: #f886341a !important;
-}
-
-.ck-restricted-editing_mode_standard p {
-    line-height: 0.5 !important;
 }
 
 .image-uploder {
