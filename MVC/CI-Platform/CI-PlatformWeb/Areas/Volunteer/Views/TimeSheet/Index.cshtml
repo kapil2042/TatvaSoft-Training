@@ -29,7 +29,8 @@
                                 <tr>
                                     <td>@i.Mission.Title</td>
                                     <td>@i.DateVolunteered.ToString("dd/MM/yyyy")</td>
-                                    <td>@i.Action</td>
+                                    <td>@i.Time.Value.Hours</td>
+                                    <td>@i.Time.Value.Minutes</td>
                                     <td class="text-nowrap"><i class="bi bi-pencil-square me-3 text-ci-primary"></i><i class="bi bi-trash text-ci-danger"></i></td>
                                 </tr>
                             }
