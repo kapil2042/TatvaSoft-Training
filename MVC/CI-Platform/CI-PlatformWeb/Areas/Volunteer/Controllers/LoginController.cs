@@ -55,15 +55,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         HttpContext.Session.SetString("Email", user.Email);
                         if (ReturnUrl != null)
                         {
-                            var viewurl = ReturnUrl.Split('/');
-                            if (viewurl.Length > 4)
-                            {
-                                return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1], id = viewurl[4] });
-                            }
-                            else
-                            {
-                                return RedirectToAction(viewurl[3], viewurl[2], new { Area = viewurl[1] });
-                            }
+                            return Redirect(ReturnUrl);
                         }
                         else
                         {

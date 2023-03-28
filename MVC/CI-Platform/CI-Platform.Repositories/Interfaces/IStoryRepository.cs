@@ -10,7 +10,6 @@ namespace CI_Platform.Repositories.Interfaces
     public interface IStoryRepository
     {
         List<Story> GetStoryList(string? userId);
-        List<Mission> GetMissionByUserApply(int id);
         void InsertStory(Story story);
         void UpdateStory(Story story);
         Story GetStoryById(int id);

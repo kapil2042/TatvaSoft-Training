@@ -1,4 +1,12 @@
-﻿@model List<Timesheet>
+﻿@model VMTimeSheet
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".numbers").keyup(function () {
+        console.log("sgh");
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    });
+</script>
 
 <div class="container-lg container-fluid">
     <p class="text-mute fw-lighter fs-1 mt-5">
@@ -9,67 +17,181 @@
             <div class="border border-1 rounded-2 h-100 w-100 p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fs-7 text-mute">Volunteering Hours</span>
-                    <button class="btn-ci-primary"><span class="fw-bold fs-6 p-0 m-0">+</span> Add</button>
+                    <button class="btn-ci-primary" data-bs-toggle="modal" data-bs-target="#addVolHour"><span class="fw-bold fs-6 p-0 m-0">+</span> Add</button>
                 </div>
-                <table class="table table-borderless mt-2">
-                    <thead>
-                        <tr>
-                            <th>Mission</th>
-                            <th>Date</th>
-                            <th>Hours</th>
-                            <th>Minutes</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var i in Model)
-                        {
-                            @if (i.Mission.MissionType.Equals("TIME"))
+                <div class="max-h-timesheet">
+                    <table class="table table-borderless mt-2 fs-7">
+                        <thead>
+                            <tr>
+                                <th>Mission</th>
+                                <th>Date</th>
+                                <th>Hours</th>
+                                <th>Minutes</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.Timesheets)
                             {
-                                <tr>
-                                    <td>@i.Mission.Title</td>
-                                    <td>@i.DateVolunteered.ToString("dd/MM/yyyy")</td>
-                                    <td>@i.Time.Value.Hours</td>
-                                    <td>@i.Time.Value.Minutes</td>
-                                    <td class="text-nowrap"><i class="bi bi-pencil-square me-3 text-ci-primary"></i><i class="bi bi-trash text-ci-danger"></i></td>
-                                </tr>
+                                @if (i.Mission.MissionType.Equals("TIME"))
+                                {
+                                    <tr>
+                                        <td>@i.Mission.Title</td>
+                                        <td>@i.DateVolunteered.ToString("dd/MM/yyyy")</td>
+                                        <td>@i.Time.Value.Hours</td>
+                                        <td>@i.Time.Value.Minutes</td>
+                                        <td class="text-nowrap">
+                                            <i class="bi bi-pencil-square me-3 text-ci-primary"></i>
+                                            <i class="bi bi-trash text-ci-danger"></i>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
             <div class="border border-1 rounded-2 h-100 w-100 p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fs-7 text-mute">Volunteering Goals</span>
-                    <button class="btn-ci-primary"><span class="fw-bold fs-6 p-0 m-0">+</span> Add</button>
+                    <button class="btn-ci-primary" data-bs-toggle="modal" data-bs-target="#addVolGoal"><span class="fw-bold fs-6 p-0 m-0">+</span> Add</button>
                 </div>
-                <table class="table table-borderless mt-2">
-                    <thead>
-                        <tr>
-                            <th>Mission</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var i in Model)
-                        {
-                            @if (i.Mission.MissionType.Equals("GOAL"))
+                <div class="max-h-timesheet">
+                    <table class="table table-borderless mt-2 fs-7">
+                        <thead>
+                            <tr>
+                                <th>Mission</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.Timesheets)
                             {
-                                <tr>
-                                    <td>@i.Mission.Title</td>
-                                    <td>@i.DateVolunteered.ToString("dd/MM/yyyy")</td>
-                                    <td>@i.Action</td>
-                                    <td class="text-nowrap"><i class="bi bi-pencil-square me-3 text-ci-primary"></i><i class="bi bi-trash text-ci-danger"></i></td>
-                                </tr>
+                                @if (i.Mission.MissionType.Equals("GOAL"))
+                                {
+                                    <tr>
+                                        <td>@i.Mission.Title</td>
+                                        <td>@i.DateVolunteered.ToString("dd/MM/yyyy")</td>
+                                        <td>@i.Action</td>
+                                        <td class="text-nowrap">
+                                            <i class="bi bi-pencil-square me-3 text-ci-primary"></i>
+                                            <i class="bi bi-trash text-ci-danger"></i>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<!-- Add Volunteering Hours Modal -->
+<div class="modal fade" id="addVolHour" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addVolHourLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <form method="post" class="w-100" asp-area="Volunteer" asp-controller="TimeSheet" asp-action="AddVolunteering">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addVolHourLabel">Please input below Volunteering Hours</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="missionId" class="form-label fs-7">Mission</label>
+                            <select class="form-select text-muted">
+                                @foreach (var m in Model.Missions)
+                                {
+                                    @if (m.MissionType.Equals("TIME"))
+                                    {
+                                        <option value="@m.MissionId">@m.Title</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="dateVol" class="form-label fs-7">Date Volunteered</label>
+                            <input type="date" asp-for="dateVolunteer" class="form-control fs-7" id="dateVol" placeholder="Select date">
+                        </div>
+                        <div class="col-12 col-lg-6 mb-3">
+                            <label for="volHour" class="form-label fs-7">Hours</label>
+                            <input type="number" asp-for="Hour" class="form-control fs-7" min="1" id="volHour" placeholder="Enter Spent Hours">
+                        </div>
+                        <div class="col-12 col-lg-6 mb-3">
+                            <label for="volMin" class="form-label fs-7">Minutes</label>
+                            <input type="number" asp-for="Minute" class="form-control fs-7" min="1" max="59" id="volMin" placeholder="Enter Spent Minutes">
+                        </div>
+                        <div class="col-12">
+                            <label for="messageTime" class="form-label fs-7">Date Volunteered</label>
+                            <textarea id="messageTime" asp-for="Message" cols="100" rows="5"
+                                      class="form-control h-auto mb-3 fs-7" placeholder="Enter Your Message"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-ci-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Add Volunteering Hours Modal -->
+<div class="modal fade" id="addVolGoal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addVolGoalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <form method="post" class="w-100" asp-area="Volunteer" asp-controller="TimeSheet" asp-action="AddVolunteering">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addVolGoalLabel">Please input below Volunteering Hours</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <label for="missionId" class="form-label fs-7">Mission</label>
+                            <select class="form-select text-muted">
+                                @foreach (var m in Model.Missions)
+                                {
+                                    @if (m.MissionType.Equals("TIME"))
+                                    {
+                                        <option value="@m.MissionId">@m.Title</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="volAction" class="form-label fs-7">Actions</label>
+                            <input type="number" asp-for="Action" class="form-control fs-7" min="1" id="volAction" placeholder="Enter Spent Hours">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="dateVol" class="form-label fs-7">Date Volunteered</label>
+                            <input type="date" asp-for="dateVolunteer" class="form-control fs-7" id="dateVol" placeholder="Select date">
+                        </div>
+                        <div class="col-12">
+                            <label for="messageTime" class="form-label fs-7">Date Volunteered</label>
+                            <textarea id="messageTime" asp-for="Message" cols="100" rows="5"
+                                      class="form-control h-auto mb-3 fs-7" placeholder="Enter Your Message"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-ci-primary">Submit</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

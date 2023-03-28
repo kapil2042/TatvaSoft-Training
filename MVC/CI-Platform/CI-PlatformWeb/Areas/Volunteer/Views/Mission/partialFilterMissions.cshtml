@@ -38,6 +38,7 @@ else
             var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
             var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
             var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId && x.MediaDefault == 1).FirstOrDefault();
+            var tot = Model.missionAppAll.Where(x => x.MissionId == i.MissionId).Count();
 
             <div class="col-12 col-sm-6 col-lg-4 missions-view mt-3 mb-3 d-flex align-items-stretch">
 
@@ -58,6 +59,12 @@ else
                                     </div>
                                 }
                                 else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                {
+                                    <div class="mission-status bg-ci-danger">
+                                        <p>CLOSED</p>
+                                    </div>
+                                }
+                                else if (i.TotalSeat - tot <= 0)
                                 {
                                     <div class="mission-status bg-ci-danger">
                                         <p>CLOSED</p>
@@ -164,7 +171,7 @@ else
                                                 <img src="~/images/Seats-left.png" alt="">
                                             </div>
                                             <div class="seat">
-                                                <h6 class="p-0 m-0">10</h6>
+                                                <h6 class="p-0 m-0">@(i.TotalSeat - tot)</h6>
                                                 <span class="fs-7">Seats left</span>
                                             </div>
                                         </div>
@@ -215,6 +222,12 @@ else
                                             View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
                                         </button>
                                     }
+                                    else if (i.TotalSeat - tot <= 0)
+                                    {
+                                        <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
+                                            View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                        </button>
+                                    }
                                     else
                                     {
                                         <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
@@ -238,6 +251,7 @@ else
             var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
             var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
             var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId).FirstOrDefault();
+            var tot = Model.missionAppAll.Where(x => x.MissionId == i.MissionId).Count();
 
             <div class="col-12 missions-view mt-3 mb-3 align-items-stretch">
                 <div class="card h-100">
@@ -257,6 +271,12 @@ else
                                     </div>
                                 }
                                 else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                {
+                                    <div class="mission-status bg-ci-primary">
+                                        <p>CLOSED</p>
+                                    </div>
+                                }
+                                else if (i.TotalSeat - tot <= 0)
                                 {
                                     <div class="mission-status bg-ci-primary">
                                         <p>CLOSED</p>
@@ -360,7 +380,7 @@ else
                                                 <img src="~/images/Seats-left.png" alt="">
                                             </div>
                                             <div class="seat">
-                                                <h6 class="p-0 m-0">10</h6>
+                                                <h6 class="p-0 m-0">@(i.TotalSeat - tot)</h6>
                                                 <span class="fs-7">Seats left</span>
                                             </div>
                                         </div>
@@ -444,6 +464,12 @@ else
                                                 </button>
                                             }
                                             else if (i.MissionType.Equals("GOAL") && avg >= 100)
+                                            {
+                                                <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
+                                                    View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                                                </button>
+                                            }
+                                            else if (i.TotalSeat - tot <= 0)
                                             {
                                                 <button class="btn-ci-primary d-inline-flex align-items-center" onclick="location.href = '/Volunteer/Mission/Mission_volunteering/@i.MissionId'">
                                                     View Details&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">

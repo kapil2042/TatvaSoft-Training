@@ -39,9 +39,9 @@
                     @foreach (var j in Model.missionMedia)
                     {
                         Count1 += 1;
-                            <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
-                                <img src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
-                            </div>
+                        <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
+                            <img src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
+                        </div>
                     }
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -59,10 +59,10 @@
                     @foreach (var j in Model.missionMedia)
                     {
                         Count2 += 1;
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
-                            aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px; height: 50px;">
-                                <img class="d-block w-100 h-100" src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="img-fluid" />
-                            </button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
+                                aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px; height: 50px;">
+                            <img class="d-block w-100 h-100" src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="img-fluid" />
+                        </button>
                     }
                 </div>
             </div>
@@ -102,7 +102,7 @@
                         <img src="~/images/Seats-left.png" alt="">
                     </div>
                     <div class="w-50">
-                        <h6 class="p-0 m-0">10</h6>
+                        <h6 class="p-0 m-0">@(Model.mission.TotalSeat - Model.volunteerDetails.Count())</h6>
                         <span class="fs-7">Seats left</span>
                     </div>
                 </div>
@@ -114,30 +114,30 @@
                 <div class="d-flex align-items-center h-100 w-50">
                     @if (@Model.mission.MissionType == "TIME")
                     {
-                            <div class="px-2 w-25 text-end">
-                                <img src="~/images/deadline.png" alt="">
+                        <div class="px-2 w-25 text-end">
+                            <img src="~/images/deadline.png" alt="">
+                        </div>
+                        <div class="w-50">
+                            <div class="deadline">
+                                <h6 class="p-0 m-0">@Model.mission.StartDate.Value.AddDays(-1).ToShortDateString()</h6>
+                                <span class="fs-7">Deadline</span>
                             </div>
-                            <div class="w-50">
-                                <div class="deadline">
-                                    <h6 class="p-0 m-0">@Model.mission.StartDate.Value.AddDays(-1).ToShortDateString()</h6>
-                                    <span class="fs-7">Deadline</span>
-                                </div>
-                            </div>
+                        </div>
                     }
                     else
                     {
                         if (Model.goalMissions != null)
                         {
-                                    <div class="px-2 w-25 text-end">
-                                        <img src="~/images/achieved.png" alt="">
-                                    </div>
-                                    <div class="w-75">
-                                        <div class="progress w-75">
-                                            <div class="progress-bar bg-ci-primary" role="progressbar" style="width: @avg%"
-                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <span class="fs-7">@a1 Achieved</span>
-                                    </div>
+                            <div class="px-2 w-25 text-end">
+                                <img src="~/images/achieved.png" alt="">
+                            </div>
+                            <div class="w-75">
+                                <div class="progress w-75">
+                                    <div class="progress-bar bg-ci-primary" role="progressbar" style="width: @avg%"
+                                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <span class="fs-7">@a1 Achieved</span>
+                            </div>
                         }
                     }
                 </div>
@@ -147,17 +147,17 @@
                 <button class="@(Model.favoriteMission!=null ? "border-danger":"") d-flex fav-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-secondary fs-7" onclick="favunfavmissionvol(@Model.mission.MissionId)">
                     @if (Model.favoriteMission != null)
                     {
-                            <img src="~/images/red_heart.png" alt="" class="me-1">
-                            <span class="d-none d-sm-block d-md-none d-xl-block text-ci-danger">
-                                Remove from Favourite
-                            </span>
+                        <img src="~/images/red_heart.png" alt="" class="me-1">
+                        <span class="d-none d-sm-block d-md-none d-xl-block text-ci-danger">
+                            Remove from Favourite
+                        </span>
                     }
                     else
                     {
-                            <img src="~/images/heart1.png" alt="" class="me-1">
-                            <span class="d-none d-sm-block d-md-none d-xl-block">
-                                Add to Favourite
-                            </span>
+                        <img src="~/images/heart1.png" alt="" class="me-1">
+                        <span class="d-none d-sm-block d-md-none d-xl-block">
+                            Add to Favourite
+                        </span>
                     }
                 </button>
                 <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-secondary fs-7" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@Model.mission.MissionId">
@@ -172,29 +172,29 @@
                 <div class="star">
                     @if (Model.missionRating != null)
                     {
-                            <div class="ratboxif">
+                        <div class="ratboxif">
                             @for (int i = 1; i <= 5; i++)
                             {
                                 @if (Model.missionRating.Rating >= i)
                                 {
-                                                <a role="button" title="@i star rating" onclick="missionrating(@Model.mission.MissionId,@i)"><img src="~/images/selected-star.png" alt=""></a>
+                                    <a role="button" title="@i star rating" onclick="missionrating(@Model.mission.MissionId,@i)"><img src="~/images/selected-star.png" alt=""></a>
                                 }
                                 else
                                 {
-                                                <a role="button" title="@i star rating" onclick="missionrating(@Model.mission.MissionId,@i)"><img src="~/images/star.png" alt=""></a>
+                                    <a role="button" title="@i star rating" onclick="missionrating(@Model.mission.MissionId,@i)"><img src="~/images/star.png" alt=""></a>
                                 }
                             }
-                            </div>
+                        </div>
                     }
                     else
                     {
-                            <div class="ratbox">
-                                <a role="button" id="rat1" title="five star rating"><img src="~/images/star-empty.png" alt="5" onclick="missionrating(@Model.mission.MissionId,5)"></a>
-                                <a role="button" id="rat2" title="four star rating"><img src="~/images/star-empty.png" alt="4" onclick="missionrating(@Model.mission.MissionId,4)"></a>
-                                <a role="button" id="rat3" title="three star rating"><img src="~/images/star-empty.png" alt="3" onclick="missionrating(@Model.mission.MissionId,3)"></a>
-                                <a role="button" id="rat4" title="two star rating"><img src="~/images/star-empty.png" alt="2" onclick="missionrating(@Model.mission.MissionId,2)"></a>
-                                <a role="button" id="rat5" title="one star rating"><img src="~/images/star-empty.png" alt="1" onclick="missionrating(@Model.mission.MissionId,1)"></a>
-                            </div>
+                        <div class="ratbox">
+                            <a role="button" id="rat1" title="five star rating"><img src="~/images/star-empty.png" alt="5" onclick="missionrating(@Model.mission.MissionId,5)"></a>
+                            <a role="button" id="rat2" title="four star rating"><img src="~/images/star-empty.png" alt="4" onclick="missionrating(@Model.mission.MissionId,4)"></a>
+                            <a role="button" id="rat3" title="three star rating"><img src="~/images/star-empty.png" alt="3" onclick="missionrating(@Model.mission.MissionId,3)"></a>
+                            <a role="button" id="rat4" title="two star rating"><img src="~/images/star-empty.png" alt="2" onclick="missionrating(@Model.mission.MissionId,2)"></a>
+                            <a role="button" id="rat5" title="one star rating"><img src="~/images/star-empty.png" alt="1" onclick="missionrating(@Model.mission.MissionId,1)"></a>
+                        </div>
                     }
                 </div>
             </div>
@@ -206,7 +206,7 @@
                         </div>
                         <div class="position-absolute bottom-0 mb-1">
                             <div class="text-secondary fs-7">City</div>
-                            <div class="line-h">@Model.cities.Where(x=>x.CityId == Model.mission.CityId).Select(x=>x.Name).FirstOrDefault()</div>
+                            <div class="line-h">@Model.cities.Where(x => x.CityId == Model.mission.CityId).Select(x => x.Name).FirstOrDefault()</div>
                         </div>
                     </div>
                 </div>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="position-absolute bottom-0 mb-1">
                             <div class="text-secondary fs-7">Theme</div>
-                            <div class="line-h">@Model.themes.Where(x=>x.MissionThemeId == Model.mission.ThemeId).Select(x=>x.Title).FirstOrDefault()</div>
+                            <div class="line-h">@Model.themes.Where(x => x.MissionThemeId == Model.mission.ThemeId).Select(x => x.Title).FirstOrDefault()</div>
                         </div>
                     </div>
                 </div>
@@ -260,28 +260,62 @@
             <div class="w-100 text-center mt-3">
                 @if (Model.missionApplicatoin != null)
                 {
-                        <button class="btn-ci-success" disabled>
-                            Already Applied
-                        </button>
+                    <button class="btn-ci-success" disabled>
+                        Already Applied
+                    </button>
                 }
                 else if (Model.mission.MissionType.Equals("TIME") && Model.mission.EndDate < DateTime.Now)
                 {
-                        <button class="btn-ci-danger" disabled>
-                            Mission Closed
-                        </button>
+                    <button class="btn-ci-danger" disabled>
+                        Mission Closed
+                    </button>
                 }
                 else if (Model.mission.MissionType.Equals("GOAL") && avg >= 100)
                 {
-                        <button class="btn-ci-danger" disabled>
-                            Mission Closed
-                        </button>
+                    <button class="btn-ci-danger" disabled>
+                        Mission Closed
+                    </button>
+                }
+                else if (Model.mission.TotalSeat - Model.volunteerDetails.Count() <= 0)
+                {
+                    <button class="btn-ci-danger" disabled>
+                        Mission Closed
+                    </button>
                 }
                 else
                 {
-                        <button class="btn-ci-primary d-inline-flex align-items-center">
-                            Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
-                        </button>
+                    <button class="btn-ci-primary d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Apply&nbsp;&nbsp;&nbsp;<img src="~/images/right-arrow.png" alt="">
+                    </button>
                 }
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <span class="fs-5 text-ci-danger">
+                                    <i class="bi bi-info-circle text-ci-danger"></i>
+                                    Are You Sure to apply on This Mission!!
+                                </span>
+                                <hr />
+                                <div class="row fs-5 text-start mt-3">
+                                    <div class="col-4 text-end">
+                                        Mission Name:
+                                    </div>
+                                    <div class="col-8 text-start text-muted">
+                                        @Model.mission.Title
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer p-0 pe-3 py-2">
+                                <button type="button" class="btn-ci-primary fs-7" onclick="location.href = '/Volunteering/Mission/ApplyMission?missionId=@Model.mission.MissionId'">
+                                    Apply Now
+                                </button>
+                                <button type="button" class="btn-ci-secondary fs-7" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -313,28 +347,28 @@
                     @Model.mission.Description
                     @if (Model.missionDocuments.Count() > 0)
                     {
-                            <h3 class="my-2 my-md-3">Documents</h3>
+                        <h3 class="my-2 my-md-3">Documents</h3>
                         @foreach (var i in Model.missionDocuments)
                         {
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="rounded-pill text-muted border py-1 px-3 me-2 mb-2">
-                                            <a href="~/doc/@i.DocumentPath/@i.DocumentName.@i.DocumentType" target="_blank">
+                            <div class="d-flex flex-wrap align-items-center">
+                                <div class="rounded-pill text-muted border py-1 px-3 me-2 mb-2">
+                                    <a href="~/doc/@i.DocumentPath/@i.DocumentName.@i.DocumentType" target="_blank">
                                         @if (i.DocumentType == "doc" || i.DocumentType == "docx" || i.DocumentType == "txt")
                                         {
-                                                        <img src="~/images/doc.png" alt="pdf">
+                                            <img src="~/images/doc.png" alt="pdf">
                                         }
                                         else if (i.DocumentType == "xls" || i.DocumentType == "xlsx")
                                         {
-                                                        <img src="~/images/xlsx.png" alt="pdf">
+                                            <img src="~/images/xlsx.png" alt="pdf">
                                         }
                                         else
                                         {
-                                                        <img src="~/images/pdf.png" alt="pdf">
+                                            <img src="~/images/pdf.png" alt="pdf">
                                         }
-                                                <span class="text-muted">@i.DocumentName.@i.DocumentType</span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                        <span class="text-muted">@i.DocumentName.@i.DocumentType</span>
+                                    </a>
+                                </div>
+                            </div>
                         }
                     }
                 </div>
@@ -352,24 +386,24 @@
                     <div class="comment-list mt-3">
                         @foreach (var i in Model.comments)
                         {
-                                <div class="comment-box">
-                                    <div class="row">
-                                        <div class="col-2 p-0">
-                                            <div class="comment-avatar">
-                                                <img src="~/images/@i.User.Avatar" />
-                                            </div>
+                            <div class="comment-box">
+                                <div class="row">
+                                    <div class="col-2 p-0">
+                                        <div class="comment-avatar">
+                                            <img src="~/images/@i.User.Avatar" />
                                         </div>
-                                        <div class="col-10 ps-2 ps-md-0">
-                                            <div>
-                                                <h6 class="m-0 p-0">@i.User.FirstName @i.User.LastName</h6>
-                                                <p class="p-0 m-0 text-muted fs-time">@i.CreatedAt.ToString("dddd, MMMM dd, yyyy, hh:mm tt")</p>
-                                            </div>
-                                            <div class="line-h my-2 fs-6 text-dark">
+                                    </div>
+                                    <div class="col-10 ps-2 ps-md-0">
+                                        <div>
+                                            <h6 class="m-0 p-0">@i.User.FirstName @i.User.LastName</h6>
+                                            <p class="p-0 m-0 text-muted fs-time">@i.CreatedAt.ToString("dddd, MMMM dd, yyyy, hh:mm tt")</p>
+                                        </div>
+                                        <div class="line-h my-2 fs-6 text-dark">
                                             @i.CommentText
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         }
 
                     </div>
@@ -413,11 +447,11 @@
                                             {
                                                 @if (Math.Ceiling(Model.sum / Model.total) >= rr)
                                                 {
-                                                            <img src="~/images/selected-star.png" alt="">
+                                                    <img src="~/images/selected-star.png" alt="">
                                                 }
                                                 else
                                                 {
-                                                            <img src="~/images/star.png" alt="">
+                                                    <img src="~/images/star.png" alt="">
                                                 }
                                             }
                                         </span>

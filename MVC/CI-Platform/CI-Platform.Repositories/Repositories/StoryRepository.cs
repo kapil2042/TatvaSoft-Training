@@ -31,11 +31,6 @@ namespace CI_Platform.Repositories.Repositories
             }
         }
 
-        public List<Mission> GetMissionByUserApply(int id)
-        {
-            return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id).Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
-        }
-
         public void InsertStory(Story story)
         {
             _db.Stories.Add(story);

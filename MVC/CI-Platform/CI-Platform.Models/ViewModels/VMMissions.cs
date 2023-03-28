@@ -20,6 +20,7 @@ namespace CI_Platform.Models.ViewModels
         public List<MissionSkill> ?missionSkills { get; set; }
         public List<MissionRating> ?missionRatings { get; set; }
         public List<MissionApplicatoin> ?missionApplicatoin { get; set; }
+        public List<MissionApplicatoin> ?missionAppAll { get; set; }
         public List<FavoriteMission> ?favoriteMission { get; set; }
     }
 }

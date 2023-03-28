@@ -21,7 +21,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Timesheet> GetTimeSheetDataByUserId(long userId)
         {
-            return _db.Timesheets.Where(x => x.UserId == userId).Include(x => x.Mission).ToList();
+            return _db.Timesheets.Where(x => x.UserId == userId).OrderByDescending(x => x.CreatedAt).Include(x => x.Mission).ToList();
         }
     }
 }

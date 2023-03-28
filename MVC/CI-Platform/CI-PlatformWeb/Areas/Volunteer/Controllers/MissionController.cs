@@ -62,6 +62,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 missionMedia = _missionRepository.GetMissionMedia(),
                 favoriteMission = _missionRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid)),
                 missionApplicatoin = _missionRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid)),
+                missionAppAll = _missionRepository.GetAllMissionApplicationSum(),
             };
 
             List<Mission> m = _missionRepository.GetMissions();
@@ -135,6 +136,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [Authorize]
         public IActionResult Mission_volunteering(int id)
         {
+            if (TempData["alredyapplied"] != null)
+            {
+                ViewBag.error = TempData["alredyapplied"];
+            }
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMMissionVol model = new()
@@ -232,7 +237,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var link = Url.Action("Mission_volunteering", "Mission", new { Area = "Volunteer", id = missoinid });
             var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
 
-            foreach(var mail in mailids)
+            foreach (var mail in mailids)
             {
                 long toUserId = _commonRepository.GetUserIdByEmail(mail);
                 MissionInvite invite = new MissionInvite();
@@ -267,6 +272,37 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             list = list.Skip(recSkip).Take(pager.PageSize).ToList();
             ViewBag.pager = pager;
             return PartialView("volunteerPagination", list);
+        }
+
+        public IActionResult ApplyMission(long missionId)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var mission = _missionRepository.GetMissionsById(Convert.ToInt32(missionId));
+            var totalapplication = _missionRepository.GetMissionApplicatoinsByMissionId(Convert.ToInt32(missionId)).Count();
+            if (mission.EndDate < DateTime.Now)
+            {
+                TempData["alredyapplied"] = "Mission was expired!";
+            }
+            else if (_missionRepository.GetMissionApplicatoinByUserIdAndMissionId(Convert.ToInt32(uid), Convert.ToInt32(missionId)) != null)
+            {
+                TempData["alredyapplied"] = "You Already Applied on This Mission!";
+            }
+            else if (mission.TotalSeat <= totalapplication)
+            {
+                TempData["alredyapplied"] = "No any seat left on This Mission!";
+            }
+            else
+            {
+                MissionApplicatoin ma = new MissionApplicatoin();
+                ma.MissionId = missionId;
+                ma.UserId = Convert.ToInt64(uid);
+                ma.AppliedAt = DateTime.Now;
+                ma.ApprovalStatus = "PENDING";
+                _missionRepository.InserMissionApplication(ma);
+                _commonRepository.Save();
+            }
+            return RedirectToAction("Mission_volunteering", "Mission", new { Area = "Volunteer", id = missionId });
         }
     }
 }

@@ -68,11 +68,11 @@
                 {
                     <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
                         <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
-                         data-bs-toggle="dropdown" aria-expanded="false">
+                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="avtar-nav">
                                 @if (avtar != null)
                                 {
-                                    <img src="~/images/@avtar" alt="user image"/>
+                                    <img src="~/images/@avtar" alt="user image" />
                                 }
                                 else
                                 {
@@ -85,12 +85,12 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
-                               asp-action="Index">Add Profile</a>
+                                   asp-action="Index">Add Profile</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
-                               asp-action="Index">Volunteering Timesheet</a>
+                                   asp-action="Index">Volunteering Timesheet</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -120,12 +120,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - CI_PlatformWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/grid_list_toggle.js" asp-append-version="true"></script>
     <script src="~/js/media.js" asp-append-version="true"></script>

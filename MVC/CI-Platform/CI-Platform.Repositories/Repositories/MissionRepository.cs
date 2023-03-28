@@ -153,5 +153,15 @@ namespace CI_Platform.Repositories.Repositories
         {
             _db.MissionInvites.Add(invite);
         }
+
+        public void InserMissionApplication(MissionApplicatoin applicatoin)
+        {
+            _db.MissionApplicatoins.Add(applicatoin);
+        }
+
+        public List<MissionApplicatoin> GetAllMissionApplicationSum()
+        {
+            return _db.MissionApplicatoins.ToList();
+        }
     }
 }

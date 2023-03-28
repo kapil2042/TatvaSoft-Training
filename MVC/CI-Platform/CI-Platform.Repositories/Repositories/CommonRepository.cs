@@ -90,5 +90,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Users.Where(x => x.Email.Equals(email)).Select(x => x.UserId).FirstOrDefault();
         }
+
+        public List<Mission> GetMissionByUserApply(int id)
+        {
+            return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id).Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
+        }
     }
 }

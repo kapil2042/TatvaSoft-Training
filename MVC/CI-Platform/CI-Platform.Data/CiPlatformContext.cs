@@ -318,9 +318,9 @@ public partial class CiPlatformContext : DbContext
             entity.ToTable("mission");
 
             entity.Property(e => e.MissionId).HasColumnName("mission_id");
+            entity.Property(e => e.TotalSeat).HasColumnName("total_seat");
             entity.Property(e => e.Availability)
                 .HasMaxLength(10)
-
                 .HasColumnName("availability");
             entity.Property(e => e.CityId).HasColumnName("city_id");
             entity.Property(e => e.CountryId).HasColumnName("country_id");

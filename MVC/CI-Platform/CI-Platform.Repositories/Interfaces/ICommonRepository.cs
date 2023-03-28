@@ -28,5 +28,7 @@ namespace CI_Platform.Repositories.Interfaces
         long[] GetMissionsIdBySkillName(string[] skill);
 
         long GetUserIdByEmail(string email);
+
+        List<Mission> GetMissionByUserApply(int id);
     }
 }

@@ -108,7 +108,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
-            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
+            ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
             return View();
         }
 
@@ -162,7 +162,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _commonRepository.Save();
                 return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
             }
-            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
+            ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
             return View(story);
         }
 
@@ -205,7 +205,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
-            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
+            ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
             Story story = new Story();
             story = _storyRepository.GetStoryById(id);
             story.Description = WebUtility.HtmlDecode(story.Description);
@@ -295,7 +295,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _commonRepository.Save();
                 return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
             }
-            ViewBag.MissionId = new SelectList(_storyRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
+            ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
             return View(story);
         }
     }

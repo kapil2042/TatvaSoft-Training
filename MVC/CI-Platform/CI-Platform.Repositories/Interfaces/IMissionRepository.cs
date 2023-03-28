@@ -43,6 +43,8 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<MissionApplicatoin> GetMissionApplicatoinsByMissionId(int mid);
 
+        List<MissionApplicatoin> GetAllMissionApplicationSum();
+
         List<FavoriteMission> GetFavoriteMissionsByUserId(int id);
 
         FavoriteMission GetFavoriteMissionsByUserIdAndMissionId(int id, int mid);
@@ -62,5 +64,7 @@ namespace CI_Platform.Repositories.Interfaces
         void PostComment(Comment comment);
 
         void InserMissionInvitation(MissionInvite invite);
+
+        void InserMissionApplication(MissionApplicatoin applicatoin);
     }
 }
