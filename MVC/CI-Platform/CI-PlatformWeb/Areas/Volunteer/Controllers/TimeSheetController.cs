@@ -23,15 +23,36 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
-            VMTimeSheet timeSheet = new VMTimeSheet();
-            timeSheet.Timesheets = _timeSheetRepository.GetTimeSheetDataByUserId(Convert.ToInt64(uid));
-            timeSheet.Missions = _commonRepository.GetMissionByUserApply(Convert.ToInt32(uid));
-            return View(timeSheet);
+            List<Timesheet> timesheet = _timeSheetRepository.GetTimeSheetDataByUserId(Convert.ToInt64(uid));
+            ViewBag.Missions = _commonRepository.GetMissionByUserApply(Convert.ToInt32(uid));
+            return View(timesheet);
         }
 
         [HttpPost]
-        public IActionResult AddVolunteering(VMTimeSheet timeSheet)
+        public IActionResult AddVolunteering(long mission, string dateVol, int volHour, int volMin, int volAction, string volMessage)
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            Timesheet timesheet = new Timesheet();
+            timesheet.UserId = Convert.ToInt64(uid);
+            timesheet.MissionId = mission;
+            if (volAction == 0)
+            {
+                TimeSpan time = new TimeSpan(volHour, volMin, 0);
+                timesheet.Time = time;
+                timesheet.Action = null;
+            }
+            else
+            {
+                timesheet.Time = null;
+                timesheet.Action = volAction;
+            }
+            timesheet.DateVolunteered = Convert.ToDateTime(dateVol);
+            timesheet.Notes = volMessage;
+            timesheet.Status = "SUBMIT_FOR_APPROVAL";
+
+            _timeSheetRepository.InsertTimesheet(timesheet);
+            _commonRepository.Save();
             return RedirectToAction("Index", "TimeSheet", new { Area = "Volunteer" });
         }
     }

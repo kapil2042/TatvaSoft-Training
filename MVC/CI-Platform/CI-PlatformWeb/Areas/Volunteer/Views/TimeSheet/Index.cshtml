@@ -1,5 +1,4 @@
-﻿@model VMTimeSheet
-
+﻿@model List<Timesheet>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $(".numbers").keyup(function () {
@@ -31,7 +30,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var i in Model.Timesheets)
+                            @foreach (var i in Model)
                             {
                                 @if (i.Mission.MissionType.Equals("TIME"))
                                 {
@@ -69,7 +68,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var i in Model.Timesheets)
+                            @foreach (var i in Model)
                             {
                                 @if (i.Mission.MissionType.Equals("GOAL"))
                                 {
@@ -107,8 +106,8 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label for="missionId" class="form-label fs-7">Mission</label>
-                            <select class="form-select text-muted">
-                                @foreach (var m in Model.Missions)
+                            <select class="form-select text-muted" name="mission">
+                                @foreach (var m in ViewBag.Missions)
                                 {
                                     @if (m.MissionType.Equals("TIME"))
                                     {
@@ -119,19 +118,19 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="dateVol" class="form-label fs-7">Date Volunteered</label>
-                            <input type="date" asp-for="dateVolunteer" class="form-control fs-7" id="dateVol" placeholder="Select date">
+                            <input type="date" name="dateVol" class="form-control fs-7" id="dateVol" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
                             <label for="volHour" class="form-label fs-7">Hours</label>
-                            <input type="number" asp-for="Hour" class="form-control fs-7" min="1" id="volHour" placeholder="Enter Spent Hours">
+                            <input type="number" name="volHour" class="form-control fs-7" min="0" id="volHour" placeholder="Enter Spent Hours" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
                             <label for="volMin" class="form-label fs-7">Minutes</label>
-                            <input type="number" asp-for="Minute" class="form-control fs-7" min="1" max="59" id="volMin" placeholder="Enter Spent Minutes">
+                            <input type="number" name="volMin" class="form-control fs-7" min="1" max="59" id="volMin" placeholder="Enter Spent Minutes" required>
                         </div>
                         <div class="col-12">
-                            <label for="messageTime" class="form-label fs-7">Date Volunteered</label>
-                            <textarea id="messageTime" asp-for="Message" cols="100" rows="5"
+                            <label for="volMessage" class="form-label fs-7">Date Volunteered</label>
+                            <textarea id="volMessage" name="volMessage" cols="100" rows="5"
                                       class="form-control h-auto mb-3 fs-7" placeholder="Enter Your Message"></textarea>
                         </div>
                     </div>
@@ -161,8 +160,8 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label for="missionId" class="form-label fs-7">Mission</label>
-                            <select class="form-select text-muted">
-                                @foreach (var m in Model.Missions)
+                            <select class="form-select text-muted" name="mission">
+                                @foreach (var m in ViewBag.Missions)
                                 {
                                     @if (m.MissionType.Equals("GOAL"))
                                     {
@@ -173,15 +172,15 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="volAction" class="form-label fs-7">Actions</label>
-                            <input type="number" asp-for="Action" class="form-control fs-7" min="1" id="volAction" placeholder="Enter Spent Hours">
+                            <input type="number" min="1" name="volAction" class="form-control fs-7" min="1" id="volAction" placeholder="Enter Actions" required>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="dateVol" class="form-label fs-7">Date Volunteered</label>
-                            <input type="date" asp-for="dateVolunteer" class="form-control fs-7" id="dateVol" placeholder="Select date">
+                            <input type="date" name="dateVol" class="form-control fs-7" id="dateVol" required>
                         </div>
                         <div class="col-12">
-                            <label for="messageTime" class="form-label fs-7">Date Volunteered</label>
-                            <textarea id="messageTime" asp-for="Message" cols="100" rows="5"
+                            <label for="volMessage" class="form-label fs-7">Date Volunteered</label>
+                            <textarea id="volMessage" name="volMessage" cols="100" rows="5"
                                       class="form-control h-auto mb-3 fs-7" placeholder="Enter Your Message"></textarea>
                         </div>
                     </div>
