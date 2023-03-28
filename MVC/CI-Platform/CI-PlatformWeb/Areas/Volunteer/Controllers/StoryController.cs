@@ -22,6 +22,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult Story()
         {
+            if (TempData["anotherstory"] != null)
+            {
+                ViewBag.error = TempData["anotherstory"];
+            }
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMStory story = new()
@@ -205,6 +209,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            if (_storyRepository.GetStoryById(id).UserId != Convert.ToInt64(uid))
+            {
+                TempData["anotherstory"] = "This is not your story!!";
+                return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
+            }
             ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title");
             Story story = new Story();
             story = _storyRepository.GetStoryById(id);
@@ -285,6 +294,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 story.Status = "PENDING";
                 story.PublishedAt = DateTime.Now;
+            }
+            else
+            {
+                story.Status = "DRAFT";
             }
 
             ModelState.Remove("User");

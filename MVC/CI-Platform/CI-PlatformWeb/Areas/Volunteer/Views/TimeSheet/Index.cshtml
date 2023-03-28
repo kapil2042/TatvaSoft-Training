@@ -164,7 +164,7 @@
                             <select class="form-select text-muted">
                                 @foreach (var m in Model.Missions)
                                 {
-                                    @if (m.MissionType.Equals("TIME"))
+                                    @if (m.MissionType.Equals("GOAL"))
                                     {
                                         <option value="@m.MissionId">@m.Title</option>
                                     }
