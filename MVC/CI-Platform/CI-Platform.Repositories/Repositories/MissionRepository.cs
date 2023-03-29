@@ -21,7 +21,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Mission> GetMissions()
         {
-            return _db.Missions.ToList();
+            return _db.Missions.Where(x => x.Status == 1).ToList();
         }
 
         public List<GoalMission> GetGoalMissions()
@@ -31,7 +31,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Timesheet> GetTimeSheet()
         {
-            return _db.Timesheets.ToList();
+            return _db.Timesheets.Where(x => x.Status == "APPROVED").ToList();
         }
 
         public List<MissionSkill> GetMissionSkills()
@@ -46,12 +46,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public Mission GetMissionsById(int id)
         {
-            return _db.Missions.Where(x => x.MissionId == id).FirstOrDefault();
+            return _db.Missions.Where(x => x.MissionId == id && x.Status == 1).FirstOrDefault();
         }
 
         public List<MissionApplicatoin> GetMissionApplicatoinsByUserId(int id)
         {
-            return _db.MissionApplicatoins.Where(x => x.UserId == id).ToList();
+            return _db.MissionApplicatoins.Where(x => x.UserId == id && x.ApprovalStatus == "APPROVE").ToList();
         }
 
         public List<MissionMedium> GetMissionMedia()
@@ -76,7 +76,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Timesheet> GetTimesheetByMissionId(int id)
         {
-            return _db.Timesheets.Where(x => x.MissionId == id).ToList();
+            return _db.Timesheets.Where(x => x.MissionId == id && x.Status == "APPROVED").ToList();
         }
 
         public List<MissionSkill> GetMissionSkillsByMissionId(int id)
@@ -161,7 +161,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionApplicatoin> GetAllMissionApplicationSum()
         {
-            return _db.MissionApplicatoins.ToList();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "APPROVE").ToList();
         }
     }
 }

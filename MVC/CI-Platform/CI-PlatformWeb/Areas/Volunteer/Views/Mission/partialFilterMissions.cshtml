@@ -84,7 +84,7 @@ else
                                         <img src="~/images/heart.png" alt="" class="w-100 h-100">
                                     }
                                 </button>
-                                <button class="share-mission send-mission-id" data-bs-toggle="modal" data-bs-target="#mailmodal" data-id="@i.MissionId">
+                                <button class="share-mission send-mission-id" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId">
                                     <img src="~/images/user.png" alt="" class="w-100 h-100">
                                 </button>
                                 @if (img != null)
@@ -286,10 +286,17 @@ else
                                     <img src="~/images/pin.png" alt="" class="w-100 h-100">
                                     <p>@i.City.Name</p>
                                 </div>
-                                <button class="like-mission">
-                                    <img src="~/images/heart.png" alt="" class="w-100 h-100">
+                                <button class="like-mission" onclick="favunfavmission(@i.MissionId)">
+                                    @if (Model.favoriteMission.Where(x => x.MissionId == i.MissionId).FirstOrDefault() != null)
+                                    {
+                                        <img src="~/images/red_heart.png" alt="" class="w-100 h-100">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/heart.png" alt="" class="w-100 h-100">
+                                    }
                                 </button>
-                                <button class="share-mission">
+                                <button class="share-mission send-mission-id" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId">
                                     <img src="~/images/user.png" alt="" class="w-100 h-100">
                                 </button>
                                 @if (img != null)

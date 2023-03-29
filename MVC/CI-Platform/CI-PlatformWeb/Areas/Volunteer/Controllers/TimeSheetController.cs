@@ -21,6 +21,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult Index()
         {
+            if (TempData["msg"] != null)
+            {
+                ViewBag.success = TempData["msg"];
+            }
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             List<Timesheet> timesheet = _timeSheetRepository.GetTimeSheetDataByUserId(Convert.ToInt64(uid));
@@ -29,11 +33,15 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddVolunteering(long mission, string dateVol, int volHour, int volMin, int volAction, string volMessage)
+        public IActionResult Volunteering(long tid, long mission, string dateVol, int volHour, int volMin, int volAction, string volMessage, string btn)
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             Timesheet timesheet = new Timesheet();
+            if (btn == "Update")
+            {
+                timesheet = _timeSheetRepository.GetTimeSheetDataById(tid);
+            }
             timesheet.UserId = Convert.ToInt64(uid);
             timesheet.MissionId = mission;
             if (volAction == 0)
@@ -51,9 +59,32 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             timesheet.Notes = volMessage;
             timesheet.Status = "SUBMIT_FOR_APPROVAL";
 
-            _timeSheetRepository.InsertTimesheet(timesheet);
+            if (btn == "Save")
+            {
+                _timeSheetRepository.InsertTimesheet(timesheet);
+                TempData["msg"] = "Record Inserteded Successfully! You Can see your record after Admin Approval";
+            }
+            if (btn == "Update")
+            {
+                _timeSheetRepository.UpdateTimesheet(timesheet);
+                TempData["msg"] = "Record Updated Successfully! You Can see your record after Admin Approval";
+            }
             _commonRepository.Save();
             return RedirectToAction("Index", "TimeSheet", new { Area = "Volunteer" });
+        }
+
+        public IActionResult DeleteVolunteeringTimeSheet(long timeSheetId)
+        {
+            _timeSheetRepository.DeleteTimesheet(_timeSheetRepository.GetTimeSheetDataById(timeSheetId));
+            _commonRepository.Save();
+            TempData["msg"] = "Record Deleted Successfully!";
+            return RedirectToAction("Index", "TimeSheet", new { Area = "Volunteer" });
+        }
+
+        [HttpPost]
+        public JsonResult GetTimeSheetData(long timeSheetId)
+        {
+            return Json(_timeSheetRepository.GetTimeSheetDataById(timeSheetId));
         }
     }
 }

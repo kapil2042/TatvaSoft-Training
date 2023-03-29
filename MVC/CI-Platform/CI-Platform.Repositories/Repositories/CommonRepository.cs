@@ -23,7 +23,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<User> GetAllUsers()
         {
-            return _db.Users.ToList();
+            return _db.Users.Where(x => x.Status == 1).ToList();
         }
 
         public List<Country> GetCountries()
@@ -43,12 +43,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Skill> GetSkills()
         {
-            return _db.Skills.ToList();
+            return _db.Skills.Where(x => x.Status == 1).ToList();
         }
 
         public List<MissionTheme> GetMissionThemes()
         {
-            return _db.MissionThemes.ToList();
+            return _db.MissionThemes.Where(x => x.Status == 1).ToList();
         }
 
         public void Save()

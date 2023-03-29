@@ -43,7 +43,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public Story GetStoryById(int id)
         {
-            return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).Include(x => x.StoryMedia).FirstOrDefault();
+            return _db.Stories.Where(x => x.StoryId == id && x.Status != "DECLINE").Include(x => x.Mission).Include(x => x.StoryMedia).FirstOrDefault();
         }
 
         public List<StoryMedium> GetStoryMediaList(int id)

@@ -9,7 +9,10 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface ITimeSheetRepository
     {
+        Timesheet GetTimeSheetDataById(long id);
         List<Timesheet> GetTimeSheetDataByUserId(long userId);
         void InsertTimesheet(Timesheet timesheet);
+        void UpdateTimesheet(Timesheet timesheet);
+        void DeleteTimesheet(Timesheet timesheet);
     }
 }

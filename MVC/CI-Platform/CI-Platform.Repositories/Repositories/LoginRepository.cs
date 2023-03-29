@@ -28,7 +28,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public User getUserByEmail(string email)
         {
-            return _db.Users.Where(x => x.Email == email).FirstOrDefault();
+            return _db.Users.Where(x => x.Email == email && x.Status == 1).FirstOrDefault();
         }
 
         public void InsertUser(VMUserRegistration user)
@@ -41,7 +41,7 @@ namespace CI_Platform.Repositories.Repositories
             u.PhoneNumber = user.MobileNo;
             _db.Users.Add(u);
         }
-        
+
         public void InsertToken(UserToken token)
         {
             _db.UserTokens.Add(token);
