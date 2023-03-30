@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
 </head>
 <body>
     <header>
@@ -84,8 +86,8 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
-                                   asp-action="Index">Add Profile</a>
+                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="User"
+                                   asp-action="UserProfile">Update Profile</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -121,8 +123,6 @@
 
     <footer class="border-top footer text-muted">
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/grid_list_toggle.js" asp-append-version="true"></script>
     <script src="~/js/media.js" asp-append-version="true"></script>

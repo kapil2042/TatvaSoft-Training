@@ -44,9 +44,16 @@ public partial class User
     [StringLength(16)]
     public string? EmployeeId { get; set; }
 
+    [Column("manager_details", TypeName = "text")]
+    public string? ManagerDetails { get; set; }
+
     [Column("department")]
     [StringLength(16)]
     public string? Department { get; set; }
+
+    [Column("availability")]
+    [StringLength(10)]
+    public string? Availability { get; set; }
 
     [Column("city_id")]
     public long CityId { get; set; }

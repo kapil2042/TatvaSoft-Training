@@ -26,6 +26,11 @@ namespace CI_Platform.Repositories.Repositories
             return _db.Users.Where(x => x.Status == 1).ToList();
         }
 
+        public User GetUserById(long id)
+        {
+            return _db.Users.Where(x => x.UserId == id && x.Status == 1).Include(x=>x.UserSkills).ThenInclude(x=>x.Skill).FirstOrDefault();
+        }
+
         public List<Country> GetCountries()
         {
             return _db.Countries.ToList();

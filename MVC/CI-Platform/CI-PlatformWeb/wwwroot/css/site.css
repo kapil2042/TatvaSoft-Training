@@ -4,6 +4,11 @@
     color: #414141;
 }
 
+::placeholder {
+    color: #999999 !important;
+    font-size: 14px !important;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -692,4 +697,12 @@ select:focus > option:hover {
 select[multiple]:focus option:checked {
     background: #F88634 linear-gradient(0deg, #F88634 0%, #F88634 100%);
     color: #FFFFFF !important;
+}
+
+#multiselect option,
+#multiselect_to option {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-inline: 15px !important;
+    border-radius: 7px !important;
 }

@@ -829,6 +829,12 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.EmployeeId)
                 .HasMaxLength(16)
                 .HasColumnName("employee_id");
+            entity.Property(e => e.ManagerDetails)
+                .HasColumnType("text")
+                .HasColumnName("manager_details");
+            entity.Property(e => e.Availability)
+                .HasMaxLength(10)
+                .HasColumnName("availability");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(16)
                 .HasColumnName("first_name");

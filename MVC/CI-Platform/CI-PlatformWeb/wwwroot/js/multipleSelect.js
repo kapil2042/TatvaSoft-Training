@@ -20,6 +20,12 @@
                         t(o.right).length ? o.right : "#" + i + "_to"
                     )),
                     (this.actions = {
+                        $leftAll: t(
+                            t(o.leftAll).length ? o.leftAll : "#" + i + "_leftAll"
+                        ),
+                        $rightAll: t(
+                            t(o.rightAll).length ? o.rightAll : "#" + i + "_rightAll"
+                        ),
                         $leftSelected: t(
                             t(o.leftSelected).length
                                 ? o.leftSelected
@@ -30,6 +36,8 @@
                                 ? o.rightSelected
                                 : "#" + i + "_rightSelected"
                         ),
+                        $undo: t(t(o.undo).length ? o.undo : "#" + i + "_undo"),
+                        $redo: t(t(o.redo).length ? o.redo : "#" + i + "_redo"),
                     }),
                     delete o.leftAll,
                     delete o.leftSelected,
@@ -38,6 +46,10 @@
                     delete o.rightSelected,
                     (this.options = {
                         keepRenderingSort: o.keepRenderingSort,
+                        submitAllLeft:
+                            void 0 !== o.submitAllLeft ? o.submitAllLeft : !0,
+                        submitAllRight:
+                            void 0 !== o.submitAllRight ? o.submitAllRight : !0,
                         search: o.search,
                         ignoreDisabled:
                             void 0 !== o.ignoreDisabled ? o.ignoreDisabled : !1,
@@ -54,8 +66,10 @@
                 (e.prototype = {
                     init: function () {
                         var e = this;
-                        (e.$left.find("optgroup").length ||
-                            e.$right.find("optgroup").length) &&
+                        (e.undoStack = []),
+                            (e.redoStack = []),
+                            (e.$left.find("optgroup").length ||
+                                e.$right.find("optgroup").length) &&
                             ((e.callbacks.sort = !1), (e.options.search = !1)),
                             e.options.keepRenderingSort &&
                             ((e.skipInitSort = !0),
@@ -165,6 +179,22 @@
                                 o.preventDefault();
                                 var i = e.$right.find("option:selected");
                                 i.length && e.moveToLeft(i, o), t(this).blur();
+                            }),
+                            e.actions.$rightAll.on("click", function (o) {
+                                o.preventDefault();
+                                var i = e.$left.children(":not(span):not(.hidden)");
+                                i.length && e.moveToRight(i, o), t(this).blur();
+                            }),
+                            e.actions.$leftAll.on("click", function (o) {
+                                o.preventDefault();
+                                var i = e.$right.children(":not(span):not(.hidden)");
+                                i.length && e.moveToLeft(i, o), t(this).blur();
+                            }),
+                            e.actions.$undo.on("click", function (t) {
+                                t.preventDefault(), e.undo(t);
+                            }),
+                            e.actions.$redo.on("click", function (t) {
+                                t.preventDefault(), e.redo(t);
                             });
                     },
                     moveToRight: function (e, o, i, n) {
@@ -228,6 +258,30 @@
                                     r.callbacks.afterMoveToLeft(r.$left, r.$right, e),
                                     r)
                                 : !1;
+                    },
+                    undo: function (t) {
+                        var e = this,
+                            o = e.undoStack.pop();
+                        if (o)
+                            switch ((e.redoStack.push(o), o[0])) {
+                                case "left":
+                                    e.moveToRight(o[1], t, !1, !0);
+                                    break;
+                                case "right":
+                                    e.moveToLeft(o[1], t, !1, !0);
+                            }
+                    },
+                    redo: function (t) {
+                        var e = this,
+                            o = e.redoStack.pop();
+                        if (o)
+                            switch ((e.undoStack.push(o), o[0])) {
+                                case "left":
+                                    e.moveToLeft(o[1], t, !1, !0);
+                                    break;
+                                case "right":
+                                    e.moveToRight(o[1], t, !1, !0);
+                            }
                     },
                 }),
                 e

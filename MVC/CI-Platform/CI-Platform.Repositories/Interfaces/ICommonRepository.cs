@@ -11,6 +11,8 @@ namespace CI_Platform.Repositories.Interfaces
     {
         List<User> GetAllUsers();
 
+        User GetUserById(long id);
+
         List<Country> GetCountries();
 
         List<City> GetCities();
