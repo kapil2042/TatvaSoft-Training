@@ -682,3 +682,14 @@ a {
             visibility: visible;
             opacity: 1;
         }
+
+
+select:focus > option:hover {
+    background: #F88634 linear-gradient(0deg, #F88634 0%, #F88634 100%) !important;
+    color: #FFFFFF !important;
+}
+
+select[multiple]:focus option:checked {
+    background: #F88634 linear-gradient(0deg, #F88634 0%, #F88634 100%);
+    color: #FFFFFF !important;
+}

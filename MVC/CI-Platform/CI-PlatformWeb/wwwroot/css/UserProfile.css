@@ -1,0 +1,48 @@
+﻿.profile-img-box {
+    height: auto;
+}
+
+.profile-img {
+    height: auto;
+    width: 60%;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+}
+
+    .profile-img img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+.change-pass-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width:767px) {
+    .profile-img {
+        width: 80px;
+    }
+
+    .profile-img-box {
+        height: 120px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .profile-img {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-inline: 10px;
+    }
+
+    .change-pass-link {
+        margin-top: 0px;
+        margin-right: 10px;
+        text-align: end;
+    }
+}
