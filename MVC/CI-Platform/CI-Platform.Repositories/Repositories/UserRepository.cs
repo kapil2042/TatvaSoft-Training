@@ -23,9 +23,9 @@ namespace CI_Platform.Repositories.Repositories
             _db.Users.Update(user);
         }
 
-        public void RemoveUserSkills(UserSkill skill)
+        public void RemoveUserSkillsBySkillIdAndUserId(int skillId, long userId)
         {
-            _db.UserSkills.Remove(skill);
+            _db.UserSkills.Remove(_db.UserSkills.Where(x => x.SkillId == skillId && x.UserId == userId).FirstOrDefault());
         }
     }
 }

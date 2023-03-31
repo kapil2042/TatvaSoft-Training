@@ -11,6 +11,6 @@ namespace CI_Platform.Repositories.Interfaces
     {
         void UpdateUserData(User user);
 
-        void RemoveUserSkills(UserSkill skills);
+        void RemoveUserSkillsBySkillIdAndUserId(int skillId, long userId);
     }
 }

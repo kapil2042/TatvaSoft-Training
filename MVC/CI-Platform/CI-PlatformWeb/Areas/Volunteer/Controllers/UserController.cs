@@ -62,22 +62,17 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
             if (ModelState.IsValid)
             {
-                for (int i = 0; i < userSkills.Length; i++)
+                var SkillForAdd = userSkills.Except(userUpdated.UserSkills.Select(x => x.SkillId).ToArray());
+                var SkillForDelete = userUpdated.UserSkills.Select(x => x.SkillId).ToArray().Except(userSkills);
+                foreach (var i in SkillForDelete)
                 {
-                    if (userSkillOld.Count() > 0)
-                    {
-                        foreach (var j in userSkillOld)
-                        {
-                            if (i != j.UserSkillId)
-                            {
-                                _userRepository.RemoveUserSkills(j);
-                            }
-                        }
-                    }
+                    _userRepository.RemoveUserSkillsBySkillIdAndUserId(i, userUpdated.UserId);
+                }
+                foreach (var i in SkillForAdd)
+                {
                     UserSkill userSkillNew = new UserSkill();
                     userSkillNew.UserId = Convert.ToInt64(uid);
-                    userSkillNew.SkillId = userSkills[i];
-                    //_userRepository.AddUserSkills(userSkillNew);
+                    userSkillNew.SkillId = i;
                     userUpdated.UserSkills.Add(userSkillNew);
                 }
                 _userRepository.UpdateUserData(userUpdated);
