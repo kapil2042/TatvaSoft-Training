@@ -13,10 +13,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
     public class LoginController : Controller
     {
         private readonly ILoginRepository _loginRepository;
+        private readonly ICommonRepository _commonRepository;
 
-        public LoginController(ILoginRepository loginRepository)
+        public LoginController(ILoginRepository loginRepository, ICommonRepository commonRepository)
         {
             _loginRepository = loginRepository;
+            _commonRepository = commonRepository;
         }
 
         public IActionResult Index(string ReturnUrl)
@@ -28,7 +30,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 ViewBag.success = TempData["resetpass"];
             if (TempData["mailsent"] != null)
                 ViewBag.success = TempData["mailsent"];
-
             return View();
         }
 
@@ -41,7 +42,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 if (userdata.Status == 1)
                 {
-                    bool isValid = (userdata.Email.Equals(user.Email) && _loginRepository.Decode(userdata.Password).Equals(user.Password));
+                    bool isValid = (userdata.Email.Equals(user.Email) && _commonRepository.Decode(userdata.Password).Equals(user.Password));
                     if (isValid)
                     {
                         var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, user.Email) },
@@ -111,14 +112,14 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
         public IActionResult ResetPass(string email, string token)
         {
-            var dataToken = _loginRepository.getTokenByEmail(_loginRepository.Decode(email));
+            var dataToken = _loginRepository.getTokenByEmail(_commonRepository.Decode(email));
             if (dataToken != null)
             {
                 var date1 = DateTime.Now;
                 var date2 = date1.AddHours(-4);
                 if (dataToken.UserToken1 == token && dataToken.GeneratedAt > date2 && dataToken.GeneratedAt < date1)
                 {
-                    ViewBag.email = _loginRepository.Decode(email);
+                    ViewBag.email = _commonRepository.Decode(email);
                     ViewBag.token = token;
                     return View();
                 }
@@ -137,10 +138,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 var dataToken = _loginRepository.getTokenByEmail(email);
                 if (dataToken.UserToken1 == token)
                 {
-                    user.Password = _loginRepository.Encode(pass);
+                    user.Password = _commonRepository.Encode(pass);
                     user.UpdatedAt = DateTime.Now;
                     dataToken.Used = 1;
-                    _loginRepository.UpdateUser(user);
+                    _commonRepository.UpdateUser(user);
                     _loginRepository.UpdateToken(dataToken);
                     _loginRepository.Save();
                     TempData["resetpass"] = "Password is changed successfully!";
@@ -184,7 +185,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     _loginRepository.InsertToken(emailtoken);
                 }
                 _loginRepository.Save();
-                var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = _loginRepository.Encode(email), token = token });
+                var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = _commonRepository.Encode(email), token = token });
                 var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
                 _loginRepository.SendMail(mailBody, email);
                 TempData["mailsent"] = "Mail sent Successfully! Plese check mail";

@@ -164,7 +164,7 @@
 <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" asp-action="ChangePassword" asp-controller="User" asp-area="Volunteer">
+            <form method="post" id="changePassForm">
                 <div class="modal-header border-0">
                     <h1 class="modal-title fs-5" id="changePasswordLabel">
                         Change Password
@@ -172,6 +172,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" value="@Model.UserId" name="userId" />
                     <div>
                         <input type="password" name="oldPass" class="form-control fs-7" placeholder="Enter Old Password" required />
                     </div>
@@ -259,6 +260,10 @@
     </div>
 </div>
 
+<div id="loader" class="d-none">
+    <img src="~/images/loader.gif" />
+</div>
+
 
 <script>
     function AddSkillToSelect() {
@@ -270,5 +275,34 @@
     }
     $(function () {
         $("#userSkill1").attr("size", $("#userSkill1 option").length);
+    });
+
+    $("#changePassForm").on("submit", function (e) {
+        var dataString = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Volunteer/User/ChangePassword",
+            data: dataString,
+            beforeSend: function () {
+                $("#loader").removeClass('d-none');
+            },
+            success: function (res) {
+                if (res) {
+                    toastr.success("Your password has been changed successfully", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    $("#changePassForm")[0].reset();
+                }
+                else {
+                    toastr.error("Your old password does not math with database", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                }
+            },
+            error: function () {
+                toastr.error("Something Went Wrong! Please try agin later", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            },
+            complete: function () {
+                $("#loader").addClass('d-none');
+                $("#changePassword").modal('hide');
+            }
+        });
+        e.preventDefault();
     });
 </script>

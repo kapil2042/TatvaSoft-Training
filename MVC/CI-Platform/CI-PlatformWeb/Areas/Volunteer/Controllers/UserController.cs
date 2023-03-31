@@ -87,10 +87,30 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
+        [Authorize]
         [HttpPost]
-        public IActionResult ChangePassword(string oldPass, string newPass, string cnfPass)
+        public bool ChangePassword(long userId, string oldPass, string newPass)
         {
-            return RedirectToAction("UserProfile", "User", new { Area = "Volunteer" });
+            var userData = _commonRepository.GetUserById(userId);
+            if (userData != null)
+            {
+                var tempPass = _commonRepository.Decode(userData.Password);
+                if (tempPass == oldPass)
+                {
+                    userData.Password = _commonRepository.Encode(newPass);
+                    _commonRepository.UpdateUser(userData);
+                    _commonRepository.Save();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

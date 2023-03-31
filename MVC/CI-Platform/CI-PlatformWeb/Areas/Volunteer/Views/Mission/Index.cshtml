@@ -46,7 +46,7 @@
                 $('#count').html($($.parseHTML(res)).filter("#countpartial")[0].innerHTML);
             },
             error: function (data) {
-                alert("some Error");
+                toastr.error("Some error in filtermission", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
 

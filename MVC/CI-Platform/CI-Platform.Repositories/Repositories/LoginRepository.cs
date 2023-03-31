@@ -15,10 +15,12 @@ namespace CI_Platform.Repositories.Repositories
     public class LoginRepository : ILoginRepository
     {
         private readonly CiPlatformContext _db;
+        private readonly ICommonRepository _c;
 
-        public LoginRepository(CiPlatformContext db)
+        public LoginRepository(CiPlatformContext db, ICommonRepository c)
         {
             _db = db;
+            _c = c;
         }
 
         public UserToken getTokenByEmail(string email)
@@ -37,7 +39,7 @@ namespace CI_Platform.Repositories.Repositories
             u.FirstName = user.FirstName;
             u.LastName = user.LastName;
             u.Email = user.Email;
-            u.Password = Encode(user.Password);
+            u.Password = _c.Encode(user.Password);
             u.PhoneNumber = user.MobileNo;
             _db.Users.Add(u);
         }
@@ -50,11 +52,6 @@ namespace CI_Platform.Repositories.Repositories
         public void Save()
         {
             _db.SaveChanges();
-        }
-
-        public void UpdateUser(User user)
-        {
-            _db.Users.Update(user);
         }
 
         public void UpdateToken(UserToken token)
@@ -94,33 +91,6 @@ namespace CI_Platform.Repositories.Repositories
                 smtp.Send(message);
             }
             catch (Exception) { }
-        }
-
-        public string Encode(string text)
-        {
-            try
-            {
-                byte[] encData_byte = new byte[text.Length];
-                encData_byte = System.Text.Encoding.UTF8.GetBytes(text);
-                string encodedData = Convert.ToBase64String(encData_byte);
-                return encodedData;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error in Encode" + ex.Message);
-            }
-        }
-
-        public string Decode(string encoded_text)
-        {
-            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
-            System.Text.Decoder utf8Decode = encoder.GetDecoder();
-            byte[] todecode_byte = Convert.FromBase64String(encoded_text);
-            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
-            char[] decoded_char = new char[charCount];
-            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
-            string result = new String(decoded_char);
-            return result;
         }
     }
 }

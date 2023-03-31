@@ -28,7 +28,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public User GetUserById(long id)
         {
-            return _db.Users.Where(x => x.UserId == id && x.Status == 1).Include(x=>x.UserSkills).ThenInclude(x=>x.Skill).FirstOrDefault();
+            return _db.Users.Where(x => x.UserId == id && x.Status == 1).Include(x => x.UserSkills).ThenInclude(x => x.Skill).FirstOrDefault();
         }
 
         public List<Country> GetCountries()
@@ -54,6 +54,11 @@ namespace CI_Platform.Repositories.Repositories
         public List<MissionTheme> GetMissionThemes()
         {
             return _db.MissionThemes.Where(x => x.Status == 1).ToList();
+        }
+
+        public void UpdateUser(User user)
+        {
+            _db.Users.Update(user);
         }
 
         public void Save()
@@ -99,6 +104,34 @@ namespace CI_Platform.Repositories.Repositories
         public List<Mission> GetMissionByUserApply(int id)
         {
             return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id).Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
+        }
+
+
+        public string Encode(string text)
+        {
+            try
+            {
+                byte[] encData_byte = new byte[text.Length];
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(text);
+                string encodedData = Convert.ToBase64String(encData_byte);
+                return encodedData;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Encode" + ex.Message);
+            }
+        }
+
+        public string Decode(string encoded_text)
+        {
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            System.Text.Decoder utf8Decode = encoder.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encoded_text);
+            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            string result = new String(decoded_char);
+            return result;
         }
     }
 }

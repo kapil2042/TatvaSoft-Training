@@ -23,6 +23,8 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<Skill> GetSkills();
 
+        void UpdateUser(User user);
+
         void Save();
 
         void SendMails(string body, string[] mailids);
@@ -32,5 +34,9 @@ namespace CI_Platform.Repositories.Interfaces
         long GetUserIdByEmail(string email);
 
         List<Mission> GetMissionByUserApply(int id);
+
+        string Encode(string text);
+
+        string Decode(string text);
     }
 }

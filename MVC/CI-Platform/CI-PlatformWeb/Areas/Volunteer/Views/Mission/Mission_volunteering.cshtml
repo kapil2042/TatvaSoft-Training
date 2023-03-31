@@ -16,7 +16,7 @@
                 $('#relatedmission').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
             },
             error: function (data) {
-                alert("some Error");
+                toastr.error("Some Error In FilterMission", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
             }
         });
     volpag(1);

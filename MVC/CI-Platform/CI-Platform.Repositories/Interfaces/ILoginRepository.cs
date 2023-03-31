@@ -18,18 +18,12 @@ namespace CI_Platform.Repositories.Interfaces
 
         void InsertToken(UserToken token);
 
-        void UpdateUser(User user);
-
         void UpdateToken(UserToken token);
 
         void Save();
 
         string TokenGenerate();
 
-        void SendMail(string body,string mailid);
-
-        string Encode(string text);
-        
-        string Decode(string text);
+        void SendMail(string body, string mailid);
     }
 }
