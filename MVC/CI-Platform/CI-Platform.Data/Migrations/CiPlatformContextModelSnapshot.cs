@@ -759,8 +759,8 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("mission_id");
 
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int")
+                    b.Property<long>("SkillId")
+                        .HasColumnType("bigint")
                         .HasColumnName("skill_id");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -819,12 +819,12 @@ namespace CI_Platform.Data.Migrations
 
             modelBuilder.Entity("CI_Platform.Models.Skill", b =>
                 {
-                    b.Property<int>("SkillId")
+                    b.Property<long>("SkillId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasColumnName("skill_id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("SkillId"));
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -1220,8 +1220,8 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("deleted_at");
 
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int")
+                    b.Property<long>("SkillId")
+                        .HasColumnType("bigint")
                         .HasColumnName("skill_id");
 
                     b.Property<DateTime?>("UpdatedAt")

@@ -62,11 +62,11 @@
                     </div>
                     <div class="col-12 mb-3">
                         <label class="text-muted mb-1">My Profile*</label>
-                        <textarea name="" id="" rows="5" class="form-control h-auto text-muted" asp-for="ProfileText" required placeholder="Enter your profile text"></textarea>
+                        <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="ProfileText" required placeholder="Enter your profile text"></textarea>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="text-muted mb-1">Why I Volunteer?</label>
-                        <textarea name="" id="" rows="5" class="form-control h-auto text-muted" asp-for="WhyIVolunteer" placeholder="Enter your reasone for become a volunteer"></textarea>
+                        <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="WhyIVolunteer" placeholder="Enter your reasone for become a volunteer"></textarea>
                     </div>
                 </div>
                 <div class="row mt-3 mt-lg-5">
@@ -132,15 +132,21 @@
                     </div>
                     <div class="col-12 mb-3">
                         <div class="border rounded-2 py-2 px-3">
-                            <select id="userSkill" name="userSkills[]" class="form-select border-0 bg-transparent h-auto" multiple disabled>
+                            <select id="userSkill1" class="form-select border-0 bg-transparent h-auto" multiple disabled>
                                 @foreach (var i in Model.UserSkills)
                                 {
-                                    <option value="@i.Skill.SkillName" selected>@i.Skill.SkillName</option>
+                                    <option value="@i.Skill.SkillId" class="bg-transparent" selected>@i.Skill.SkillName</option>
+                                }
+                            </select>
+                            <select id="userSkill" name="userSkills[]" class="form-select border-0 bg-transparent h-auto" multiple hidden>
+                                @foreach (var i in Model.UserSkills)
+                                {
+                                    <option value="@i.Skill.SkillId" selected>@i.Skill.SkillName</option>
                                 }
                             </select>
                         </div>
                         <div class="mt-3">
-                            <button class="btn-ci-secondary" data-bs-toggle="modal" data-bs-target="#addSkill">Add Skills</button>
+                            <button type="button" class="btn-ci-secondary" data-bs-toggle="modal" data-bs-target="#addSkill">Add Skills</button>
                         </div>
                     </div>
                 </div>
@@ -217,9 +223,10 @@
                     <div class="col-12 col-md">
                         <select name="from[]" id="multiselect" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
                                 multiple>
-                            <option value="a" class="">a</option>
-                            <option value="b" class="py-2 px-3 rounded-3">b</option>
-                            <option value="c" class="py-2 px-3 rounded-3">c</option>
+                            @foreach (var i in ViewBag.skills)
+                            {
+                                <option value="@i.SkillId">@i.SkillName</option>
+                            }
                         </select>
                     </div>
                     <div class="col-12 col-md-1 text-center d-flex flex-column justify-content-center">
@@ -234,16 +241,34 @@
                     <div class="col-12 col-md">
                         <select name="to[]" id="multiselect_to" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
                                 multiple>
+                            @foreach (var i in Model.UserSkills)
+                            {
+                                <option value="@i.Skill.SkillId">@i.Skill.SkillName</option>
+                            }
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer border-0 justify-content-start">
-                <button type="reset" class="btn-ci-secondary" data-bs-dismiss="modal">
+                <button type="button" class="btn-ci-secondary" data-bs-dismiss="modal">
                     Cancel
                 </button>
-                <button type="submit" class="btn-ci-primary">Save</button>
+                <button type="button" onclick="AddSkillToSelect()" class="btn-ci-primary">Save</button>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    function AddSkillToSelect() {
+        $("#userSkill1").html($("#multiselect_to").html());
+        $("#userSkill").html($("#multiselect_to").html());
+        $("#userSkill option").prop('selected', true);
+        $("#addSkill").modal('hide');
+        $("#userSkill1").attr("size", $("#userSkill1 option").length);
+    }
+    $(function () {
+        $("#userSkill1").attr("size", $("#userSkill1 option").length);
+    });
+</script>
