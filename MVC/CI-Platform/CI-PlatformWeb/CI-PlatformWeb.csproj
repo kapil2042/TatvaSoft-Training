@@ -32,6 +32,7 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="wwwroot\doc\missiondocuments\" />
     <Folder Include="wwwroot\images\storyimages\" />
+    <Folder Include="wwwroot\images\userimages\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
+
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
     [Authorize]
@@ -105,6 +106,38 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             else
             {
                 return false;
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult UploadImage(string image)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var userData = _commonRepository.GetUserById(Convert.ToInt64(uid));
+            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", userData.Avatar);
+            try
+            {
+                string[] imageParts = image.Split(new string[] { ";base64," }, StringSplitOptions.None);
+                string[] imageTypeAux = imageParts[0].Split(new string[] { "image/" }, StringSplitOptions.None);
+                string imageType = imageTypeAux[1];
+                byte[] imageBytes = Convert.FromBase64String(imageParts[1]);
+                string iname = Guid.NewGuid().ToString();
+                string fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/userimages", iname + ".png");
+                System.IO.File.WriteAllBytes(fileName, imageBytes);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                userData.Avatar = "userimages/" + iname + ".png";
+                _commonRepository.UpdateUser(userData);
+                _commonRepository.Save();
+                return Json(new { src = iname });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Message = "Error occurred. " + ex.Message });
             }
         }
     }

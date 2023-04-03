@@ -46,3 +46,44 @@
         text-align: end;
     }
 }
+
+.profile-uploder-img {
+    display: block;
+    max-width: 100%;
+}
+
+.preview {
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #F88634;
+}
+
+.profile-uploder-img-label:hover {
+    cursor: pointer;
+}
+
+.edit-profile-icon {
+    display: none;
+}
+
+.profile-img:hover .edit-profile-icon {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #FFFFFFA0;
+    top: 0;
+    left: 0;
+}
+
+    .profile-img:hover .edit-profile-icon i {
+        font-size: 30px;
+        display: block !important;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
