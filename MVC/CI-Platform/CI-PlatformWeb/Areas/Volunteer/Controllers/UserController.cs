@@ -109,7 +109,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             }
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public IActionResult UploadImage(string image)
         {

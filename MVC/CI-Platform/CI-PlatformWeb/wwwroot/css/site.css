@@ -4,6 +4,10 @@
     color: #414141;
 }
 
+main {
+    min-height: 85vh;
+}
+
 ::placeholder {
     color: #999999 !important;
     font-size: 14px !important;
