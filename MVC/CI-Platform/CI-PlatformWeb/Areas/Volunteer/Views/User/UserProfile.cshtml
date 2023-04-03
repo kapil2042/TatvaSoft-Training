@@ -94,21 +94,17 @@
                         <hr class="p-0 m-0 mb-3" />
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">City*</label>
-                        <select class="form-select text-muted" asp-for="CityId">
-                            @foreach (var i in ViewBag.city)
-                            {
-                                <option value="@i.CityId">@i.Name</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Country*</label>
-                        <select class="form-select text-muted" asp-for="CountryId">
+                        <select class="form-select text-muted user-country" asp-for="CountryId">
                             @foreach (var i in ViewBag.country)
                             {
                                 <option value="@i.CountryId">@i.Name</option>
                             }
+                        </select>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-3">
+                        <label class="text-muted mb-1">City*</label>
+                        <select class="form-select text-muted user-city" asp-for="CityId">
                         </select>
                     </div>
                 </div>
@@ -423,4 +419,42 @@
         $('#profileUploder').trigger('click');
     });
 
+
+    $(".user-country").on('change', function () {
+        $.ajax({
+            type: "GET",
+            url: "/Volunteer/Home/GetCityByCountry",
+            data: { country: $(this).val() },
+            success: function (data) {
+                $(".user-city").empty();
+                $.each(data, function (index, item) {
+                    if (item.cityId == @Model.CityId) {
+                        $(".user-city").append($(`<option></option>`).val(item.cityId).html(item.name).attr("selected","selected"));
+                    }
+                    else {
+                        $(".user-city").append($(`<option></option>`).val(item.cityId).html(item.name));
+                    }
+                })
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Volunteer/Home/GetCityByCountry",
+            data: { country: $('.user-country').val() },
+            success: function (data) {
+                $(".user-city").empty();
+                $.each(data, function (index, item) {
+                    if (item.cityId == @Model.CityId) {
+                        $(".user-city").append($(`<option></option>`).val(item.cityId).html(item.name).attr("selected","selected"));
+                    }
+                    else {
+                        $(".user-city").append($(`<option></option>`).val(item.cityId).html(item.name));
+                    }
+                })
+            }
+        });
+    });
 </script>
