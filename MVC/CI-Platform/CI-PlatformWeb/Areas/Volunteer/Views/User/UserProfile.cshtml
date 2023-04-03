@@ -15,7 +15,14 @@
                     <div class="mt-md-3 mt-1">
                         <div class="profile-img position-relative">
                             <label for="profileUploder" class="profile-uploder-img-label">
-                                <img id="userProfile" src="~/images/@Model.Avatar" alt="" />
+                                @if (Model.Avatar != null)
+                                {
+                                    <img id="userProfile" src="~/images/@Model.Avatar" alt="" />
+                                }
+                                else
+                                {
+                                    <img id="userProfile" src="~/images/profile.png" />
+                                }
                             </label>
                             <input type="file" id="profileUploder" name="image" hidden>
                             <div id="profileTreiger" class="edit-profile-icon">
@@ -290,8 +297,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                <button type="button" class="btn btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-ci-primary" id="crop">Upload</button>
             </div>
         </div>
     </div>
@@ -387,8 +394,8 @@
 
     $("#crop").click(function () {
         canvas = cropper.getCroppedCanvas({
-            width: 300,
-            height: 300,
+            width: 500,
+            height: 500,
         });
 
         canvas.toBlob(function (blob) {
