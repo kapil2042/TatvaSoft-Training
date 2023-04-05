@@ -266,19 +266,19 @@ else
                                 }
                                 else if (i.MissionType.Equals("TIME") && i.EndDate < DateTime.Now)
                                 {
-                                    <div class="mission-status bg-ci-primary">
+                                    <div class="mission-status bg-ci-danger">
                                         <p>CLOSED</p>
                                     </div>
                                 }
                                 else if (i.MissionType.Equals("GOAL") && avg >= 100)
                                 {
-                                    <div class="mission-status bg-ci-primary">
+                                    <div class="mission-status bg-ci-danger">
                                         <p>CLOSED</p>
                                     </div>
                                 }
                                 else if (i.TotalSeat - tot <= 0)
                                 {
-                                    <div class="mission-status bg-ci-primary">
+                                    <div class="mission-status bg-ci-danger">
                                         <p>CLOSED</p>
                                     </div>
                                 }

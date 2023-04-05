@@ -20,14 +20,19 @@ public partial class Story
     public long MissionId { get; set; }
 
     [Column("title")]
-    [StringLength(255)]
+    [StringLength(255, ErrorMessage = "Title length more than 255 character")]
     public string? Title { get; set; }
 
     [Column("short_description", TypeName = "text")]
+    [StringLength(255, ErrorMessage = "Short Description length more than 255 character")]
     public string? ShortDescription { get; set; }
 
     [Column("description", TypeName = "text")]
+    [StringLength(4000, ErrorMessage = "Description length more than 4000 character")]
     public string? Description { get; set; }
+
+    [Column("views")]
+    public long? Views { get; set; }
 
     [Column("status")]
     [StringLength(10)]

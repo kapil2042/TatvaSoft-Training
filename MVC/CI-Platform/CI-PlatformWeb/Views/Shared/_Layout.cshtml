@@ -41,23 +41,26 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Volunteer" asp-controller="Story" asp-action="Story">Story</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                Privacy
-                                <img src="~/images/drop-down.png" />
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                       asp-action="Privacy">Action</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                       asp-action="Privacy">Logout</a>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Volunteer" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Privacy
+                                    <img src="~/images/drop-down.png" />
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
+                                           asp-action="Privacy">Action</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
+                                           asp-action="Privacy">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>*@
                     </ul>
                 </div>
                 @{
@@ -65,6 +68,7 @@
                     var name = identity?.FindFirst(ClaimTypes.Name)?.Value;
                     var surname = identity?.FindFirst(ClaimTypes.Surname)?.Value;
                     var avtar = identity?.FindFirst(ClaimTypes.Thumbprint)?.Value;
+                    var email = identity?.FindFirst(ClaimTypes.Email)?.Value;
                 }
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -122,7 +126,46 @@
     </div>
 
     <footer class="border-top footer text-muted">
+        <div class="container-fluid container-lg p-3">
+            <a class="text-muted me-2" asp-action="Privacy" asp-controller="Home" asp-area="Volunteer">Privacy Policy</a>
+            <a class="border-start ps-2 text-muted" data-bs-toggle="modal" data-bs-target="#contactUsModal">Contact Us</a>
+        </div>
     </footer>
+
+    <!-- Contact Us Modal -->
+    <div class="modal fade" id="contactUsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="contactUsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="contactUsModalLabel">Contact Us</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-0">
+                    <div class="mb-3">
+                        <label for="uname" class="form-label">Name*</label>
+                        <input type="text" id="uname" class="form-control bg-ci-secondary" value="@name @surname" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="uemail" class="form-label">Email Address*</label>
+                        <input type="text" id="uemail" class="form-control bg-ci-secondary" value="@email" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="usub" class="form-label">Subject*</label>
+                        <input type="text" id="usub" class="form-control" placeholder="Enter Your Subject" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="umsg" class="form-label">Message*</label>
+                        <textarea rows="3" id="umsg" class="form-control h-auto" placeholder="Enter Your Message"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="reset" class="btn-ci-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-ci-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/grid_list_toggle.js" asp-append-version="true"></script>
     <script src="~/js/media.js" asp-append-version="true"></script>

@@ -245,6 +245,10 @@ a {
     background-color: #14C506 !important;
 }
 
+.bg-ci-secondary {
+    background-color: #EBE7E7 !important;
+}
+
 .bg-ci-opacity {
     background-color: #000000AF !important;
 }

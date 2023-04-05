@@ -33,7 +33,7 @@ else
                             </div>
                         </div>
                         <div class="story-hover position-absolute top-0 d-flex justify-content-center align-items-center w-100 h-100 bg-ci-opacity">
-                            <a class="btn-ci-white bg-transparent" asp-action="StoryDetails" asp-controller="Story" asp-area="Volunteer" asp-route-id="@i.StoryId">
+                            <a class="btn-ci-white bg-transparent" onclick="IncrementView(@i.StoryId)" >
                                 View Details&nbsp;<img src="~/images/right-arrow-white.png" alt="">
                             </a>
                         </div>

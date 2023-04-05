@@ -116,7 +116,9 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             var userData = _commonRepository.GetUserById(Convert.ToInt64(uid));
-            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", userData.Avatar);
+            string imagePath = "";
+            if (userData.Avatar != null)
+                imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", userData.Avatar);
             try
             {
                 string[] imageParts = image.Split(new string[] { ";base64," }, StringSplitOptions.None);

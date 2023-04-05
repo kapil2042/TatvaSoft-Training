@@ -127,6 +127,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var data = m.Skip(recSkip).Take(pager.PageSize).ToList();
+            if (data.Count() == 0)
+            {
+                pager = new VMPager(recsCount, 1, pageSize);
+                recSkip = 0;
+                data = m.Skip(recSkip).Take(pager.PageSize).ToList();
+            }
             model.mission = data;
             ViewBag.pager = pager;
             return PartialView("partialFilterMissions", model);

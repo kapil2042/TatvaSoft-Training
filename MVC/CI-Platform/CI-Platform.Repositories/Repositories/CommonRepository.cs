@@ -133,5 +133,10 @@ namespace CI_Platform.Repositories.Repositories
             string result = new String(decoded_char);
             return result;
         }
+
+        public List<CmsPage> getAllPrivacy()
+        {
+            return _db.CmsPages.ToList();
+        }
     }
 }

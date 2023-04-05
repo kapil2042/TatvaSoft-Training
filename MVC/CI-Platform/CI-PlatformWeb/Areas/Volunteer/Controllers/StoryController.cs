@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
+    [Authorize]
     public class StoryController : Controller
     {
         private readonly ICommonRepository _commonRepository;
@@ -41,7 +42,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult FilterStories(int id, string search, string country, string cities, string theme, string skill, int pg = 1)
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -107,7 +107,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             return PartialView("partiaFilterStory", model);
         }
 
-        [Authorize]
         public IActionResult ShareStory()
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -117,7 +116,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult ShareStory(Story story, IFormFileCollection? myfile, string action)
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -151,6 +149,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             newStory.MissionId = story.MissionId;
             newStory.ShortDescription = story.ShortDescription;
             newStory.Description = WebUtility.HtmlEncode(story.Description);
+            newStory.Views = 0;
 
             if (action.Equals("Submit"))
             {
@@ -170,7 +169,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             return View(story);
         }
 
-        [Authorize]
         public IActionResult StoryDetails(int id)
         {
             VMStoryDetails storyDetails = new VMStoryDetails();
@@ -181,7 +179,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
         [HttpPost]
         public void Recommended_Story(int storyid, string[] mailids)
         {
@@ -204,7 +201,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+
         public IActionResult EditStory(int id)
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -222,7 +219,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult EditStory(Story story1, IFormFileCollection? myfile, string action, string[] preloaded, int id)
         {
             var identity = User.Identity as ClaimsIdentity;
@@ -288,6 +284,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             story.ShortDescription = story1.ShortDescription;
             story.Description = WebUtility.HtmlEncode(story1.Description);
             story.UpdatedAt = DateTime.Now;
+            story.Views = 0;
 
 
             if (action.Equals("Submit"))
@@ -310,6 +307,24 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             }
             ViewBag.MissionId = new SelectList(_commonRepository.GetMissionByUserApply(Convert.ToInt32(uid)), "MissionId", "Title", story.MissionId);
             return View(story);
+        }
+
+
+        [HttpPost]
+        public void IncrementStoryView(int storyId)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var story = _storyRepository.GetStoryById(storyId);
+            if (story != null)
+            {
+                if (story.UserId != Convert.ToInt64(uid))
+                {
+                    story.Views++;
+                    _storyRepository.UpdateStory(story);
+                    _commonRepository.Save();
+                }
+            }
         }
     }
 }

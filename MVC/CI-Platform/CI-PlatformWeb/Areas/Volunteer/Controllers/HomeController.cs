@@ -4,6 +4,7 @@ using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
 using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
@@ -17,7 +18,16 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _commonRepository = commonRepository;
         }
 
-        
+        public IActionResult Privacy()
+        {
+            var privacy = _commonRepository.getAllPrivacy();
+            foreach (var p in privacy)
+            {
+                p.Description = WebUtility.HtmlDecode(p.Description);
+            }
+            return View(privacy);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

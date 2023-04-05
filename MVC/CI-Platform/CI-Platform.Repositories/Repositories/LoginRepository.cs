@@ -30,7 +30,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public User getUserByEmail(string email)
         {
-            return _db.Users.Where(x => x.Email == email && x.Status == 1).FirstOrDefault();
+            return _db.Users.Where(x => x.Email == email).FirstOrDefault();
         }
 
         public void InsertUser(VMUserRegistration user)

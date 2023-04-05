@@ -38,5 +38,7 @@ namespace CI_Platform.Repositories.Interfaces
         string Encode(string text);
 
         string Decode(string text);
+
+        List<CmsPage> getAllPrivacy();
     }
 }
