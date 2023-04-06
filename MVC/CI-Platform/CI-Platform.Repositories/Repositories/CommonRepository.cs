@@ -21,6 +21,11 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
+        public Admin getAdminByEmail(string email)
+        {
+            return _db.Admins.Where(x=>x.Email == email).FirstOrDefault();
+        }
+
         public List<User> GetAllUsers()
         {
             return _db.Users.Where(x => x.Status == 1).ToList();

@@ -9,6 +9,8 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface ICommonRepository
     {
+        Admin getAdminByEmail(string email);
+
         List<User> GetAllUsers();
 
         User GetUserById(long id);

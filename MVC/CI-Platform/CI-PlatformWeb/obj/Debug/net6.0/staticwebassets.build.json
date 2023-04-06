@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5pNzDeG7g8PhVGLKTtyCLIBAoTr+G8pHXq0K9X6rvBI=",
+  "Hash": "dQupgjyyInvgDzmIALl591EYeloH8TQDx0WefSPoukU=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CI-PlatformWeb.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\adminPage.css",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "css/adminPage.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\adminPage.css"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\css\\imageUploder.css",
@@ -2159,6 +2176,23 @@
       "OriginalItemSpec": "wwwroot\\images\\userimages\\10798c6a-93cf-4712-b1e8-76807e3687a6.png"
     },
     {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\6cf971ca-4533-4dd8-91e6-b14e69a2c297.png",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/userimages/6cf971ca-4533-4dd8-91e6-b14e69a2c297.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\6cf971ca-4533-4dd8-91e6-b14e69a2c297.png"
+    },
+    {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\b9d03552-fef8-4e2e-94aa-9957d909c387.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
@@ -2429,6 +2463,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\xlsx.png"
+    },
+    {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\adminPage.js",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "js/adminPage.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\adminPage.js"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\js\\ckeditor.js",

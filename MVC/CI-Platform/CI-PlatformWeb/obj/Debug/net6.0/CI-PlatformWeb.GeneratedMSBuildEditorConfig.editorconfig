@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -113,6 +117,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/secondNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXHNlY29uZE5hdi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/_Admin_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbl9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Views/Shared/_Login_layout.cshtml]
