@@ -139,7 +139,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         public IActionResult Mission_volunteering(int id)
         {
             if (TempData["alredyapplied"] != null)
@@ -173,7 +173,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public void Favourite_Mission(int missoinid)
         {
@@ -194,7 +194,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _commonRepository.Save();
         }
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public void Rating_Mission(int missoinid, int rat)
         {
@@ -219,7 +219,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public void Post_Comment(int missoinid, string commenttext)
         {
@@ -234,7 +234,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _commonRepository.Save();
         }
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public void Recommended_Mission(int missoinid, string[] mailids)
         {
@@ -257,7 +257,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public IActionResult GetVolunteer(int mid, int pg)
         {

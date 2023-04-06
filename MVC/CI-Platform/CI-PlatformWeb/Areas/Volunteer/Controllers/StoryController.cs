@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "VolunteerOnly")]
     public class StoryController : Controller
     {
         private readonly ICommonRepository _commonRepository;

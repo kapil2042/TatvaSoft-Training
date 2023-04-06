@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "VolunteerOnly")]
     public class UserController : Controller
     {
         private readonly ICommonRepository _commonRepository;
@@ -83,7 +83,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public bool ChangePassword(long userId, string oldPass, string newPass)
         {

@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "VolunteerOnly")]
     public class TimeSheetController : Controller
     {
         private readonly ITimeSheetRepository _timeSheetRepository;

@@ -51,6 +51,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         identity.AddClaim(new Claim(ClaimTypes.Name, userdata.FirstName));
                         identity.AddClaim(new Claim(ClaimTypes.Surname, userdata.LastName));
                         identity.AddClaim(new Claim(ClaimTypes.Sid, Convert.ToString(userdata.UserId)));
+                        identity.AddClaim(new Claim("RoleUser", "Volunteer"));
                         if (userdata.Avatar != null)
                             identity.AddClaim(new Claim(ClaimTypes.Thumbprint, userdata.Avatar));
                         var principle = new ClaimsPrincipal(identity);
@@ -84,7 +85,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         CookieAuthenticationDefaults.AuthenticationScheme);
                     identity.AddClaim(new Claim(ClaimTypes.Name, admin.FisrtName));
                     identity.AddClaim(new Claim(ClaimTypes.Surname, admin.LastName));
-                    identity.AddClaim(new Claim(ClaimTypes.Role, "Admin"));
+                    identity.AddClaim(new Claim("RoleUser", "Admin"));
                     var principle = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                     HttpContext.Session.SetString("Email", user.Email);

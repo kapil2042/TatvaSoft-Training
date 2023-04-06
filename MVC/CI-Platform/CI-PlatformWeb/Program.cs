@@ -34,6 +34,12 @@ builder.Services.AddSession(option =>
     option.Cookie.IsEssential = true;
 });
 
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("AdminOnly", policy => policy.RequireClaim("RoleUser", "Admin"));
+    option.AddPolicy("VolunteerOnly", policy => policy.RequireClaim("RoleUser", "Volunteer"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
