@@ -1,5 +1,8 @@
 ﻿@model List<CmsPage>
-
+@{
+    int cnt = 1;
+    int cnt1 = 1;
+}
 <link href="~/css/PrivacyPolicy.css" rel="stylesheet" />
 
 <div class="container-lg container-fluid py-3">
@@ -8,12 +11,13 @@
             <div id="list-privacy" class="list-group position-sticky">
                 @foreach (var i in Model)
                 {
-                    <a class="list-group-item text-wrap border-0 list-group-item-action border-bottom d-flex justify-content-between align-items-center" href="#list-privacy-@i.Slug">
+                    <a class="list-group-item text-wrap border-0 list-group-item-action border-bottom d-flex justify-content-between align-items-center" href="#list-privacy-@cnt">
                         @i.Title
                         <span>
                             <img src="~/images/right-arrow1.png" />
                         </span>
                     </a>
+                    cnt++;
                 }
             </div>
         </div>
@@ -21,12 +25,13 @@
             <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
                 @foreach (var i in Model)
                 {
-                    <div id="list-privacy-@i.Slug" class="border-bottom my-3 pb-3">
+                    <div id="list-privacy-@cnt1" class="border-bottom my-3 pb-3">
                         <h4>@i.Title</h4>
                         <div>
                             @Html.Raw(i.Description)
                         </div>
                     </div>
+                    cnt1++;
                 }
             </div>
         </div>

@@ -51,7 +51,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         identity.AddClaim(new Claim(ClaimTypes.Name, userdata.FirstName));
                         identity.AddClaim(new Claim(ClaimTypes.Surname, userdata.LastName));
                         identity.AddClaim(new Claim(ClaimTypes.Sid, Convert.ToString(userdata.UserId)));
-                        identity.AddClaim(new Claim("RoleUser", "Volunteer"));
+                        identity.AddClaim(new Claim("UserRole", "Volunteer"));
                         if (userdata.Avatar != null)
                             identity.AddClaim(new Claim(ClaimTypes.Thumbprint, userdata.Avatar));
                         var principle = new ClaimsPrincipal(identity);
@@ -85,11 +85,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                         CookieAuthenticationDefaults.AuthenticationScheme);
                     identity.AddClaim(new Claim(ClaimTypes.Name, admin.FisrtName));
                     identity.AddClaim(new Claim(ClaimTypes.Surname, admin.LastName));
-                    identity.AddClaim(new Claim("RoleUser", "Admin"));
+                    identity.AddClaim(new Claim("UserRole", "Admin"));
                     var principle = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                     HttpContext.Session.SetString("Email", user.Email);
-                    return RedirectToAction("Index", "User", new { Area = "Admin" });
+                    return RedirectToAction("Index", "AUser", new { Area = "Admin" });
                 }
                 else
                 {
@@ -171,6 +171,22 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
                 }
             }
+            var admin = _commonRepository.getAdminByEmail(email);
+            if (admin != null)
+            {
+                var dataToken = _loginRepository.getTokenByEmail(email);
+                if (dataToken.UserToken1 == token)
+                {
+                    admin.Password = _commonRepository.Encode(pass);
+                    admin.UpdatedAt = DateTime.Now;
+                    dataToken.Used = 1;
+                    _commonRepository.UpdateAdmin(admin);
+                    _loginRepository.UpdateToken(dataToken);
+                    _loginRepository.Save();
+                    TempData["resetpass"] = "Password is changed successfully!";
+                    return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
+                }
+            }
             ViewBag.error = "Something went Wrong! Please try again!";
             return View();
         }
@@ -187,7 +203,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         public IActionResult ForgotPass(string email)
         {
             var userdata = _loginRepository.getUserByEmail(email);
-            if (userdata != null)
+            var admin = _commonRepository.getAdminByEmail(email);
+            if (userdata != null || admin != null)
             {
                 var dataToken = _loginRepository.getTokenByEmail(email);
                 string token = _loginRepository.TokenGenerate();
@@ -210,7 +227,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _loginRepository.Save();
                 var link = Url.Action("ResetPass", "Login", new { Area = "Volunteer", email = _commonRepository.Encode(email), token = token });
                 var mailBody = "<h1>Reset Password Link:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:red;'>Click Here to Forgot Password</b>  </a>";
-                _loginRepository.SendMail(mailBody, email);
+                _loginRepository.SendMail("Reset Password ~ CI-Platform", mailBody, email);
                 TempData["mailsent"] = "Mail sent Successfully! Plese check mail";
                 return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
             }

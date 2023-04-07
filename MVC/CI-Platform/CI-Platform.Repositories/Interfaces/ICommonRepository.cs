@@ -27,9 +27,11 @@ namespace CI_Platform.Repositories.Interfaces
 
         void UpdateUser(User user);
 
+        void UpdateAdmin(Admin admin);
+
         void Save();
 
-        void SendMails(string body, string[] mailids);
+        void SendMails(string sub, string body, string[] mailids);
 
         long[] GetMissionsIdBySkillName(string[] skill);
 

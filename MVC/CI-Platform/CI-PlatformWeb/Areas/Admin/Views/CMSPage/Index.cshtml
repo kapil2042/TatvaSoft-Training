@@ -1,0 +1,143 @@
+﻿@using CI_Platform.Models.ViewModels
+@model List<CmsPage>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="my-3">
+    <div class="fs-3 d-flex">
+        <div class="border-bottom border-dark pe-3">
+            CMS Page
+        </div>
+    </div>
+    <hr class="m-0 p-0">
+</div>
+<div class="py-3 d-flex justify-content-between align-items-center">
+    <div class="my-2 position-relative d-flex align-items-center w-25">
+        <label for="search">
+            <img src="~/images/search.png" alt="search" class="search-admin">
+        </label>
+        <input type="search" name="search" id="search" class="form-control search-admin-input"
+               placeholder="Search ...">
+    </div>
+    <a role="button" class="btn-ci-primary" asp-action="AddCmsPage" asp-controller="CMSPage" asp-area="Admin">+ Add </a>
+</div>
+<div class="w-100">
+    @if (Model != null)
+    {
+        <div class="table-responsive">
+            <table class="table admin-table">
+                <thead class="table-light">
+                    <tr class="px-3">
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.Title</td>
+                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Deactive")</td>
+                            <td class="text-nowrap">
+                                <a onclick="">
+                                    <i class="bi bi-pencil-square me-2 text-ci-primary"></i>
+                                </a>
+                                <a onclick="">
+                                    <i class="bi bi-trash text-ci-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="fs-1 text-center text-ci-danger">
+            No Data Found!
+        </div>
+    }
+</div>
+@{
+    VMPager pager = new VMPager();
+    int pageNo = 0;
+    if (ViewBag.pager != null)
+    {
+        pager = ViewBag.pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+@if (pager.TotalPages > 0)
+{
+    <nav aria-label="Page" class="my-4" id="paginationpartial">
+        <ul class="pagination-sm pagination justify-content-end">
+            @if (pager.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="1">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.CurrentPage-1)">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link disabled">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link disabled">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+            }
+            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+            {
+                <li class="page-item"><a class="page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@pge">@pge</a></li>
+            }
+            @if (pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.CurrentPage+1)">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.TotalPages)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link disabled">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link disabled">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+<script>
+    $(document).ready(()=>{
+        $("#cmsLi").addClass('active');
+    })
+</script>

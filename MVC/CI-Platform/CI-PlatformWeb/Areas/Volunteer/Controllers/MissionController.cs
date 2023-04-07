@@ -17,7 +17,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _commonRepository = commonRepository;
             _missionRepository = missionRepository;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? ReturnUrl)
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
@@ -39,6 +39,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 favoriteMission = _missionRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid)),
                 missionApplicatoin = _missionRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid)),
             };
+            if (ReturnUrl != null)
+            {
+                ViewBag.error = "Access Decline!";
+            }
             return View(model);
         }
 
@@ -253,7 +257,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _missionRepository.InserMissionInvitation(invite);
             }
             _commonRepository.Save();
-            _commonRepository.SendMails(mailBody, mailids);
+            _commonRepository.SendMails("Mission Recommended", mailBody, mailids);
         }
 
 

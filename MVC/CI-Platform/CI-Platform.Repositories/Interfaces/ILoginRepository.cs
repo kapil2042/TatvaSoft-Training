@@ -24,6 +24,6 @@ namespace CI_Platform.Repositories.Interfaces
 
         string TokenGenerate();
 
-        void SendMail(string body, string mailid);
+        void SendMail(string sub, string body, string mailid);
     }
 }

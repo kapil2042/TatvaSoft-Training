@@ -1,34 +1,4 @@
-﻿.avtar-nav {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-}
-
-    .avtar-nav img {
-        position: absolute;
-        object-fit: cover;
-        width: 100%;
-        top: 0;
-        left: 0;
-        text-align: center;
-    }
-
-.navbar-toggler:hover {
-    box-shadow: 0 0 0 2px #F88634 !important;
-}
-
-.dropdown-toggle::after {
-    content: none;
-}
-
-.avatar-hover:hover {
-    box-shadow: 0 0 0 1px #F88634 !important;
-    border-radius: 10px;
-}
-
-#side_nav {
+﻿#side_nav {
     background: #F88634;
     min-width: 300px;
     max-width: 300px;
@@ -37,6 +7,7 @@
 
 .content {
     min-height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -87,4 +58,25 @@
         #side_nav.active {
             margin-left: 0;
         }
+}
+
+
+.search-admin {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+}
+
+.search-admin-input {
+    padding-left: 40px;
+}
+
+.admin-table thead tr th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ck-editor__editable[role="textbox"] {
+    min-height: 350px !important;
 }

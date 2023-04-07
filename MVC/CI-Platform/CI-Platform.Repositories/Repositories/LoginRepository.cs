@@ -71,7 +71,7 @@ namespace CI_Platform.Repositories.Repositories
             return token;
         }
 
-        public void SendMail(string body, string mailid)
+        public void SendMail(string sub, string body, string mailid)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace CI_Platform.Repositories.Repositories
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress("lrs.aau.in@gmail.com");
                 message.To.Add(new MailAddress(mailid));
-                message.Subject = "Reset Password ~ CI-Platform";
+                message.Subject = sub;
                 message.IsBodyHtml = true;
                 message.Body = body;
                 smtp.Port = 587;

@@ -23,7 +23,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public Admin getAdminByEmail(string email)
         {
-            return _db.Admins.Where(x=>x.Email == email).FirstOrDefault();
+            return _db.Admins.Where(x => x.Email == email).FirstOrDefault();
         }
 
         public List<User> GetAllUsers()
@@ -66,12 +66,17 @@ namespace CI_Platform.Repositories.Repositories
             _db.Users.Update(user);
         }
 
+        public void UpdateAdmin(Admin admin)
+        {
+            _db.Admins.Update(admin);
+        }
+
         public void Save()
         {
             _db.SaveChanges();
         }
 
-        public void SendMails(string body, string[] mailids)
+        public void SendMails(string sub, string body, string[] mailids)
         {
             try
             {
@@ -82,7 +87,7 @@ namespace CI_Platform.Repositories.Repositories
                 {
                     message.To.Add(mailid);
                 }
-                message.Subject = "Reset Password ~ CI-Platform";
+                message.Subject = sub;
                 message.IsBodyHtml = true;
                 message.Body = body;
                 smtp.Port = 587;

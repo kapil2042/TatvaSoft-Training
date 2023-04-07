@@ -17,6 +17,7 @@ builder.Services.AddScoped<IMissionRepository, MissionRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICMSPageRepository, CMSPageRepository>();
 
 
 
@@ -36,8 +37,8 @@ builder.Services.AddSession(option =>
 
 builder.Services.AddAuthorization(option =>
 {
-    option.AddPolicy("AdminOnly", policy => policy.RequireClaim("RoleUser", "Admin"));
-    option.AddPolicy("VolunteerOnly", policy => policy.RequireClaim("RoleUser", "Volunteer"));
+    option.AddPolicy("AdminOnly", policy => policy.RequireClaim("UserRole", "Admin"));
+    option.AddPolicy("VolunteerOnly", policy => policy.RequireClaim("UserRole", "Volunteer"));
 });
 
 var app = builder.Build();

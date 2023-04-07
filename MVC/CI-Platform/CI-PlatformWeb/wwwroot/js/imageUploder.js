@@ -69,9 +69,6 @@
 //    });
 //});
 
-
-/*! Image Uploader - v1.2.3 - 26/11/2019
-Copyright (c) 2019 Christian Bayer; Licensed MIT */
 !(function (e) {
     e.fn.imageUploader = function (t) {
         let n,

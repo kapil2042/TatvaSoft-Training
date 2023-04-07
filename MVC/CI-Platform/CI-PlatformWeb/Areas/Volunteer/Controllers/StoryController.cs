@@ -197,7 +197,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _storyRepository.InserStoryInvitation(invite);
             }
             _commonRepository.Save();
-            _commonRepository.SendMails(mailBody, mailids);
+            _commonRepository.SendMails("Story Recommended",mailBody, mailids);
         }
 
 

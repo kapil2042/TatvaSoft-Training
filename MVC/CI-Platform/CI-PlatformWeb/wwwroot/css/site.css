@@ -241,8 +241,16 @@ a {
     background-color: #f83434 !important;
 }
 
+.text-ci-danger {
+    color: #f83434 !important;
+}
+
 .bg-ci-success {
     background-color: #14C506 !important;
+}
+
+.text-ci-success {
+    color: #14C506 !important;
 }
 
 .bg-ci-secondary {
@@ -316,7 +324,7 @@ a {
 }
 
 .dropdown-toggle::after {
-    content: none;
+    content: none !important;
 }
 
 .avatar-hover:hover {
