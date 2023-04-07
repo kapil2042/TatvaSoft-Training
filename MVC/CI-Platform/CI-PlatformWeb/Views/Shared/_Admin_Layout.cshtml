@@ -24,42 +24,42 @@
             </div>
             <ul class="list-unstyled px-2">
                 <li class="mb-2" id="userLi">
-                    <a asp-action="Index" asp-controller="AUser" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="AUser" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-person-fill fs-5 me-2"></i>User
                     </a>
                 </li>
                 <li class="mb-2" id="cmsLi">
-                    <a asp-action="Index" asp-controller="CMSPage" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="CMSPage" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-file-earmark-text fs-5 me-2"></i>CMS Page
                     </a>
                 </li>
                 <li class="mb-2" id="missionLi">
-                    <a asp-action="Index" asp-controller="AMission" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="AMission" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-bullseye fs-5 me-2"></i>Mission
                     </a>
                 </li>
                 <li class="mb-2" id="mThemeLi">
-                    <a asp-action="Index" asp-controller="MissionTheme" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="MissionTheme" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-layout-wtf fs-5 me-2"></i>Mission Theme
                     </a>
                 </li>
                 <li class="mb-2" id="mSkillLi">
-                    <a asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-tools fs-5 me-2"></i>Mission Skills
                     </a>
                 </li>
                 <li class="mb-2" id="mApplicationLi">
-                    <a asp-action="Index" asp-controller="MissionApplication" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="MissionApplication" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-folder-fill fs-5 me-2"></i>Mission Application
                     </a>
                 </li>
                 <li class="mb-2" id="storyLi">
-                    <a asp-action="Index" asp-controller="AStory" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="AStory" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-journal-medical fs-5 me-2"></i>Story
                     </a>
                 </li>
                 <li class="mb-2" id="bannerLi">
-                    <a asp-action="Index" asp-controller="BannerManagement" asp-area="Admin" class="text-decoration-none d-flex align-items-center px-3 py-2 d-block">
+                    <a asp-action="Index" asp-controller="BannerManagement" asp-area="Admin" class="open-loader text-decoration-none d-flex align-items-center px-3 py-2 d-block">
                         <i class="bi bi-map-fill fs-5 me-2"></i>Banner Management
                     </a>
                 </li>
@@ -110,7 +110,7 @@
                 </div>
             </nav>
             <div id="admin-body" class="position-relative py-3 px-4">
-                <div class="bg-white z-3 w-100 h-100 d-flex justify-content-center align-items-center position-absolute top-0" id="admin-loader">
+                <div class="bg-white z-infi w-100 h-100 d-flex justify-content-center align-items-center position-absolute top-0 start-0" id="admin-loader">
                     <img src="~/images/loader.gif" alt="">
                 </div>
                 @RenderBody()
@@ -122,17 +122,20 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
     <script src="~/js/ckeditor.js" asp-append-version="true"></script>
     <script>
+        $(".open-loader").on('click',()=>{
+            $("#admin-loader").removeClass("d-none");
+        });
         setInterval(LiveTime, 1000);
         $(document).ready(()=>{
             $("#admin-loader").addClass("d-none");
-            @if (ViewBag.error != null)
-            {
-                @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
-            }
-            @if (ViewBag.success != null)
-            {
-                @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
-            }
+        @if (ViewBag.error != null)
+        {
+            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+        }
+        @if (ViewBag.success != null)
+        {
+            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+        }
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)

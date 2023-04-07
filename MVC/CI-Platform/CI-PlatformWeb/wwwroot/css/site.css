@@ -4,6 +4,10 @@
     color: #414141;
 }
 
+.z-infi {
+    z-index: 9999;
+}
+
 main {
     min-height: 85vh;
 }
@@ -136,7 +140,7 @@ a {
 
     .btn-ci-white:hover {
         color: #F88634;
-        border: 2px solid #FFFFFF;
+        border: 2px solid #F88634;
         background-color: #FFFFFF;
     }
 

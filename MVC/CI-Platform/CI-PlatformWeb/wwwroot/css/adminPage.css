@@ -44,7 +44,7 @@
 
 #admin-body {
     width: 100%;
-    height: calc(100% - 75px);
+    min-height: calc(100vh - 75px) !important;
 }
 
 @media screen and (max-width:991px) {
