@@ -12,5 +12,13 @@ namespace CI_Platform.Repositories.Interfaces
         List<CmsPage> GetCmsPages(int recSkip, int recTake);
 
         int GetTotalCmsPageRecord();
+
+        void InsertCmsPage(CmsPage cms);
+
+        void UpdateCmsPage(CmsPage cms);
+
+        void DeleteCmsPage(CmsPage cms);
+
+        CmsPage GetCmsPageById(long id);
     }
 }

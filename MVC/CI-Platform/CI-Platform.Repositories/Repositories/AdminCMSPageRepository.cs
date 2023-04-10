@@ -27,5 +27,25 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.CmsPages.Count();
         }
+
+        public void InsertCmsPage(CmsPage cms)
+        {
+            _db.CmsPages.Add(cms);
+        }
+
+        public void UpdateCmsPage(CmsPage cms)
+        {
+            _db.CmsPages.Update(cms);
+        }
+
+        public void DeleteCmsPage(CmsPage cms)
+        {
+            _db.CmsPages.Remove(cms);
+        }
+
+        public CmsPage GetCmsPageById(long id)
+        {
+            return _db.CmsPages.Where(x => x.CsmPageId == id).FirstOrDefault();
+        }
     }
 }

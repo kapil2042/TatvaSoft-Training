@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qTlpsyaedoH13jMBhaHyD2YPGoH9aVNH4TApGkU3KmE=",
+  "Hash": "+0a8HbXPQq/nCpV/AnbyJbv55w7clfpBfKrI2kZELqE=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -2176,12 +2176,12 @@
       "OriginalItemSpec": "wwwroot\\images\\user1.png"
     },
     {
-      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\10798c6a-93cf-4712-b1e8-76807e3687a6.png",
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\userKapil1.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
       "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/userimages/10798c6a-93cf-4712-b1e8-76807e3687a6.png",
+      "RelativePath": "images/userimages/userKapil1.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2190,15 +2190,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\userimages\\10798c6a-93cf-4712-b1e8-76807e3687a6.png"
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\userKapil1.png"
     },
     {
-      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\6cf971ca-4533-4dd8-91e6-b14e69a2c297.png",
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\userParth2.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
       "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/userimages/6cf971ca-4533-4dd8-91e6-b14e69a2c297.png",
+      "RelativePath": "images/userimages/userParth2.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2207,15 +2207,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\userimages\\6cf971ca-4533-4dd8-91e6-b14e69a2c297.png"
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\userParth2.png"
     },
     {
-      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\b9d03552-fef8-4e2e-94aa-9957d909c387.png",
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\userimages\\userSuresh3.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
       "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/userimages/b9d03552-fef8-4e2e-94aa-9957d909c387.png",
+      "RelativePath": "images/userimages/userSuresh3.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2224,7 +2224,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\userimages\\b9d03552-fef8-4e2e-94aa-9957d909c387.png"
+      "OriginalItemSpec": "wwwroot\\images\\userimages\\userSuresh3.png"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\user-img.png",

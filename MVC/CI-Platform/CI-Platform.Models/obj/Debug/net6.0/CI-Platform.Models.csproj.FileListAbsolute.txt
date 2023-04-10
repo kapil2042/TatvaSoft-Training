@@ -39,3 +39,4 @@ D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Deb
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\ref\CI-Platform.Models.dll
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.pdb
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.genruntimeconfig.cache
+D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.csproj.AssemblyReference.cache

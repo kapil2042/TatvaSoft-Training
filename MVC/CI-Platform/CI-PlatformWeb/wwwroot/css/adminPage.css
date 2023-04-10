@@ -47,17 +47,25 @@
     min-height: calc(100vh - 75px) !important;
 }
 
+.search-div-admin {
+    width: 40% !important;
+}
+
 @media screen and (max-width:991px) {
     #side_nav {
         margin-left: -300px;
         position: fixed;
         min-height: 100vh;
-        z-index: 1;
+        z-index: 9999;
     }
 
         #side_nav.active {
             margin-left: 0;
         }
+
+    .search-div-admin {
+        width: 100% !important;
+    }
 }
 
 

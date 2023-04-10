@@ -27,8 +27,8 @@
                     <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group text-end">
-                    <input type="reset" value="Cancel" class="btn-ci-secondary" />
-                    <input type="submit" value="Save" class="open-loader btn-ci-primary" />
+                    <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin">Cancel</a>
+                    <input type="submit" value="Update" class="open-loader btn-ci-primary" />
                 </div>
             </form>
         </div>

@@ -122,17 +122,17 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/", userData.Avatar);
             try
             {
-                string[] imageParts = image.Split(new string[] { ";base64," }, StringSplitOptions.None);
-                string[] imageTypeAux = imageParts[0].Split(new string[] { "image/" }, StringSplitOptions.None);
-                string imageType = imageTypeAux[1];
-                byte[] imageBytes = Convert.FromBase64String(imageParts[1]);
-                string iname = Guid.NewGuid().ToString();
-                string fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/userimages", iname + ".png");
-                System.IO.File.WriteAllBytes(fileName, imageBytes);
                 if (System.IO.File.Exists(imagePath))
                 {
                     System.IO.File.Delete(imagePath);
                 }
+                string[] imageParts = image.Split(new string[] { ";base64," }, StringSplitOptions.None);
+                string[] imageTypeAux = imageParts[0].Split(new string[] { "image/" }, StringSplitOptions.None);
+                string imageType = imageTypeAux[1];
+                byte[] imageBytes = Convert.FromBase64String(imageParts[1]);
+                string iname = "user" + userData.FirstName + userData.UserId;
+                string fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/userimages", iname + ".png");
+                System.IO.File.WriteAllBytes(fileName, imageBytes);
                 userData.Avatar = "userimages/" + iname + ".png";
                 _commonRepository.UpdateUser(userData);
                 _commonRepository.Save();

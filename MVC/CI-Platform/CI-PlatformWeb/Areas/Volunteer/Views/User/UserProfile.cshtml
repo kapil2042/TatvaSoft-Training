@@ -408,7 +408,7 @@
                     success: function (data) {
                         $("#userProfile").attr("src", "/images/userimages/" + data.src + ".png");
                         bs_modal.modal('hide');
-                        toastr.success("Your Profile image has been changed successfully", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                        toastr.success("Your Profile image has been changed successfully! It's reflected after page refresh!..", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
                     }
                 });
             };

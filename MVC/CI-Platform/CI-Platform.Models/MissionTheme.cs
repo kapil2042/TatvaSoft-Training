@@ -15,9 +15,11 @@ public partial class MissionTheme
 
     [Column("title")]
     [StringLength(255)]
+    [Required(ErrorMessage ="Theme Title is required")]
     public string? Title { get; set; }
 
     [Column("status")]
+    [Required(ErrorMessage ="Status is required")]
     public byte? Status { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

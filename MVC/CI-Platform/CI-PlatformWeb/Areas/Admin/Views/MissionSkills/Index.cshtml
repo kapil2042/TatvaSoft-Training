@@ -14,18 +14,20 @@
     </div>
     <hr class="m-0 p-0">
 </div>
-<div class="py-3 d-flex justify-content-between align-items-center">
-    <div class="my-2 position-relative d-flex align-items-center w-25">
+<div class="py-3 d-sm-flex justify-content-between align-items-center">
+    <div class="my-2 position-relative d-flex align-items-center search-div-admin">
         <label for="search">
             <img src="~/images/search.png" alt="search" class="search-admin">
         </label>
         <input type="search" name="search" id="search" class="form-control search-admin-input"
                placeholder="Search ...">
     </div>
-    <a role="button" class="btn-ci-primary" asp-action="AddMissionSkill" asp-controller="MissionSkills" asp-area="Admin">+ Add</a>
+    <div class="ms-sm-3 text-end mt-3 mt-sm-0">
+        <a role="button" class="btn-ci-primary" asp-action="AddMissionSkill" asp-controller="MissionSkills" asp-area="Admin">+ Add</a>
+    </div>
 </div>
 <div class="w-100">
-    @if (Model != null)
+    @if (Model.Count() > 0)
     {
         <div class="table-responsive">
             <table class="table admin-table">

@@ -15,9 +15,11 @@ public partial class Skill
 
     [Column("skill_name")]
     [StringLength(64)]
+    [Required(ErrorMessage ="Skill Name is required")]
     public string SkillName { get; set; } = null!;
 
     [Column("status")]
+    [Required(ErrorMessage ="Status is Required")]
     public byte? Status { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

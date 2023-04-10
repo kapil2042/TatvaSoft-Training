@@ -38,10 +38,12 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var MissionThemeData = _adminMissionThemeRepository.GetMissionThemes(recSkip, pager.PageSize);
-            if (MissionThemeData.Count() == 0)
+            if (MissionThemeData.Count() == 0 && pg > 1)
             {
                 return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = Convert.ToInt32(TempData["pg"]) - 1 });
             }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
             ViewBag.pager = pager;
             return View(MissionThemeData);
         }
@@ -61,6 +63,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             {
                 _adminMissionThemeRepository.InsertMissionTheme(missionTheme);
                 _commonRepository.Save();
+                TempData["msg"] = "Record Inserted Successfully!";
                 return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(missionTheme);
@@ -90,6 +93,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 theme.Status = missionTheme.Status;
                 _adminMissionThemeRepository.UpdateMissionTheme(theme);
                 _commonRepository.Save();
+                TempData["msg"] = "Record Edited Successfully!";
                 return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(missionTheme);
@@ -106,6 +110,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 _adminMissionThemeRepository.DeleteMissionTheme(missionTheme);
             }
             _commonRepository.Save();
+            TempData["msg"] = "Record Deleted Successfully!";
             return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
         }
     }

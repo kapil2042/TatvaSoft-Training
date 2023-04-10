@@ -1,4 +1,4 @@
-﻿@model CI_Platform.Models.MissionTheme
+﻿@model CI_Platform.Models.CmsPage
 
 @{
     ViewData["Title"] = "Edit";
@@ -19,6 +19,18 @@
                     <span asp-validation-for="Title" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group pb-3">
+                    <label asp-for="Description" class="control-label text-muted">Description</label>
+                    <textarea asp-for="Description" id="editor"></textarea>
+                    <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
+                    </div>
+                    <span asp-validation-for="Description" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group pb-3">
+                    <label asp-for="Slug" class="control-label text-muted">Slug</label>
+                    <input asp-for="Slug" class="form-control" />
+                    <span asp-validation-for="Slug" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group pb-3">
                     <label asp-for="Status" class="control-label text-muted">Status</label>
                     <select asp-for="Status" class="form-control">
                         <option value="1">Active</option>
@@ -27,7 +39,7 @@
                     <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group text-end">
-                    <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="MissionTheme" asp-area="Admin">Cancel</a>
+                    <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="CMSPage" asp-area="Admin">Cancel</a>
                     <input type="submit" value="Update" class="open-loader btn-ci-primary" />
                 </div>
             </form>
@@ -35,8 +47,11 @@
     </div>
 </div>
 
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+<script src="~/js/ckeditor.js" asp-append-version="true"></script>
 <script>
     $(document).ready(()=>{
-        $("#mThemeLi").addClass('active');
-    });
+        $("#cmsLi").addClass('active');
+    })
 </script>

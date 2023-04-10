@@ -31,10 +31,12 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var MissionSkillData = _adminMissionSkillsRepository.GetSkills(recSkip, pager.PageSize);
-            if (MissionSkillData.Count() == 0)
+            if (MissionSkillData.Count() == 0 && pg > 1)
             {
                 return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = Convert.ToInt32(TempData["pg"]) - 1 });
             }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
             ViewBag.pager = pager;
             return View(MissionSkillData);
         }
@@ -54,6 +56,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             {
                 _adminMissionSkillsRepository.InsertSkill(skill);
                 _commonRepository.Save();
+                TempData["msg"] = "Record Inserted Successfully!";
                 return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(skill);
@@ -83,6 +86,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 newSkill.Status = skill.Status;
                 _adminMissionSkillsRepository.UpdateSkill(newSkill);
                 _commonRepository.Save();
+                TempData["msg"] = "Record Edited Successfully!";
                 return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(skill);
@@ -99,6 +103,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 _adminMissionSkillsRepository.DeleteSkill(skill);
             }
             _commonRepository.Save();
+            TempData["msg"] = "Record Deleted Successfully!";
             return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
         }
     }

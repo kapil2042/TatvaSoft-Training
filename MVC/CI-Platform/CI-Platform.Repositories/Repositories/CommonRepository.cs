@@ -146,7 +146,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<CmsPage> getAllPrivacy()
         {
-            return _db.CmsPages.ToList();
+            return _db.CmsPages.Where(x => x.Status == 1).ToList();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
-<script src="~/js/ckeditor.js" asp-append-version="true"></script>
-@model CI_Platform.Models.CmsPage
+﻿@model CI_Platform.Models.CmsPage
 
 @{
     ViewData["Title"] = "AddCmsPage";
@@ -41,10 +39,19 @@
                     <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group text-end">
-                    <input type="reset" value="Cancel" class="btn-ci-secondary" />
+                    <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="CMSPage" asp-area="Admin">Cancel</a>
                     <input type="submit" value="Save" class="open-loader btn-ci-primary" />
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+<script src="~/js/ckeditor.js" asp-append-version="true"></script>
+<script>
+    $(document).ready(()=>{
+        $("#cmsLi").addClass('active');
+    })
+</script>
