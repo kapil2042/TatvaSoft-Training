@@ -9,6 +9,7 @@ using CI_Platform.Models.ViewModels;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
+    [Area("Volunteer")]
     [AllowAnonymous]
     public class LoginController : Controller
     {

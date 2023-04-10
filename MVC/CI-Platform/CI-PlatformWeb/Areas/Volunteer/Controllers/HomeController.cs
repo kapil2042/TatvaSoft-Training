@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
+    [Area("Volunteer")]
     public class HomeController : Controller
     {
         private readonly ICommonRepository _commonRepository;

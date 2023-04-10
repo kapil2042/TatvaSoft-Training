@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dQupgjyyInvgDzmIALl591EYeloH8TQDx0WefSPoukU=",
+  "Hash": "qTlpsyaedoH13jMBhaHyD2YPGoH9aVNH4TApGkU3KmE=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -389,6 +389,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\add1.png"
+    },
+    {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\admin_loader.gif",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/admin_loader.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\admin_loader.gif"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\Already-volunteered.png",

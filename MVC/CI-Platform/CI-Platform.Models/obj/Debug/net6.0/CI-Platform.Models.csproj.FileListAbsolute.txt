@@ -31,7 +31,6 @@ D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Deb
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.dll
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\ref\CI-Platform.Models.dll
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\bin\Debug\net6.0\CI-Platform.Models.pdb
-D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.csproj.AssemblyReference.cache
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.GeneratedMSBuildEditorConfig.editorconfig
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.AssemblyInfoInputs.cache
 D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-Platform.Models\obj\Debug\net6.0\CI-Platform.Models.AssemblyInfo.cs

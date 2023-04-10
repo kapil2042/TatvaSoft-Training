@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Interfaces
 {
-    public interface ICMSPageRepository
+    public interface IAdminCMSPageRepository
     {
         List<CmsPage> GetCmsPages(int recSkip, int recTake);
 

@@ -111,7 +111,7 @@
             </nav>
             <div id="admin-body" class="position-relative py-3 px-4">
                 <div class="bg-white z-infi w-100 h-100 d-flex justify-content-center align-items-center position-absolute top-0 start-0" id="admin-loader">
-                    <img src="~/images/loader.gif" alt="">
+                    <img src="~/images/admin_loader.gif" alt="">
                 </div>
                 @RenderBody()
             </div>
@@ -119,8 +119,6 @@
     </div>
     <script src="~/lib/toastr/toastr.min.js" asp-append-version="true"></script>
     <script src="~/js/adminPage.js" asp-append-version="true"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
-    <script src="~/js/ckeditor.js" asp-append-version="true"></script>
     <script>
         $(".open-loader").on('click',()=>{
             $("#admin-loader").removeClass("d-none");

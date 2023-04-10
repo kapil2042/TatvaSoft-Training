@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Repositories
 {
-    public class CMSPageRepository : ICMSPageRepository
+    public class AdminCMSPageRepository : IAdminCMSPageRepository
     {
         private readonly CiPlatformContext _db;
 
-        public CMSPageRepository(CiPlatformContext db)
+        public AdminCMSPageRepository(CiPlatformContext db)
         {
             _db = db;
         }

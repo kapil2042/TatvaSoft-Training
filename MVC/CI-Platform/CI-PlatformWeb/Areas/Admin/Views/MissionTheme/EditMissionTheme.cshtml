@@ -1,0 +1,42 @@
+﻿@model CI_Platform.Models.MissionTheme
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<div class="w-100">
+    <div class="border rounded-1">
+        <div class="px-3 py-2 fs-3 border-bottom bg-light">
+            Edit
+        </div>
+        <div class="p-3">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group pb-3">
+                    <label asp-for="Title" class="control-label text-muted">Title</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group pb-3">
+                    <label asp-for="Status" class="control-label text-muted">Status</label>
+                    <select asp-for="Status" class="form-control">
+                        <option value="1">Active</option>
+                        <option value="0">Deactive</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group text-end">
+                    <input type="reset" value="Cancel" class="btn-ci-secondary" />
+                    <input type="submit" value="Save" class="open-loader btn-ci-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(()=>{
+        $("#mThemeLi").addClass('active');
+    });
+</script>

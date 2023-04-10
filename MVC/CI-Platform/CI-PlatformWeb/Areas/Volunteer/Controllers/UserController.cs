@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 {
+    [Area("Volunteer")]
     [Authorize(Policy = "VolunteerOnly")]
     public class UserController : Controller
     {

@@ -1,14 +1,17 @@
 ﻿using CI_Platform.Models.ViewModels;
 using CI_Platform.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CI_PlatformWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Policy = "AdminOnly")]
     public class CMSPageController : Controller
     {
-        private readonly ICMSPageRepository _cmsPageRepository;
+        private readonly IAdminCMSPageRepository _cmsPageRepository;
 
-        public CMSPageController(ICMSPageRepository cmsPageRepository)
+        public CMSPageController(IAdminCMSPageRepository cmsPageRepository)
         {
             _cmsPageRepository = cmsPageRepository;
         }
