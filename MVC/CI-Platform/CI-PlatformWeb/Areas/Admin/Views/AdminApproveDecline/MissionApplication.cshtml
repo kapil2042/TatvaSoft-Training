@@ -22,7 +22,7 @@
                placeholder="Search ..." value="@ViewBag.query" onkeyup="MissionAppSearch(this.value)">
     </div>
     @*<div class="ms-sm-3 text-end mt-3 mt-sm-0">
-        <a role="button" class="open-loader btn-ci-primary" asp-action="AddCmsPage" asp-controller="CMSPage" asp-area="Admin">+ Add </a>
+        <a role="button" class="open-loader btn-ci-primary" asp-action="AddCmsPage" asp-controller="AdminApproveDecline" asp-area="Admin">+ Add </a>
         </div>*@
 </div>
 <div class="w-100" id="table-body">
@@ -88,12 +88,12 @@
             @if (pager.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="1">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="MissionApplication" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="1">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage-1)">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="MissionApplication" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage-1)">
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
@@ -113,17 +113,17 @@
             }
             @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
             {
-                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@pge">@pge</a></li>
+                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="MissionApplication" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@pge">@pge</a></li>
             }
             @if (pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage+1)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="MissionApplication" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage+1)">
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.TotalPages)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="MissionApplication" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.TotalPages)">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -152,16 +152,16 @@ else
 @*Approve confirm modal*@
 <div class="modal fade" id="ApproveConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <form asp-action="ChangeMissionApplicationStatus" asp-controller="MissionApplication" asp-area="Admin">
+        <form asp-action="ChangeMissionApplicationStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
             <div class="modal-content">
                 <div class="modal-body">
                     <input type="number" value="" id="ApproveId" name="id" hidden />
                     <span class="fs-4 text-ci-success">
-                        <i class="bi bi-info-circle text-ci-success"></i>
-                        Are You Sure!??
+                        <i class="bi bi-exclamation-octagon-fill text-ci-success"></i>
+                        Are you sure to Approve this?
                     </span>
                 </div>
-                <div class="modal-footer p-0 pe-3 py-2">
+                <div class="modal-footer p-0 py-2 justify-content-center">
                     <button type="submit" name="action" value="true" class="btn-ci-success fs-7">
                         Approve
                     </button>
@@ -175,16 +175,16 @@ else
 @*Declie confirm modal*@
 <div class="modal fade" id="DeclineConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <form asp-action="ChangeMissionApplicationStatus" asp-controller="MissionApplication" asp-area="Admin">
+        <form asp-action="ChangeMissionApplicationStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
             <div class="modal-content">
                 <div class="modal-body">
                     <input type="number" value="" id="DeclineId" name="id" hidden />
                     <span class="fs-4 text-ci-danger">
-                        <i class="bi bi-info-circle text-ci-danger"></i>
-                        Are You Sure!??
+                        <i class="bi bi-exclamation-octagon-fill text-ci-danger"></i>
+                        Are You Sure to Decline this?
                     </span>
                 </div>
-                <div class="modal-footer p-0 pe-3 py-2">
+                <div class="modal-footer p-0 py-2 justify-content-center">
                     <button type="submit" name="action" value="false" class="btn-ci-danger fs-7">
                         Decline
                     </button>

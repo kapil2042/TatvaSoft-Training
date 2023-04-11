@@ -115,7 +115,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_loginRepository.getUserByEmail(user.Email) != null)
+                if (_loginRepository.getUserByEmail(user.Email) != null || _commonRepository.getAdminByEmail(user.Email) != null)
                 {
                     ViewBag.error = user.Email + " was already Registered!";
                 }

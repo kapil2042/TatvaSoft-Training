@@ -88,3 +88,16 @@
 .ck-editor__editable[role="textbox"] {
     min-height: 350px !important;
 }
+
+.image-admin-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px dashed #F88634;
+    border-radius: 10px;
+    font-size: 65px;
+    color: #F88634;
+}

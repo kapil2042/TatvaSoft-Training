@@ -21,12 +21,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionApplicatoin> GetMissionApplications(string query, int recSkip, int recTake)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.User.FirstName.Contains(query) || x.User.LastName.Contains(query)).ToList();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).ToList();
         }
 
         public int GetTotalMissionApplicationRecord(string query)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.User.FirstName.Contains(query) || x.User.LastName.Contains(query)).Count();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Count();
         }
 
         public void UpdateMissionApplicationStatus(MissionApplicatoin applicatoin)
@@ -37,6 +37,31 @@ namespace CI_Platform.Repositories.Repositories
         public MissionApplicatoin GetMissionApplicationById(long id)
         {
             return _db.MissionApplicatoins.Where(x => x.MissionApplicationId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
+        }
+
+        public List<Story> GetStories(string query, int recSkip, int recTake)
+        {
+            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).ToList();
+        }
+
+        public int GetTotalStoriesRecord(string query)
+        {
+            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Count();
+        }
+
+        public void UpdateStoryStatus(Story story)
+        {
+            _db.Stories.Update(story);
+        }
+
+        public void DeleteStory(Story story)
+        {
+            _db.Stories.Remove(story);
+        }
+
+        public Story GetStoryById(long id)
+        {
+            return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
         }
     }
 }

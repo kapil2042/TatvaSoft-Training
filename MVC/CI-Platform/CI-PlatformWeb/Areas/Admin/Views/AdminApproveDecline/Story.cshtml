@@ -8,7 +8,7 @@
 <div class="my-3">
     <div class="fs-3 d-flex">
         <div class="border-bottom border-dark pe-3">
-            CMS Page
+            Mission Applications
         </div>
     </div>
     <hr class="m-0 p-0">
@@ -19,21 +19,22 @@
             <img src="~/images/search.png" alt="search" class="search-admin">
         </label>
         <input type="search" name="search" id="search" class="form-control search-admin-input"
-               placeholder="Search ...">
+               placeholder="Search ..." value="@ViewBag.query" onkeyup="StorySearch(this.value)">
     </div>
-    <div class="ms-sm-3 text-end mt-3 mt-sm-0">
-        <a role="button" class="open-loader btn-ci-primary" asp-action="AddCmsPage" asp-controller="CMSPage" asp-area="Admin">+ Add </a>
-    </div>
+    @*<div class="ms-sm-3 text-end mt-3 mt-sm-0">
+        <a role="button" class="open-loader btn-ci-primary" asp-action="AddCmsPage" asp-controller="AdminApproveDecline" asp-area="Admin">+ Add </a>
+        </div>*@
 </div>
-<div class="w-100">
+<div class="w-100" id="table-body">
     @if (Model.Count() > 0)
     {
         <div class="table-responsive">
             <table class="table admin-table">
                 <thead class="table-light">
                     <tr class="px-3">
-                        <th>Title</th>
-                        <th>Status</th>
+                        <th>Story Title</th>
+                        <th>Full Name</th>
+                        <th>Mission Title</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -41,16 +42,20 @@
                     @foreach (var i in Model)
                     {
                         <tr>
-                            @*<td>@i.Title</td>
-                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Deactive")</td>
+                            <td>@i.Title</td>
+                            <td>@i.User.FirstName @i.User.LastName</td>
+                            <td>@i.Mission.Title</td>
                             <td class="text-nowrap">
-                                <a class="open-loader" asp-action="EditCmsPage" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@i.CsmPageId">
-                                    <i class="bi bi-pencil-square me-2 text-ci-primary"></i>
+                                <a onclick="ApprovedById(@i.StoryId)">
+                                    <i class="bi bi-check-circle me-2 text-ci-success"></i>
                                 </a>
-                                <a onclick="deleteById(@i.CsmPageId)">
-                                    <i class="bi bi-trash text-ci-danger"></i>
+                                <a onclick="DeclinedById(@i.StoryId)">
+                                    <i class="bi bi-x-circle me-2 text-ci-danger"></i>
                                 </a>
-                            </td>*@
+                                <a onclick="deleteById(@i.StoryId)">
+                                    <i class="bi bi-trash me-2 text-ci-secondary"></i>
+                                </a>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -75,19 +80,19 @@
 }
 
 
-@if (pager.TotalPages > 0)
+@if (pager.TotalPages > 0 && Model.Count() > 0)
 {
-    <nav aria-label="Page" class="my-4" id="paginationpartial">
+    <nav aria-label="Page" class="my-4" id="pagination-body">
         <ul class="pagination-sm pagination justify-content-end">
             @if (pager.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="1">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="Story" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="1">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.CurrentPage-1)">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="Story" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage-1)">
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
@@ -107,17 +112,17 @@
             }
             @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
             {
-                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@pge">@pge</a></li>
+                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Story" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@pge">@pge</a></li>
             }
             @if (pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.CurrentPage+1)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="Story" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage+1)">
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="CMSPage" asp-area="Admin" asp-route-pg="@(pager.TotalPages)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="Story" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.TotalPages)">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -138,11 +143,15 @@
         </ul>
     </nav>
 }
+else
+{
+    <nav id="pagination-body"></nav>
+}
 
 @*delete confirm modal*@
 <div class="modal fade" id="confirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <form asp-action="DeleteCmsPage" asp-controller="CMSPage" asp-area="Admin">
+        <form asp-action="DeleteStory" asp-controller="AdminApproveDecline" asp-area="Admin">
             <div class="modal-content">
                 <div class="modal-body">
                     <input type="number" value="" id="DeleteId" name="id" hidden />
@@ -151,7 +160,7 @@
                         Are You Sure!??
                     </span>
                 </div>
-                <div class="modal-footer p-0 pe-3 py-2">
+                <div class="modal-footer p-0 py-2 justify-content-center">
                     <button type="submit" class="btn-ci-danger fs-7">
                         Delete
                     </button>
@@ -162,11 +171,85 @@
     </div>
 </div>
 
+@*Approve confirm modal*@
+<div class="modal fade" id="ApproveConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <form asp-action="ChangeStoryStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="number" value="" id="ApproveId" name="id" hidden />
+                    <span class="fs-4 text-ci-success">
+                        <i class="bi bi-exclamation-octagon-fill text-ci-success"></i>
+                        Are you sure to Approve this?
+                    </span>
+                </div>
+                <div class="modal-footer p-0 py-2 justify-content-center">
+                    <button type="submit" name="action" value="true" class="btn-ci-success fs-7">
+                        Approve
+                    </button>
+                    <button type="reset" class="btn-ci-secondary fs-7" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*Declie confirm modal*@
+<div class="modal fade" id="DeclineConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <form asp-action="ChangeStoryStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="number" value="" id="DeclineId" name="id" hidden />
+                    <span class="fs-4 text-ci-danger">
+                        <i class="bi bi-exclamation-octagon-fill text-ci-danger"></i>
+                        Are you sure to decline this?
+                    </span>
+                </div>
+                <div class="modal-footer p-0 py-2 justify-content-center">
+                    <button type="submit" name="action" value="false" class="btn-ci-danger fs-7">
+                        Decline
+                    </button>
+                    <button type="reset" class="btn-ci-secondary fs-7" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script>
     function deleteById(id) {
         $('#confirmModal').modal('show');
         $('#DeleteId').val(id);
+    }
+    function ApprovedById(id) {
+        $('#ApproveConfirmModal').modal('show');
+        $('#ApproveId').val(id);
+    }
+    function DeclinedById(id) {
+        $('#DeclineConfirmModal').modal('show');
+        $('#DeclineId').val(id);
+    }
+    function StorySearch(query){
+        console.log(query);
+        $.ajax({
+            type: 'POST',
+            url: "/Admin/AdminApproveDecline/Story",
+            data: { 'id': query },
+            beforeSend: function (){
+                $("#admin-loader").removeClass("d-none");
+            },
+            success: function (res) {
+                $('#table-body').html($($.parseHTML(res)).find("#table-body")[0].innerHTML);
+                $('#pagination-body').html($($.parseHTML(res)).find("#pagination-body")[0].innerHTML);
+            },
+            error: function (data) {
+                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            },
+            complete: function(){
+                $("#admin-loader").addClass("d-none");
+            }
+        });
     }
     $(document).ready(()=>{
         $("#storyLi").addClass('active');

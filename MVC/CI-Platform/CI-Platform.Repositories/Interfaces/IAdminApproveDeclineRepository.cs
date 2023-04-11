@@ -16,5 +16,15 @@ namespace CI_Platform.Repositories.Interfaces
         void UpdateMissionApplicationStatus(MissionApplicatoin applicatoin);
 
         MissionApplicatoin GetMissionApplicationById(long id);
+
+        List<Story> GetStories(string query, int recSkip, int recTake);
+
+        int GetTotalStoriesRecord(string query);
+
+        void UpdateStoryStatus(Story story);
+
+        void DeleteStory(Story story);
+
+        Story GetStoryById(long id);
     }
 }

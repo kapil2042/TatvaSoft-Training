@@ -124,6 +124,8 @@ public partial class CiPlatformContext : DbContext
             entity.Property(e => e.Text)
                 .HasColumnType("text")
                 .HasColumnName("text");
+            entity.Property(e => e.Title)
+                .HasColumnName("title");
             entity.Property(e => e.UpdatedAt)
                 .HasColumnType("datetime")
                 .HasColumnName("updated_at");

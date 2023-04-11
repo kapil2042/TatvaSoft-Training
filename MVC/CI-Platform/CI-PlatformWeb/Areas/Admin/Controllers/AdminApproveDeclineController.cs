@@ -64,28 +64,64 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             return RedirectToAction("MissionApplication", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
         }
 
-        public IActionResult Story(int pg)
+        public IActionResult Story(string id, int pg)
         {
-            //if (TempData["msg"] != null)
-            //    ViewBag.success = TempData["msg"];
-            //TempData["pg"] = pg;
-            //if (pg < 1)
+            if (id == null)
+            {
+                id = "";
+            }
+            TempData["pg"] = pg;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            const int pageSize = 10;
+            int recsCount = _adminApproveDeclineRepository.GetTotalStoriesRecord(id);
+            var pager = new VMPager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var StoryData = _adminApproveDeclineRepository.GetStories(id, recSkip, pager.PageSize);
+            if (StoryData.Count() == 0 && pg > 1)
+            {
+                return RedirectToAction("Story", "AdminApproveDecline", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
+            }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
+            ViewBag.pager = pager;
+            ViewBag.query = id;
+            return View(StoryData);
+        }
+
+        public IActionResult ChangeStoryStatus(long id, bool action)
+        {
+            var story = _adminApproveDeclineRepository.GetStoryById(id);
+            story.UpdatedAt = DateTime.Now;
+            if (action)
+            {
+                story.Status = "PUBLISHED";
+                TempData["msg"] = "Story Approved successfully!";
+            }
+            else
+            {
+                story.Status = "DECLINE";
+                TempData["msg"] = "Story Declined successfully!";
+            }
+            _adminApproveDeclineRepository.UpdateStoryStatus(story);
+            _commonRepository.Save();
+            return RedirectToAction("Story", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteStory(long id)
+        {
+            //var story = _adminApproveDeclineRepository.GetStoryById(id);
+            //if (story != null)
             //{
-            //    pg = 1;
+            //    _adminApproveDeclineRepository.DeleteStory(story);
             //}
-            //const int pageSize = 10;
-            //int recsCount = _adminApproveDeclineRepository.GetTotalMissionApplicationRecord();
-            //var pager = new VMPager(recsCount, pg, pageSize);
-            //int recSkip = (pg - 1) * pageSize;
-            //var MissionAppData = _adminApproveDeclineRepository.GetMissionApplications(recSkip, pager.PageSize);
-            //if (MissionAppData.Count() == 0 && pg > 1)
-            //{
-            //    return RedirectToAction("MissionApplication", "AdminApproveDecline", new { Area = "Admin", pg = Convert.ToInt32(TempData["pg"]) - 1 });
-            //}
-            //if (TempData["msg"] != null)
-            //    ViewBag.success = TempData["msg"];
-            //ViewBag.pager = pager;
-            return View();
+            //_commonRepository.Save();
+            TempData["msg"] = "Record Deleted Successfully!";
+            return RedirectToAction("Index", "CMSPage", new { Area = "Admin", pg = TempData["pg"] });
         }
     }
 }
