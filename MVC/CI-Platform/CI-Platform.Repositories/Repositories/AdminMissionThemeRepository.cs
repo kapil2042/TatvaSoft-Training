@@ -18,14 +18,14 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
-        public List<MissionTheme> GetMissionThemes(int recSkip, int recTake)
+        public List<MissionTheme> GetMissionThemes(string query, int recSkip, int recTake)
         {
-            return _db.MissionThemes.Skip(recSkip).Take(recTake).ToList();
+            return _db.MissionThemes.Where(x => x.Title.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
-        public int GetTotalMissionThemeRecord()
+        public int GetTotalMissionThemeRecord(string query)
         {
-            return _db.MissionThemes.Count();
+            return _db.MissionThemes.Count(x => x.Title.Contains(query));
         }
 
         public void InsertMissionTheme(MissionTheme theme)

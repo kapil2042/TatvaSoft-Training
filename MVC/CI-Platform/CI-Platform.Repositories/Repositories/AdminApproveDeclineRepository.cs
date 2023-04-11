@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Repositories
 {
-    public class AdminMissionApplicationRepository : IAdminMissionApplicationRepository
+    public class AdminApproveDeclineRepository : IAdminApproveDeclineRepository
     {
         private readonly CiPlatformContext _db;
 
-        public AdminMissionApplicationRepository(CiPlatformContext db)
+        public AdminApproveDeclineRepository(CiPlatformContext db)
         {
             _db = db;
         }
 
-        public List<MissionApplicatoin> GetMissionApplications(int recSkip, int recTake)
+        public List<MissionApplicatoin> GetMissionApplications(string query, int recSkip, int recTake)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).ToList();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.User.FirstName.Contains(query) || x.User.LastName.Contains(query)).ToList();
         }
 
-        public int GetTotalMissionApplicationRecord()
+        public int GetTotalMissionApplicationRecord(string query)
         {
-            return _db.MissionApplicatoins.Count(x => x.ApprovalStatus == "PENDING");
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.User.FirstName.Contains(query) || x.User.LastName.Contains(query)).Count();
         }
 
         public void UpdateMissionApplicationStatus(MissionApplicatoin applicatoin)

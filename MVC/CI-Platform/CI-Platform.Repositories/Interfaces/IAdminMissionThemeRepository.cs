@@ -9,9 +9,9 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface IAdminMissionThemeRepository
     {
-        List<MissionTheme> GetMissionThemes(int recSkip, int recTake);
+        List<MissionTheme> GetMissionThemes(string query, int recSkip, int recTake);
 
-        int GetTotalMissionThemeRecord();
+        int GetTotalMissionThemeRecord(string query);
 
         void InsertMissionTheme(MissionTheme theme);
 

@@ -9,9 +9,9 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface IAdminCMSPageRepository
     {
-        List<CmsPage> GetCmsPages(int recSkip, int recTake);
+        List<CmsPage> GetCmsPages(string query, int recSkip, int recTake);
 
-        int GetTotalCmsPageRecord();
+        int GetTotalCmsPageRecord(string query);
 
         void InsertCmsPage(CmsPage cms);
 

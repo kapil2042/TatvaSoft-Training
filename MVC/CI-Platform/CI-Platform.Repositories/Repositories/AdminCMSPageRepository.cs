@@ -18,14 +18,14 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
-        public List<CmsPage> GetCmsPages(int recSkip, int recTake)
+        public List<CmsPage> GetCmsPages(string query, int recSkip, int recTake)
         {
-            return _db.CmsPages.Skip(recSkip).Take(recTake).ToList();
+            return _db.CmsPages.Where(x => x.Title.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
-        public int GetTotalCmsPageRecord()
+        public int GetTotalCmsPageRecord(string query)
         {
-            return _db.CmsPages.Count();
+            return _db.CmsPages.Count(x => x.Title.Contains(query));
         }
 
         public void InsertCmsPage(CmsPage cms)

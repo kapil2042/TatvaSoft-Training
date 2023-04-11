@@ -20,7 +20,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdminCMSPageRepository, AdminCMSPageRepository>();
 builder.Services.AddScoped<IAdminMissionThemeRepository, AdminMissionThemeRepository>();
 builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillRepository>();
-builder.Services.AddScoped<IAdminMissionApplicationRepository, AdminMissionApplicationRepository>();
+builder.Services.AddScoped<IAdminApproveDeclineRepository, AdminApproveDeclineRepository>();
 
 
 

@@ -20,13 +20,13 @@
             <img src="~/images/search.png" alt="search" class="search-admin">
         </label>
         <input type="search" name="search" id="search" class="form-control search-admin-input"
-               placeholder="Search ...">
+               placeholder="Search ..." value="@ViewBag.query" onkeyup="SkillSearch(this.value)">
     </div>
     <div class="ms-sm-3 text-end mt-3 mt-sm-0">
         <a role="button" class="btn-ci-primary" asp-action="AddMissionSkill" asp-controller="MissionSkills" asp-area="Admin">+ Add</a>
     </div>
 </div>
-<div class="w-100">
+<div class="w-100" id="table-body">
     @if (Model.Count() > 0)
     {
         <div class="table-responsive">
@@ -80,19 +80,19 @@
 }
 
 
-@if (pager.TotalPages > 0)
+@if (pager.TotalPages > 0 && Model.Count() > 0)
 {
-    <nav aria-label="Page" class="my-4" id="paginationpartial">
+    <nav aria-label="Page" class="my-4" id="pagination-body">
         <ul class="pagination-sm pagination justify-content-end">
             @if (pager.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-pg="1">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="1">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-pg="@(pager.CurrentPage-1)">
+                    <a class="open-loader page-link" aria-label="Previous" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage-1)">
                         <span aria-hidden="true">&lsaquo;</span>
                     </a>
                 </li>
@@ -112,17 +112,17 @@
             }
             @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
             {
-                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-pg="@pge">@pge</a></li>
+                <li class="page-item"><a class="open-loader page-link @(pge==pager.CurrentPage ? "active":"")" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@pge">@pge</a></li>
             }
             @if (pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-pg="@(pager.CurrentPage+1)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.CurrentPage+1)">
                         <span aria-hidden="true">&rsaquo;</span>
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-pg="@(pager.TotalPages)">
+                    <a class="open-loader page-link" aria-label="Next" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin" asp-route-id="@ViewBag.query" asp-route-pg="@(pager.TotalPages)">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -143,7 +143,10 @@
         </ul>
     </nav>
 }
-
+else
+{
+    <nav id="pagination-body"></nav>
+}
 
 @*delete confirm modal*@
 <div class="modal fade" id="confirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -173,6 +176,27 @@
     function deleteById(id) {
         $('#confirmModal').modal('show');
         $('#DeleteId').val(id);
+    }
+    function SkillSearch(query){
+        console.log(query);
+        $.ajax({
+            type: 'POST',
+            url: "/Admin/MissionSkills/Index",
+            data: { 'id': query },
+            beforeSend: function (){
+                $("#admin-loader").removeClass("d-none");
+            },
+            success: function (res) {
+                $('#table-body').html($($.parseHTML(res)).find("#table-body")[0].innerHTML);
+                $('#pagination-body').html($($.parseHTML(res)).find("#pagination-body")[0].innerHTML);
+            },
+            error: function (data) {
+                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            },
+            complete: function(){
+                $("#admin-loader").addClass("d-none");
+            }
+        });
     }
     $(document).ready(()=>{
         $("#mSkillLi").addClass('active');

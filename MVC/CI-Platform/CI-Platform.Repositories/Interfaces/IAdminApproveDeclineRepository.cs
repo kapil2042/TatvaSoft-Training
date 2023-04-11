@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CI_Platform.Repositories.Interfaces
 {
-    public interface IAdminMissionApplicationRepository
+    public interface IAdminApproveDeclineRepository
     {
-        List<MissionApplicatoin> GetMissionApplications(int recSkip, int recTake);
+        List<MissionApplicatoin> GetMissionApplications(string query, int recSkip, int recTake);
 
-        int GetTotalMissionApplicationRecord();
+        int GetTotalMissionApplicationRecord(string query);
 
         void UpdateMissionApplicationStatus(MissionApplicatoin applicatoin);
 

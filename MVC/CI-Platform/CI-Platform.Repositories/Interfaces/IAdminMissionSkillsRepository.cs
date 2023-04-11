@@ -9,9 +9,9 @@ namespace CI_Platform.Repositories.Interfaces
 {
     public interface IAdminMissionSkillsRepository
     {
-        List<Skill> GetSkills(int recSkip, int recTake);
+        List<Skill> GetSkills(string query, int recSkip, int recTake);
 
-        int GetTotalSkillsRecord();
+        int GetTotalSkillsRecord(string query);
 
         void InsertSkill(Skill skill);
 

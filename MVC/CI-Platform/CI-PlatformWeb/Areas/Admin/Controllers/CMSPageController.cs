@@ -20,25 +20,30 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             _commonRepository = commonRepository;
         }
 
-        public IActionResult Index(int pg)
+        public IActionResult Index(string id, int pg)
         {
+            if (id == null)
+            {
+                id = "";
+            }
             TempData["pg"] = pg;
             if (pg < 1)
             {
                 pg = 1;
             }
             const int pageSize = 10;
-            int recsCount = _cmsPageRepository.GetTotalCmsPageRecord();
+            int recsCount = _cmsPageRepository.GetTotalCmsPageRecord(id);
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            var CMSData = _cmsPageRepository.GetCmsPages(recSkip, pager.PageSize);
+            var CMSData = _cmsPageRepository.GetCmsPages(id, recSkip, pager.PageSize);
             if (CMSData.Count() == 0 && pg > 1)
             {
-                return RedirectToAction("Index", "CMSPage", new { Area = "Admin", pg = Convert.ToInt32(TempData["pg"]) - 1 });
+                return RedirectToAction("Index", "CMSPage", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
             }
             if (TempData["msg"] != null)
                 ViewBag.success = TempData["msg"];
             ViewBag.pager = pager;
+            ViewBag.query = id;
             return View(CMSData);
         }
 

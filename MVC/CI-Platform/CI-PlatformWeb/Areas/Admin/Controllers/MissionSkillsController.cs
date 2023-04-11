@@ -19,25 +19,30 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             _commonRepository = commonRepository;
         }
 
-        public IActionResult Index(int pg)
+        public IActionResult Index(string id, int pg)
         {
+            if (id == null)
+            {
+                id = "";
+            }
             TempData["pg"] = pg;
             if (pg < 1)
             {
                 pg = 1;
             }
             const int pageSize = 10;
-            int recsCount = _adminMissionSkillsRepository.GetTotalSkillsRecord();
+            int recsCount = _adminMissionSkillsRepository.GetTotalSkillsRecord(id);
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            var MissionSkillData = _adminMissionSkillsRepository.GetSkills(recSkip, pager.PageSize);
+            var MissionSkillData = _adminMissionSkillsRepository.GetSkills(id, recSkip, pager.PageSize);
             if (MissionSkillData.Count() == 0 && pg > 1)
             {
-                return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = Convert.ToInt32(TempData["pg"]) - 1 });
+                return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
             }
             if (TempData["msg"] != null)
                 ViewBag.success = TempData["msg"];
             ViewBag.pager = pager;
+            ViewBag.query = id;
             return View(MissionSkillData);
         }
 

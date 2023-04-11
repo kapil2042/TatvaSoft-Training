@@ -18,14 +18,14 @@ namespace CI_Platform.Repositories.Repositories
             _db = db;
         }
 
-        public List<Skill> GetSkills(int recSkip, int recTake)
+        public List<Skill> GetSkills(string query, int recSkip, int recTake)
         {
-            return _db.Skills.Skip(recSkip).Take(recTake).ToList();
+            return _db.Skills.Where(x => x.SkillName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
-        public int GetTotalSkillsRecord()
+        public int GetTotalSkillsRecord(string query)
         {
-            return _db.Skills.Count();
+            return _db.Skills.Count(x => x.SkillName.Contains(query));
         }
 
         public void InsertSkill(Skill skill)
