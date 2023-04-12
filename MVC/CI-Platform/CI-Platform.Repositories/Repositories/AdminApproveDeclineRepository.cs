@@ -21,7 +21,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionApplicatoin> GetMissionApplications(string query, int recSkip, int recTake)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).ToList();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalMissionApplicationRecord(string query)
@@ -41,7 +41,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Story> GetStories(string query, int recSkip, int recTake)
         {
-            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).ToList();
+            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalStoriesRecord(string query)
@@ -62,6 +62,21 @@ namespace CI_Platform.Repositories.Repositories
         public Story GetStoryById(long id)
         {
             return _db.Stories.Where(x => x.StoryId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
+        }
+
+        public List<User> GetUsers(string query, int recSkip, int recTake)
+        {
+            return _db.Users.Where(x => x.FirstName.Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query)).OrderBy(x => x.Status).Skip(recSkip).Take(recTake).ToList();
+        }
+
+        public User GetUserById(long id)
+        {
+            return _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+        }
+
+        public int GetTotalUsersRecord(string query)
+        {
+            return _db.Users.Count(x => x.FirstName.Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query));
         }
     }
 }

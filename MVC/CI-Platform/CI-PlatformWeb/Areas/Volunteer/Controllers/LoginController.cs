@@ -91,7 +91,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     var principle = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
                     HttpContext.Session.SetString("Email", user.Email);
-                    return RedirectToAction("Index", "AUser", new { Area = "Admin" });
+                    return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin" });
                 }
                 else
                 {

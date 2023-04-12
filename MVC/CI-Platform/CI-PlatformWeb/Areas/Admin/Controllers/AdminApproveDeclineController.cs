@@ -123,5 +123,52 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             TempData["msg"] = "Record Deleted Successfully!";
             return RedirectToAction("Index", "CMSPage", new { Area = "Admin", pg = TempData["pg"] });
         }
+
+
+        public IActionResult User(string id, int pg)
+        {
+            if (id == null)
+            {
+                id = "";
+            }
+            TempData["pg"] = pg;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            const int pageSize = 10;
+            int recsCount = _adminApproveDeclineRepository.GetTotalUsersRecord(id);
+            var pager = new VMPager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var userData = _adminApproveDeclineRepository.GetUsers(id, recSkip, pager.PageSize);
+            if (userData.Count() == 0 && pg > 1)
+            {
+                return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
+            }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
+            ViewBag.pager = pager;
+            ViewBag.query = id;
+            return View(userData);
+        }
+
+        public IActionResult ChangeUserStatus(long id)
+        {
+            var user = _adminApproveDeclineRepository.GetUserById(id);
+            user.UpdatedAt = DateTime.Now;
+            if (user.Status == 0)
+            {
+                user.Status = 1;
+                TempData["msg"] = "User Activate!";
+            }
+            else
+            {
+                user.Status = 0;
+                TempData["msg"] = "User Deactivate!";
+            }
+            _commonRepository.UpdateUser(user);
+            _commonRepository.Save();
+            return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
+        }
     }
 }

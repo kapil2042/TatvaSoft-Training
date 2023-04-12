@@ -26,5 +26,11 @@ namespace CI_Platform.Repositories.Interfaces
         void DeleteStory(Story story);
 
         Story GetStoryById(long id);
+
+        List<User> GetUsers(string query, int recSkip, int recTake);
+
+        User GetUserById(long id);
+
+        int GetTotalUsersRecord(string query);
     }
 }
