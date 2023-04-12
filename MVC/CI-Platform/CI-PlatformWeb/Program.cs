@@ -17,6 +17,7 @@ builder.Services.AddScoped<IMissionRepository, MissionRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddScoped<ITimeSheetRepository, TimeSheetRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAdminMissionRepository, AdminMissionRepository>();
 builder.Services.AddScoped<IAdminCMSPageRepository, AdminCMSPageRepository>();
 builder.Services.AddScoped<IAdminMissionThemeRepository, AdminMissionThemeRepository>();
 builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillRepository>();
