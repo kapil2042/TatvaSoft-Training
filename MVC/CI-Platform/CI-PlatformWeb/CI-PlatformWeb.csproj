@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\doc\missiondocuments\" />
+    <Folder Include="wwwroot\images\banners\" />
     <Folder Include="wwwroot\images\storyimages\" />
     <Folder Include="wwwroot\images\userimages\" />
   </ItemGroup>

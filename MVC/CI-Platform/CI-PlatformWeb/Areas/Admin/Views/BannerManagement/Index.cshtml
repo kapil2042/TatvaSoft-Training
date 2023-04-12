@@ -43,7 +43,7 @@
                     @foreach (var i in Model)
                     {
                         <tr>
-                            <td>@i.Title</td>
+                            <td><img src="~/images/banners/@i.Image" height="80px" class="border rounded-2" /></td>
                             <td>@i.Title</td>
                             <td>@i.Text</td>
                             <td>@i.SortOrder</td>
@@ -174,6 +174,27 @@ else
     function deleteById(id) {
         $('#confirmModal').modal('show');
         $('#DeleteId').val(id);
+    }
+    function BannerSearch(query){
+        console.log(query);
+        $.ajax({
+            type: 'POST',
+            url: "/Admin/BannerManagement/Index",
+            data: { 'id': query },
+            beforeSend: function (){
+                $("#admin-loader").removeClass("d-none");
+            },
+            success: function (res) {
+                $('#table-body').html($($.parseHTML(res)).find("#table-body")[0].innerHTML);
+                $('#pagination-body').html($($.parseHTML(res)).find("#pagination-body")[0].innerHTML);
+            },
+            error: function (data) {
+                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            },
+            complete: function(){
+                $("#admin-loader").addClass("d-none");
+            }
+        });
     }
     $(document).ready(()=>{
         $("#bannerLi").addClass('active');

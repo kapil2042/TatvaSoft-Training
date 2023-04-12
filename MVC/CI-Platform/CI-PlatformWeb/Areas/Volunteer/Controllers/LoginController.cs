@@ -31,6 +31,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 ViewBag.success = TempData["resetpass"];
             if (TempData["mailsent"] != null)
                 ViewBag.success = TempData["mailsent"];
+            ViewBag.banner = _commonRepository.GetBanners();
             return View();
         }
 
@@ -101,11 +102,13 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 ViewBag.error = "Email Id not Found!";
             }
+            ViewBag.banner = _commonRepository.GetBanners();
             return View();
         }
 
         public IActionResult Registration()
         {
+            ViewBag.banner = _commonRepository.GetBanners();
             return View();
         }
 
@@ -126,10 +129,12 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     TempData["Registration"] = "User Registred Successfully! Please Login!";
                     return RedirectToAction("Index", "Login", new { Area = "Volunteer" });
                 }
+                ViewBag.banner = _commonRepository.GetBanners();
                 return View();
             }
             else
             {
+                ViewBag.banner = _commonRepository.GetBanners();
                 return View(user);
             }
         }
@@ -145,6 +150,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 {
                     ViewBag.email = _commonRepository.Decode(email);
                     ViewBag.token = token;
+                    ViewBag.banner = _commonRepository.GetBanners();
                     return View();
                 }
             }
@@ -189,6 +195,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 }
             }
             ViewBag.error = "Something went Wrong! Please try again!";
+            ViewBag.banner = _commonRepository.GetBanners();
             return View();
         }
 
@@ -196,6 +203,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             if (TempData["resetpass"] != null)
                 ViewBag.error = TempData["resetpass"];
+            ViewBag.banner = _commonRepository.GetBanners();
             return View();
         }
 
@@ -235,6 +243,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             else
             {
                 ViewBag.error = "Email Not Found";
+                ViewBag.banner = _commonRepository.GetBanners();
                 return View();
             }
         }

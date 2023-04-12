@@ -44,5 +44,7 @@ namespace CI_Platform.Repositories.Interfaces
         string Decode(string text);
 
         List<CmsPage> getAllPrivacy();
+
+        List<Banner> GetBanners();
     }
 }

@@ -20,7 +20,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Banner> GetBanners(string query, int recSkip, int recTake)
         {
-            return _db.Banners.Where(x => x.Title.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.Banners.Where(x => x.Title.Contains(query)).OrderBy(x=>x.SortOrder).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalBannerRecord(string query)

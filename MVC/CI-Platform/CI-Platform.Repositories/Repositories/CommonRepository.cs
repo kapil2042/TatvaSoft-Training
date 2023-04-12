@@ -148,5 +148,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.CmsPages.Where(x => x.Status == 1).ToList();
         }
+
+        public List<Banner> GetBanners()
+        {
+            return _db.Banners.OrderBy(x => x.SortOrder).ToList();
+        }
     }
 }

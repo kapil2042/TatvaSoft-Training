@@ -30,7 +30,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             {
                 pg = 1;
             }
-            const int pageSize = 10;
+            const int pageSize = 3;
             int recsCount = _bannerRepository.GetTotalBannerRecord(id);
             var pager = new VMPager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
@@ -55,8 +55,20 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddBanner(Banner banner, IFormFile imageFile)
         {
+            if (imageFile != null)
+            {
+                ModelState.Remove("Image");
+            }
             if (ModelState.IsValid)
             {
+                string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners", ImageName);
+
+                using (var stream = new FileStream(SavePath, FileMode.Create))
+                {
+                    banner.Image = ImageName;
+                    imageFile.CopyTo(stream);
+                }
                 _bannerRepository.InsertBanner(banner);
                 _commonRepository.Save();
                 TempData["msg"] = "Record Inserted Successfully!";
@@ -78,11 +90,28 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditBanner(long id, Banner banner)
+        public IActionResult EditBanner(long id, Banner banner, IFormFile imageFile)
         {
             var newBanner = _bannerRepository.GetBannerById(id);
+            ModelState.Remove("Image");
+            ModelState.Remove("imageFile");
             if (ModelState.IsValid)
             {
+                if (imageFile != null)
+                {
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners", newBanner.Image);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                    string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                    string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners", ImageName);
+                    using (var stream = new FileStream(SavePath, FileMode.Create))
+                    {
+                        newBanner.Image = ImageName;
+                        imageFile.CopyTo(stream);
+                    }
+                }
                 newBanner.UpdatedAt = DateTime.Now;
                 newBanner.Title = banner.Title;
                 newBanner.Text = banner.Text;
@@ -103,6 +132,11 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             var banner = _bannerRepository.GetBannerById(id);
             if (banner != null)
             {
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/banners", banner.Image);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
                 _bannerRepository.DeleteBanner(banner);
             }
             _commonRepository.Save();
