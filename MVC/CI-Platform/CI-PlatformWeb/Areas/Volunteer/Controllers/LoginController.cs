@@ -142,7 +142,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         public IActionResult ResetPass(string email, string token)
         {
             var dataToken = _loginRepository.getTokenByEmail(_commonRepository.Decode(email));
-            if (dataToken != null)
+            if (dataToken != null && dataToken.Used == 0)
             {
                 var date1 = DateTime.Now;
                 var date2 = date1.AddHours(-4);

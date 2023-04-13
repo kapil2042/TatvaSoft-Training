@@ -285,6 +285,10 @@ a {
     font-size: 14px !important;
 }
 
+.fs-nano {
+    font-size: 12px !important;
+}
+
 .h-80 {
     height: 80% !important;
 }
@@ -729,4 +733,9 @@ select[multiple]:focus option:checked {
     padding-bottom: 7px !important;
     padding-inline: 15px !important;
     border-radius: 7px !important;
+}
+
+.cursor-pointer:hover,
+.cursor-pointer > *:hover {
+    cursor: pointer !important;
 }

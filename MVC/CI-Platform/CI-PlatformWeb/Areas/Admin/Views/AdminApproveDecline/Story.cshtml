@@ -45,7 +45,10 @@
                             <td>@i.Title</td>
                             <td>@i.User.FirstName @i.User.LastName</td>
                             <td>@i.Mission.Title</td>
-                            <td class="text-nowrap">
+                            <td class="d-flex align-items-center">
+                                <a asp-action="StoryDetails" asp-controller="Story" asp-area="Volunteer" asp-route-id="@i.StoryId" target="_blank" class="btn-ci-primary fs-nano px-2 py-0 me-2">
+                                    View
+                                </a>
                                 <a onclick="ApprovedById(@i.StoryId)">
                                     <i class="bi bi-check-circle me-2 text-ci-success"></i>
                                 </a>

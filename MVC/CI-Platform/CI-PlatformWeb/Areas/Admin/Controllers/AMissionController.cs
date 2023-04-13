@@ -47,6 +47,9 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
 
         public IActionResult AddMission()
         {
+            ViewBag.Country = _commonRepository.GetCountries();
+            ViewBag.Theme = _commonRepository.GetMissionThemes();
+            ViewBag.Skills = _commonRepository.GetSkills();
             return View();
         }
     }

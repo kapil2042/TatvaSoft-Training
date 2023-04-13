@@ -51,6 +51,10 @@
     width: 40% !important;
 }
 
+.top-10px {
+    top: 10px !important;
+}
+
 @media screen and (max-width:991px) {
     #side_nav {
         margin-left: -300px;
@@ -100,4 +104,19 @@
     border-radius: 10px;
     font-size: 65px;
     color: #F88634;
+}
+
+#file-list li {
+    padding-block: 5px;
+    padding-inline: 20px;
+    background-color: #EDEDED70;
+    margin-top: 5px;
+    margin-inline: 5px;
+    border-radius: 5px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

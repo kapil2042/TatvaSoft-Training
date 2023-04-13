@@ -170,6 +170,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             return View(story);
         }
 
+        [AllowAnonymous]
         public IActionResult StoryDetails(int id)
         {
             VMStoryDetails storyDetails = new VMStoryDetails();
@@ -198,7 +199,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 _storyRepository.InserStoryInvitation(invite);
             }
             _commonRepository.Save();
-            _commonRepository.SendMails("Story Recommended",mailBody, mailids);
+            _commonRepository.SendMails("Story Recommended", mailBody, mailids);
         }
 
 
