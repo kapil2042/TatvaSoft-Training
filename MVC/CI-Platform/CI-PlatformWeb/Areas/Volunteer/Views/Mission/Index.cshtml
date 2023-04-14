@@ -82,10 +82,15 @@
         <div class="d-none d-sm-block">
             <select class="sort-by my-1 me-3" onchange="myfilter(fpg = 1, fid = this.value);">
                 <option value="">Sort By</option>
-                <option value="1">A To Z</option>
-                <option value="2">Z To A</option>
-                <option value="3">Newest First</option>
-                <option value="4">Oldest First</option>
+                <option value="1">Newest First</option>
+                <option value="2">Oldest First</option>
+                <option value="3">Lowest Available Seats</option>
+                <option value="4">Highest Available Seats</option>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <option value="5">My Favourite Missions</option>
+                }
+                <option value="6">Registration Deadline</option>
             </select>
             <button class="p-2 border-0 bg-white rounded-circle grid-active" id="grid">
                 <img src="~/images/grid.png" alt="">

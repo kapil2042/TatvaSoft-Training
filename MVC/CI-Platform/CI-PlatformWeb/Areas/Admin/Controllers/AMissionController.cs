@@ -1,7 +1,9 @@
-﻿using CI_Platform.Models.ViewModels;
+﻿using CI_Platform.Models;
+using CI_Platform.Models.ViewModels;
 using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CI_PlatformWeb.Areas.Admin.Controllers
 {
@@ -47,10 +49,300 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
 
         public IActionResult AddMission()
         {
-            ViewBag.Country = _commonRepository.GetCountries();
-            ViewBag.Theme = _commonRepository.GetMissionThemes();
-            ViewBag.Skills = _commonRepository.GetSkills();
-            return View();
+            VMAdminMission vmMission = new VMAdminMission();
+            vmMission.MissionSkills = new List<MissionSkill>();
+            vmMission.country = _commonRepository.GetCountries();
+            vmMission.themes = _commonRepository.GetMissionThemes();
+            vmMission.skills = _commonRepository.GetSkills();
+            return View(vmMission);
+        }
+
+        [HttpPost]
+        public IActionResult AddMission(VMAdminMission vmAdminMission, int[] missionSkills, IFormFileCollection myfile, IFormFileCollection? mydocs)
+        {
+            vmAdminMission.MissionSkills = new List<MissionSkill>();
+            if (vmAdminMission.MissionType == "TIME")
+            {
+                ModelState.Remove("GoalValue");
+                ModelState.Remove("GoalObjectiveText");
+            }
+            if (missionSkills.Length > 0)
+                ModelState.Remove("MissionSkills");
+            else
+                ViewBag.skillerr = "Please Add at least one Skill";
+            if (myfile.Count() > 0)
+            {
+                ModelState.Remove("country");
+                ModelState.Remove("themes");
+                ModelState.Remove("skills");
+                ModelState.Remove("mDocuments");
+                ModelState.Remove("missionMedia");
+            }
+            else
+                ViewBag.fileerr = "Please upload at least one Image";
+            if (ModelState.IsValid)
+            {
+                Mission mission = new Mission();
+                mission.Title = vmAdminMission.Title;
+                mission.Description = WebUtility.HtmlEncode(vmAdminMission.Description);
+                mission.ShortDescription = vmAdminMission.ShortDescription;
+                mission.TotalSeat = vmAdminMission.TotalSeat;
+                mission.CountryId = vmAdminMission.CountryId;
+                mission.CityId = vmAdminMission.CityId;
+                mission.ThemeId = vmAdminMission.ThemeId;
+                mission.StartDate = vmAdminMission.StartDate;
+                mission.EndDate = vmAdminMission.EndDate;
+                mission.MissionType = vmAdminMission.MissionType;
+                mission.Status = vmAdminMission.Status;
+                mission.OrganizationName = vmAdminMission.OrganizationName;
+                mission.OrganizationDetails = WebUtility.HtmlEncode(vmAdminMission.OrganizationDetails);
+                mission.Availability = vmAdminMission.Availability;
+                if (vmAdminMission.MissionType == "GOAL")
+                {
+                    GoalMission goalMission = new GoalMission();
+                    goalMission.GoalValue = vmAdminMission.GoalValue;
+                    goalMission.GoalObjectiveText = vmAdminMission.GoalObjectiveText;
+                    mission.GoalMissions.Add(goalMission);
+                }
+                foreach (var i in missionSkills)
+                {
+                    MissionSkill missionSkill = new MissionSkill();
+                    missionSkill.SkillId = i;
+                    mission.MissionSkills.Add(missionSkill);
+                    vmAdminMission.MissionSkills.Add(missionSkill);
+                }
+                foreach (IFormFile file in myfile)
+                {
+                    if (file != null)
+                    {
+                        string ImageName = Guid.NewGuid().ToString();
+
+                        string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", ImageName + Path.GetExtension(file.FileName));
+
+                        using (var stream = new FileStream(SavePath, FileMode.Create))
+                        {
+                            MissionMedium missionMedia = new MissionMedium();
+                            missionMedia.MediaType = Path.GetExtension(file.FileName);
+                            missionMedia.MediaPath = "missionimages";
+                            missionMedia.MediaName = ImageName;
+                            mission.MissionMedia.Add(missionMedia);
+                            file.CopyTo(stream);
+                        }
+                    }
+                }
+                foreach (IFormFile doc in mydocs)
+                {
+                    if (doc != null)
+                    {
+                        string DocName = Path.GetFileNameWithoutExtension(doc.FileName).ToString() + DateTime.Now.ToString("ddMMyyyyhhmmss");
+                        string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/doc/missiondocuments", DocName + Path.GetExtension(doc.FileName));
+                        using (var stream = new FileStream(SavePath, FileMode.Create))
+                        {
+                            MissionDocument missiondocs = new MissionDocument();
+                            var datatype = doc.ContentType.Split('/')[1].ToLower();
+                            missiondocs.DocumentType = Path.GetExtension(doc.FileName);
+                            missiondocs.DocumentName = DocName;
+                            missiondocs.DocumentPath = "missiondocuments";
+                            mission.MissionDocuments.Add(missiondocs);
+                            doc.CopyTo(stream);
+                        }
+                    }
+                }
+                _adminMissionRepository.InsertMission(mission);
+                _commonRepository.Save();
+                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = 1 });
+            }
+            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.themes = _commonRepository.GetMissionThemes();
+            vmAdminMission.skills = _commonRepository.GetSkills();
+            return View(vmAdminMission);
+        }
+
+        public IActionResult EditMission(long id)
+        {
+            VMAdminMission vmAdminMission = new VMAdminMission();
+            vmAdminMission.MissionSkills = _adminMissionRepository.GetSkillByMissionId(id);
+            Mission mission = _adminMissionRepository.GetMissionById(id);
+            vmAdminMission.Title = mission.Title;
+            vmAdminMission.Description = WebUtility.HtmlDecode(mission.Description);
+            vmAdminMission.ShortDescription = mission.ShortDescription;
+            vmAdminMission.TotalSeat = mission.TotalSeat;
+            vmAdminMission.CountryId = mission.CountryId;
+            vmAdminMission.CityId = mission.CityId;
+            vmAdminMission.ThemeId = mission.ThemeId;
+            vmAdminMission.StartDate = mission.StartDate;
+            vmAdminMission.EndDate = mission.EndDate;
+            vmAdminMission.MissionType = mission.MissionType;
+            vmAdminMission.Status = (int)mission.Status;
+            vmAdminMission.OrganizationName = mission.OrganizationName;
+            vmAdminMission.OrganizationDetails = WebUtility.HtmlDecode(mission.OrganizationDetails);
+            vmAdminMission.Availability = mission.Availability;
+            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.themes = _commonRepository.GetMissionThemes();
+            vmAdminMission.skills = _commonRepository.GetSkills();
+            vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
+            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
+            return View(vmAdminMission);
+        }
+
+        [HttpPost]
+        public IActionResult EditMission(long id, VMAdminMission vmAdminMission, int[] missionSkills, IFormFileCollection myfile, IFormFileCollection? mydocs, string[] preloaded)
+        {
+            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.themes = _commonRepository.GetMissionThemes();
+            vmAdminMission.skills = _commonRepository.GetSkills();
+            vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
+            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
+            vmAdminMission.MissionSkills = _adminMissionRepository.GetSkillByMissionId(id);
+
+            if (vmAdminMission.MissionType == "TIME")
+            {
+                ModelState.Remove("GoalValue");
+                ModelState.Remove("GoalObjectiveText");
+            }
+            if (missionSkills.Length > 0)
+                ModelState.Remove("MissionSkills");
+            else
+                ViewBag.skillerr = "Please Add at least one Skill";
+            if (myfile.Count() > 0 || preloaded.Length > 0)
+            {
+                ModelState.Remove("country");
+                ModelState.Remove("themes");
+                ModelState.Remove("skills");
+                ModelState.Remove("mDocuments");
+                ModelState.Remove("missionMedia");
+            }
+            else
+                ViewBag.fileerr = "Please upload at least one Image";
+            if (ModelState.IsValid)
+            {
+                Mission mission = _adminMissionRepository.GetMissionById(id);
+                mission.Title = vmAdminMission.Title;
+                mission.Description = WebUtility.HtmlEncode(vmAdminMission.Description);
+                mission.ShortDescription = vmAdminMission.ShortDescription;
+                mission.TotalSeat = vmAdminMission.TotalSeat;
+                mission.CountryId = vmAdminMission.CountryId;
+                mission.CityId = vmAdminMission.CityId;
+                mission.ThemeId = vmAdminMission.ThemeId;
+                mission.StartDate = vmAdminMission.StartDate;
+                mission.EndDate = vmAdminMission.EndDate;
+                mission.MissionType = vmAdminMission.MissionType;
+                mission.Status = vmAdminMission.Status;
+                mission.OrganizationName = vmAdminMission.OrganizationName;
+                mission.OrganizationDetails = WebUtility.HtmlEncode(vmAdminMission.OrganizationDetails);
+                mission.Availability = vmAdminMission.Availability;
+                if (vmAdminMission.MissionType == "GOAL")
+                {
+                    GoalMission goalMission = _adminMissionRepository.getGoalMissionByMissionId(id);
+                    goalMission.GoalValue = vmAdminMission.GoalValue;
+                    goalMission.GoalObjectiveText = vmAdminMission.GoalObjectiveText;
+                    _adminMissionRepository.UpdateGoalMission(goalMission);
+                }
+                var SkillForAdd = missionSkills.Except(mission.MissionSkills.Select(x => x.SkillId).ToArray());
+                var SkillForDelete = mission.MissionSkills.Select(x => x.SkillId).ToArray().Except(missionSkills);
+                foreach (var i in SkillForDelete)
+                {
+                    _adminMissionRepository.RemoveMissionSkillsBySkillIdAndMissionId(i, id);
+                }
+                foreach (var i in SkillForAdd)
+                {
+                    MissionSkill missionSkillNew = new MissionSkill();
+                    missionSkillNew.MissionId = id;
+                    missionSkillNew.SkillId = i;
+                    mission.MissionSkills.Add(missionSkillNew);
+                }
+                List<string> list = new List<string>();
+                for (int i = 0; i < preloaded.Length; i++)
+                {
+                    var x = preloaded[i].Split('/')[3];
+                    var y = x.Split('.')[0];
+                    list.Add(y);
+                }
+                string[] str = list.ToArray();
+                var a = vmAdminMission.missionMedia.Select(x => x.MediaName).ToArray().Except(str);
+                //foreach (var img in vmAdminMission.missionMedia)
+                //{
+                //    if (preloaded.Length < 1)
+                //    {
+                //        string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", img.MediaName + img.MediaType);
+                //        if (System.IO.File.Exists(imagePath))
+                //        {
+                //            System.IO.File.Delete(imagePath);
+                //        }
+                //        _adminMissionRepository.DeleteMissionImage(img);
+                //    }
+                //    else
+                //    {
+                //        for (int i = 0; i < preloaded.Length; i++)
+                //        {
+                //            string oldImg = preloaded[i].Split('/')[3];
+
+                //            if (!oldImg.Equals(img.MediaName + img.MediaType))
+                //            {
+                //                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", img.MediaName + img.MediaType);
+                //                if (System.IO.File.Exists(imagePath))
+                //                {
+                //                    System.IO.File.Delete(imagePath);
+                //                }
+                //                _adminMissionRepository.DeleteMissionImage(img);
+                //            }
+                //        }
+                //    }
+                //}
+                foreach (IFormFile file in myfile)
+                {
+                    if (file != null)
+                    {
+                        string ImageName = Guid.NewGuid().ToString();
+
+                        string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", ImageName + Path.GetExtension(file.FileName));
+
+                        using (var stream = new FileStream(SavePath, FileMode.Create))
+                        {
+                            MissionMedium missionMedia = new MissionMedium();
+                            missionMedia.MediaType = Path.GetExtension(file.FileName);
+                            missionMedia.MediaPath = "missionimages";
+                            missionMedia.MediaName = ImageName;
+                            mission.MissionMedia.Add(missionMedia);
+                            file.CopyTo(stream);
+                        }
+                    }
+                }
+                if (mydocs.Count() > 0)
+                {
+                    foreach (var doc in vmAdminMission.mDocuments)
+                    {
+                        string docPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/doc/missiondocuments", doc.DocumentName + doc.DocumentType);
+                        if (System.IO.File.Exists(docPath))
+                        {
+                            System.IO.File.Delete(docPath);
+                        }
+                        _adminMissionRepository.DeleteMissionDoc(doc);
+                    }
+                    foreach (IFormFile doc in mydocs)
+                    {
+                        if (doc != null)
+                        {
+                            string DocName = Path.GetFileNameWithoutExtension(doc.FileName).ToString() + DateTime.Now.ToString("ddMMyyyyhhmmss");
+                            string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/doc/missiondocuments", DocName + Path.GetExtension(doc.FileName));
+                            using (var stream = new FileStream(SavePath, FileMode.Create))
+                            {
+                                MissionDocument missiondocs = new MissionDocument();
+                                var datatype = doc.ContentType.Split('/')[1].ToLower();
+                                missiondocs.DocumentType = Path.GetExtension(doc.FileName);
+                                missiondocs.DocumentName = DocName;
+                                missiondocs.DocumentPath = "missiondocuments";
+                                mission.MissionDocuments.Add(missiondocs);
+                                doc.CopyTo(stream);
+                            }
+                        }
+                    }
+                }
+                _adminMissionRepository.UpdateMission(mission);
+                _commonRepository.Save();
+                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = 1 });
+            }
+            return View(vmAdminMission);
         }
     }
 }

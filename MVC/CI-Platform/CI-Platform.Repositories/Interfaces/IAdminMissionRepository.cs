@@ -20,5 +20,21 @@ namespace CI_Platform.Repositories.Interfaces
         void DeleteMission(Mission mission);
 
         Mission GetMissionById(long id);
+
+        List<MissionSkill> GetSkillByMissionId(long missionId);
+
+        List<MissionMedium> GetMissionMediaByMissionId(long missionId);
+
+        List<MissionDocument> GetMissionDocumentsByMissionId(long missionId);
+
+        void RemoveMissionSkillsBySkillIdAndMissionId(int skillId, long missionId);
+
+        void DeleteMissionImage(MissionMedium mm);
+
+        void DeleteMissionDoc(MissionDocument md);
+
+        GoalMission getGoalMissionByMissionId(long missionId);
+
+        void UpdateGoalMission(GoalMission goalMission);
     }
 }

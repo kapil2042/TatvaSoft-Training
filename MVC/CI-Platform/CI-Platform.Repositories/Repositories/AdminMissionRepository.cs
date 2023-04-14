@@ -46,7 +46,47 @@ namespace CI_Platform.Repositories.Repositories
 
         public Mission GetMissionById(long id)
         {
-            return _db.Missions.Where(x => x.MissionId == id).Include(x=>x.MissionDocuments).Include(x=>x.MissionMedia).Include(x=>x.MissionSkills).FirstOrDefault();
+            return _db.Missions.Where(x => x.MissionId == id).Include(x => x.MissionDocuments).Include(x => x.MissionMedia).Include(x => x.MissionSkills).FirstOrDefault();
+        }
+
+        public List<MissionSkill> GetSkillByMissionId(long missionId)
+        {
+            return _db.MissionSkills.Where(x => x.MissionId == missionId).Include(x => x.Skill).ToList();
+        }
+
+        public List<MissionMedium> GetMissionMediaByMissionId(long missionId)
+        {
+            return _db.MissionMedia.Where(x => x.MissionId == missionId).ToList();
+        }
+
+        public List<MissionDocument> GetMissionDocumentsByMissionId(long missionId)
+        {
+            return _db.MissionDocuments.Where(x => x.MissionId == missionId).ToList();
+        }
+
+        public void RemoveMissionSkillsBySkillIdAndMissionId(int skillId, long missionId)
+        {
+            _db.MissionSkills.Remove(_db.MissionSkills.Where(x => x.SkillId == skillId && x.MissionId == missionId).FirstOrDefault());
+        }
+
+        public void DeleteMissionImage(MissionMedium mm)
+        {
+            _db.MissionMedia.Remove(mm);
+        }
+
+        public void DeleteMissionDoc(MissionDocument md)
+        {
+            _db.MissionDocuments.Remove(md);
+        }
+
+        public GoalMission getGoalMissionByMissionId(long missionId)
+        {
+            return _db.GoalMissions.Where(x => x.MissionId == missionId).FirstOrDefault();
+        }
+
+        public void UpdateGoalMission(GoalMission goalMission)
+        {
+            _db.GoalMissions.Update(goalMission);
         }
     }
 }

@@ -66,5 +66,7 @@ namespace CI_Platform.Repositories.Interfaces
         void InserMissionInvitation(MissionInvite invite);
 
         void InserMissionApplication(MissionApplicatoin applicatoin);
+
+        List<long> GetFavoriteMissioIdnByUser(string userid);
     }
 }

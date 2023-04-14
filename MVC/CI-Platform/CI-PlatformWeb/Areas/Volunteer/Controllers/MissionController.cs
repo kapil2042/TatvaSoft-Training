@@ -103,21 +103,30 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 m = m.Where(x => x.Title.ToLower().Contains(search)).ToList();
             }
+            long[] favoritemissions = _missionRepository.GetFavoriteMissioIdnByUser(uid).ToArray();
+            var missionapplications = _missionRepository.GetAllMissionApplicationSum();
             switch (id)
             {
                 case 1:
-                    m = m.OrderBy(x => x.Title).ToList();
+                    m = m.OrderBy(x => x.CreatedAt).ToList();
                     break;
                 case 2:
-                    m = m.OrderByDescending(x => x.Title).ToList();
+                    m = m.OrderByDescending(x => x.CreatedAt).ToList();
                     break;
                 case 3:
-                    m = m.OrderBy(x => x.StartDate).ToList();
+                    m = m.OrderBy(x => x.TotalSeat - (missionapplications.Where(y => y.MissionId == x.MissionId && y.ApprovalStatus == "APPROVE").Count())).ToList();
                     break;
                 case 4:
-                    m = m.OrderByDescending(x => x.StartDate).ToList();
+                    m = m.OrderByDescending(x => x.TotalSeat - (missionapplications.Where(y => y.MissionId == x.MissionId && y.ApprovalStatus == "APPROVE").Count())).ToList();
+                    break;
+                case 5:
+                    m = m.OrderByDescending(x => favoritemissions.Contains(x.MissionId)).ThenBy(x => x.MissionId).ToList();
+                    break;
+                case 6:
+                    m = m.OrderByDescending(x => x.EndDate).ToList();
                     break;
             }
+
             const int pageSize = 6;
             if (pg < 1)
             {

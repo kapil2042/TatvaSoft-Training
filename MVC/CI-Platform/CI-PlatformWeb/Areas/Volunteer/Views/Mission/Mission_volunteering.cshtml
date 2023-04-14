@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Net
+@{
     ViewData["Title"] = "Mission_volunteering";
 }
 @model VMMissionVol
@@ -40,7 +41,7 @@
                     {
                         Count1 += 1;
                         <div class="carousel-item @(Count1 == 1 ? "active" : "") h-100">
-                            <img src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
+                            <img src="~/images/@j.MediaPath/@j.MediaName@j.MediaType" class="card-img-top d-block w-100 h-100" alt="..." />
                         </div>
                     }
                 </div>
@@ -60,8 +61,8 @@
                     {
                         Count2 += 1;
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@(Count2-1)" class="active"
-                                aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px; height: 50px;">
-                            <img class="d-block w-100 h-100" src="~/images/@j.MediaPath/@j.MediaName.@j.MediaType" class="img-fluid" />
+                            aria-current="true" aria-label="Slide @(Count2+1)" style="width: 100px; height: 50px;">
+                            <img class="d-block w-100 h-100" src="~/images/@j.MediaPath/@j.MediaName@j.MediaType" class="img-fluid" />
                         </button>
                     }
                 </div>
@@ -74,7 +75,7 @@
             <div class="vol-title mb-4">
                 <h3>@Model.mission.Title</h3>
                 <p class="p-0 m-0 fs-7">
-                    @Model.mission.Description
+                    @Model.mission.ShortDescription
                 </p>
             </div>
             <div class="position-relative mb-4">
@@ -134,7 +135,7 @@
                             <div class="w-75">
                                 <div class="progress w-75">
                                     <div class="progress-bar bg-ci-primary" role="progressbar" style="width: @avg%"
-                                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                                 <span class="fs-7">@a1 Achieved</span>
                             </div>
@@ -344,20 +345,20 @@
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active text-muted py-3" id="nav-mission" role="tabpanel"
                      aria-labelledby="nav-mission-tab">
-                    @Model.mission.Description
+                    @Html.Raw(WebUtility.HtmlDecode(Model.mission.Description))
                     @if (Model.missionDocuments.Count() > 0)
                     {
                         <h3 class="my-2 my-md-3">Documents</h3>
-                        @foreach (var i in Model.missionDocuments)
-                        {
-                            <div class="d-flex flex-wrap align-items-center">
+                        <div class="d-flex flex-wrap align-items-center">
+                            @foreach (var i in Model.missionDocuments)
+                            {
                                 <div class="rounded-pill text-muted border py-1 px-3 me-2 mb-2">
-                                    <a href="~/doc/@i.DocumentPath/@i.DocumentName.@i.DocumentType" target="_blank">
-                                        @if (i.DocumentType == "doc" || i.DocumentType == "docx" || i.DocumentType == "txt")
+                                    <a href="~/doc/@i.DocumentPath/@i.DocumentName@i.DocumentType" target="_blank">
+                                        @if (i.DocumentType == ".doc" || i.DocumentType == ".docx" || i.DocumentType == ".txt")
                                         {
                                             <img src="~/images/doc.png" alt="pdf">
                                         }
-                                        else if (i.DocumentType == "xls" || i.DocumentType == "xlsx")
+                                        else if (i.DocumentType == ".xls" || i.DocumentType == ".xlsx")
                                         {
                                             <img src="~/images/xlsx.png" alt="pdf">
                                         }
@@ -365,16 +366,16 @@
                                         {
                                             <img src="~/images/pdf.png" alt="pdf">
                                         }
-                                        <span class="text-muted">@i.DocumentName.@i.DocumentType</span>
+                                        <span class="text-muted">@i.DocumentName@i.DocumentType</span>
                                     </a>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     }
                 </div>
                 <div class="tab-pane fade py-3" id="nav-organization" role="tabpanel"
                      aria-labelledby="nav-organization-tab">
-                    @Model.mission.OrganizationDetails
+                    @Html.Raw(WebUtility.HtmlDecode(Model.mission.OrganizationDetails))
                 </div>
                 <div class="tab-pane fade py-3" id="nav-comment" role="tabpanel"
                      aria-labelledby="nav-comment-tab">

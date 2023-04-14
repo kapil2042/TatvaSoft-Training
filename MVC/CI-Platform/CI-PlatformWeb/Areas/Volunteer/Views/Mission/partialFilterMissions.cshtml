@@ -37,7 +37,7 @@ else
             var a1 = Model.timesheet.Where(x => x.MissionId == i.MissionId).Sum(x => x.Action);
             var b1 = Model.goal.Where(x => x.MissionId == i.MissionId).Select(x => x.GoalValue).FirstOrDefault();
             var avg = Convert.ToDouble(a1) / Convert.ToDouble(b1) * 100;
-            var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId && x.MediaDefault == 1).FirstOrDefault();
+            var img = Model.missionMedia.Where(x => x.MissionId == i.MissionId).FirstOrDefault();
             var tot = Model.missionAppAll.Where(x => x.MissionId == i.MissionId).Count();
 
             <div class="col-12 col-sm-6 col-lg-4 missions-view mt-3 mb-3 d-flex align-items-stretch">
@@ -89,7 +89,7 @@ else
                                 </button>
                                 @if (img != null)
                                 {
-                                    <img src="~/images/@img.MediaPath/@img.MediaName.@img.MediaType" class="card-img-top" alt="mission image">
+                                    <img src="~/images/@img.MediaPath/@img.MediaName@img.MediaType" class="card-img-top" alt="mission image">
                                 }
                                 else
                                 {
@@ -301,7 +301,7 @@ else
                                 </button>
                                 @if (img != null)
                                 {
-                                    <img src="~/images/@img.MediaPath/@img.MediaName.@img.MediaType" class="card-img-top" alt="mission image">
+                                    <img src="~/images/@img.MediaPath/@img.MediaName@img.MediaType" class="card-img-top" alt="mission image">
                                 }
                                 else
                                 {

@@ -1,0 +1,325 @@
+﻿@using CI_Platform.Models.ViewModels
+@model VMAdminMission
+
+@{
+    ViewData["Title"] = "EditMission";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/imageUploder.css">
+<script src="~/js/multipleSelect.js" asp-append-version="true"></script>
+
+<div class="w-100">
+    <div class="border rounded-1">
+        <div class="px-3 py-2 fs-3 border-bottom bg-light">
+            Edit
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            <div class="p-3 row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-12 col-md-6 pb-3">
+                    <label asp-for="CountryId" class="form-label text-muted">Select Country</label>
+                    <select asp-for="CountryId" class="form-control mission-country">
+                        <option value="0">Select Country</option>
+                        @foreach (var i in Model.country)
+                        {
+                            <option value="@i.CountryId">@i.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CountryId" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 pb-3">
+                    <label asp-for="CityId" class="form-label text-muted">Select City</label>
+                    <select asp-for="CityId" class="form-control mission-city">
+                    </select>
+                    <span asp-validation-for="CityId" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="Title" class="form-label text-muted">Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter Mission Title" />
+                    <span asp-validation-for="Title" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="ShortDescription" class="form-label text-muted">Short Description</label>
+                    <input asp-for="ShortDescription" class="form-control" placeholder="Enter Mission Short Description" />
+                    <span asp-validation-for="ShortDescription" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="Description" class="form-label text-muted">Description</label>
+                    <textarea asp-for="Description" id="editor" placeholder="Enter Mission Description">@Html.Raw(Model.Description)</textarea>
+                    <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
+                    </div>
+                    <span asp-validation-for="Description" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="OrganizationName" class="form-label text-muted">Organization Name</label>
+                    <input asp-for="OrganizationName" class="form-control" placeholder="Enter Organization Name" />
+                    <span asp-validation-for="OrganizationName" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="OrganizationDetails" class="form-label text-muted">Organization Details</label>
+                    <textarea asp-for="OrganizationDetails" id="editor1" placeholder="Enter Organization Details">@Html.Raw(Model.OrganizationDetails)</textarea>
+                    <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
+                    </div>
+                    <span asp-validation-for="OrganizationDetails" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label asp-for="StartDate" class="form-label text-muted">Start Date</label>
+                    <input asp-for="StartDate" type="date" class="form-control" placeholder="Select Start Date" />
+                    <span asp-validation-for="StartDate" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label asp-for="EndDate" class="form-label text-muted">End Date</label>
+                    <input asp-for="EndDate" type="date" class="form-control" placeholder="Select End Date" />
+                    <span asp-validation-for="EndDate" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label asp-for="MissionType" class="form-label text-muted">Mission Type</label>
+                    <select asp-for="MissionType" class="form-control">
+                        <option value="">Select Mission Type</option>
+                        <option value="TIME">Time</option>
+                        <option value="GOAL">Goal</option>
+                    </select>
+                    <span asp-validation-for="MissionType" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3">
+                    <label asp-for="TotalSeat" class="form-label text-muted">Total Seat</label>
+                    <input asp-for="TotalSeat" class="form-control" placeholder="Enter Total Seat" />
+                    <span asp-validation-for="TotalSeat" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
+                    <label asp-for="GoalValue" class="form-label text-muted">Goal Action</label>
+                    <input asp-for="GoalValue" class="form-control" placeholder="Enter Goal Action" />
+                    <span asp-validation-for="GoalValue" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
+                    <label asp-for="GoalObjectiveText" class="form-label text-muted">Goal Objective Text</label>
+                    <input asp-for="GoalObjectiveText" class="form-control" placeholder="Enter Goal Objective Text" />
+                    <span asp-validation-for="GoalObjectiveText" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="ThemeId" class="form-label text-muted">Theme</label>
+                    <select asp-for="ThemeId" class="form-control">
+                        <option value="0">Select Theme</option>
+                        @foreach (var i in Model.themes)
+                        {
+                            <option value="@i.MissionThemeId">@i.Title</option>
+                        }
+                    </select>
+                    <span asp-validation-for="ThemeId" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="border rounded-2 py-2 px-3">
+                        <select id="missionSkills1" class="form-select border-0 bg-transparent h-auto" multiple disabled>
+                            @foreach (var i in Model.MissionSkills)
+                            {
+                                <option value="@i.Skill.SkillId" class="bg-transparent" selected>@i.Skill.SkillName</option>
+                            }
+                        </select>
+                        <select id="missionSkills" name="missionSkills[]" class="form-select border-0 bg-transparent h-auto" multiple hidden>
+                            @foreach (var i in Model.MissionSkills)
+                            {
+                                <option value="@i.Skill.SkillId" selected>@i.Skill.SkillName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <button type="button" class="btn-ci-secondary" data-bs-toggle="modal" data-bs-target="#addSkill">Add Skills</button>
+                    </div>
+                    @if(ViewBag.skillerr != null)
+                    {
+                        <span class="text-ci-danger fs-7">@ViewBag.skillerr</span>
+                    }
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="row text-muted drag-area">
+                        <div class="field">
+                            <label class="form-label text-muted mt-3">Upload your Photos</label>
+                            <lable class="input-images d-block"></lable>
+                        </div>
+                    </div>
+                    @if(ViewBag.fileerr != null)
+                    {
+                        <span class="text-ci-danger fs-7">@ViewBag.fileerr</span>
+                    }
+                </div>
+                <div class="col-12 mb-3">
+                    <label class="form-label text-muted">Mission Documents</label>
+                    <div class="border cursor-pointer">
+                        <input type="file" class="d-none" id="file-input" name="mydocs" accept=".pdf,.doc,.docx,.xlsx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
+                        <label for="file-input" id="file-input-label" class="w-100 d-flex justify-content-center align-items-center text-muted mb-2">
+                            <div class="text-center">
+                                <div class="m-0"><i class="bi bi-plus fs-3"></i></div>
+                                <div class="m-0">Upload Documents</div>
+                            </div>
+                        </label>
+                        <ul class="list-unstyled" id="file-list">
+                            @foreach(var i in Model.mDocuments)
+                            {
+                                <li class="file-item">
+                                    <span class="file-icon">
+                                        <i class="bi bi-file-earmark text-success me-2"></i>
+                                        @i.DocumentName@i.DocumentType
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="Availability" class="form-label text-muted">Availability</label>
+                    <Select asp-for="Availability" class="form-control">
+                        <option value="">Select Availability</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="weekend">Week End</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                    <span asp-validation-for="Availability" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="Status" class="form-label text-muted">Status</label>
+                    <Select asp-for="Status" class="form-control">
+                        <option value="0">Deactive</option>
+                        <option value="1">Active</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group text-end">
+                    <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="CMSPage" asp-area="Admin">Cancel</a>
+                    <input type="submit" value="Save" class="open-loader btn-ci-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!--Select Skill Modal-->
+
+<div class="modal fade" id="addSkill" tabindex="-1" aria-labelledby="addSkillLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h1 class="modal-title fs-5" id="addSkillLabel">Add Your Skills</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-0">
+                    <div class="col-12 col-md">
+                        <select name="from[]" id="multiselect" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
+                                multiple>
+                            @foreach (var i in Model.skills)
+                            {
+                                <option value="@i.SkillId">@i.SkillName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-1 text-center d-flex flex-column justify-content-center">
+                        <button id="multiselect_rightSelected" class="btn border-0 shadow-none">
+                            <img src="~/images/right-arrow1.png" alt="" />
+                        </button>
+                        <br />
+                        <button id="multiselect_leftSelected" class="btn border-0 shadow-none">
+                            <img src="~/images/left.png" alt="" />
+                        </button>
+                    </div>
+                    <div class="col-12 col-md">
+                        <select name="to[]" id="multiselect_to" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
+                                multiple>
+                                @foreach (var i in Model.MissionSkills)
+                                {
+                                    <option value="@i.Skill.SkillId">@i.Skill.SkillName</option>
+                                }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 justify-content-start">
+                <button type="button" class="btn-ci-secondary" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" onclick="AddSkillToSelect()" class="btn-ci-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/super-build/ckeditor.js"></script>
+<script src="~/js/ckeditor.js" asp-append-version="true"></script>
+<script src="~/js/imageUploder.js" asp-append-version="true"></script>
+<script src="~/js/filesUploader.js" asp-append-version="true"></script>
+<script>
+    @{
+        int k = 1;
+    }
+    function AddSkillToSelect() {
+        $("#missionSkills1").removeClass('d-none');
+        $("#missionSkills1").html($("#multiselect_to").html());
+        $("#missionSkills").html($("#multiselect_to").html());
+        $("#missionSkills option").prop('selected', true);
+        $("#addSkill").modal('hide');
+        $("#missionSkills1").attr("size", $("#missionSkills1 option").length);
+    }
+    $(function () {
+        $("#missionSkills1").attr("size", $("#missionSkills1 option").length);
+    });
+    $("#MissionType").change((e)=>{
+        if(e.target.value === "GOAL")
+        $(".goal-item").removeClass("d-none");
+        else
+        $(".goal-item").addClass("d-none");
+    });
+    $(document).ready(()=>{
+        $("#missionLi").addClass('active');
+        $.ajax({
+            type: "GET",
+            url: "/Volunteer/Home/GetCityByCountry",
+            data: { country: $("#CountryId").val() },
+            success: function (data) {
+                $(".mission-city").empty();
+                $(".mission-city").append($(`<option></option>`).val(0).html("Select City"));
+                $.each(data, function (index, item) {
+                    if (item.cityId == @Model.CityId) {
+                        $(".mission-city").append($(`<option></option>`).val(item.cityId).html(item.name).attr("selected","selected"));
+                    }
+                    else{
+                        $(".mission-city").append($(`<option></option>`).val(item.cityId).html(item.name));
+                    }
+                })
+            }
+        });
+    })
+    let preloaded = [
+        @foreach (MissionMedium mm in Model.missionMedia)
+        {
+            @:{id:@k,src:"/images/@mm.MediaPath/@mm.MediaName@mm.MediaType"},
+            k++;
+        }
+    ];
+    $('.input-images').imageUploader({
+        preloaded: preloaded,
+        maxSize: 0.5 * 1024 * 1024,
+        maxFiles: 20
+    });
+    $(".mission-country").on('change', function () {
+        $.ajax({
+            type: "GET",
+            url: "/Volunteer/Home/GetCityByCountry",
+            data: { country: $(this).val() },
+            success: function (data) {
+                $(".mission-city").empty();
+                $(".mission-city").append($(`<option></option>`).val(0).html("Select City"));
+                $.each(data, function (index, item) {
+                    if (item.cityId == @Model.CityId) {
+                        $(".mission-city").append($(`<option></option>`).val(item.cityId).html(item.name).attr("selected","selected"));
+                    }
+                    else{
+                        $(".mission-city").append($(`<option></option>`).val(item.cityId).html(item.name));
+                    }
+                })
+            }
+        });
+    });
+</script>

@@ -121,48 +121,46 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
-
-            Story newStory = new Story();
-
-            newStory.UserId = Convert.ToInt64(uid);
-
-            foreach (IFormFile file in myfile)
+            if (myfile.Count() > 0)
             {
-                if (file != null)
-                {
-                    //Set Key Name
-                    string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-
-                    //Get url To Save
-                    string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", ImageName);
-
-                    using (var stream = new FileStream(SavePath, FileMode.Create))
-                    {
-                        StoryMedium sm = new StoryMedium();
-                        sm.MediaType = file.ContentType.Split('/')[1].ToLower();
-                        sm.MediaPath = ImageName;
-                        newStory.StoryMedia.Add(sm);
-                        file.CopyTo(stream);
-                    }
-                }
+                ModelState.Remove("User");
+                ModelState.Remove("Mission");
             }
-            newStory.Title = story.Title;
-            newStory.MissionId = story.MissionId;
-            newStory.ShortDescription = story.ShortDescription;
-            newStory.Description = WebUtility.HtmlEncode(story.Description);
-            newStory.Views = 0;
-
-            if (action.Equals("Submit"))
-            {
-                newStory.Status = "PENDING";
-                newStory.PublishedAt = DateTime.Now;
-            }
-
-            ModelState.Remove("User");
-            ModelState.Remove("Mission");
+            else
+                ViewBag.imgerr = "Please upload at least one Image";
             if (ModelState.IsValid)
             {
-                _storyRepository.InsertStory(newStory);
+                story.UserId = Convert.ToInt64(uid);
+
+                foreach (IFormFile file in myfile)
+                {
+                    if (file != null)
+                    {
+                        //Set Key Name
+                        string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+                        //Get url To Save
+                        string SavePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", ImageName);
+
+                        using (var stream = new FileStream(SavePath, FileMode.Create))
+                        {
+                            StoryMedium sm = new StoryMedium();
+                            sm.MediaType = file.ContentType.Split('/')[1].ToLower();
+                            sm.MediaPath = ImageName;
+                            story.StoryMedia.Add(sm);
+                            file.CopyTo(stream);
+                        }
+                    }
+                }
+                story.Description = WebUtility.HtmlEncode(story.Description);
+                story.Views = 0;
+
+                if (action.Equals("Submit"))
+                {
+                    story.Status = "PENDING";
+                    story.PublishedAt = DateTime.Now;
+                }
+                _storyRepository.InsertStory(story);
                 _commonRepository.Save();
                 return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
             }

@@ -163,5 +163,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "APPROVE").ToList();
         }
+
+        public List<long> GetFavoriteMissioIdnByUser(string userid)
+        {
+            return _db.FavoriteMissions.Where(x => x.UserId == Convert.ToInt32(userid)).Select(x => x.MissionId).ToList();
+        }
     }
 }

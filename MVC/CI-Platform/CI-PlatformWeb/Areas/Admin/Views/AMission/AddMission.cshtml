@@ -1,4 +1,5 @@
-﻿@model CI_Platform.Models.Mission
+﻿@using CI_Platform.Models.ViewModels
+@model VMAdminMission
 
 @{
     ViewData["Title"] = "AddMission";
@@ -12,14 +13,14 @@
         <div class="px-3 py-2 fs-3 border-bottom bg-light">
             Add
         </div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="p-3 row">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group col-12 col-md-6 pb-3">
                     <label asp-for="CountryId" class="form-label text-muted">Select Country</label>
                     <select asp-for="CountryId" class="form-control mission-country">
                         <option value="0">Select Country</option>
-                        @foreach (var i in ViewBag.country)
+                        @foreach (var i in Model.country)
                         {
                             <option value="@i.CountryId">@i.Name</option>
                         }
@@ -75,7 +76,7 @@
                 <div class="form-group col-12 col-md-6 mb-3">
                     <label asp-for="MissionType" class="form-label text-muted">Mission Type</label>
                     <select asp-for="MissionType" class="form-control">
-                        <option value="0">Select Mission Type</option>
+                        <option value="">Select Mission Type</option>
                         <option value="TIME">Time</option>
                         <option value="GOAL">Goal</option>
                     </select>
@@ -87,18 +88,20 @@
                     <span asp-validation-for="TotalSeat" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
-                    <label class="form-label text-muted">Goal Action</label>
-                    <input name="goalAction" class="form-control" placeholder="Enter Goal Action" />
+                    <label asp-for="GoalValue" class="form-label text-muted">Goal Action</label>
+                    <input asp-for="GoalValue" class="form-control" placeholder="Enter Goal Action" />
+                    <span asp-validation-for="GoalValue" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
-                    <label class="form-label text-muted">Goal Objective Text</label>
-                    <input name="goalObjective" class="form-control" placeholder="Enter Goal Objective Text" />
+                    <label asp-for="GoalObjectiveText" class="form-label text-muted">Goal Objective Text</label>
+                    <input asp-for="GoalObjectiveText" class="form-control" placeholder="Enter Goal Objective Text" />
+                    <span asp-validation-for="GoalObjectiveText" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
                     <label asp-for="ThemeId" class="form-label text-muted">Theme</label>
                     <select asp-for="ThemeId" class="form-control">
                         <option value="0">Select Theme</option>
-                        @foreach (var i in ViewBag.Theme)
+                        @foreach (var i in Model.themes)
                         {
                             <option value="@i.MissionThemeId">@i.Title</option>
                         }
@@ -108,21 +111,25 @@
                 <div class="col-12 mb-3">
                     <div class="border rounded-2 py-2 px-3">
                         <select id="missionSkills1" class="form-select border-0 bg-transparent h-auto d-none" multiple disabled>
-                            @*@foreach (var i in Model.MissionSkills)
-                                {
+                            @foreach (var i in Model.MissionSkills)
+                            {
                                 <option value="@i.Skill.SkillId" class="bg-transparent" selected>@i.Skill.SkillName</option>
-                                }*@
+                            }
                         </select>
                         <select id="missionSkills" name="missionSkills[]" class="form-select border-0 bg-transparent h-auto" multiple hidden>
-                            @*@foreach (var i in Model.MissionSkills)
-                                {
+                            @foreach (var i in Model.MissionSkills)
+                            {
                                 <option value="@i.Skill.SkillId" selected>@i.Skill.SkillName</option>
-                                }*@
+                            }
                         </select>
                     </div>
                     <div class="mt-3">
                         <button type="button" class="btn-ci-secondary" data-bs-toggle="modal" data-bs-target="#addSkill">Add Skills</button>
                     </div>
+                    @if(ViewBag.skillerr != null)
+                    {
+                        <span class="text-ci-danger fs-7">@ViewBag.skillerr</span>
+                    }
                 </div>
                 <div class="col-12 mb-3">
                     <div class="row text-muted drag-area">
@@ -131,7 +138,10 @@
                             <lable class="input-images d-block"></lable>
                         </div>
                     </div>
-                    <span asp-validation-for="MissionMedia" class="text-ci-danger fs-7"></span>
+                    @if(ViewBag.fileerr != null)
+                    {
+                        <span class="text-ci-danger fs-7">@ViewBag.fileerr</span>
+                    }
                 </div>
                 <div class="col-12 mb-3">
                     <label class="form-label text-muted">Mission Documents</label>
@@ -149,13 +159,21 @@
                 <div class="form-group col-12 mb-3">
                     <label asp-for="Availability" class="form-label text-muted">Availability</label>
                     <Select asp-for="Availability" class="form-control">
-                        <option value="0">Select Availability</option>
+                        <option value="">Select Availability</option>
                         <option value="daily">Daily</option>
                         <option value="weekly">Weekly</option>
                         <option value="weekend">Week End</option>
                         <option value="monthly">Monthly</option>
                     </select>
                     <span asp-validation-for="Availability" class="text-ci-danger fs-7"></span>
+                </div>
+                <div class="form-group col-12 mb-3">
+                    <label asp-for="Status" class="form-label text-muted">Status</label>
+                    <Select asp-for="Status" class="form-control">
+                        <option value="0">Deactive</option>
+                        <option value="1">Active</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group text-end">
                     <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="CMSPage" asp-area="Admin">Cancel</a>
@@ -182,7 +200,7 @@
                     <div class="col-12 col-md">
                         <select name="from[]" id="multiselect" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
                                 multiple>
-                            @foreach (var i in ViewBag.Skills)
+                            @foreach (var i in Model.skills)
                             {
                                 <option value="@i.SkillId">@i.SkillName</option>
                             }
@@ -200,10 +218,10 @@
                     <div class="col-12 col-md">
                         <select name="to[]" id="multiselect_to" class="border border-1 rounded-2 p-2 form-select h-100" size="15"
                                 multiple>
-                            @*@foreach (var i in Model.MissionSkills)
+                                @foreach (var i in Model.MissionSkills)
                                 {
-                                <option value="@i.Skill.SkillId">@i.Skill.SkillName</option>
-                                }*@
+                                    <option value="@i.Skill.SkillId">@i.Skill.SkillName</option>
+                                }
                         </select>
                     </div>
                 </div>
@@ -242,7 +260,7 @@
         $(".goal-item").addClass("d-none");
     });
     $(document).ready(()=>{
-        $("#cmsLi").addClass('active');
+        $("#missionLi").addClass('active');
     })
     let preloaded = [
 
