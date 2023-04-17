@@ -11,6 +11,8 @@ namespace CI_Platform.Repositories.Interfaces
     {
         Admin getAdminByEmail(string email);
 
+        Admin getAdminById(long adminId);
+
         List<User> GetAllUsers();
 
         User GetUserById(long id);

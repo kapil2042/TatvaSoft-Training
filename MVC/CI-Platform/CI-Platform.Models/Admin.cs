@@ -15,10 +15,12 @@ public partial class Admin
 
     [Column("fisrt_name")]
     [StringLength(16)]
+    [Required]
     public string? FisrtName { get; set; }
 
     [Column("last_name")]
     [StringLength(16)]
+    [Required]
     public string? LastName { get; set; }
 
     [Column("email")]

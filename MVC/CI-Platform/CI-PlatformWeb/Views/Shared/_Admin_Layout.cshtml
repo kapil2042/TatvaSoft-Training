@@ -89,15 +89,15 @@
                             <span class="px-2 text-secondary d-none d-sm-block">@name @surname</span>
                             <img class="d-none d-sm-block" src="~/images/drop-down.png" />
                         </div>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end w-100">
                             <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="User"
-                                   asp-action="UserProfile">Update Profile</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Admin"
+                                   asp-action="UpdateProfile" asp-route-email="@email">Update Profile</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
-                                   asp-action="Index">Volunteering Timesheet</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Admin"
+                                   asp-action="Index">Admin</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>

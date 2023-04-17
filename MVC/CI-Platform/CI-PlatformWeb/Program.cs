@@ -23,6 +23,7 @@ builder.Services.AddScoped<IAdminMissionThemeRepository, AdminMissionThemeReposi
 builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillRepository>();
 builder.Services.AddScoped<IAdminApproveDeclineRepository, AdminApproveDeclineRepository>();
 builder.Services.AddScoped<IAdminBannerRepository, AdminBannerRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 
 

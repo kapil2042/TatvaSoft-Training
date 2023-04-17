@@ -11,7 +11,7 @@ build_property.RootNamespace = CI_PlatformWeb
 build_property.ProjectDir = D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\KAPIL\Tatvasoft\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb
 build_property._RazorSourceGeneratorDebug = 
 
@@ -27,6 +27,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BcHByb3ZlRGVjbGluZVxVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/Admin/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5cVXBkYXRlUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/AMission/AddMission.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQU1pc3Npb25cQWRkTWlzc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -37,10 +45,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/AMission/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQU1pc3Npb25cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/AUser/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQVVzZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/BannerManagement/AddBanner.cshtml]

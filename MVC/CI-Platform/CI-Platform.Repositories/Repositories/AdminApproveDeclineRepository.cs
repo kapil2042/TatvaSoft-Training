@@ -21,12 +21,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionApplicatoin> GetMissionApplications(string query, int recSkip, int recTake)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalMissionApplicationRecord(string query)
         {
-            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Count();
+            return _db.MissionApplicatoins.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Count();
         }
 
         public void UpdateMissionApplicationStatus(MissionApplicatoin applicatoin)
@@ -41,12 +41,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Story> GetStories(string query, int recSkip, int recTake)
         {
-            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalStoriesRecord(string query)
         {
-            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || x.User.LastName.Contains(query)).Count();
+            return _db.Stories.Where(x => x.Status == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Title.Contains(query) || x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Count();
         }
 
         public void UpdateStoryStatus(Story story)
@@ -66,7 +66,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<User> GetUsers(string query, int recSkip, int recTake)
         {
-            return _db.Users.Where(x => x.FirstName.Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query)).OrderBy(x => x.Status).Skip(recSkip).Take(recTake).ToList();
+            return _db.Users.Where(x => (x.FirstName + " " + x.LastName).Contains(query) || (x.LastName + " " + x.FirstName).Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query)).OrderBy(x => x.Status).Skip(recSkip).Take(recTake).ToList();
         }
 
         public User GetUserById(long id)
