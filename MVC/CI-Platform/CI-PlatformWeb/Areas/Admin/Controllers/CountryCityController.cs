@@ -123,7 +123,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
 
         public IActionResult AddCity()
         {
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             return View();
         }
 
@@ -131,7 +131,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCity(City city)
         {
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             ModelState.Remove("Country");
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
 
         public IActionResult EditCity(long id)
         {
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             var city = _adminCountryCityRepository.GetCityById(id);
             if (city != null)
             {
@@ -159,7 +159,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditCity(long id, City city)
         {
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             var newCity = _adminCountryCityRepository.GetCityById(id);
             ModelState.Remove("Country");
             if (ModelState.IsValid)

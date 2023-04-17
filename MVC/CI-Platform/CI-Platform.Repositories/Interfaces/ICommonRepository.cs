@@ -19,6 +19,8 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<Country> GetCountries();
 
+        List<Country> GetCountriesByNotDeleted();
+
         List<City> GetCities();
 
         List<City> GetCitiesBycountry(int country);

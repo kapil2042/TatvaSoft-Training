@@ -25,7 +25,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             ViewBag.city = _commonRepository.GetCities();
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             ViewBag.skills = _commonRepository.GetSkills();
             return View(_commonRepository.GetUserById(Convert.ToInt64(uid)));
         }
@@ -36,7 +36,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             ViewBag.city = _commonRepository.GetCities();
-            ViewBag.country = _commonRepository.GetCountries();
+            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
             ViewBag.skills = _commonRepository.GetSkills();
 
             var userUpdated = _commonRepository.GetUserById(Convert.ToInt64(uid));

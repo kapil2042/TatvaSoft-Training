@@ -51,7 +51,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         {
             VMAdminMission vmMission = new VMAdminMission();
             vmMission.MissionSkills = new List<MissionSkill>();
-            vmMission.country = _commonRepository.GetCountries();
+            vmMission.country = _commonRepository.GetCountriesByNotDeleted();
             vmMission.themes = _commonRepository.GetMissionThemes();
             vmMission.skills = _commonRepository.GetSkills();
             return View(vmMission);
@@ -153,7 +153,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 TempData["msg"] = "Record Inserted Successfully!";
                 return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = TempData["pg"] });
             }
-            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.country = _commonRepository.GetCountriesByNotDeleted();
             vmAdminMission.themes = _commonRepository.GetMissionThemes();
             vmAdminMission.skills = _commonRepository.GetSkills();
             return View(vmAdminMission);
@@ -178,7 +178,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             vmAdminMission.OrganizationName = mission.OrganizationName;
             vmAdminMission.OrganizationDetails = WebUtility.HtmlDecode(mission.OrganizationDetails);
             vmAdminMission.Availability = mission.Availability;
-            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.country = _commonRepository.GetCountriesByNotDeleted();
             vmAdminMission.themes = _commonRepository.GetMissionThemes();
             vmAdminMission.skills = _commonRepository.GetSkills();
             vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
@@ -189,7 +189,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditMission(long id, VMAdminMission vmAdminMission, int[] missionSkills, IFormFileCollection myfile, IFormFileCollection? mydocs, string[] preloaded)
         {
-            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.country = _commonRepository.GetCountriesByNotDeleted();
             vmAdminMission.themes = _commonRepository.GetMissionThemes();
             vmAdminMission.skills = _commonRepository.GetSkills();
             vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);

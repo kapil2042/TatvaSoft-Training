@@ -46,6 +46,11 @@ namespace CI_Platform.Repositories.Repositories
             return _db.Countries.ToList();
         }
 
+        public List<Country> GetCountriesByNotDeleted()
+        {
+            return _db.Countries.Where(x => x.DeletedAt == null).ToList();
+        }
+
         public List<City> GetCities()
         {
             return _db.Cities.ToList();
