@@ -96,5 +96,25 @@ namespace CI_Platform.Repositories.Repositories
                 _db.StoryInvites.Remove(invite);
             }
         }
+
+        public List<Comment> GetComments(string query, int recSkip, int recTake)
+        {
+            return _db.Comments.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+        }
+
+        public int GetTotalCommets(string query)
+        {
+            return _db.Comments.Where(x => x.ApprovalStatus == "PENDING").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Count();
+        }
+
+        public void UpdateComments(Comment comment)
+        {
+            _db.Comments.Update(comment);
+        }
+
+        public Comment GetCommentById(long id)
+        {
+            return _db.Comments.Where(x => x.CommentId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
+        }
     }
 }

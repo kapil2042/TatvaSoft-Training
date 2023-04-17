@@ -47,5 +47,19 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Skills.Where(x => x.SkillId == id).FirstOrDefault();
         }
+
+        public void DeleteMissionSkillDependency(long skillId)
+        {
+            var missionSkill = _db.MissionSkills.Where(x => x.SkillId == skillId).ToList();
+            var userSkill = _db.UserSkills.Where(x => x.SkillId == skillId).ToList();
+            foreach (var i in missionSkill)
+            {
+                _db.MissionSkills.Remove(i);
+            }
+            foreach (var i in userSkill)
+            {
+                _db.UserSkills.Remove(i);
+            }
+        }
     }
 }

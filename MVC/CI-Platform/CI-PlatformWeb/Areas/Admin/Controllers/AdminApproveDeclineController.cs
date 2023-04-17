@@ -181,5 +181,52 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             _commonRepository.Save();
             return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
         }
+
+
+        public IActionResult Comments(string id, int pg)
+        {
+            if (id == null)
+            {
+                id = "";
+            }
+            TempData["pg"] = pg;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            const int pageSize = 10;
+            int recsCount = _adminApproveDeclineRepository.GetTotalCommets(id);
+            var pager = new VMPager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = _adminApproveDeclineRepository.GetComments(id, recSkip, pager.PageSize);
+            if (data.Count() == 0 && pg > 1)
+            {
+                return RedirectToAction("Comments", "AdminApproveDecline", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
+            }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
+            ViewBag.pager = pager;
+            ViewBag.query = id;
+            return View(data);
+        }
+
+        public IActionResult ChangeCommentStatus(long id, bool action)
+        {
+            var comment = _adminApproveDeclineRepository.GetCommentById(id);
+            comment.UpdatedAt = DateTime.Now;
+            if (action)
+            {
+                comment.ApprovalStatus = "APPROVE";
+                TempData["msg"] = "Comment Approved successfully!";
+            }
+            else
+            {
+                comment.ApprovalStatus = "DECLINE";
+                TempData["msg"] = "Comment Declined successfully!";
+            }
+            _adminApproveDeclineRepository.UpdateComments(comment);
+            _commonRepository.Save();
+            return RedirectToAction("Comments", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
+        }
     }
 }

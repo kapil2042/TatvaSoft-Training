@@ -102,6 +102,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteMissionSkill(long id)
         {
+            _adminMissionSkillsRepository.DeleteMissionSkillDependency(id);
             var skill = _adminMissionSkillsRepository.GetSkillById(id);
             if (skill != null)
             {

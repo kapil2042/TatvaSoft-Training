@@ -20,5 +20,7 @@ namespace CI_Platform.Repositories.Interfaces
         void DeleteSkill(Skill skill);
 
         Skill GetSkillById(long id);
+
+        void DeleteMissionSkillDependency(long skillId);
     }
 }

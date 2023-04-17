@@ -25,7 +25,7 @@ public partial class Comment
 
     [Column("comment_text", TypeName = "text")]
     [StringLength(1024)]
-    public string? CommentText { get; set; }
+    public string CommentText { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]
     public DateTime CreatedAt { get; set; }

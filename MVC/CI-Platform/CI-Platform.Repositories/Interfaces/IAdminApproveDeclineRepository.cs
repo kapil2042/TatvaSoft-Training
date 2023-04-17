@@ -38,5 +38,13 @@ namespace CI_Platform.Repositories.Interfaces
         void DeleteStoryMedia(StoryMedium storyMedium);
 
         void DeleteStoryInviteByStoryId(long id);
+
+        List<Comment> GetComments(string query, int recSkip, int recTake);
+
+        int GetTotalCommets(string query);
+
+        void UpdateComments(Comment comment);
+
+        Comment GetCommentById(long id);
     }
 }

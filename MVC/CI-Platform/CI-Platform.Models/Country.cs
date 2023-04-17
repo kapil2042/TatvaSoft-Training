@@ -19,6 +19,7 @@ public partial class Country
 
     [Column("ISO")]
     [StringLength(16)]
+    [Required]
     public string? Iso { get; set; }
 
     [Column("created_at", TypeName = "datetime")]

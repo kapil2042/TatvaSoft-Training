@@ -24,6 +24,7 @@ builder.Services.AddScoped<IAdminMissionSkillsRepository, AdminMissionSkillRepos
 builder.Services.AddScoped<IAdminApproveDeclineRepository, AdminApproveDeclineRepository>();
 builder.Services.AddScoped<IAdminBannerRepository, AdminBannerRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<IAdminCountryCityRepository, AdminCountryCityRepository>();
 
 
 
