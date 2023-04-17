@@ -16,5 +16,6 @@ namespace CI_Platform.Repositories.Interfaces
         List<StoryMedium> GetStoryMediaList(int id);
         void InserStoryInvitation(StoryInvite invite);
         void DeleteStoryImage(StoryMedium sm);
+        StoryMedium GetStoryMediaByMediaPath(string mediaPath);
     }
 }

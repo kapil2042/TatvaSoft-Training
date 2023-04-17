@@ -32,5 +32,11 @@ namespace CI_Platform.Repositories.Interfaces
         User GetUserById(long id);
 
         int GetTotalUsersRecord(string query);
+
+        List<StoryMedium> GetStoryMediumByStoryId(long id);
+
+        void DeleteStoryMedia(StoryMedium storyMedium);
+
+        void DeleteStoryInviteByStoryId(long id);
     }
 }

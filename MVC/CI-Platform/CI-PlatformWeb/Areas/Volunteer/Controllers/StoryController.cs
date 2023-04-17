@@ -228,37 +228,25 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
             List<StoryMedium> storyMedia = new List<StoryMedium>();
             storyMedia = _storyRepository.GetStoryMediaList(id);
-            foreach (var img in storyMedia)
+
+            List<string> listForDelete = new List<string>();
+            for (int i = 0; i < preloaded.Length; i++)
             {
-                if (preloaded.Length < 1)
-                {
-                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", img.MediaPath);
-                    if (System.IO.File.Exists(imagePath))
-                    {
-                        System.IO.File.Delete(imagePath);
-                    }
-                    _storyRepository.DeleteStoryImage(img);
-                }
-                else
-                {
-                    for (int i = 0; i < preloaded.Length; i++)
-                    {
-                        string oldImg = preloaded[i].Split('/')[3];
-
-                        if (!oldImg.Equals(img.MediaPath))
-                        {
-                            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", img.MediaPath);
-                            if (System.IO.File.Exists(imagePath))
-                            {
-                                System.IO.File.Delete(imagePath);
-                            }
-                            _storyRepository.DeleteStoryImage(img);
-                        }
-                    }
-                }
+                var x = preloaded[i].Split('/')[3];
+                listForDelete.Add(x);
             }
-
-
+            string[] str = listForDelete.ToArray();
+            var storyMediaForDelete = storyMedia.Select(x => x.MediaPath).ToArray().Except(str);
+            foreach (var i in storyMediaForDelete)
+            {
+                var img = _storyRepository.GetStoryMediaByMediaPath(i);
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", img.MediaPath);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _storyRepository.DeleteStoryImage(img);
+            }
             foreach (IFormFile file in myfile)
             {
                 if (file != null)

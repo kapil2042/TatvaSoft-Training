@@ -150,7 +150,8 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 }
                 _adminMissionRepository.InsertMission(mission);
                 _commonRepository.Save();
-                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = 1 });
+                TempData["msg"] = "Record Inserted Successfully!";
+                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = TempData["pg"] });
             }
             vmAdminMission.country = _commonRepository.GetCountries();
             vmAdminMission.themes = _commonRepository.GetMissionThemes();
@@ -251,44 +252,25 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                     missionSkillNew.SkillId = i;
                     mission.MissionSkills.Add(missionSkillNew);
                 }
-                List<string> list = new List<string>();
+                List<string> listForDelete = new List<string>();
                 for (int i = 0; i < preloaded.Length; i++)
                 {
                     var x = preloaded[i].Split('/')[3];
                     var y = x.Split('.')[0];
-                    list.Add(y);
+                    listForDelete.Add(y);
                 }
-                string[] str = list.ToArray();
-                var a = vmAdminMission.missionMedia.Select(x => x.MediaName).ToArray().Except(str);
-                //foreach (var img in vmAdminMission.missionMedia)
-                //{
-                //    if (preloaded.Length < 1)
-                //    {
-                //        string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", img.MediaName + img.MediaType);
-                //        if (System.IO.File.Exists(imagePath))
-                //        {
-                //            System.IO.File.Delete(imagePath);
-                //        }
-                //        _adminMissionRepository.DeleteMissionImage(img);
-                //    }
-                //    else
-                //    {
-                //        for (int i = 0; i < preloaded.Length; i++)
-                //        {
-                //            string oldImg = preloaded[i].Split('/')[3];
-
-                //            if (!oldImg.Equals(img.MediaName + img.MediaType))
-                //            {
-                //                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", img.MediaName + img.MediaType);
-                //                if (System.IO.File.Exists(imagePath))
-                //                {
-                //                    System.IO.File.Delete(imagePath);
-                //                }
-                //                _adminMissionRepository.DeleteMissionImage(img);
-                //            }
-                //        }
-                //    }
-                //}
+                string[] str = listForDelete.ToArray();
+                var missionMediaForDelete = vmAdminMission.missionMedia.Select(x => x.MediaName).ToArray().Except(str);
+                foreach (var i in missionMediaForDelete)
+                {
+                    var img = _adminMissionRepository.GetMissionMediaByMediaName(i);
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", img.MediaName + img.MediaType);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                    _adminMissionRepository.DeleteMissionImage(img);
+                }
                 foreach (IFormFile file in myfile)
                 {
                     if (file != null)
@@ -340,9 +322,56 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 }
                 _adminMissionRepository.UpdateMission(mission);
                 _commonRepository.Save();
-                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = 1 });
+                TempData["msg"] = "Mission Updated Successfully!";
+                return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(vmAdminMission);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteMission(long id)
+        {
+            var missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
+            var missionDoc = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
+            foreach (var media in missionMedia)
+            {
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/missionimages", media.MediaName + media.MediaType);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _adminMissionRepository.DeleteMissionImage(media);
+            }
+            foreach (var doc in missionDoc)
+            {
+                string docPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/doc/missiondocuments", doc.DocumentName + doc.DocumentType);
+                if (System.IO.File.Exists(docPath))
+                {
+                    System.IO.File.Delete(docPath);
+                }
+                _adminMissionRepository.DeleteMissionDoc(doc);
+            }
+            _adminMissionRepository.DeleteFavouriteMissionByMissionId(id);
+            _adminMissionRepository.DeleteMissionRatingByMissionId(id);
+            _adminMissionRepository.DeleteMissionInviteByMissionId(id);
+            _adminMissionRepository.DeleteMissionApplicationByMissionId(id);
+            _adminMissionRepository.DeleteMissionSkillsByMissionId(id);
+            _adminMissionRepository.DeleteTimeSheetByMissionId(id);
+            _adminMissionRepository.DeleteCommentsByMissionId(id);
+            _adminMissionRepository.DeleteStoriesByMissionId(id);
+            var mission = _adminMissionRepository.GetMissionById(id);
+            if (mission != null)
+            {
+                if (mission.MissionType.Equals("GOAL"))
+                {
+                    _adminMissionRepository.DeleteGoalMission(_adminMissionRepository.getGoalMissionByMissionId(id));
+                }
+                _adminMissionRepository.DeleteMission(mission);
+            }
+            _commonRepository.Save();
+            TempData["msg"] = "Record Deleted Successfully!";
+            return RedirectToAction("Index", "AMission", new { Area = "Admin", pg = TempData["pg"] });
         }
     }
 }

@@ -114,14 +114,25 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteStory(long id)
         {
-            //var story = _adminApproveDeclineRepository.GetStoryById(id);
-            //if (story != null)
-            //{
-            //    _adminApproveDeclineRepository.DeleteStory(story);
-            //}
-            //_commonRepository.Save();
+            var storyMedia = _adminApproveDeclineRepository.GetStoryMediumByStoryId(id);
+            foreach (var media in storyMedia)
+            {
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", media.MediaPath);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _adminApproveDeclineRepository.DeleteStoryMedia(media);
+            }
+            _adminApproveDeclineRepository.DeleteStoryInviteByStoryId(id);
+            var story = _adminApproveDeclineRepository.GetStoryById(id);
+            if (story != null)
+            {
+                _adminApproveDeclineRepository.DeleteStory(story);
+            }
+            _commonRepository.Save();
             TempData["msg"] = "Record Deleted Successfully!";
-            return RedirectToAction("Index", "CMSPage", new { Area = "Admin", pg = TempData["pg"] });
+            return RedirectToAction("Story", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
         }
 
 

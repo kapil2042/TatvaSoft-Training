@@ -294,13 +294,14 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             return PartialView("volunteerPagination", list);
         }
 
+        [Authorize(Policy = "VolunteerOnly")]
         public IActionResult ApplyMission(long missionId)
         {
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             var mission = _missionRepository.GetMissionsById(Convert.ToInt32(missionId));
             var totalapplication = _missionRepository.GetMissionApplicatoinsByMissionId(Convert.ToInt32(missionId)).Count();
-            if (mission.EndDate < DateTime.Now)
+            if (mission.MissionType.Equals("TIME") && mission.EndDate < DateTime.Now)
             {
                 TempData["alredyapplied"] = "Mission was expired!";
             }

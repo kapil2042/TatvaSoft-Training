@@ -43,5 +43,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             _db.Timesheets.Remove(timesheet);
         }
+
+        public List<Mission> GetMissionByUserApplyAndAppApproved(long id)
+        {
+            return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id && x.ApprovalStatus == "APPROVE").Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
+        }
     }
 }

@@ -78,5 +78,23 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Users.Count(x => x.FirstName.Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query));
         }
+
+        public List<StoryMedium> GetStoryMediumByStoryId(long id)
+        {
+            return _db.StoryMedia.Where(x => x.StoryId == id).ToList();
+        }
+
+        public void DeleteStoryMedia(StoryMedium storyMedium)
+        {
+            _db.StoryMedia.Remove(storyMedium);
+        }
+
+        public void DeleteStoryInviteByStoryId(long id)
+        {
+            foreach (var invite in _db.StoryInvites.Where(x => x.StoryId == id).ToList())
+            {
+                _db.StoryInvites.Remove(invite);
+            }
+        }
     }
 }

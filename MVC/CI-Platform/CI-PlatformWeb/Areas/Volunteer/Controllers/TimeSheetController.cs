@@ -29,7 +29,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             List<Timesheet> timesheet = _timeSheetRepository.GetTimeSheetDataByUserId(Convert.ToInt64(uid));
-            ViewBag.Missions = _commonRepository.GetMissionByUserApply(Convert.ToInt32(uid));
+            ViewBag.Missions = _timeSheetRepository.GetMissionByUserApplyAndAppApproved(Convert.ToInt64(uid));
             return View(timesheet);
         }
 

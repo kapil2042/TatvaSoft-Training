@@ -14,5 +14,6 @@ namespace CI_Platform.Repositories.Interfaces
         void InsertTimesheet(Timesheet timesheet);
         void UpdateTimesheet(Timesheet timesheet);
         void DeleteTimesheet(Timesheet timesheet);
+        List<Mission> GetMissionByUserApplyAndAppApproved(long id);
     }
 }

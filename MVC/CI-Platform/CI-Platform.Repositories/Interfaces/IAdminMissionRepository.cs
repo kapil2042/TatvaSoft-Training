@@ -36,5 +36,25 @@ namespace CI_Platform.Repositories.Interfaces
         GoalMission getGoalMissionByMissionId(long missionId);
 
         void UpdateGoalMission(GoalMission goalMission);
+
+        MissionMedium GetMissionMediaByMediaName(string mediaName);
+
+        void DeleteGoalMission(GoalMission mission);
+
+        void DeleteFavouriteMissionByMissionId(long id);
+
+        void DeleteMissionRatingByMissionId(long id);
+
+        void DeleteMissionInviteByMissionId(long id);
+
+        void DeleteMissionApplicationByMissionId(long id);
+
+        void DeleteMissionSkillsByMissionId(long id);
+
+        void DeleteTimeSheetByMissionId(long id);
+
+        void DeleteCommentsByMissionId(long id);
+
+        void DeleteStoriesByMissionId(long id);
     }
 }

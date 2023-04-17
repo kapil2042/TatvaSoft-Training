@@ -60,5 +60,10 @@ namespace CI_Platform.Repositories.Repositories
         {
             _db.StoryMedia.Remove(sm);
         }
+
+        public StoryMedium GetStoryMediaByMediaPath(string mediaPath)
+        {
+            return _db.StoryMedia.Where(x => x.MediaPath == mediaPath).FirstOrDefault();
+        }
     }
 }
