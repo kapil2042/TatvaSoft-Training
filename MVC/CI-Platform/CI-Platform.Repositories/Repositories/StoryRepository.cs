@@ -65,5 +65,23 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.StoryMedia.Where(x => x.MediaPath == mediaPath).FirstOrDefault();
         }
+
+        public List<StoryMedium> GetStoryMediumByStoryId(long id)
+        {
+            return _db.StoryMedia.Where(x => x.StoryId == id).ToList();
+        }
+
+        public void DeleteStoryInviteByStoryId(long id)
+        {
+            foreach (var invite in _db.StoryInvites.Where(x => x.StoryId == id).ToList())
+            {
+                _db.StoryInvites.Remove(invite);
+            }
+        }
+
+        public void DeleteStory(Story story)
+        {
+            _db.Stories.Remove(story);
+        }
     }
 }

@@ -79,6 +79,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 }
                 _userRepository.UpdateUserData(userUpdated);
                 _commonRepository.Save();
+                ViewBag.success = "Your Profile Updated Successfully!";
             }
             return View(userUpdated);
         }

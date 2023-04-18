@@ -690,7 +690,7 @@ a {
 
 .edit-btn {
     position: absolute !important;
-    top: 50px !important;
+    top: 40px !important;
     right: 0 !important;
     width: 40px !important;
     padding-inline: 15px;
@@ -708,10 +708,38 @@ a {
     }
 
     .edit-btn:hover {
-        width: 130px !important;
+        width: 140px !important;
     }
 
         .edit-btn:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+
+.delete-btn {
+    position: absolute !important;
+    top: 80px !important;
+    right: 0 !important;
+    width: 40px !important;
+    padding-inline: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    transition: width .5s;
+}
+
+    .delete-btn span {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility .5s, opacity .5s linear;
+    }
+
+    .delete-btn:hover {
+        width: 140px !important;
+    }
+
+        .delete-btn:hover span {
             visibility: visible;
             opacity: 1;
         }

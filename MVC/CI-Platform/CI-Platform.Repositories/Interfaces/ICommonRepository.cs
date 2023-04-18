@@ -50,5 +50,7 @@ namespace CI_Platform.Repositories.Interfaces
         List<CmsPage> getAllPrivacy();
 
         List<Banner> GetBanners();
+
+        bool matchUserAndMissionSkills(long userId, long missionId);
     }
 }

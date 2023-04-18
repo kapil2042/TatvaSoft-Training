@@ -301,7 +301,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             var mission = _missionRepository.GetMissionsById(Convert.ToInt32(missionId));
             var totalapplication = _missionRepository.GetMissionApplicatoinsByMissionId(Convert.ToInt32(missionId)).Count();
-            if (mission.MissionType.Equals("TIME") && mission.EndDate < DateTime.Now)
+            if (!_commonRepository.matchUserAndMissionSkills(Convert.ToInt64(uid), missionId))
+            {
+                TempData["alredyapplied"] = "Your Skills are not matched with the mission skills! Please change your skills and try again!";
+            }
+            else if (mission.MissionType.Equals("TIME") && mission.EndDate < DateTime.Now)
             {
                 TempData["alredyapplied"] = "Mission was expired!";
             }

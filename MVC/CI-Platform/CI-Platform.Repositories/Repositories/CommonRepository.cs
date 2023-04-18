@@ -163,5 +163,17 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Banners.OrderBy(x => x.SortOrder).ToList();
         }
+
+        public bool matchUserAndMissionSkills(long userId, long missionId)
+        {
+            var userSkill = _db.UserSkills.Where(x => x.UserId == userId).Select(x => x.SkillId).ToArray();
+            var missionSkill = _db.MissionSkills.Where(x => x.MissionId == missionId).Select(x => x.SkillId).ToArray();
+            var checkArray = missionSkill.Except(userSkill);
+            if (checkArray.Count() == 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

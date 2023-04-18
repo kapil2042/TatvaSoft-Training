@@ -17,5 +17,8 @@ namespace CI_Platform.Repositories.Interfaces
         void InserStoryInvitation(StoryInvite invite);
         void DeleteStoryImage(StoryMedium sm);
         StoryMedium GetStoryMediaByMediaPath(string mediaPath);
+        List<StoryMedium> GetStoryMediumByStoryId(long id);
+        void DeleteStoryInviteByStoryId(long id);
+        void DeleteStory(Story story);
     }
 }

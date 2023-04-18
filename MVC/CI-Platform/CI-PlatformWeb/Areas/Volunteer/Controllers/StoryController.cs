@@ -28,6 +28,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 ViewBag.error = TempData["anotherstory"];
             }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMStory story = new()
@@ -279,6 +281,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 story.Status = "PENDING";
                 story.PublishedAt = DateTime.Now;
+                TempData["msg"] = "Story Submited Successfully! Story will display after admin approval!";
             }
             else
             {
@@ -313,6 +316,31 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                     _commonRepository.Save();
                 }
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Deletestory(long id)
+        {
+            var storyMedia = _storyRepository.GetStoryMediumByStoryId(id);
+            foreach (var media in storyMedia)
+            {
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/storyimages", media.MediaPath);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+                _storyRepository.DeleteStoryImage(media);
+            }
+            _storyRepository.DeleteStoryInviteByStoryId(id);
+            var story = _storyRepository.GetStoryById(Convert.ToInt32(id));
+            if (story != null)
+            {
+                _storyRepository.DeleteStory(story);
+            }
+            _commonRepository.Save();
+            TempData["msg"] = "Story Deleted Successfully!";
+            return RedirectToAction("Story", "Story", new { Area = "Volunteer" });
         }
     }
 }
