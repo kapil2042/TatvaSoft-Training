@@ -27,6 +27,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BcHByb3ZlRGVjbGluZVxTdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/AdminApproveDecline/TimeSheet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BcHByb3ZlRGVjbGluZVxUaW1lU2hlZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KAPIL/Tatvasoft/TatvaSoft-Training/MVC/CI-Platform/CI-PlatformWeb/Areas/Admin/Views/AdminApproveDecline/User.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BcHByb3ZlRGVjbGluZVxVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

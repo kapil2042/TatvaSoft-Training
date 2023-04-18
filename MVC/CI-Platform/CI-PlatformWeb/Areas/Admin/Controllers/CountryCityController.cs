@@ -94,6 +94,21 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             return View(country);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCountry(long id)
+        {
+            var newCountry = _adminCountryCityRepository.GetCountryById(id);
+            if (newCountry != null)
+            {
+                newCountry.DeletedAt = DateTime.Now;
+                _adminCountryCityRepository.UpdateCountry(newCountry);
+                _commonRepository.Save();
+            }
+            TempData["msg"] = "Record Deleted Successfully!";
+            return RedirectToAction("Country", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+        }
+
         public IActionResult City(string id, int pg)
         {
             if (id == null)
@@ -173,6 +188,21 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
             }
             return View(city);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteCity(long id)
+        {
+            var newCity = _adminCountryCityRepository.GetCityById(id);
+            if (newCity != null)
+            {
+                newCity.DeletedAt = DateTime.Now;
+                _adminCountryCityRepository.UpdateCity(newCity);
+                _commonRepository.Save();
+            }
+            TempData["msg"] = "Record Deleted Successfully!";
+            return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
         }
     }
 }

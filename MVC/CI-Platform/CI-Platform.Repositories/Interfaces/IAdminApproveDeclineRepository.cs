@@ -46,5 +46,13 @@ namespace CI_Platform.Repositories.Interfaces
         void UpdateComments(Comment comment);
 
         Comment GetCommentById(long id);
+
+        List<Timesheet> GetTimeSheet(string query, int recSkip, int recTake);
+
+        int GetTotalTimeSheetRecord(string query);
+
+        void UpdateTimeSheetStatus(Timesheet timesheet);
+
+        Timesheet GetTimeSheetById(long id);
     }
 }

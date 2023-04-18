@@ -116,5 +116,25 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Comments.Where(x => x.CommentId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
         }
+
+        public List<Timesheet> GetTimeSheet(string query, int recSkip, int recTake)
+        {
+            return _db.Timesheets.Where(x => x.Status == "SUBMIT_FOR_APPROVAL").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.Mission.MissionType.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+        }
+
+        public int GetTotalTimeSheetRecord(string query)
+        {
+            return _db.Timesheets.Where(x => x.Status == "SUBMIT_FOR_APPROVAL").Include(x => x.Mission).Include(x => x.User).Where(x => x.Mission.Title.Contains(query) || x.Mission.MissionType.Contains(query) || (x.User.FirstName + " " + x.User.LastName).Contains(query) || (x.User.LastName + " " + x.User.FirstName).Contains(query) || x.User.LastName.Contains(query)).Count();
+        }
+
+        public void UpdateTimeSheetStatus(Timesheet timesheet)
+        {
+            _db.Timesheets.Update(timesheet);
+        }
+
+        public Timesheet GetTimeSheetById(long id)
+        {
+            return _db.Timesheets.Where(x => x.TimesheetId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
+        }
     }
 }

@@ -228,5 +228,52 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             _commonRepository.Save();
             return RedirectToAction("Comments", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
         }
+
+
+        public IActionResult TimeSheet(string id, int pg)
+        {
+            if (id == null)
+            {
+                id = "";
+            }
+            TempData["pg"] = pg;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            const int pageSize = 10;
+            int recsCount = _adminApproveDeclineRepository.GetTotalTimeSheetRecord(id);
+            var pager = new VMPager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = _adminApproveDeclineRepository.GetTimeSheet(id, recSkip, pager.PageSize);
+            if (data.Count() == 0 && pg > 1)
+            {
+                return RedirectToAction("TimeSheet", "AdminApproveDecline", new { Area = "Admin", id = id, pg = Convert.ToInt32(TempData["pg"]) - 1 });
+            }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
+            ViewBag.pager = pager;
+            ViewBag.query = id;
+            return View(data);
+        }
+
+        public IActionResult ChangeTimeSheetStatus(long id, bool action)
+        {
+            var timesheet = _adminApproveDeclineRepository.GetTimeSheetById(id);
+            timesheet.UpdatedAt = DateTime.Now;
+            if (action)
+            {
+                timesheet.Status = "APPROVED";
+                TempData["msg"] = "Mission Application Approved successfully!";
+            }
+            else
+            {
+                timesheet.Status = "DECLINED";
+                TempData["msg"] = "Mission Application Declined successfully!";
+            }
+            _adminApproveDeclineRepository.UpdateTimeSheetStatus(timesheet);
+            _commonRepository.Save();
+            return RedirectToAction("TimeSheet", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
+        }
     }
 }

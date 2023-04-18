@@ -21,12 +21,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<Country> GetCountry(string query, int recSkip, int recTake)
         {
-            return _db.Countries.Where(x => x.Name.Contains(query) || x.Iso.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.Countries.Where(x => x.DeletedAt == null && (x.Name.Contains(query) || x.Iso.Contains(query))).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalCountryRecord(string query)
         {
-            return _db.Countries.Count(x => x.Name.Contains(query) || x.Iso.Contains(query));
+            return _db.Countries.Count(x => x.DeletedAt == null && (x.Name.Contains(query) || x.Iso.Contains(query)));
         }
 
         public void InsertCountry(Country country)
@@ -41,17 +41,17 @@ namespace CI_Platform.Repositories.Repositories
 
         public Country GetCountryById(long id)
         {
-            return _db.Countries.Where(x => x.CountryId == id).FirstOrDefault();
+            return _db.Countries.Where(x => x.DeletedAt == null && x.CountryId == id).FirstOrDefault();
         }
 
         public List<City> GetCity(string query, int recSkip, int recTake)
         {
-            return _db.Cities.Include(x => x.Country).Where(x => x.Name.Contains(query) || x.Country.Name.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.Cities.Include(x => x.Country).Where(x => x.DeletedAt == null && (x.Name.Contains(query) || x.Country.Name.Contains(query))).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalCityRecord(string query)
         {
-            return _db.Cities.Include(x => x.Country).Count(x => x.Name.Contains(query) || x.Country.Name.Contains(query));
+            return _db.Cities.Include(x => x.Country).Count(x => x.DeletedAt == null && (x.Name.Contains(query) || x.Country.Name.Contains(query)));
         }
 
         public void InsertCity(City City)
@@ -66,7 +66,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public City GetCityById(long id)
         {
-            return _db.Cities.Where(x => x.CityId == id).FirstOrDefault();
+            return _db.Cities.Where(x => x.DeletedAt == null && x.CityId == id).FirstOrDefault();
         }
     }
 }

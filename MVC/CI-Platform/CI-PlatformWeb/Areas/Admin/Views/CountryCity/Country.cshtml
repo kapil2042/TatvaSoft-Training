@@ -46,9 +46,9 @@
                                 <a class="open-loader" asp-action="EditCountry" asp-controller="CountryCity" asp-area="Admin" asp-route-id="@i.CountryId">
                                     <i class="bi bi-pencil-square me-2 text-ci-primary"></i>
                                 </a>
-                                @*<a onclick="deleteById(@i.CsmPageId)">
+                                <a onclick="deleteById(@i.CountryId)">
                                     <i class="bi bi-trash text-ci-danger"></i>
-                                    </a>*@
+                                </a>
                             </td>
                         </tr>
                     }
@@ -143,28 +143,28 @@ else
 }
 
 @*delete confirm modal*@
-@*<div class="modal fade" id="confirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-    <form asp-action="DeleteCmsPage" asp-controller="CMSPage" asp-area="Admin">
-    <div class="modal-content">
-    <div class="modal-body">
-    <input type="number" value="" id="DeleteId" name="id" hidden />
-    <span class="fs-4 text-ci-danger">
-    <i class="bi bi-info-circle text-ci-danger"></i>
-    Are You Sure!??
-    </span>
+        <form asp-action="DeleteCountry" asp-controller="CountryCity" asp-area="Admin">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="number" value="" id="DeleteId" name="id" hidden />
+                    <span class="fs-4 text-ci-danger">
+                        <i class="bi bi-info-circle text-ci-danger"></i>
+                        Are You Sure!??
+                    </span>
+                </div>
+                <div class="modal-footer p-0 py-2 justify-content-center">
+                    <button type="submit" class="btn-ci-danger fs-7">
+                        Delete
+                    </button>
+                    <button type="reset" class="btn-ci-secondary fs-7" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="modal-footer p-0 py-2 justify-content-center">
-    <button type="submit" class="btn-ci-danger fs-7">
-    Delete
-    </button>
-    <button type="reset" class="btn-ci-secondary fs-7" data-bs-dismiss="modal">Cancel</button>
-    </div>
-    </div>
-    </form>
-    </div>
-    </div>
-*@
+</div>
+
 
 <script>
     function deleteById(id) {
