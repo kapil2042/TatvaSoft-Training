@@ -76,7 +76,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public int GetTotalUsersRecord(string query)
         {
-            return _db.Users.Count(x => x.FirstName.Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query));
+            return _db.Users.Count(x => (x.FirstName + " " + x.LastName).Contains(query) || (x.LastName + " " + x.FirstName).Contains(query) || x.LastName.Contains(query) || x.Email.Contains(query) || x.EmployeeId.Contains(query) || x.Department.Contains(query));
         }
 
         public List<StoryMedium> GetStoryMediumByStoryId(long id)

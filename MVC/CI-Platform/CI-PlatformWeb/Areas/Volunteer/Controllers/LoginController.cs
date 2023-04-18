@@ -80,22 +80,30 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             }
             else if (admin != null)
             {
-                bool isValid = (admin.Email.Equals(user.Email) && _commonRepository.Decode(admin.Password).Equals(user.Password));
-                if (isValid)
+                if (admin.DeletedAt == null)
                 {
-                    var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, user.Email) },
-                        CookieAuthenticationDefaults.AuthenticationScheme);
-                    identity.AddClaim(new Claim(ClaimTypes.Name, admin.FisrtName));
-                    identity.AddClaim(new Claim(ClaimTypes.Surname, admin.LastName));
-                    identity.AddClaim(new Claim("UserRole", "Admin"));
-                    var principle = new ClaimsPrincipal(identity);
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
-                    HttpContext.Session.SetString("Email", user.Email);
-                    return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin" });
+
+                    bool isValid = (admin.Email.Equals(user.Email) && _commonRepository.Decode(admin.Password).Equals(user.Password));
+                    if (isValid)
+                    {
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, user.Email) },
+                            CookieAuthenticationDefaults.AuthenticationScheme);
+                        identity.AddClaim(new Claim(ClaimTypes.Name, admin.FisrtName));
+                        identity.AddClaim(new Claim(ClaimTypes.Surname, admin.LastName));
+                        identity.AddClaim(new Claim("UserRole", "Admin"));
+                        var principle = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principle);
+                        HttpContext.Session.SetString("Email", user.Email);
+                        return RedirectToAction("User", "AdminApproveDecline", new { Area = "Admin" });
+                    }
+                    else
+                    {
+                        ViewBag.error = "Your Password is Wrong!";
+                    }
                 }
                 else
                 {
-                    ViewBag.error = "Your Password is Wrong!";
+                    ViewBag.error = "User is no active longer!";
                 }
             }
             else
