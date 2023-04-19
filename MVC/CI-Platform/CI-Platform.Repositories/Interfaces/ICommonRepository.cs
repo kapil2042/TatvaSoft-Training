@@ -23,9 +23,13 @@ namespace CI_Platform.Repositories.Interfaces
 
         List<City> GetCities();
 
+        List<City> GetCitiesByNotDeleted();
+
         List<City> GetCitiesBycountry(int country);
 
         List<MissionTheme> GetMissionThemes();
+
+        List<MissionTheme> GetMissionThemesByNotDeleted();
 
         List<Skill> GetSkills();
 
@@ -52,5 +56,19 @@ namespace CI_Platform.Repositories.Interfaces
         List<Banner> GetBanners();
 
         bool matchUserAndMissionSkills(long userId, long missionId);
+
+        bool isCountryDeleted(long id);
+
+        bool isCityDeleted(long id);
+
+        bool isThemeDeleted(long id);
+
+        bool isUniqueCountry(string countryName);
+
+        bool isUniqueCity(string cityName, long countryId);
+
+        bool isUniqueMissionTheme(string themeName);
+
+        bool isUniqueSkill(string skillName);
     }
 }

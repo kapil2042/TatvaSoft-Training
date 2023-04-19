@@ -20,12 +20,12 @@ namespace CI_Platform.Repositories.Repositories
 
         public List<MissionTheme> GetMissionThemes(string query, int recSkip, int recTake)
         {
-            return _db.MissionThemes.Where(x => x.Title.Contains(query)).Skip(recSkip).Take(recTake).ToList();
+            return _db.MissionThemes.Where(x => x.DeletedAt == null && x.Title.Contains(query)).Skip(recSkip).Take(recTake).ToList();
         }
 
         public int GetTotalMissionThemeRecord(string query)
         {
-            return _db.MissionThemes.Count(x => x.Title.Contains(query));
+            return _db.MissionThemes.Count(x => x.DeletedAt == null && x.Title.Contains(query));
         }
 
         public void InsertMissionTheme(MissionTheme theme)

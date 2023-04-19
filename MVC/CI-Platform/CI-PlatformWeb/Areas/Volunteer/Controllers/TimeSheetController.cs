@@ -43,8 +43,11 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 timesheet = _timeSheetRepository.GetTimeSheetDataById(tid);
             }
+            else
+            {
+                timesheet.MissionId = mission;
+            }
             timesheet.UserId = Convert.ToInt64(uid);
-            timesheet.MissionId = mission;
             if (volAction == 0)
             {
                 TimeSpan time = new TimeSpan(volHour, volMin, 0);

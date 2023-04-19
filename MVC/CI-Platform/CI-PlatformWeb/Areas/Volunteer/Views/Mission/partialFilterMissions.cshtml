@@ -84,7 +84,7 @@ else
                                         <img src="~/images/heart.png" alt="" class="w-100 h-100">
                                     }
                                 </button>
-                                <button class="share-mission send-mission-id" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId">
+                                <button class="share-mission send-mission-id @(Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() == null ? "opacity-50" : "")" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId" @(Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() == null ? "disabled" : "")>
                                     <img src="~/images/user.png" alt="" class="w-100 h-100">
                                 </button>
                                 @if (img != null)
@@ -296,7 +296,7 @@ else
                                         <img src="~/images/heart.png" alt="" class="w-100 h-100">
                                     }
                                 </button>
-                                <button class="share-mission send-mission-id" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId">
+                                <button class="share-mission send-mission-id @(Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() == null ? "opacity-50" : "")" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@i.MissionId" @(Model.missionApplicatoin.Where(x => x.MissionId == i.MissionId).FirstOrDefault() == null ? "disabled" : "")>
                                     <img src="~/images/user.png" alt="" class="w-100 h-100">
                                 </button>
                                 @if (img != null)

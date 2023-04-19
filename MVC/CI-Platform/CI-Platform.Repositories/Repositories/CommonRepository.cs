@@ -175,5 +175,50 @@ namespace CI_Platform.Repositories.Repositories
             }
             return false;
         }
+
+        public List<City> GetCitiesByNotDeleted()
+        {
+            return _db.Cities.Where(x => x.DeletedAt == null).ToList();
+        }
+
+        public List<MissionTheme> GetMissionThemesByNotDeleted()
+        {
+            return _db.MissionThemes.Where(x => x.DeletedAt == null).ToList();
+        }
+
+        public bool isCountryDeleted(long id)
+        {
+            return _db.Countries.Where(x => x.CountryId == id && x.DeletedAt == null).Any();
+        }
+
+        public bool isCityDeleted(long id)
+        {
+            return _db.Cities.Where(x => x.CityId == id && x.DeletedAt == null).Any();
+        }
+
+        public bool isThemeDeleted(long id)
+        {
+            return _db.MissionThemes.Where(x => x.MissionThemeId == id && x.DeletedAt == null).Any();
+        }
+
+        public bool isUniqueCountry(string countryName)
+        {
+            return !_db.Countries.Where(x => x.Name.ToLower() == countryName.ToLower()).Any();
+        }
+
+        public bool isUniqueCity(string cityName, long countryId)
+        {
+            return !_db.Cities.Where(x => x.Name.ToLower() == cityName.ToLower() && x.CountryId == countryId).Any();
+        }
+
+        public bool isUniqueMissionTheme(string themeName)
+        {
+            return !_db.MissionThemes.Where(x => x.Title.ToLower() == themeName.ToLower()).Any();
+        }
+
+        public bool isUniqueSkill(string skillName)
+        {
+            return !_db.Skills.Where(x => x.SkillName.ToLower() == skillName.ToLower()).Any();
+        }
     }
 }

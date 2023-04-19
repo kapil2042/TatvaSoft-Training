@@ -243,6 +243,7 @@
                 $('#updateBtn').show();
                 $('#tId').val(id);
                 $('#mission').val(res.missionId);
+                $('#mission').prop('disabled', 'disabled');
                 var date = new Date(res.dateVolunteered).toLocaleDateString();
                 date = date.split("/");
                 date = date[2] + "-" + (date[1].length == 1 ? "0" + date[1] : date[1]) + "-" + (date[0].length == 1 ? "0" + date[0] : date[0]);
@@ -273,6 +274,7 @@
                 $('#updateBtng').show();
                 $('#tIdg').val(id);
                 $('#missiong').val(res.missionId);
+                $('#missiong').prop('disabled', 'disabled');
                 var date = new Date(res.dateVolunteered).toLocaleDateString();
                 date = date.split("/");
                 date = date[2] + "-" + (date[1].length == 1 ? "0" + date[1] : date[1]) + "-" + (date[0].length == 1 ? "0" + date[0] : date[0]);

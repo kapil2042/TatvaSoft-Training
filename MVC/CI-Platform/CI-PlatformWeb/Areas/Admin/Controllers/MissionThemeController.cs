@@ -64,12 +64,19 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddMissionTheme(MissionTheme missionTheme)
         {
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueMissionTheme(missionTheme.Title))
             {
-                _adminMissionThemeRepository.InsertMissionTheme(missionTheme);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Inserted Successfully!";
-                return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
+                if (ModelState.IsValid)
+                {
+                    _adminMissionThemeRepository.InsertMissionTheme(missionTheme);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Inserted Successfully!";
+                    return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Theme Title with " + missionTheme.Title + " is already exists";
             }
             return View(missionTheme);
         }
@@ -90,16 +97,23 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditMissionTheme(long id, MissionTheme missionTheme)
         {
-            var theme = _adminMissionThemeRepository.GetMissionThemesById(id);
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueMissionTheme(missionTheme.Title))
             {
-                theme.UpdatedAt = DateTime.Now;
-                theme.Title = missionTheme.Title;
-                theme.Status = missionTheme.Status;
-                _adminMissionThemeRepository.UpdateMissionTheme(theme);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Edited Successfully!";
-                return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
+                var theme = _adminMissionThemeRepository.GetMissionThemesById(id);
+                if (ModelState.IsValid)
+                {
+                    theme.UpdatedAt = DateTime.Now;
+                    theme.Title = missionTheme.Title;
+                    theme.Status = missionTheme.Status;
+                    _adminMissionThemeRepository.UpdateMissionTheme(theme);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Edited Successfully!";
+                    return RedirectToAction("Index", "MissionTheme", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Theme Title with " + missionTheme.Title + " is already exists";
             }
             return View(missionTheme);
         }
@@ -112,7 +126,8 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             var missionTheme = _adminMissionThemeRepository.GetMissionThemesById(id);
             if (missionTheme != null)
             {
-                _adminMissionThemeRepository.DeleteMissionTheme(missionTheme);
+                missionTheme.DeletedAt = DateTime.Now;
+                _adminMissionThemeRepository.UpdateMissionTheme(missionTheme);
             }
             _commonRepository.Save();
             TempData["msg"] = "Record Deleted Successfully!";

@@ -161,7 +161,7 @@
                         </span>
                     }
                 </button>
-                <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-secondary fs-7" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@Model.mission.MissionId">
+                <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-ci-secondary fs-7 @(Model.missionApplicatoin != null ? "":"opacity-50")" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@Model.mission.MissionId" @(Model.missionApplicatoin != null ? "":"disabled")>
                     <img src="~/images/add1.png" alt="" class="me-1">
                     <span class="d-none d-sm-block d-md-none d-xl-block">
                         Recommend to a Co-Worker

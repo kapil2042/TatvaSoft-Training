@@ -55,12 +55,19 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddCountry(Country country)
         {
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueCountry(country.Name))
             {
-                _adminCountryCityRepository.InsertCountry(country);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Inserted Successfully!";
-                return RedirectToAction("Country", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                if (ModelState.IsValid)
+                {
+                    _adminCountryCityRepository.InsertCountry(country);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Inserted Successfully!";
+                    return RedirectToAction("Country", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Country name " + country.Name + " is already exists";
             }
             return View(country);
         }
@@ -80,16 +87,23 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditCountry(long id, Country country)
         {
-            var newCountry = _adminCountryCityRepository.GetCountryById(id);
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueCountry(country.Name))
             {
-                newCountry.UpdatedAt = DateTime.Now;
-                newCountry.Name = country.Name;
-                newCountry.Iso = country.Iso;
-                _adminCountryCityRepository.UpdateCountry(newCountry);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Edited Successfully!";
-                return RedirectToAction("Country", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                var newCountry = _adminCountryCityRepository.GetCountryById(id);
+                if (ModelState.IsValid)
+                {
+                    newCountry.UpdatedAt = DateTime.Now;
+                    newCountry.Name = country.Name;
+                    newCountry.Iso = country.Iso;
+                    _adminCountryCityRepository.UpdateCountry(newCountry);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Edited Successfully!";
+                    return RedirectToAction("Country", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Country name " + country.Name + " is already exists";
             }
             return View(country);
         }
@@ -147,20 +161,28 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         public IActionResult AddCity(City city)
         {
             ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
-            ModelState.Remove("Country");
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueCity(city.Name, city.CountryId))
             {
-                _adminCountryCityRepository.InsertCity(city);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Inserted Successfully!";
-                return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+
+                ModelState.Remove("Country");
+                if (ModelState.IsValid)
+                {
+                    _adminCountryCityRepository.InsertCity(city);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Inserted Successfully!";
+                    return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "City name " + city.Name + " is already exists in this country";
             }
             return View(city);
         }
 
         public IActionResult EditCity(long id)
         {
-            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
+            ViewBag.country = _commonRepository.GetCountries();
             var city = _adminCountryCityRepository.GetCityById(id);
             if (city != null)
             {
@@ -174,18 +196,32 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditCity(long id, City city)
         {
-            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
-            var newCity = _adminCountryCityRepository.GetCityById(id);
-            ModelState.Remove("Country");
-            if (ModelState.IsValid)
+            ViewBag.country = _commonRepository.GetCountries();
+            if (_commonRepository.isUniqueCity(city.Name, city.CountryId))
             {
-                newCity.UpdatedAt = DateTime.Now;
-                newCity.Name = city.Name;
-                newCity.CountryId = city.CountryId;
-                _adminCountryCityRepository.UpdateCity(newCity);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Edited Successfully!";
-                return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                var newCity = _adminCountryCityRepository.GetCityById(id);
+                ModelState.Remove("Country");
+                if (_commonRepository.isCountryDeleted(city.CountryId))
+                {
+                    if (ModelState.IsValid)
+                    {
+                        newCity.UpdatedAt = DateTime.Now;
+                        newCity.Name = city.Name;
+                        newCity.CountryId = city.CountryId;
+                        _adminCountryCityRepository.UpdateCity(newCity);
+                        _commonRepository.Save();
+                        TempData["msg"] = "Record Edited Successfully!";
+                        return RedirectToAction("City", "CountryCity", new { Area = "Admin", pg = TempData["pg"] });
+                    }
+                }
+                else
+                {
+                    ViewBag.error = "Selected Country is removed by Admin! Please select another country";
+                }
+            }
+            else
+            {
+                ViewBag.error = "City name " + city.Name + " is already exists in this country";
             }
             return View(city);
         }

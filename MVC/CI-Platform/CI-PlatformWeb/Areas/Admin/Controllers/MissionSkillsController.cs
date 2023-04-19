@@ -57,12 +57,19 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddMissionSkill(Skill skill)
         {
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueSkill(skill.SkillName))
             {
-                _adminMissionSkillsRepository.InsertSkill(skill);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Inserted Successfully!";
-                return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
+                if (ModelState.IsValid)
+                {
+                    _adminMissionSkillsRepository.InsertSkill(skill);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Inserted Successfully!";
+                    return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Skill name " + skill.SkillName + " is already exists";
             }
             return View(skill);
         }
@@ -83,16 +90,23 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditMissionSkill(long id, Skill skill)
         {
-            var newSkill = _adminMissionSkillsRepository.GetSkillById(id);
-            if (ModelState.IsValid)
+            if (_commonRepository.isUniqueSkill(skill.SkillName))
             {
-                newSkill.UpdatedAt = DateTime.Now;
-                newSkill.SkillName = skill.SkillName;
-                newSkill.Status = skill.Status;
-                _adminMissionSkillsRepository.UpdateSkill(newSkill);
-                _commonRepository.Save();
-                TempData["msg"] = "Record Edited Successfully!";
-                return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
+                var newSkill = _adminMissionSkillsRepository.GetSkillById(id);
+                if (ModelState.IsValid)
+                {
+                    newSkill.UpdatedAt = DateTime.Now;
+                    newSkill.SkillName = skill.SkillName;
+                    newSkill.Status = skill.Status;
+                    _adminMissionSkillsRepository.UpdateSkill(newSkill);
+                    _commonRepository.Save();
+                    TempData["msg"] = "Record Edited Successfully!";
+                    return RedirectToAction("Index", "MissionSkills", new { Area = "Admin", pg = TempData["pg"] });
+                }
+            }
+            else
+            {
+                ViewBag.error = "Skill name " + skill.SkillName + " is already exists";
             }
             return View(skill);
         }

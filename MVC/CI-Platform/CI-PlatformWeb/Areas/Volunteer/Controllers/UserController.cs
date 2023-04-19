@@ -25,7 +25,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             ViewBag.city = _commonRepository.GetCities();
-            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
+            ViewBag.country = _commonRepository.GetCountries();
             ViewBag.skills = _commonRepository.GetSkills();
             return View(_commonRepository.GetUserById(Convert.ToInt64(uid)));
         }
@@ -36,50 +36,64 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             ViewBag.city = _commonRepository.GetCities();
-            ViewBag.country = _commonRepository.GetCountriesByNotDeleted();
+            ViewBag.country = _commonRepository.GetCountries();
             ViewBag.skills = _commonRepository.GetSkills();
 
             var userUpdated = _commonRepository.GetUserById(Convert.ToInt64(uid));
-
-            userUpdated.FirstName = user.FirstName;
-            userUpdated.LastName = user.LastName;
-            userUpdated.EmployeeId = user.EmployeeId;
-            userUpdated.ManagerDetails = user.ManagerDetails;
-            userUpdated.Title = user.Title;
-            userUpdated.Department = user.Department;
-            userUpdated.ProfileText = user.ProfileText;
-            userUpdated.WhyIVolunteer = user.WhyIVolunteer;
-            userUpdated.CityId = user.CityId;
-            userUpdated.CountryId = user.CountryId;
-            userUpdated.Availability = user.Availability;
-            userUpdated.LinkedInUrl = user.LinkedInUrl;
-
-            ModelState.Remove("City");
-            ModelState.Remove("Email");
-            ModelState.Remove("Country");
-            ModelState.Remove("Password");
-            ModelState.Remove("PhoneNumber");
-
-            var userSkillOld = userUpdated.UserSkills.ToList();
-
-            if (ModelState.IsValid)
+            if (_commonRepository.isCountryDeleted(user.CountryId))
             {
-                var SkillForAdd = userSkills.Except(userUpdated.UserSkills.Select(x => x.SkillId).ToArray());
-                var SkillForDelete = userUpdated.UserSkills.Select(x => x.SkillId).ToArray().Except(userSkills);
-                foreach (var i in SkillForDelete)
+                if (_commonRepository.isCityDeleted(user.CityId))
                 {
-                    _userRepository.RemoveUserSkillsBySkillIdAndUserId(i, userUpdated.UserId);
+
+                    userUpdated.FirstName = user.FirstName;
+                    userUpdated.LastName = user.LastName;
+                    userUpdated.EmployeeId = user.EmployeeId;
+                    userUpdated.ManagerDetails = user.ManagerDetails;
+                    userUpdated.Title = user.Title;
+                    userUpdated.Department = user.Department;
+                    userUpdated.ProfileText = user.ProfileText;
+                    userUpdated.WhyIVolunteer = user.WhyIVolunteer;
+                    userUpdated.CityId = user.CityId;
+                    userUpdated.CountryId = user.CountryId;
+                    userUpdated.Availability = user.Availability;
+                    userUpdated.LinkedInUrl = user.LinkedInUrl;
+
+                    ModelState.Remove("City");
+                    ModelState.Remove("Email");
+                    ModelState.Remove("Country");
+                    ModelState.Remove("Password");
+                    ModelState.Remove("PhoneNumber");
+
+                    var userSkillOld = userUpdated.UserSkills.ToList();
+
+                    if (ModelState.IsValid)
+                    {
+                        var SkillForAdd = userSkills.Except(userUpdated.UserSkills.Select(x => x.SkillId).ToArray());
+                        var SkillForDelete = userUpdated.UserSkills.Select(x => x.SkillId).ToArray().Except(userSkills);
+                        foreach (var i in SkillForDelete)
+                        {
+                            _userRepository.RemoveUserSkillsBySkillIdAndUserId(i, userUpdated.UserId);
+                        }
+                        foreach (var i in SkillForAdd)
+                        {
+                            UserSkill userSkillNew = new UserSkill();
+                            userSkillNew.UserId = Convert.ToInt64(uid);
+                            userSkillNew.SkillId = i;
+                            userUpdated.UserSkills.Add(userSkillNew);
+                        }
+                        _userRepository.UpdateUserData(userUpdated);
+                        _commonRepository.Save();
+                        ViewBag.success = "Your Profile Updated Successfully!";
+                    }
                 }
-                foreach (var i in SkillForAdd)
+                else
                 {
-                    UserSkill userSkillNew = new UserSkill();
-                    userSkillNew.UserId = Convert.ToInt64(uid);
-                    userSkillNew.SkillId = i;
-                    userUpdated.UserSkills.Add(userSkillNew);
+                    ViewBag.error = "Selected City is removed by Admin! Please select another city";
                 }
-                _userRepository.UpdateUserData(userUpdated);
-                _commonRepository.Save();
-                ViewBag.success = "Your Profile Updated Successfully!";
+            }
+            else
+            {
+                ViewBag.error = "Selected Country is removed by Admin! Please select another country";
             }
             return View(userUpdated);
         }
