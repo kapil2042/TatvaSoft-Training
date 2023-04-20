@@ -48,5 +48,21 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Missions.Where(x => (_db.MissionApplicatoins.Where(x => x.UserId == id && x.ApprovalStatus == "APPROVE").Select(x => x.MissionId).ToList()).Contains(x.MissionId)).ToList();
         }
+
+        public bool isValidTimeSheetAction(long missionId, int oldAction, int newAction)
+        {
+            if (_db.Missions.Where(x => x.MissionId == missionId).FirstOrDefault().MissionType == "TIME")
+            {
+                return true;
+            }
+            else
+            {
+                var total = _db.Timesheets.Where(x => x.MissionId == missionId && x.Status != "DECLINED").Select(x => x.Action).Sum();
+                if (_db.GoalMissions.Where(goal => goal.MissionId == missionId).FirstOrDefault().GoalValue >= (total - oldAction + newAction))
+                    return true;
+                else
+                    return false;
+            }
+        }
     }
 }

@@ -54,5 +54,7 @@ namespace CI_Platform.Repositories.Interfaces
         void UpdateTimeSheetStatus(Timesheet timesheet);
 
         Timesheet GetTimeSheetById(long id);
+
+        bool isSeatAvailable(long missionId);
     }
 }

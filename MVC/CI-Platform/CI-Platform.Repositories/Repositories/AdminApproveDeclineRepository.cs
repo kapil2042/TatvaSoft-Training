@@ -136,5 +136,15 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Timesheets.Where(x => x.TimesheetId == id).Include(x => x.Mission).Include(x => x.User).FirstOrDefault();
         }
+
+        public bool isSeatAvailable(long missionId)
+        {
+            var appliedSeat = _db.MissionApplicatoins.Count(x => x.ApprovalStatus == "APPROVE" && x.MissionId == missionId);
+            var totalSeat = _db.Missions.Where(x => x.MissionId == missionId).Select(x => x.TotalSeat).FirstOrDefault();
+            if (totalSeat > appliedSeat)
+                return true;
+            else
+                return false;
+        }
     }
 }

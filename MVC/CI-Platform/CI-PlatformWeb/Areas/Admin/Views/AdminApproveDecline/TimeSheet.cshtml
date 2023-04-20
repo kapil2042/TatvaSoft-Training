@@ -154,7 +154,7 @@ else
 @*Approve confirm modal*@
 <div class="modal fade" id="ApproveConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <form asp-action="ChangeTimeSheetStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
+        <form asp-action="ChangeTimeSheetStatus" asp-controller="AdminApproveDecline" asp-area="Admin" class="w-100">
             <div class="modal-content">
                 <div class="modal-body">
                     <input type="number" value="" id="ApproveId" name="id" hidden />
@@ -177,7 +177,7 @@ else
 @*Declie confirm modal*@
 <div class="modal fade" id="DeclineConfirmModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
-        <form asp-action="ChangeTimeSheetStatus" asp-controller="AdminApproveDecline" asp-area="Admin">
+        <form asp-action="ChangeTimeSheetStatus" asp-controller="AdminApproveDecline" asp-area="Admin" class="w-100">
             <div class="modal-content">
                 <div class="modal-body">
                     <input type="number" value="" id="DeclineId" name="id" hidden />

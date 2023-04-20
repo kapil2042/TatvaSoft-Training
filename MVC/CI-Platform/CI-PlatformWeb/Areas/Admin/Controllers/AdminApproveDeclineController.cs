@@ -40,6 +40,8 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             }
             if (TempData["msg"] != null)
                 ViewBag.success = TempData["msg"];
+            if (TempData["err"] != null)
+                ViewBag.error = TempData["err"];
             ViewBag.pager = pager;
             ViewBag.query = id;
             return View(MissionAppData);
@@ -51,8 +53,15 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             application.UpdatedAt = DateTime.Now;
             if (action)
             {
-                application.ApprovalStatus = "APPROVE";
-                TempData["msg"] = "Mission Application Approved successfully!";
+                if (_adminApproveDeclineRepository.isSeatAvailable(application.MissionId))
+                {
+                    application.ApprovalStatus = "APPROVE";
+                    TempData["msg"] = "Mission Application Approved successfully!";
+                }
+                else
+                {
+                    TempData["err"] = "There are no any seats left for this mission";
+                }
             }
             else
             {

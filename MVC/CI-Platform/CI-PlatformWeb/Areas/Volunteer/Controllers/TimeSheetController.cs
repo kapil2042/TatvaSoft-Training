@@ -26,6 +26,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 ViewBag.success = TempData["msg"];
             }
+            if (TempData["err"] != null)
+                ViewBag.error = TempData["err"];
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             List<Timesheet> timesheet = _timeSheetRepository.GetTimeSheetDataByUserId(Convert.ToInt64(uid));
@@ -39,9 +41,13 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             Timesheet timesheet = new Timesheet();
+            var oldAction = 0;
+            var missionId = mission;
             if (btn == "Update")
             {
                 timesheet = _timeSheetRepository.GetTimeSheetDataById(tid);
+                oldAction = (int)timesheet.Action;
+                missionId = timesheet.MissionId;
             }
             else
             {
@@ -63,17 +69,24 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             timesheet.Notes = volMessage;
             timesheet.Status = "SUBMIT_FOR_APPROVAL";
 
-            if (btn == "Save")
+            if (_timeSheetRepository.isValidTimeSheetAction(missionId, oldAction, volAction))
             {
-                _timeSheetRepository.InsertTimesheet(timesheet);
-                TempData["msg"] = "Record Inserteded Successfully! You Can see your record after Admin Approval";
+                if (btn == "Save")
+                {
+                    _timeSheetRepository.InsertTimesheet(timesheet);
+                    TempData["msg"] = "Record Inserteded Successfully! You Can see your record after Admin Approval";
+                }
+                if (btn == "Update")
+                {
+                    _timeSheetRepository.UpdateTimesheet(timesheet);
+                    TempData["msg"] = "Record Updated Successfully! You Can see your record after Admin Approval";
+                }
+                _commonRepository.Save();
             }
-            if (btn == "Update")
+            else
             {
-                _timeSheetRepository.UpdateTimesheet(timesheet);
-                TempData["msg"] = "Record Updated Successfully! You Can see your record after Admin Approval";
+                TempData["err"] = "Goal Action value you entered exceeds the mission's target goal value";
             }
-            _commonRepository.Save();
             return RedirectToAction("Index", "TimeSheet", new { Area = "Volunteer" });
         }
 

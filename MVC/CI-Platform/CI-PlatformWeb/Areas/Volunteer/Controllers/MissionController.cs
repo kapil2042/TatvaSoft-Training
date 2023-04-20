@@ -160,6 +160,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             {
                 ViewBag.error = TempData["alredyapplied"];
             }
+            if (TempData["msg"] != null)
+                ViewBag.success = TempData["msg"];
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
             VMMissionVol model = new()
@@ -326,6 +328,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 ma.ApprovalStatus = "PENDING";
                 _missionRepository.InserMissionApplication(ma);
                 _commonRepository.Save();
+                TempData["msg"] = "Your application has been sent successfully! Wait for it's Approval";
             }
             return RedirectToAction("Mission_volunteering", "Mission", new { Area = "Volunteer", id = missionId });
         }
