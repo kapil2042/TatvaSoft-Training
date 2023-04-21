@@ -259,7 +259,7 @@
 
 .list-view .card-img-top {
     width: 100%;
-    height: 30vh;
+    height:280px;
     object-fit: cover;
 }
 

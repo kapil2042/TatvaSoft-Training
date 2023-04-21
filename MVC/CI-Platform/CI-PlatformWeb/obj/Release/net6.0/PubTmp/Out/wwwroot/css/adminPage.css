@@ -1,0 +1,122 @@
+﻿#side_nav {
+    background: #F88634;
+    min-width: 300px;
+    max-width: 300px;
+    transition: all 0.5s;
+}
+
+.content {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar li a,
+.sidebar li a i {
+    color: #FFFFFF;
+}
+
+.sidebar li:hover a,
+.sidebar li:hover a i {
+    color: #F88634;
+}
+
+.sidebar li.active {
+    background: #FFFFFF;
+    box-shadow: 3px 5px 10px #10446B29;
+    border-radius: 5px;
+}
+
+.sidebar li:hover {
+    background: #FFFFFF;
+    box-shadow: 3px 5px 10px #10446B29;
+    border-radius: 5px;
+}
+
+.sidebar li.active a,
+.sidebar li.active a i {
+    color: #F88634;
+}
+
+.navbar {
+    box-shadow: 3px 5px 10px #00000014;
+}
+
+#admin-body {
+    width: 100%;
+    min-height: calc(100vh - 75px) !important;
+}
+
+.search-div-admin {
+    width: 40% !important;
+}
+
+.top-10px {
+    top: 10px !important;
+}
+
+@media screen and (max-width:991px) {
+    #side_nav {
+        margin-left: -300px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 9999;
+    }
+
+        #side_nav.active {
+            margin-left: 0;
+        }
+
+    .search-div-admin {
+        width: 100% !important;
+    }
+}
+
+
+.search-admin {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+}
+
+.search-admin-input {
+    padding-left: 40px;
+}
+
+.admin-table thead tr th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.ck-editor__editable[role="textbox"] {
+    min-height: 350px !important;
+}
+
+.image-admin-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: 1px dashed #F88634;
+    border-radius: 10px;
+    font-size: 65px;
+    color: #F88634;
+}
+
+#file-list li {
+    padding-block: 5px;
+    padding-inline: 20px;
+    background-color: #EDEDED70;
+    margin-top: 5px;
+    margin-inline: 5px;
+    border-radius: 5px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

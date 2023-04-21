@@ -101,7 +101,26 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [HttpPost]
         public JsonResult GetTimeSheetData(long timeSheetId)
         {
-            return Json(_timeSheetRepository.GetTimeSheetDataById(timeSheetId));
+            var timesheet = _timeSheetRepository.GetTimeSheetDataById(timeSheetId);
+            var startDate = _timeSheetRepository.getMissionStartDateById(timesheet.MissionId);
+            var endDate = _timeSheetRepository.getMissionEndtDateById(timesheet.MissionId);
+            var volDate = _timeSheetRepository.getVolunteeredDateById(timesheet.MissionId);
+            timesheet.Mission = new Mission();
+            timesheet.Mission.StartDate = startDate > volDate ? startDate : volDate;
+            timesheet.Mission.EndDate = endDate > DateTime.Now ? DateTime.Now : endDate;
+            return Json(timesheet);
+        }
+
+        [HttpPost]
+        public string[] GetStartDateEndDate(long missionId)
+        {
+            var startDate = _timeSheetRepository.getMissionStartDateById(missionId);
+            var endDate = _timeSheetRepository.getMissionEndtDateById(missionId);
+            var volDate = _timeSheetRepository.getVolunteeredDateById(missionId);
+            startDate = startDate > volDate ? startDate : volDate;
+            endDate = endDate > DateTime.Now ? DateTime.Now : endDate;
+            string[] dates = { startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd") };
+            return dates;
         }
     }
 }

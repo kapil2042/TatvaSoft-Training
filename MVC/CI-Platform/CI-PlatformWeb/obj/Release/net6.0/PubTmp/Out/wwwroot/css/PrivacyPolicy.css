@@ -1,0 +1,23 @@
+﻿#list-privacy {
+    top: 30px;
+}
+
+.list-group-item {
+    color: #999999;
+}
+
+    .list-group-item:hover {
+        color: black;
+        background-color: transparent !important;
+    }
+
+    .list-group-item:focus {
+        color: #999999;
+        background-color: transparent !important;
+    }
+
+.active {
+    margin: 0 !important;
+    color: black !important;
+    background-color: transparent !important;
+}

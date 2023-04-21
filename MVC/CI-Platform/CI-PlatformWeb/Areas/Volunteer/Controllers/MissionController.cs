@@ -18,6 +18,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             _commonRepository = commonRepository;
             _missionRepository = missionRepository;
         }
+
         public IActionResult Index(string? ReturnUrl)
         {
             var identity = User.Identity as ClaimsIdentity;

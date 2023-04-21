@@ -225,13 +225,38 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     function addVolHour() {
         $('#VolHour').modal('show');
         $('#saveBtn').show();
         $('#updateBtn').hide();
         $('#mission').prop('disabled', false);
+        $('#mission').change((e)=>{
+            $.ajax({
+                type: 'POST',
+                url: "/Volunteer/TimeSheet/GetStartDateEndDate",
+                data: { 'missionId': e.target.value },
+                success: function (res) {
+                    $('#dateVol').attr('min',res[0]);
+                    $('#dateVol').attr('max',res[1]);
+                },
+                error: function (data) {
+                    alert("some Error");
+                }
+            });
+        });
+        $.ajax({
+            type: 'POST',
+            url: "/Volunteer/TimeSheet/GetStartDateEndDate",
+            data: { 'missionId': $('#mission').val() },
+            success: function (res) {
+                $('#dateVol').attr('min',res[0]);
+                $('#dateVol').attr('max',res[1]);
+            },
+            error: function (data) {
+                alert("some Error");
+            }
+        });
     }
     function editVolHour(id) {
         $.ajax({
@@ -249,6 +274,15 @@
                 date = date.split("/");
                 date = date[2] + "-" + (date[1].length == 1 ? "0" + date[1] : date[1]) + "-" + (date[0].length == 1 ? "0" + date[0] : date[0]);
                 $('#dateVol').val(date);
+                var startdate = new Date(res.mission.startDate).toLocaleDateString();
+                startdate = startdate.split("/");
+                startdate = startdate[2] + "-" + (startdate[1].length == 1 ? "0" + startdate[1] : startdate[1]) + "-" + (startdate[0].length == 1 ? "0" + startdate[0] : startdate[0]);
+                $('#dateVol').attr('min',startdate);
+                var enddate = new Date(res.mission.endDate).toLocaleDateString();
+                enddate = enddate.split("/");
+                enddate = enddate[2] + "-" + (enddate[1].length == 1 ? "0" + enddate[1] : enddate[1]) + "-" + (enddate[0].length == 1 ? "0" + enddate[0] : enddate[0]);
+                $('#dateVol').attr('max',enddate);
+                $('#dateVol').val(date);
                 var t = res.time.split(":");
                 $('#volHour').val(t[0]);
                 $('#volMin').val(t[1]);
@@ -264,6 +298,32 @@
         $('#saveBtng').show();
         $('#updateBtng').hide();
         $('#missiong').prop('disabled', false);
+        $('#missiong').change((e)=>{
+            $.ajax({
+                type: 'POST',
+                url: "/Volunteer/TimeSheet/GetStartDateEndDate",
+                data: { 'missionId': e.target.value },
+                success: function (res) {
+                    $('#dateVolg').attr('min',res[0]);
+                    $('#dateVolg').attr('max',res[1]);
+                },
+                error: function (data) {
+                    alert("some Error");
+                }
+            });
+        });
+        $.ajax({
+            type: 'POST',
+            url: "/Volunteer/TimeSheet/GetStartDateEndDate",
+            data: { 'missionId': $('#missiong').val() },
+            success: function (res) {
+                $('#dateVolg').attr('min',res[0]);
+                $('#dateVolg').attr('max',res[1]);
+            },
+            error: function (data) {
+                alert("some Error");
+            }
+        });
     }
     function editVolGoal(id) {
         $.ajax({
@@ -281,6 +341,14 @@
                 date = date.split("/");
                 date = date[2] + "-" + (date[1].length == 1 ? "0" + date[1] : date[1]) + "-" + (date[0].length == 1 ? "0" + date[0] : date[0]);
                 $('#dateVolg').val(date);
+                var startdate = new Date(res.mission.startDate).toLocaleDateString();
+                startdate = startdate.split("/");
+                startdate = startdate[2] + "-" + (startdate[1].length == 1 ? "0" + startdate[1] : startdate[1]) + "-" + (startdate[0].length == 1 ? "0" + startdate[0] : startdate[0]);
+                $('#dateVolg').attr('min',startdate);
+                var enddate = new Date(res.mission.endDate).toLocaleDateString();
+                enddate = enddate.split("/");
+                enddate = enddate[2] + "-" + (enddate[1].length == 1 ? "0" + enddate[1] : enddate[1]) + "-" + (enddate[0].length == 1 ? "0" + enddate[0] : enddate[0]);
+                $('#dateVolg').attr('max',enddate);
                 $('#volAction').val(res.action);
                 $('#volMessageg').val(res.notes);
             },

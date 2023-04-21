@@ -1,0 +1,89 @@
+﻿.profile-img-box {
+    height: auto;
+}
+
+.profile-img {
+    height: auto;
+    width: 60%;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+}
+
+    .profile-img img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+.change-pass-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width:767px) {
+    .profile-img {
+        width: 80px;
+    }
+
+    .profile-img-box {
+        height: 120px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .profile-img {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-inline: 10px;
+    }
+
+    .change-pass-link {
+        margin-top: 0px;
+        margin-right: 10px;
+        text-align: end;
+    }
+}
+
+.profile-uploder-img {
+    display: block;
+    max-width: 100%;
+}
+
+.preview {
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #F88634;
+}
+
+.profile-uploder-img-label:hover {
+    cursor: pointer;
+}
+
+.edit-profile-icon {
+    display: none;
+}
+
+.profile-img:hover .edit-profile-icon {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #000000AA;
+    top: 0;
+    left: 0;
+}
+
+    .profile-img:hover .edit-profile-icon i {
+        font-size: 30px;
+        display: block !important;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }

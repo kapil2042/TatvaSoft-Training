@@ -1,7 +1,32 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Noto Sans;
     color: #414141;
+}
+
+.z-infi {
+    z-index: 8888;
+}
+
+main {
+    min-height: 85vh;
+}
+
+::placeholder {
+    color: #999999 !important;
+    font-size: 14px !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 ::-webkit-scrollbar {
@@ -47,10 +72,22 @@ a {
     color: #414141;
     font-size: 16px;
     height: 40px;
-    padding: auto;
 }
 
     .form-control:focus {
+        color: #414141;
+        border: 1px solid #F88634 !important;
+        box-shadow: 0px 0px 10px #F886341F;
+    }
+
+.form-select {
+    border: 1px solid #D9D9D9;
+    color: #414141;
+    font-size: 16px;
+    height: 40px;
+}
+
+    .form-select:focus {
         color: #414141;
         border: 1px solid #F88634 !important;
         box-shadow: 0px 0px 10px #F886341F;
@@ -76,11 +113,19 @@ a {
     white-space: nowrap;
 }
 
+    .btn-ci-primary span {
+        color: #F88634;
+    }
+
     .btn-ci-primary:hover {
         color: #ffffff;
         border: 2px solid #F88634;
         background-color: #F88634;
     }
+
+        .btn-ci-primary:hover span {
+            color: #FFFFFF;
+        }
 
 .btn-ci-white {
     color: #FFFFFF;
@@ -95,7 +140,7 @@ a {
 
     .btn-ci-white:hover {
         color: #F88634;
-        border: 2px solid #FFFFFF;
+        border: 2px solid #F88634;
         background-color: #FFFFFF;
     }
 
@@ -200,8 +245,32 @@ a {
     background-color: #f83434 !important;
 }
 
+.text-ci-danger {
+    color: #f83434 !important;
+}
+
 .bg-ci-success {
     background-color: #14C506 !important;
+}
+
+.text-ci-success {
+    color: #14C506 !important;
+}
+
+.bg-ci-secondary {
+    background-color: #EBE7E7 !important;
+}
+
+.bg-ci-opacity {
+    background-color: #000000AF !important;
+}
+
+.text-ci-primary {
+    color: #F88634 !important;
+}
+
+.text-ci-secondary {
+    color: #414141 !important;
 }
 
 .text-ci-danger {
@@ -214,6 +283,14 @@ a {
 
 .fs-7 {
     font-size: 14px !important;
+}
+
+.fs-nano {
+    font-size: 12px !important;
+}
+
+.h-80 {
+    height: 80% !important;
 }
 
 .fs-time {
@@ -259,11 +336,11 @@ a {
 }
 
 .dropdown-toggle::after {
-    content: none;
+    content: none !important;
 }
 
 .avatar-hover:hover {
-    box-shadow: 0 0 0 0.5px #F88634 !important;
+    box-shadow: 0 0 0 1px #F88634 !important;
     border-radius: 10px;
 }
 
@@ -335,7 +412,7 @@ a {
 
 .card-img-top {
     width: 100%;
-    height: 25vh;
+    height: 250px;
     object-fit: cover;
 }
 
@@ -509,4 +586,184 @@ a {
 .m-height {
     max-height: 70vh;
     overflow-y: auto;
+}
+
+#loader {
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff !important;
+}
+
+    #loader img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+.ck-toolbar {
+    background-color: #0000000A !important;
+}
+
+.ck-editor__editable[role="textbox"] {
+    min-height: 200px;
+}
+
+.ck-editor__editable:focus {
+    border: 1px solid #F88634 !important;
+}
+
+.ck.ck-button.ck-on {
+    color: #F88634 !important;
+    background-color: #f886341a !important;
+}
+
+.image-uploder {
+    width: 100%;
+    height: 100px;
+}
+
+.image-uploder-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccceb1;
+}
+
+.img-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+    .img-container .image {
+        width: 100px;
+        margin-right: 15px;
+        height: 100px;
+        position: relative;
+        margin-bottom: 8px;
+        border: 1px solid #ccceb1;
+    }
+
+        .img-container .image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .img-container .image span {
+            position: absolute;
+            top: -2px;
+            right: 7px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+.dragover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.max-h-timesheet {
+    height: 300px !important;
+    overflow-y: auto;
+}
+
+    .max-h-timesheet thead th {
+        position: sticky;
+        top: 0;
+        background-color: #FFFFFF;
+    }
+
+
+.edit-btn {
+    position: absolute !important;
+    top: 40px !important;
+    right: 0 !important;
+    width: 40px !important;
+    padding-inline: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    transition: width .5s;
+}
+
+    .edit-btn span {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility .5s, opacity .5s linear;
+    }
+
+    .edit-btn:hover {
+        width: 140px !important;
+    }
+
+        .edit-btn:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+
+.delete-btn {
+    position: absolute !important;
+    top: 80px !important;
+    right: 0 !important;
+    width: 40px !important;
+    padding-inline: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    transition: width .5s;
+}
+
+    .delete-btn span {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility .5s, opacity .5s linear;
+    }
+
+    .delete-btn:hover {
+        width: 140px !important;
+    }
+
+        .delete-btn:hover span {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+select:focus > option:hover {
+    background: #F88634 linear-gradient(0deg, #F88634 0%, #F88634 100%) !important;
+    color: #FFFFFF !important;
+}
+
+select[multiple]:focus option:checked {
+    background: #F88634 linear-gradient(0deg, #F88634 0%, #F88634 100%);
+    color: #FFFFFF !important;
+}
+
+#multiselect option,
+#multiselect_to option {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-inline: 15px !important;
+    border-radius: 7px !important;
+}
+
+.cursor-pointer:hover,
+.cursor-pointer > *:hover {
+    cursor: pointer !important;
 }

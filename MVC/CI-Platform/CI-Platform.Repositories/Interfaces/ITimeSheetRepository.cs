@@ -16,5 +16,8 @@ namespace CI_Platform.Repositories.Interfaces
         void DeleteTimesheet(Timesheet timesheet);
         List<Mission> GetMissionByUserApplyAndAppApproved(long id);
         bool isValidTimeSheetAction(long missionId, int oldAction, int newAction);
+        DateTime getVolunteeredDateById(long missionId);
+        DateTime getMissionStartDateById(long missionId);
+        DateTime getMissionEndtDateById(long missionId);
     }
 }

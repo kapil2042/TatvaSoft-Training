@@ -48,6 +48,10 @@
         border-radius: 0;
     }
 
+        .recent-vol-page .btn.disabled {
+            border: none;
+        }
+
         .recent-vol-page .btn:focus {
             box-shadow: 0 0 0 1px #F88634;
             border: none !important;
@@ -56,12 +60,6 @@
 .related-mission {
     width: 100% !important;
     overflow-x: auto;
-}
-
-.card-related-mission {
-    padding: 10px;
-    width: 350px !important;
-    min-width: 350px !important;
 }
 
 .comment-post .form-control {
@@ -104,7 +102,7 @@
 .ratboxif a {
     height: 30px;
     width: 32px;
-    padding : 2px;
+    padding: 2px;
 }
 
     .ratboxif a img {
@@ -149,4 +147,8 @@
 
 #rat5:hover ~ a img {
     content: url("../images/selected-star.png");
+}
+
+#recvol{
+    height:300px;
 }

@@ -5,7 +5,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\KAPIL\TatvaSoft-Training\MVC\CI-Platform\CI-PlatformWeb\bin\Release\net6.0\publish\</_PublishTargetUrl>
-    <History>True|2023-03-16T11:38:09.0029320Z;</History>
+    <_PublishTargetUrl>D:\Other Projects\Driver</_PublishTargetUrl>
+    <History>True|2023-04-20T12:04:14.5961997Z;False|2023-04-20T17:33:25.2573013+05:30;False|2023-04-20T17:32:10.7551248+05:30;False|2023-04-20T17:31:41.1731331+05:30;False|2023-04-20T17:27:38.4868874+05:30;True|2023-03-16T17:08:09.0029320+05:30;</History>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=PCA112\SQL2019%3b Initial Catalog=CI-Platform%3b user id=sa%3b password=K%40pil2042%3b TrustServerCertificate=True%3b Trusted_Connection=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>
