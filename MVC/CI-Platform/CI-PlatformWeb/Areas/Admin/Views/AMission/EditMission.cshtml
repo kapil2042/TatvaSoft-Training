@@ -272,6 +272,10 @@
         $(".goal-item").addClass("d-none");
     });
     $(document).ready(()=>{
+        if($("#MissionType").val() === "GOAL")
+            $(".goal-item").removeClass("d-none");
+        else
+            $(".goal-item").addClass("d-none");
         $("#missionLi").addClass('active');
         $.ajax({
             type: "GET",

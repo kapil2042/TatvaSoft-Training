@@ -67,16 +67,22 @@ namespace CI_Platform.Repositories.Repositories
 
         public DateTime getMissionStartDateById(long missionId)
         {
+            if(missionId == 0)
+                return DateTime.MinValue;
             return (DateTime)_db.Missions.Where(x=>x.MissionId == missionId).Select(x => x.StartDate).FirstOrDefault();
         }
 
         public DateTime getMissionEndtDateById(long missionId)
         {
+            if (missionId == 0)
+                return DateTime.MinValue;
             return (DateTime)_db.Missions.Where(x => x.MissionId == missionId).Select(x => x.EndDate).FirstOrDefault();
         }
         
         public DateTime getVolunteeredDateById(long missionId)
         {
+            if (missionId == 0)
+                return DateTime.MaxValue;
             return (DateTime)_db.MissionApplicatoins.Where(x => x.MissionId == missionId).Select(x => x.UpdatedAt).FirstOrDefault();
         }
     }
