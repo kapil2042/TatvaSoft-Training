@@ -20,17 +20,17 @@ public partial class Story
     public long MissionId { get; set; }
 
     [Column("title")]
-    [StringLength(255, ErrorMessage = "Title length more than 255 character")]
+    [MaxLength(255, ErrorMessage = "Title length more than 255 character")]
     [Required(ErrorMessage = "This Field is Required")]
     public string? Title { get; set; }
 
     [Column("short_description", TypeName = "text")]
-    [StringLength(255, ErrorMessage = "Short Description length more than 255 character")]
+    [MaxLength(600, ErrorMessage = "Short Description length more than 255 character")]
     [Required(ErrorMessage = "This Field is Required")]
     public string? ShortDescription { get; set; }
 
     [Column("description", TypeName = "text")]
-    [StringLength(40000, ErrorMessage = "Description length more than 40000 character")]
+    [MaxLength(40000, ErrorMessage = "Description length more than 40000 character")]
     [Required(ErrorMessage = "This Field is Required")]
     public string? Description { get; set; }
 

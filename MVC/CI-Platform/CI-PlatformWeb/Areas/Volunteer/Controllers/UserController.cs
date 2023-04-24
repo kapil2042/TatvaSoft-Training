@@ -99,7 +99,6 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         }
 
 
-        [Authorize(Policy = "VolunteerOnly")]
         [HttpPost]
         public bool ChangePassword(long userId, string oldPass, string newPass)
         {

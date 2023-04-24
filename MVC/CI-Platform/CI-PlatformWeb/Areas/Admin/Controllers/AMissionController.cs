@@ -183,9 +183,12 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             vmAdminMission.skills = _commonRepository.GetSkills();
             vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
             vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
-            GoalMission goalMission = _adminMissionRepository.getGoalMissionByMissionId(id);
-            vmAdminMission.GoalValue = goalMission.GoalValue;
-            vmAdminMission.GoalObjectiveText = goalMission.GoalObjectiveText;
+            if (mission.MissionType == "GOAL")
+            {
+                GoalMission goalMission = _adminMissionRepository.getGoalMissionByMissionId(id);
+                vmAdminMission.GoalValue = goalMission.GoalValue;
+                vmAdminMission.GoalObjectiveText = goalMission.GoalObjectiveText;
+            }
             return View(vmAdminMission);
         }
 

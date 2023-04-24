@@ -89,6 +89,11 @@
     padding-bottom: 15px;
 }
 
+.admin-table tbody tr:hover {
+    border-left: 3px solid #F88634;
+    background-color: #F886341A;
+}
+
 .ck-editor__editable[role="textbox"] {
     min-height: 350px !important;
 }

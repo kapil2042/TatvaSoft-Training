@@ -14,11 +14,11 @@ public partial class User
     public long UserId { get; set; }
 
     [Column("first_name")]
-    [StringLength(16)]
+    [MaxLength(16)]
     public string? FirstName { get; set; }
 
     [Column("last_name")]
-    [StringLength(16)]
+    [MaxLength(16)]
     public string? LastName { get; set; }
 
     [Column("email")]
@@ -26,15 +26,15 @@ public partial class User
     public string Email { get; set; } = null!;
 
     [Column("password")]
-    [StringLength(255)]
+    [MaxLength(255)]
     public string Password { get; set; } = null!;
 
     [Column("phone_number")]
-    [StringLength(15)]
+    [MaxLength(15)]
     public string PhoneNumber { get; set; } = null!;
 
     [Column("avatar")]
-    [StringLength(2048)]
+    [MaxLength(2048)]
     public string? Avatar { get; set; }
 
     [Column("why_i_volunteer", TypeName = "text")]
@@ -48,7 +48,7 @@ public partial class User
     public string? ManagerDetails { get; set; }
 
     [Column("department")]
-    [StringLength(16)]
+    [MaxLength(16)]
     public string? Department { get; set; }
 
     [Column("availability")]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Oram+oL40eLYvb4Ym6ioF20tl4wff5mKRv5E/c8haTY=",
+  "Hash": "ESXVzVlx9hzCliWYV/gRXwoiQKJ7VD7FPEuz2h+KSXg=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -1581,6 +1581,23 @@
       "OriginalItemSpec": "wwwroot\\images\\mission.png"
     },
     {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\missionimages\\478e3631-57df-496f-9363-b6af1ca26908.png",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/missionimages/478e3631-57df-496f-9363-b6af1ca26908.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\missionimages\\478e3631-57df-496f-9363-b6af1ca26908.png"
+    },
+    {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\missionimages\\4c1d8d78-2a18-4988-b087-85ad93ddfdf8.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
@@ -1613,6 +1630,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\missionimages\\6f9a43fe-a1f9-4568-a6a7-619fe970bc57.png"
+    },
+    {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\missionimages\\8c88d157-f95e-488a-bea6-61a1924459fe.png",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/missionimages/8c88d157-f95e-488a-bea6-61a1924459fe.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\missionimages\\8c88d157-f95e-488a-bea6-61a1924459fe.png"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\missionimages\\8fcabac5-3e20-4780-a4ad-6b258ede3421.png",

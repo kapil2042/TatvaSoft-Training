@@ -24,7 +24,7 @@ public partial class Comment
     public string? ApprovalStatus { get; set; }
 
     [Column("comment_text", TypeName = "text")]
-    [StringLength(1024)]
+    [MaxLength(600)]
     public string CommentText { get; set; } = null!;
 
     [Column("created_at", TypeName = "datetime")]
