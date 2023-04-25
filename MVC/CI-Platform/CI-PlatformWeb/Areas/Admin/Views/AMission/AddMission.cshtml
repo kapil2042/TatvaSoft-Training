@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
                     <label asp-for="StartDate" class="form-label text-muted">Start Date</label>
-                    <input asp-for="StartDate" type="date" class="form-control" placeholder="Select Start Date" />
+                    <input asp-for="StartDate" type="date" class="form-control" placeholder="Select Start Date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="StartDate" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
@@ -284,4 +284,7 @@
             }
         });
     });
+    $("#StartDate").change(()=>{
+        $("#EndDate").attr('min',$("#StartDate").val());
+    })
 </script>

@@ -59,12 +59,17 @@
     #side_nav {
         margin-left: -300px;
         position: fixed;
+        height: 100%;
         min-height: 100vh;
+        left: 0;
+        top: 0;
         z-index: 9999;
+        overflow-y: auto;
     }
 
         #side_nav.active {
             margin-left: 0;
+            overflow-y: auto;
         }
 
     .search-div-admin {
