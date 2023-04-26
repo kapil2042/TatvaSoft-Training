@@ -54,34 +54,42 @@
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Name*</label>
                         <input type="text" class="form-control text-muted" asp-for="FirstName" required placeholder="Enter your name" />
+                        <span asp-validation-for="FirstName" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Surname*</label>
                         <input type="text" class="form-control text-muted" asp-for="LastName" required placeholder="Enter your surname" />
+                        <span asp-validation-for="LastName" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Employee ID</label>
                         <input type="text" class="form-control text-muted" asp-for="EmployeeId" placeholder="Enter your employee id" />
+                        <span asp-validation-for="EmployeeId" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Manager</label>
                         <input type="text" class="form-control text-muted" asp-for="ManagerDetails" placeholder="Enter your manager details" />
+                        <span asp-validation-for="ManagerDetails" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Title</label>
                         <input type="text" class="form-control text-muted" asp-for="Title" placeholder="Enter title" />
+                        <span asp-validation-for="Title" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Department</label>
                         <input type="text" class="form-control text-muted" asp-for="Department" placeholder="Enter your department" />
+                        <span asp-validation-for="Department" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="text-muted mb-1">My Profile*</label>
                         <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="ProfileText" required placeholder="Enter your profile text"></textarea>
+                        <span asp-validation-for="ProfileText" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="text-muted mb-1">Why I Volunteer?</label>
                         <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="WhyIVolunteer" placeholder="Enter your reasone for become a volunteer"></textarea>
+                        <span asp-validation-for="WhyIVolunteer" class="fs-7 text-ci-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-3 mt-lg-5">
@@ -126,10 +134,12 @@
                             <option value="week-end">Week End</option>
                             <option value="monthly">Monthly</option>
                         </select>
+                        <span asp-validation-for="Availability" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">LinkedIn</label>
                         <input type="text" class="form-control text-muted" asp-for="LinkedInUrl" placeholder="Enter linkedIn URL" />
+                        <span asp-validation-for="LinkedInUrl" class="fs-7 text-ci-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-3 mt-lg-5">
