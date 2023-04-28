@@ -30,7 +30,11 @@
         <span aria-hidden="true">&lsaquo;</span>
     </a>
     <div class="fs-7">
-        @if ((pager1.CurrentPage * pager1.PageSize) > @ViewBag.volcount)
+        @if(@ViewBag.volcount <= 0 )
+        {
+            @:0 - 0 of 0 Recent Volunteers
+        }
+        else if ((pager1.CurrentPage * pager1.PageSize) > @ViewBag.volcount)
         {
             @:@((pager1.CurrentPage -1)*pager1.PageSize + 1) - @ViewBag.volcount of @ViewBag.volcount Recent Volunteers
         }

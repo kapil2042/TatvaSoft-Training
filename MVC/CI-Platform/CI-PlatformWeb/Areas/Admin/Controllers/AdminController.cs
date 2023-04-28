@@ -74,19 +74,28 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddNewAdmin(CI_Platform.Models.Admin admin, string cnfPass)
         {
-            if (admin.Password == cnfPass && admin.Password != null)
+            var user = _commonRepository.GetUserIdByEmail(admin.Email);
+            var adminuser = _commonRepository.getAdminByEmail(admin.Email);
+            if (adminuser == null && user == 0)
             {
-                if (ModelState.IsValid)
+                if (admin.Password == cnfPass && admin.Password != null)
                 {
-                    admin.Password = _commonRepository.Encode(admin.Password);
-                    _adminRepository.InsertAdmin(admin);
-                    _commonRepository.Save();
-                    return RedirectToAction("Index", "Admin", new { Area = "Admin", pg = TempData["pg"] });
+                    if (ModelState.IsValid)
+                    {
+                        admin.Password = _commonRepository.Encode(admin.Password);
+                        _adminRepository.InsertAdmin(admin);
+                        _commonRepository.Save();
+                        return RedirectToAction("Index", "Admin", new { Area = "Admin", pg = TempData["pg"] });
+                    }
+                }
+                else
+                {
+                    ViewBag.passerr = "Password and Confirm Password dose not match";
                 }
             }
             else
             {
-                ViewBag.passerr = "Password and Confirm Password dose not match";
+                ViewBag.error = admin.Email + " is already registred!";
             }
             return View(admin);
         }

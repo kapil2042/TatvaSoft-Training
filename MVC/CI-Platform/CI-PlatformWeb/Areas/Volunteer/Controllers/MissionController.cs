@@ -126,6 +126,9 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 case 6:
                     m = m.OrderByDescending(x => x.EndDate).ToList();
                     break;
+                case 7:
+                    m = m.OrderBy(x => x.Theme.Title).ThenBy(x => x.Country.Name).ThenBy(x => x.City.Name).ToList();
+                    break;
             }
 
             const int pageSize = 6;
@@ -150,6 +153,33 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             }
             model.mission = data;
             ViewBag.pager = pager;
+            return PartialView("partialFilterMissions", model);
+        }
+        
+        
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult RelatedMission(string country, string cities, string theme)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            VMMissions model = new()
+            {
+                users = _commonRepository.GetAllUsers(),
+                countries = _commonRepository.GetCountries(),
+                cities = _commonRepository.GetCities(),
+                skills = _commonRepository.GetSkills(),
+                themes = _commonRepository.GetMissionThemes(),
+                goal = _missionRepository.GetGoalMissions(),
+                timesheet = _missionRepository.GetTimeSheet(),
+                missionSkills = _missionRepository.GetMissionSkills(),
+                missionRatings = _missionRepository.GetMissionsRating(),
+                missionMedia = _missionRepository.GetMissionMedia(),
+                favoriteMission = _missionRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid)),
+                missionApplicatoin = _missionRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid)),
+                missionAppAll = _missionRepository.GetAllMissionApplicationSum(),
+                mission = _missionRepository.GetMissions().Where(x=>x.Theme.Title == theme || x.Country.Name == country || x.City.Name == cities).OrderBy(x=>x.Theme.Title).ThenBy(x=>x.Country.Name).ThenBy(x=>x.City.Name).ToList(),
+            };
             return PartialView("partialFilterMissions", model);
         }
 

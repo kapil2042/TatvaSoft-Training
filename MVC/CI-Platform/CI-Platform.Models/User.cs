@@ -38,6 +38,7 @@ public partial class User
     public string? Avatar { get; set; }
 
     [Column("why_i_volunteer", TypeName = "text")]
+    [MaxLength(1000, ErrorMessage = "This has not containe more than 1000 character")]
     public string? WhyIVolunteer { get; set; }
 
     [Column("employee_id")]
@@ -62,10 +63,12 @@ public partial class User
     public long CountryId { get; set; }
 
     [Column("profile_text", TypeName = "text")]
+    [MaxLength(1000,ErrorMessage ="Profile Text is not containe more than 1000 character")]
     public string? ProfileText { get; set; }
 
     [Column("linked_in_url")]
     [StringLength(255)]
+    [RegularExpression(@"https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9-]+\/?", ErrorMessage = "Write correct linked url!")]
     public string? LinkedInUrl { get; set; }
 
     [Column("title")]

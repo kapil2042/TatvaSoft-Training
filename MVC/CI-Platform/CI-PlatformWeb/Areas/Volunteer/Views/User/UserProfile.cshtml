@@ -52,12 +52,12 @@
                         <hr class="p-0 m-0 mb-3" />
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Name*</label>
+                        <label class="text-muted mb-1">Name<span class="text-ci-danger fs-7"> *</span></label>
                         <input type="text" class="form-control text-muted" asp-for="FirstName" required placeholder="Enter your name" />
                         <span asp-validation-for="FirstName" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Surname*</label>
+                        <label class="text-muted mb-1">Surname<span class="text-ci-danger fs-7"> *</span></label>
                         <input type="text" class="form-control text-muted" asp-for="LastName" required placeholder="Enter your surname" />
                         <span asp-validation-for="LastName" class="fs-7 text-ci-danger"></span>
                     </div>
@@ -82,7 +82,7 @@
                         <span asp-validation-for="Department" class="fs-7 text-ci-danger"></span>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="text-muted mb-1">My Profile*</label>
+                        <label class="text-muted mb-1">My Profile<span class="text-ci-danger fs-7"> *</span></label>
                         <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="ProfileText" required placeholder="Enter your profile text"></textarea>
                         <span asp-validation-for="ProfileText" class="fs-7 text-ci-danger"></span>
                     </div>
@@ -102,7 +102,7 @@
                         <hr class="p-0 m-0 mb-3" />
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Country*</label>
+                        <label class="text-muted mb-1">Country<span class="text-ci-danger fs-7"> *</span></label>
                         <select class="form-select text-muted user-country" asp-for="CountryId">
                             @foreach (var i in ViewBag.country)
                             {
@@ -111,7 +111,7 @@
                         </select>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">City*</label>
+                        <label class="text-muted mb-1">City<span class="text-ci-danger fs-7"> *</span></label>
                         <select class="form-select text-muted user-city" asp-for="CityId">
                         </select>
                     </div>

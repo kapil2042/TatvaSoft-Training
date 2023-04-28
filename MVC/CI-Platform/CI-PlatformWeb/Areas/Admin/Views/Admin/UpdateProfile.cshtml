@@ -17,17 +17,17 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="AdminId" />
                 <div class="form-group mb-3">
-                    <label asp-for="FisrtName" class="form-label text-muted"></label>
+                    <label asp-for="FisrtName" class="form-label text-muted">First Name<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="FisrtName" class="form-control" />
                     <span asp-validation-for="FisrtName" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="LastName" class="form-label text-muted"></label>
+                    <label asp-for="LastName" class="form-label text-muted">Last Name<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="Email" class="form-label text-muted"></label>
+                    <label asp-for="Email" class="form-label text-muted">Email Id<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="Email" class="form-control bg-transparent" readonly />
                     <span asp-validation-for="Email" class="text-ci-danger fs-7"></span>
                 </div>

@@ -6,31 +6,31 @@
 <div class="w-100 px-5 py-2 privacy d-flex align-items-center reg-responsive">
     <form method="post" class="w-100 mt-3 mt-lg-0 validform">
         <div class="mb-3 mb-lg-2">
-            <label asp-for="FirstName" class="form-label fs-7">First Name</label>
+            <label asp-for="FirstName" class="form-label fs-7">First Name<span class="text-ci-danger fs-7"> *</span></label>
             <input type="text" asp-for="FirstName" id="fname" class="form-control fs-7" placeholder="Name"
                    onkeyup="checkName('fname')" onblur="checkName('fname')">
             <span asp-validation-for="FirstName" class="fs-7 text-ci-danger"></span>
         </div>
         <div class="mb-3 mb-lg-2">
-            <label asp-for="LastName" class="form-label fs-7">Last Name</label>
+            <label asp-for="LastName" class="form-label fs-7">Last Name<span class="text-ci-danger fs-7"> *</span></label>
             <input type="text" asp-for="LastName" id="lname" class="form-control fs-7" placeholder="Surname"
                    onkeyup="checkName('lname')" onblur="checkName('lname')">
             <span asp-validation-for="LastName" class="fs-7 text-ci-danger"></span>
         </div>
         <div class="mb-3 mb-lg-2">
-            <label asp-for="MobileNo" class="form-label fs-7">Phone Number</label>
+            <label asp-for="MobileNo" class="form-label fs-7">Phone Number<span class="text-ci-danger fs-7"> *</span></label>
             <input type="text" asp-for="MobileNo" id="phone" class="form-control fs-7 phone"
                    placeholder="+91-9876543210">
             <span asp-validation-for="MobileNo" class="fs-7 text-ci-danger"></span>
         </div>
         <div class="mb-3 mb-lg-2">
-            <label asp-for="Email" class="form-label fs-7">Email Address</label>
+            <label asp-for="Email" class="form-label fs-7">Email Address<span class="text-ci-danger fs-7"> *</span></label>
             <input type="email" asp-for="Email" id="email-id" class="form-control fs-7"
                    placeholder="abc@xyz.com">
             <span asp-validation-for="Email" class="fs-7 text-ci-danger"></span>
         </div>
         <div class="position-relative">
-            <label asp-for="Password" class="form-label">New Password</label>
+            <label asp-for="Password" class="form-label">New Password<span class="text-ci-danger fs-7"> *</span></label>
             <input type="password" class="form-control" asp-for="Password" id="new-pass"
                    placeholder="**********">
             <span onclick="showPass('new-pass')">
@@ -40,7 +40,7 @@
         </div>
         <span asp-validation-for="Password" id="pass-limit-error" class="fs-7 text-ci-danger"></span>
         <div class="mt-3 mt-lg-2 position-relative">
-            <label asp-for="CnfPassword" class="form-label">Confirm New Password</label>
+            <label asp-for="CnfPassword" class="form-label">Confirm New Password<span class="text-ci-danger fs-7"> *</span></label>
             <input type="password" class="form-control" asp-for="CnfPassword" id="cnf-pass"
                    placeholder="**********">
             <span onclick="showPass('cnf-pass')">

@@ -16,22 +16,22 @@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group mb-3">
-                    <label asp-for="FisrtName" class="form-label text-muted">First Name</label>
+                    <label asp-for="FisrtName" class="form-label text-muted">First Name<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="FisrtName" class="form-control" placeholder="Enter First Name" />
                     <span asp-validation-for="FisrtName" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="LastName" class="form-label text-muted">Last Name</label>
+                    <label asp-for="LastName" class="form-label text-muted">Last Name<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="LastName" class="form-control" placeholder="Enter Last Name" />
                     <span asp-validation-for="LastName" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="Email" class="form-label text-muted"></label>
+                    <label asp-for="Email" class="form-label text-muted">Email Id<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="Email" class="form-control bg-transparent" placeholder="Enter Email Address" />
                     <span asp-validation-for="Email" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group position-relative">
-                    <label asp-for="Password" class="form-label text-muted"></label>
+                    <label asp-for="Password" class="form-label text-muted">Password<span class="text-ci-danger fs-7"> *</span></label>
                     <input type="password" asp-for="Password" class="form-control" id="new-pass" placeholder="Enter New Password" />
                     <span onclick="showPass('new-pass')">
                         <img src="~/images/eye_open.png" alt="eye" class="eye" id="eye-open">
@@ -40,7 +40,7 @@
                 </div>
                 <span asp-validation-for="Password" id="pass-limit-error" class="text-ci-danger fs-7"></span>
                 <div class="position-relative mt-3">
-                    <label class="form-label text-muted">Confirm Password</label>
+                    <label class="form-label text-muted">Confirm Password<span class="text-ci-danger fs-7"> *</span></label>
                     <input type="password" name="cnfPass" class="form-control" id="cnf-pass"
                            placeholder="Enter Confirm Password" />
                     <span onclick="showPass('cnf-pass')">

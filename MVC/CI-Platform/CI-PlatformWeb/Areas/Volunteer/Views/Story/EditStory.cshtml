@@ -7,26 +7,26 @@
         <h1 class="text-muted">Share your story</h1>
         <div class="row text-muted">
             <div class="col-12 col-sm-6">
-                <label class="form-label mt-3">Select Mission</label>
+                <label class="form-label mt-3">Select Mission<span class="text-ci-danger fs-7"> *</span></label>
                 <select class="form-select text-muted" asp-for="MissionId" asp-items="ViewBag.MissionId">
                 </select>
             </div>
             <div class="col-12 col-sm-6">
-                <label class="form-label mt-3" asp-for="Title">My Story Title</label>
+                <label class="form-label mt-3" asp-for="Title">My Story Title<span class="text-ci-danger fs-7"> *</span></label>
                 <input type="text" class="form-control text-muted" placeholder="Enter story title" asp-for="Title" required />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
         </div>
         <div class="row text-muted">
             <div class="col-12">
-                <label class="form-label mt-3" asp-for="ShortDescription">Short Description</label>
+                <label class="form-label mt-3" asp-for="ShortDescription">Short Description<span class="text-ci-danger fs-7"> *</span></label>
                 <input type="text" class="form-control text-muted" placeholder="Enter Short Description" asp-for="ShortDescription" required />
                 <span asp-validation-for="ShortDescription" class="text-danger"></span>
             </div>
         </div>
         <div class="row text-muted">
             <div class="col-12">
-                <label class="form-label mt-3">My Story</label>
+                <label class="form-label mt-3">My Story<span class="text-ci-danger fs-7"> *</span></label>
                 <textarea asp-for="Description" id="editor">
                 </textarea>
                 <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
@@ -54,7 +54,7 @@
                 <div class="col-12 img-container">
                 </div>*@
             <div class="field">
-                <label class="form-label mt-3">Upload your Photos</label>
+                <label class="form-label mt-3">Upload your Photos<span class="text-ci-danger fs-7"> *</span></label>
                 <lable class="input-images-edit d-block"></lable>
             </div>
         </div>

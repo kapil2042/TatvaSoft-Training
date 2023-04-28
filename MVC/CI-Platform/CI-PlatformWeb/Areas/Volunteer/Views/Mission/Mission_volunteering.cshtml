@@ -11,8 +11,8 @@
     $(document).ready(()=>{
     $.ajax({
             type: 'POST',
-            url: "/Volunteer/Mission/FilterMissions",
-            data: { 'pg': 1, 'id': 4,'search': "", 'country': "", 'cities': "", 'theme': "@Model.mission.Theme.Title", 'skill': "" },
+            url: "/Volunteer/Mission/RelatedMission",
+            data: {'country': "@Model.mission.Country.Name", 'cities': "@Model.mission.City.Name", 'theme': "@Model.mission.Theme.Title"},
             success: function (res) {
                 $('#relatedmission').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
             },

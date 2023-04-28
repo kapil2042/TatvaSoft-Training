@@ -17,7 +17,7 @@
             <div class="p-3 row">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group col-12 col-md-6 pb-3">
-                    <label asp-for="CountryId" class="form-label text-muted">Select Country</label>
+                    <label asp-for="CountryId" class="form-label text-muted">Select Country<span class="text-ci-danger fs-7"> *</span></label>
                     <select asp-for="CountryId" class="form-control mission-country">
                         <option value="0">Select Country</option>
                         @foreach (var i in Model.country)
@@ -28,52 +28,52 @@
                     <span asp-validation-for="CountryId" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 pb-3">
-                    <label asp-for="CityId" class="form-label text-muted">Select City</label>
+                    <label asp-for="CityId" class="form-label text-muted">Select City<span class="text-ci-danger fs-7"> *</span></label>
                     <select asp-for="CityId" class="form-control mission-city">
                     </select>
                     <span asp-validation-for="CityId" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="Title" class="form-label text-muted">Title</label>
+                    <label asp-for="Title" class="form-label text-muted">Title<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="Title" class="form-control" placeholder="Enter Mission Title" />
                     <span asp-validation-for="Title" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="ShortDescription" class="form-label text-muted">Short Description</label>
+                    <label asp-for="ShortDescription" class="form-label text-muted">Short Description<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="ShortDescription" class="form-control" placeholder="Enter Mission Short Description" />
                     <span asp-validation-for="ShortDescription" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="Description" class="form-label text-muted">Description</label>
+                    <label asp-for="Description" class="form-label text-muted">Description<span class="text-ci-danger fs-7"> *</span></label>
                     <textarea asp-for="Description" id="editor" placeholder="Enter Mission Description">@Html.Raw(Model.Description)</textarea>
                     <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
                     </div>
                     <span asp-validation-for="Description" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="OrganizationName" class="form-label text-muted">Organization Name</label>
+                    <label asp-for="OrganizationName" class="form-label text-muted">Organization Name<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="OrganizationName" class="form-control" placeholder="Enter Organization Name" />
                     <span asp-validation-for="OrganizationName" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="OrganizationDetails" class="form-label text-muted">Organization Details</label>
+                    <label asp-for="OrganizationDetails" class="form-label text-muted">Organization Details<span class="text-ci-danger fs-7"> *</span></label>
                     <textarea asp-for="OrganizationDetails" id="editor1" placeholder="Enter Organization Details">@Html.Raw(Model.OrganizationDetails)</textarea>
                     <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
                     </div>
                     <span asp-validation-for="OrganizationDetails" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
-                    <label asp-for="StartDate" class="form-label text-muted">Start Date</label>
+                    <label asp-for="StartDate" class="form-label text-muted">Start Date<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="StartDate" type="date" class="form-control" placeholder="Select Start Date" readonly />
                     <span asp-validation-for="StartDate" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
-                    <label asp-for="EndDate" class="form-label text-muted">End Date</label>
+                    <label asp-for="EndDate" class="form-label text-muted">End Date<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="EndDate" type="date" class="form-control" placeholder="Select End Date" min="@Model.StartDate.Value.ToString("yyyy-MM-dd")" />
                     <span asp-validation-for="EndDate" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
-                    <label asp-for="MissionType" class="form-label text-muted">Mission Type</label>
+                    <label asp-for="MissionType" class="form-label text-muted">Mission Type<span class="text-ci-danger fs-7"> *</span></label>
                     <select asp-for="MissionType" class="form-control">
                         <option value="">Select Mission Type</option>
                         <option value="TIME">Time</option>
@@ -82,22 +82,22 @@
                     <span asp-validation-for="MissionType" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3">
-                    <label asp-for="TotalSeat" class="form-label text-muted">Total Seat</label>
+                    <label asp-for="TotalSeat" class="form-label text-muted">Total Seat<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="TotalSeat" class="form-control" placeholder="Enter Total Seat" />
                     <span asp-validation-for="TotalSeat" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
-                    <label asp-for="GoalValue" class="form-label text-muted">Goal Action</label>
+                    <label asp-for="GoalValue" class="form-label text-muted">Goal Action<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="GoalValue" class="form-control" placeholder="Enter Goal Action" />
                     <span asp-validation-for="GoalValue" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 col-md-6 mb-3 goal-item d-none">
-                    <label asp-for="GoalObjectiveText" class="form-label text-muted">Goal Objective Text</label>
+                    <label asp-for="GoalObjectiveText" class="form-label text-muted">Goal Objective Text<span class="text-ci-danger fs-7"> *</span></label>
                     <input asp-for="GoalObjectiveText" class="form-control" placeholder="Enter Goal Objective Text" />
                     <span asp-validation-for="GoalObjectiveText" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="ThemeId" class="form-label text-muted">Theme</label>
+                    <label asp-for="ThemeId" class="form-label text-muted">Theme<span class="text-ci-danger fs-7"> *</span></label>
                     <select asp-for="ThemeId" class="form-control">
                         <option value="0">Select Theme</option>
                         @foreach (var i in Model.themes)
@@ -133,7 +133,7 @@
                 <div class="col-12 mb-3">
                     <div class="row text-muted drag-area">
                         <div class="field">
-                            <label class="form-label text-muted mt-3">Upload your Photos</label>
+                            <label class="form-label text-muted mt-3">Upload your Photos<span class="text-ci-danger fs-7"> *</span></label>
                             <lable class="input-images d-block"></lable>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="Availability" class="form-label text-muted">Availability</label>
+                    <label asp-for="Availability" class="form-label text-muted">Availability<span class="text-ci-danger fs-7"> *</span></label>
                     <Select asp-for="Availability" class="form-control">
                         <option value="">Select Availability</option>
                         <option value="daily">Daily</option>
@@ -177,7 +177,7 @@
                     <span asp-validation-for="Availability" class="text-ci-danger fs-7"></span>
                 </div>
                 <div class="form-group col-12 mb-3">
-                    <label asp-for="Status" class="form-label text-muted">Status</label>
+                    <label asp-for="Status" class="form-label text-muted">Status<span class="text-ci-danger fs-7"> *</span></label>
                     <Select asp-for="Status" class="form-control">
                         <option value="0">Deactive</option>
                         <option value="1">Active</option>
