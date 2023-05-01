@@ -131,7 +131,7 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <input type="text" id="tId" name="tid" value="" hidden />
-                            <label for="missionId" class="form-label fs-7">Mission<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="missionId" class="form-label fs-7">Mission<span class="fs-7 text-validation-error"> *</span></label>
                             <select class="form-select text-muted" name="mission" id="mission" required>
                                 @foreach (var m in ViewBag.Missions)
                                 {
@@ -143,15 +143,15 @@
                             </select>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="dateVol" class="form-label fs-7">Date Volunteered<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="dateVol" class="form-label fs-7">Date Volunteered<span class="fs-7 text-validation-error"> *</span></label>
                             <input type="date" name="dateVol" class="form-control fs-7" id="dateVol" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
-                            <label for="volHour" class="form-label fs-7">Hours<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="volHour" class="form-label fs-7">Hours<span class="fs-7 text-validation-error"> *</span></label>
                             <input type="number" name="volHour" class="form-control fs-7" min="0" max="23" id="volHour" placeholder="Enter Spent Hours" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
-                            <label for="volMin" class="form-label fs-7">Minutes<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="volMin" class="form-label fs-7">Minutes<span class="fs-7 text-validation-error"> *</span></label>
                             <input type="number" name="volMin" class="form-control fs-7" min="0" max="59" id="volMin" placeholder="Enter Spent Minutes" required>
                         </div>
                         <div class="col-12">
@@ -187,7 +187,7 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <input type="text" id="tIdg" name="tid" value="" hidden />
-                            <label for="missionId" class="form-label fs-7">Mission<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="missionId" class="form-label fs-7">Mission<span class="fs-7 text-validation-error"> *</span></label>
                             <select class="form-select text-muted" name="mission" id="missiong" required>
                                 @foreach (var m in ViewBag.Missions)
                                 {
@@ -199,11 +199,11 @@
                             </select>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="volAction" class="form-label fs-7">Actions<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="volAction" class="form-label fs-7">Actions<span class="fs-7 text-validation-error"> *</span></label>
                             <input type="number" min="1" name="volAction" class="form-control fs-7" min="1" id="volAction" placeholder="Enter Actions" required>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="dateVolg" class="form-label fs-7">Date Volunteered<span class="text-ci-danger fs-7"> *</span></label>
+                            <label for="dateVolg" class="form-label fs-7">Date Volunteered<span class="fs-7 text-validation-error"> *</span></label>
                             <input type="date" name="dateVol" class="form-control fs-7" id="dateVolg" required>
                         </div>
                         <div class="col-12">

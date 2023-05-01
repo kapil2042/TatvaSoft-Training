@@ -249,6 +249,11 @@ a {
     color: #f83434 !important;
 }
 
+.text-validation-error,
+.text-validation-error > * {
+    color: #f83434 !important;
+}
+
 .bg-ci-success {
     background-color: #14C506 !important;
 }

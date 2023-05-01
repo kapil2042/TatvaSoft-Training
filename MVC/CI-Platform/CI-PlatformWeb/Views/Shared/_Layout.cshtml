@@ -175,14 +175,15 @@
         $(document).ready(()=>{
         @if (ViewBag.error != null)
         {
-            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
         }
         @if (ViewBag.success != null)
         {
-            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-bottom-right","closeButton": true,"progressBar": true});
+            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
         }
         });
     </script>
+    <partial name="_ValidationScriptsPartial"/>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

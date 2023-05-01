@@ -14,17 +14,17 @@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group pb-3">
-                    <label asp-for="SkillName" class="form-label text-muted">Skill Name<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="SkillName" class="form-label text-muted">Skill Name<span class="fs-7 text-validation-error"> *</span></label>
                     <input asp-for="SkillName" class="form-control" />
-                    <span asp-validation-for="SkillName" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="SkillName" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group pb-3">
-                    <label asp-for="Status" class="form-label text-muted">Status<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Status" class="form-label text-muted">Status<span class="fs-7 text-validation-error"> *</span></label>
                     <select asp-for="Status" class="form-control">
                         <option value="1">Active</option>
                         <option value="0">Deactive</option>
                     </select>
-                    <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Status" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group text-end">
                     <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="MissionSkills" asp-area="Admin">Cancel</a>

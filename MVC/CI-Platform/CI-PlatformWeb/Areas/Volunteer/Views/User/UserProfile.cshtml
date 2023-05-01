@@ -52,44 +52,44 @@
                         <hr class="p-0 m-0 mb-3" />
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Name<span class="text-ci-danger fs-7"> *</span></label>
+                        <label class="text-muted mb-1">Name<span class="fs-7 text-validation-error"> *</span></label>
                         <input type="text" class="form-control text-muted" asp-for="FirstName" required placeholder="Enter your name" />
-                        <span asp-validation-for="FirstName" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="FirstName" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Surname<span class="text-ci-danger fs-7"> *</span></label>
+                        <label class="text-muted mb-1">Surname<span class="fs-7 text-validation-error"> *</span></label>
                         <input type="text" class="form-control text-muted" asp-for="LastName" required placeholder="Enter your surname" />
-                        <span asp-validation-for="LastName" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="LastName" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Employee ID</label>
                         <input type="text" class="form-control text-muted" asp-for="EmployeeId" placeholder="Enter your employee id" />
-                        <span asp-validation-for="EmployeeId" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="EmployeeId" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Manager</label>
                         <input type="text" class="form-control text-muted" asp-for="ManagerDetails" placeholder="Enter your manager details" />
-                        <span asp-validation-for="ManagerDetails" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="ManagerDetails" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Title</label>
                         <input type="text" class="form-control text-muted" asp-for="Title" placeholder="Enter title" />
-                        <span asp-validation-for="Title" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="Title" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">Department</label>
                         <input type="text" class="form-control text-muted" asp-for="Department" placeholder="Enter your department" />
-                        <span asp-validation-for="Department" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="Department" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="text-muted mb-1">My Profile<span class="text-ci-danger fs-7"> *</span></label>
+                        <label class="text-muted mb-1">My Profile<span class="fs-7 text-validation-error"> *</span></label>
                         <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="ProfileText" required placeholder="Enter your profile text"></textarea>
-                        <span asp-validation-for="ProfileText" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="ProfileText" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="text-muted mb-1">Why I Volunteer?</label>
                         <textarea id="" rows="5" class="form-control h-auto text-muted" asp-for="WhyIVolunteer" placeholder="Enter your reasone for become a volunteer"></textarea>
-                        <span asp-validation-for="WhyIVolunteer" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="WhyIVolunteer" class="fs-7 text-validation-error"></span>
                     </div>
                 </div>
                 <div class="row mt-3 mt-lg-5">
@@ -102,7 +102,7 @@
                         <hr class="p-0 m-0 mb-3" />
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">Country<span class="text-ci-danger fs-7"> *</span></label>
+                        <label class="text-muted mb-1">Country<span class="fs-7 text-validation-error"> *</span></label>
                         <select class="form-select text-muted user-country" asp-for="CountryId">
                             @foreach (var i in ViewBag.country)
                             {
@@ -111,7 +111,7 @@
                         </select>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
-                        <label class="text-muted mb-1">City<span class="text-ci-danger fs-7"> *</span></label>
+                        <label class="text-muted mb-1">City<span class="fs-7 text-validation-error"> *</span></label>
                         <select class="form-select text-muted user-city" asp-for="CityId">
                         </select>
                     </div>
@@ -134,12 +134,12 @@
                             <option value="week-end">Week End</option>
                             <option value="monthly">Monthly</option>
                         </select>
-                        <span asp-validation-for="Availability" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="Availability" class="fs-7 text-validation-error"></span>
                     </div>
                     <div class="col-12 col-lg-6 mb-3">
                         <label class="text-muted mb-1">LinkedIn</label>
                         <input type="text" class="form-control text-muted" asp-for="LinkedInUrl" placeholder="Enter linkedIn URL" />
-                        <span asp-validation-for="LinkedInUrl" class="fs-7 text-ci-danger"></span>
+                        <span asp-validation-for="LinkedInUrl" class="fs-7 text-validation-error"></span>
                     </div>
                 </div>
                 <div class="row mt-3 mt-lg-5">
@@ -340,15 +340,15 @@
             },
             success: function (res) {
                 if (res) {
-                    toastr.success("Your password has been changed successfully", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.success("Your password has been changed successfully", "Success Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
                     $("#changePassForm")[0].reset();
                 }
                 else {
-                    toastr.error("Your old password does not math with database", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.error("Your old password does not math with database", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
                 }
             },
             error: function () {
-                toastr.error("Something Went Wrong! Please try agin later", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Something Went Wrong! Please try agin later", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             },
             complete: function () {
                 $("#loader").addClass('d-none');
@@ -418,7 +418,7 @@
                     success: function (data) {
                         $("#userProfile").attr("src", "/images/userimages/" + data.src + ".png");
                         bs_modal.modal('hide');
-                        toastr.success("Your Profile image has been changed successfully! It's reflected after page refresh!..", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                        toastr.success("Your Profile image has been changed successfully! It's reflected after page refresh!..", "Success Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
                     }
                 });
             };

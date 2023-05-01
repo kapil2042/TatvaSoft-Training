@@ -8,13 +8,13 @@
     <form method="post" class="w-100">
         <input name="ReturnUrl" type="text" value="@ViewBag.ReturnUrl" hidden />
         <div class="mb-3">
-            <label asp-for="Email" class="form-label">Email Address<span class="text-ci-danger fs-7"> *</span></label>
+            <label asp-for="Email" class="form-label">Email Address<span class="fs-7 text-validation-error"> *</span></label>
             <input type="email" asp-for="Email" id="email-id" class="form-control"
                    placeholder="abc@xyz.com" required>
-            <span asp-validation-for="Email" class="text-danger"></span>
+            <span asp-validation-for="Email" class="fs-7 text-validation-error"></span>
         </div>
         <div class="mb-3 position-relative">
-            <label asp-for="Password" class="form-label">Password<span class="text-ci-danger fs-7"> *</span></label>
+            <label asp-for="Password" class="form-label">Password<span class="fs-7 text-validation-error"> *</span></label>
             <input type="password" class="form-control" asp-for="Password" id="login-pass"
                    placeholder="**********" required>
             <span onclick="showPass('login-pass')">

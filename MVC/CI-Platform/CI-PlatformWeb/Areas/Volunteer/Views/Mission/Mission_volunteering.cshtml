@@ -17,7 +17,7 @@
                 $('#relatedmission').html($($.parseHTML(res)).filter("#gridviewpartial")[0].innerHTML);
             },
             error: function (data) {
-                toastr.error("Some Error In FilterMission", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Some Error In FilterMission", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             }
         });
     volpag(1);
@@ -161,7 +161,7 @@
                         </span>
                     }
                 </button>
-                <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-ci-secondary fs-7 @(Model.missionApplicatoin != null ? "":"opacity-50")" data-bs-toggle="modal" data-bs-target="#mailmissionmodal" data-id="@Model.mission.MissionId" @(Model.missionApplicatoin != null ? "":"disabled")>
+                <button class="send-mission-id d-flex share-btn justify-content-center align-items-center btn-ci-secondary w-50 m-1 px-0 text-ci-secondary fs-7 @(Model.missionApplicatoin != null ? "":"opacity-50")" data-bs-toggle="modal" data-id="@Model.mission.MissionId" @(Model.missionApplicatoin != null ? "data-bs-target=#mailmissionmodal":"disabled")>
                     <img src="~/images/add1.png" alt="" class="me-1">
                     <span class="d-none d-sm-block d-md-none d-xl-block">
                         Recommend to a Co-Worker
@@ -517,7 +517,7 @@
                 location.reload();
             },
             error: function (data) {
-                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             }
         });
     }
@@ -530,7 +530,7 @@
                 location.reload();
             },
             error: function (data) {
-                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             }
         });
     }
@@ -543,15 +543,15 @@
                 data: { 'missoinid': mid , 'commenttext':ctext },
                 success: function (res) {
                     document.getElementById("commentbox").value = "";
-                    toastr.success("Your Comment Posted Successfully, You can see Your Comment in list after Approval", "Success Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.success("Your Comment Posted Successfully, You can see Your Comment in list after Approval", "Success Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
                 },
                 error: function (data) {
-                    toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                    toastr.error("Please Login First", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
                 }
             });
         }
         else{
-            toastr.error("Comment Field is Required", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+            toastr.error("Comment Field is Required", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
         }
     }
 
@@ -565,7 +565,7 @@
                 $('#recvolpag').html($($.parseHTML(res)).filter("#parrecvolpag")[0].innerHTML);
             },
             error: function (data) {
-                toastr.error("Error in recent volunteer", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Error in recent volunteer", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             }
         });
     }

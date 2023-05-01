@@ -7,31 +7,31 @@
         <h1 class="text-muted">Share your story</h1>
         <div class="row text-muted">
             <div class="col-12 col-sm-6">
-                <label class="form-label mt-3">Select Mission<span class="text-ci-danger fs-7"> *</span></label>
+                <label class="form-label mt-3">Select Mission<span class="fs-7 text-validation-error"> *</span></label>
                 <select class="form-select text-muted" asp-for="MissionId" asp-items="ViewBag.MissionId">
                 </select>
             </div>
             <div class="col-12 col-sm-6">
-                <label class="form-label mt-3" asp-for="Title">My Story Title<span class="text-ci-danger fs-7"> *</span></label>
+                <label class="form-label mt-3" asp-for="Title">My Story Title<span class="fs-7 text-validation-error"> *</span></label>
                 <input type="text" class="form-control text-muted" placeholder="Enter story title" asp-for="Title" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+                <span asp-validation-for="Title" class="fs-7 text-validation-error"></span>
             </div>
         </div>
         <div class="row text-muted">
             <div class="col-12">
-                <label class="form-label mt-3" asp-for="ShortDescription">Short Description<span class="text-ci-danger fs-7"> *</span></label>
+                <label class="form-label mt-3" asp-for="ShortDescription">Short Description<span class="fs-7 text-validation-error"> *</span></label>
                 <input type="text" class="form-control text-muted" placeholder="Enter Short Description" asp-for="ShortDescription" />
-                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                <span asp-validation-for="ShortDescription" class="fs-7 text-validation-error"></span>
             </div>
         </div>
         <div class="row text-muted">
             <div class="col-12">
-                <label class="form-label mt-3">My Story<span class="text-ci-danger fs-7"> *</span></label>
+                <label class="form-label mt-3">My Story<span class="fs-7 text-validation-error"> *</span></label>
                 <textarea asp-for="Description" id="editor">
                 </textarea>
                 <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
                 </div>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <span asp-validation-for="Description" class="fs-7 text-validation-error"></span>
             </div>
         </div>
         @*<div class="row text-muted">
@@ -54,7 +54,7 @@
                 <div class="col-12 img-container">
                 </div>*@
             <div class="field">
-                <label class="form-label mt-3">Upload your Photos<span class="text-ci-danger fs-7"> *</span></label>
+                <label class="form-label mt-3">Upload your Photos<span class="fs-7 text-validation-error"> *</span></label>
                 <lable class="input-images d-block"></lable>
             </div>
             @if (ViewBag.imgerr != null)

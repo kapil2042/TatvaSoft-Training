@@ -14,17 +14,17 @@
             <form method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group mb-3">
-                    <label asp-for="Title" class="form-label">Title<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Title" class="form-label">Title<span class="fs-7 text-validation-error"> *</span></label>
                     <input asp-for="Title" class="form-control" placeholder="Enter Banner Title" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+                    <span asp-validation-for="Title" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label asp-for="Text" class="form-label">Text<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Text" class="form-label">Text<span class="fs-7 text-validation-error"> *</span></label>
                     <textarea asp-for="Text" rows="5" class="form-control h-auto" placeholder="Enter Banner Text"></textarea>
-                    <span asp-validation-for="Text" class="text-danger"></span>
+                    <span asp-validation-for="Text" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label">Select Banner<span class="text-ci-danger fs-7"> *</span></label>
+                    <label class="form-label">Select Banner<span class="fs-7 text-validation-error"> *</span></label>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <label for="readUrl" class="image-admin-upload">+</label>
@@ -34,12 +34,12 @@
                             <img id="uploadedImage" class="h-100 border" src="~/images/banners/@Model.Image" alt="Uploaded Image" accept="image/png, image/jpeg">
                         </div>
                     </div>
-                    <span asp-validation-for="Image" class="text-danger"></span>
+                    <span asp-validation-for="Image" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="SortOrder" class="form-label"></label>
                     <input type="number" asp-for="SortOrder" class="form-control" placeholder="Enter Banner Order" />
-                    <span asp-validation-for="SortOrder" class="text-danger"></span>
+                    <span asp-validation-for="SortOrder" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group text-end">
                     <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="BannerManagement" asp-area="Admin">Cancel</a>

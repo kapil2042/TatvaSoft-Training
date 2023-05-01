@@ -14,29 +14,29 @@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group pb-3">
-                    <label asp-for="Title" class="form-label text-muted">Title<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Title" class="form-label text-muted">Title<span class="fs-7 text-validation-error"> *</span></label>
                     <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Title" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group pb-3">
-                    <label asp-for="Description" class="form-label text-muted">Description<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Description" class="form-label text-muted">Description<span class="fs-7 text-validation-error"> *</span></label>
                     <textarea asp-for="Description" id="editor"></textarea>
                     <div class="w-100 border border-top-0 ck-toolbar" style="height:25px; border-color:#ccced1!important;">
                     </div>
-                    <span asp-validation-for="Description" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Description" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group pb-3">
-                    <label asp-for="Slug" class="form-label text-muted">Slug<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Slug" class="form-label text-muted">Slug<span class="fs-7 text-validation-error"> *</span></label>
                     <input asp-for="Slug" class="form-control" />
-                    <span asp-validation-for="Slug" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Slug" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group pb-3">
-                    <label asp-for="Status" class="form-label text-muted">Status<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Status" class="form-label text-muted">Status<span class="fs-7 text-validation-error"> *</span></label>
                     <select asp-for="Status" class="form-control">
                         <option value="1">Active</option>
                         <option value="0">Deactive</option>
                     </select>
-                    <span asp-validation-for="Status" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Status" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group text-end">
                     <a role="button" class="btn-ci-secondary" asp-action="Index" asp-controller="CMSPage" asp-area="Admin">Cancel</a>

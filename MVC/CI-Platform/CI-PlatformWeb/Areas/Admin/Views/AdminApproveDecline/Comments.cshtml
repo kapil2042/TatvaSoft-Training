@@ -217,7 +217,7 @@ else
                 $('#pagination-body').html($($.parseHTML(res)).find("#pagination-body")[0].innerHTML);
             },
             error: function (data) {
-                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-bottom-right", "closeButton": true, "progressBar": true });
+                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             },
             complete: function(){
                 $("#admin-loader").addClass("d-none");

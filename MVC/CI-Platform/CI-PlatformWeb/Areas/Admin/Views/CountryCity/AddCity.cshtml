@@ -13,19 +13,19 @@
             <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group pb-3">
-                    <label asp-for="Name" class="form-label text-muted">City Name<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="Name" class="form-label text-muted">City Name<span class="fs-7 text-validation-error"> *</span></label>
                     <input asp-for="Name" class="form-control" placeholder="Enter City Name" />
-                    <span asp-validation-for="Name" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="Name" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group pb-3">
-                    <label asp-for="CountryId" class="form-label text-muted">Select Country<span class="text-ci-danger fs-7"> *</span></label>
+                    <label asp-for="CountryId" class="form-label text-muted">Select Country<span class="fs-7 text-validation-error"> *</span></label>
                     <select asp-for="CountryId" class="form-control">
                         @foreach (var i in ViewBag.country)
                         {
                             <option value="@i.CountryId">@i.Name</option>
                         }
                     </select>
-                    <span asp-validation-for="CountryId" class="text-ci-danger fs-7"></span>
+                    <span asp-validation-for="CountryId" class="fs-7 text-validation-error"></span>
                 </div>
                 <div class="form-group text-end">
                     <a role="button" class="btn-ci-secondary" asp-action="Country" asp-controller="CountryCity" asp-area="Admin">Cancel</a>
