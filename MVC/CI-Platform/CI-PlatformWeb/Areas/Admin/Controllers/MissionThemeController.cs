@@ -97,7 +97,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditMissionTheme(long id, MissionTheme missionTheme)
         {
-            if (_commonRepository.isUniqueMissionTheme(missionTheme.Title))
+            if (_commonRepository.isUniqueMissionThemeEdit(id,missionTheme.Title))
             {
                 var theme = _adminMissionThemeRepository.GetMissionThemesById(id);
                 if (ModelState.IsValid)

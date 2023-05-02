@@ -87,7 +87,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditCountry(long id, Country country)
         {
-            if (_commonRepository.isUniqueCountry(country.Name))
+            if (_commonRepository.isUniqueCountryEdit(id,country.Name))
             {
                 var newCountry = _adminCountryCityRepository.GetCountryById(id);
                 if (ModelState.IsValid)
@@ -197,7 +197,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         public IActionResult EditCity(long id, City city)
         {
             ViewBag.country = _commonRepository.GetCountries();
-            if (_commonRepository.isUniqueCity(city.Name, city.CountryId))
+            if (_commonRepository.isUniqueCityEdit(id,city.Name, city.CountryId))
             {
                 var newCity = _adminCountryCityRepository.GetCityById(id);
                 ModelState.Remove("Country");

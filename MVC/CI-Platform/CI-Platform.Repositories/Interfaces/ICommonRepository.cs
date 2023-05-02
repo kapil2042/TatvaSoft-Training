@@ -70,5 +70,12 @@ namespace CI_Platform.Repositories.Interfaces
         bool isUniqueMissionTheme(string themeName);
 
         bool isUniqueSkill(string skillName);
+        bool isUniqueCountryEdit(long id, string countryName);
+
+        bool isUniqueCityEdit(long id, string cityName, long countryId);
+
+        bool isUniqueMissionThemeEdit(long id, string themeName);
+
+        bool isUniqueSkillEdit(long id, string skillName);
     }
 }

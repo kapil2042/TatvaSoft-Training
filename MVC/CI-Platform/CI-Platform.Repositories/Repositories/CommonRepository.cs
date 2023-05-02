@@ -220,5 +220,25 @@ namespace CI_Platform.Repositories.Repositories
         {
             return !_db.Skills.Where(x => x.SkillName.ToLower() == skillName.ToLower()).Any();
         }
+        
+        public bool isUniqueCountryEdit(long id, string countryName)
+        {
+            return !_db.Countries.Where(x => x.Name.ToLower() == countryName.ToLower() && x.CountryId != id).Any();
+        }
+
+        public bool isUniqueCityEdit(long id, string cityName, long countryId)
+        {
+            return !_db.Cities.Where(x => x.Name.ToLower() == cityName.ToLower() && x.CountryId == countryId && x.CityId != id).Any();
+        }
+
+        public bool isUniqueMissionThemeEdit(long id, string themeName)
+        {
+            return !_db.MissionThemes.Where(x => x.Title.ToLower() == themeName.ToLower() && x.MissionThemeId != id).Any();
+        }
+
+        public bool isUniqueSkillEdit(long id, string skillName)
+        {
+            return !_db.Skills.Where(x => x.SkillName.ToLower() == skillName.ToLower() && x.SkillId != id).Any();
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult EditMissionSkill(long id, Skill skill)
         {
-            if (_commonRepository.isUniqueSkill(skill.SkillName))
+            if (_commonRepository.isUniqueSkillEdit(id,skill.SkillName))
             {
                 var newSkill = _adminMissionSkillsRepository.GetSkillById(id);
                 if (ModelState.IsValid)

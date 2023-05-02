@@ -195,13 +195,6 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditMission(long id, VMAdminMission vmAdminMission, int[] missionSkills, IFormFileCollection myfile, IFormFileCollection? mydocs, string[] preloaded)
         {
-            vmAdminMission.country = _commonRepository.GetCountries();
-            vmAdminMission.themes = _commonRepository.GetMissionThemes();
-            vmAdminMission.skills = _commonRepository.GetSkills();
-            vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
-            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
-            vmAdminMission.MissionSkills = _adminMissionRepository.GetSkillByMissionId(id);
-
             if (vmAdminMission.MissionType == "TIME")
             {
                 ModelState.Remove("GoalValue");
@@ -352,6 +345,12 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             {
                 ViewBag.error = "Selected Country is removed by Admin! Please select another country";
             }
+            vmAdminMission.country = _commonRepository.GetCountries();
+            vmAdminMission.themes = _commonRepository.GetMissionThemes();
+            vmAdminMission.skills = _commonRepository.GetSkills();
+            vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
+            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
+            vmAdminMission.MissionSkills = _adminMissionRepository.GetSkillByMissionId(id);
             return View(vmAdminMission);
         }
 

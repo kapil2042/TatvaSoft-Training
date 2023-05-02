@@ -57,6 +57,9 @@ function citybycountry(country) {
     xhr.send();
 }
 
+$("#searchInput").keyup(() => {
+    myfilter(fpg = fpg, fid = fid);
+});
 
 var cbs = document.querySelectorAll('.otherthencity');
 for (var i = 0; i < cbs.length; i++) {
