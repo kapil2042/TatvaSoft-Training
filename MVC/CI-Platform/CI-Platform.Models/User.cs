@@ -99,6 +99,9 @@ public partial class User
     public virtual Country Country { get; set; } = null!;
 
     [InverseProperty("User")]
+    public virtual ICollection<NotificationSettings> NotificationSettings { get; set; } = null!;
+
+    [InverseProperty("User")]
     public virtual ICollection<FavoriteMission> FavoriteMissions { get; } = new List<FavoriteMission>();
 
     [InverseProperty("User")]

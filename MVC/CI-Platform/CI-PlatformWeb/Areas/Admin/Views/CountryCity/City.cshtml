@@ -172,26 +172,32 @@ else
         $('#confirmModal').modal('show');
         $('#DeleteId').val(id);
     }
+    var currentRequest = null;
     function CitySearch(query){
-        console.log(query);
-        $.ajax({
+        currentRequest = jQuery.ajax({
             type: 'POST',
             url: "/Admin/CountryCity/City",
             data: { 'id': query },
             beforeSend: function (){
                 $("#admin-loader").removeClass("d-none");
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
             },
             success: function (res) {
                 $('#table-body').html($($.parseHTML(res)).find("#table-body")[0].innerHTML);
                 $('#pagination-body').html($($.parseHTML(res)).find("#pagination-body")[0].innerHTML);
             },
             error: function (data) {
-                toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
+                //toastr.error("Some error in search", "Error Message", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
             },
             complete: function(){
                 $("#admin-loader").addClass("d-none");
             }
         });
+        //if(query === ""){
+        //    location.reload();
+        //}
     }
     $(document).ready(()=>{
         $("#cityLi").addClass('active');

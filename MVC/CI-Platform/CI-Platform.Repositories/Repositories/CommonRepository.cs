@@ -220,7 +220,7 @@ namespace CI_Platform.Repositories.Repositories
         {
             return !_db.Skills.Where(x => x.SkillName.ToLower() == skillName.ToLower()).Any();
         }
-        
+
         public bool isUniqueCountryEdit(long id, string countryName)
         {
             return !_db.Countries.Where(x => x.Name.ToLower() == countryName.ToLower() && x.CountryId != id).Any();
@@ -239,6 +239,113 @@ namespace CI_Platform.Repositories.Repositories
         public bool isUniqueSkillEdit(long id, string skillName)
         {
             return !_db.Skills.Where(x => x.SkillName.ToLower() == skillName.ToLower() && x.SkillId != id).Any();
+        }
+
+
+
+
+
+        // For Notifications
+
+        public List<UserNotification> GetOlderNotifications(int userid)
+        {
+            return _db.UserNotification.Include(x => x.Notification).Include(x => x.User).Where(x => x.UserId == userid && x.DeletedAt == null && x.CreatedAt.AddDays(1) < DateTime.Now).OrderByDescending(x => x.CreatedAt).ToList();
+        }
+
+
+        public List<UserNotification> GetNewerNotifications(int userid)
+        {
+            return _db.UserNotification.Include(x => x.Notification).Include(x => x.User).Where(x => x.UserId == userid && x.DeletedAt == null && x.CreatedAt.AddDays(1) >= DateTime.Now).OrderByDescending(x => x.CreatedAt).ToList();
+        }
+
+        public void UpdateNotificationStatusById(long usernotificationid)
+        {
+            var record = _db.UserNotification.FirstOrDefault(x => x.UserNotificationId == usernotificationid);
+            if (record != null)
+            {
+                record.Isread = 1;
+                _db.UserNotification.Update(record);
+            }
+        }
+
+        public NotificationSettings GetNotificationSettingsById(int userid)
+        {
+            return _db.NotificationSettings.FirstOrDefault(x => x.UserId == userid);
+        }
+
+        public void UpdateNotificationSettingsByUser(NotificationSettings notificationSettings)
+        {
+            _db.NotificationSettings.Update(notificationSettings);
+        }
+
+        public void DoAllSettingInactive(NotificationSettings notificationSettings)
+        {
+            notificationSettings.RecommendMission = 0;
+            notificationSettings.RecommendStory = 0;
+            notificationSettings.VolunteerGoal = 0;
+            notificationSettings.VolunteerHour = 0;
+            notificationSettings.CommentApprovation = 0;
+            notificationSettings.MissionApplicationApprovation = 0;
+            notificationSettings.StoryApprovation = 0;
+            notificationSettings.NewMessage = 0;
+            notificationSettings.News = 0;
+            notificationSettings.FromEmail = 0;
+        }
+
+        public void DeleteNotificationsByUser(int userid)
+        {
+            var notificationList = _db.UserNotification.Where(x => x.UserId == userid).ToList();
+            foreach (var notification in notificationList)
+            {
+                notification.DeletedAt = DateTime.Now;
+                _db.UserNotification.Update(notification);
+            }
+        }
+
+        //public void AddNotificationSettingsByUser(int userid)
+        //{
+        //    var record = _db.NotificationSettings.FirstOrDefault(x => x.UserId == userid);
+        //    if (record == null)
+        //    {
+        //        NotificationSettings notificationSettings = new NotificationSettings();
+        //        notificationSettings.UserId = userid;
+        //        notificationSettings.RecommendMission = 0;
+        //        notificationSettings.RecommendStory = 0;
+        //        notificationSettings.VolunteerGoal = 0;
+        //        notificationSettings.VolunteerHour = 0;
+        //        notificationSettings.CommentApprovation = 0;
+        //        notificationSettings.MissionApplicationApprovation = 0;
+        //        notificationSettings.StoryApprovation = 0;
+        //        notificationSettings.NewMessage = 0;
+        //        notificationSettings.News = 0;
+        //        notificationSettings.FromEmail = 0;
+        //        _db.NotificationSettings.Add(notificationSettings);
+        //    }
+        //}
+
+        public string getMissionTitleById(int missionId)
+        {
+            return _db.Missions.Where(x => x.MissionId == missionId).Select(x => x.Title).FirstOrDefault().ToString();
+        }
+        
+        public string getStoryTitleById(int storyId)
+        {
+            return _db.Stories.Where(x => x.StoryId == storyId).Select(x => x.Title).FirstOrDefault().ToString();
+        }
+
+        public void InserNotification(Notification notification)
+        {
+            _db.Notification.Add(notification);
+        }
+
+        public NotificationSettings GetNotificationSettingsByUser(int userid)
+        {
+            return _db.NotificationSettings.FirstOrDefault(x => x.UserId == userid);
+        }
+
+        public int getTotalNotificationByUser(int userId)
+        {
+            return _db.UserNotification.Count(User => User.UserId == userId && User.Isread == 0);
         }
     }
 }

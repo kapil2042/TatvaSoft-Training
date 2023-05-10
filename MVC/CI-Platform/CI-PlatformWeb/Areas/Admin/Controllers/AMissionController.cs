@@ -195,6 +195,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditMission(long id, VMAdminMission vmAdminMission, int[] missionSkills, IFormFileCollection myfile, IFormFileCollection? mydocs, string[] preloaded)
         {
+            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
             if (vmAdminMission.MissionType == "TIME")
             {
                 ModelState.Remove("GoalValue");
@@ -211,6 +212,7 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                 ModelState.Remove("skills");
                 ModelState.Remove("mDocuments");
                 ModelState.Remove("missionMedia");
+                ViewBag.fileerr = "";
             }
             else
                 ViewBag.fileerr = "Please upload at least one Image";
@@ -349,7 +351,6 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             vmAdminMission.themes = _commonRepository.GetMissionThemes();
             vmAdminMission.skills = _commonRepository.GetSkills();
             vmAdminMission.mDocuments = _adminMissionRepository.GetMissionDocumentsByMissionId(id);
-            vmAdminMission.missionMedia = _adminMissionRepository.GetMissionMediaByMissionId(id);
             vmAdminMission.MissionSkills = _adminMissionRepository.GetSkillByMissionId(id);
             return View(vmAdminMission);
         }

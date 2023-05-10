@@ -42,7 +42,7 @@
                     {
                         <tr>
                             <td>@i.Title</td>
-                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Deactive")</td>
+                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Inactive")</td>
                             <td class="text-nowrap">
                                 <a class="open-loader" asp-action="EditCmsPage" asp-controller="CMSPage" asp-area="Admin" asp-route-id="@i.CsmPageId">
                                     <i class="bi bi-pencil-square me-2 text-ci-primary"></i>

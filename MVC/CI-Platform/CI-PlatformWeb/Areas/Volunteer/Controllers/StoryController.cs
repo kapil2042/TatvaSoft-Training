@@ -184,20 +184,38 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [HttpPost]
         public void Recommended_Story(int storyid, string[] mailids)
         {
+            int cnt = 0;
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var firstName = identity?.FindFirst(ClaimTypes.Name)?.Value;
+            var lastName = identity?.FindFirst(ClaimTypes.Surname)?.Value;
             var link = Url.Action("StoryDetails", "Story", new { Area = "Volunteer", id = storyid });
             var mailBody = "<h1>Story For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Story Details</b>  </a>";
-
+            Notification notification = new Notification();
+            notification.NotificationText = firstName + " " + lastName + " - Recommends this Story - " + _commonRepository.getStoryTitleById(storyid);
+            notification.FromUserId = Convert.ToInt32(uid);
+            notification.NotificationType = 0;
+            notification.CreatedAt = DateTime.Now;
             foreach (var mail in mailids)
             {
                 long toUserId = _commonRepository.GetUserIdByEmail(mail);
+                if (_commonRepository.GetNotificationSettingsByUser((int)toUserId).RecommendMission == 1)
+                {
+                    UserNotification userNotification = new UserNotification();
+                    userNotification.UserId = toUserId;
+                    userNotification.Isread = 0;
+                    userNotification.CreatedAt = DateTime.Now;
+                    notification.UserNotifications.Add(userNotification);
+                    cnt++;
+                }
                 StoryInvite invite = new StoryInvite();
                 invite.StoryId = storyid;
                 invite.FromUserId = Convert.ToInt64(uid);
                 invite.ToUserId = toUserId;
                 _storyRepository.InserStoryInvitation(invite);
             }
+            if (cnt != 0)
+                _commonRepository.InserNotification(notification);
             _commonRepository.Save();
             _commonRepository.SendMails("Story Recommended", mailBody, mailids);
         }

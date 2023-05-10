@@ -772,3 +772,123 @@ select[multiple]:focus option:checked {
 .cursor-pointer > *:hover {
     cursor: pointer !important;
 }
+
+#notification {
+    width: 400px;
+    min-height: 250px;
+    max-height: 600px;
+    top: 35px;
+    z-index: 99999;
+    overflow-y: auto;
+}
+
+#notification-spinner {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+@media screen and (max-width:500px) {
+    #notification {
+        width: calc(100vw - 20px) !important;
+        position: fixed !important;
+        top: 55px !important;
+        margin-inline: 10px;
+    }
+}
+
+.notification-round {
+    padding-top: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    left: 20px;
+    top: -5px;
+    border-radius: 50%;
+    background-color: #F88634;
+}
+
+.nonotification-main-body {
+    height: calc(100% - 41px);
+}
+
+.spinner-border {
+    width: 50px;
+    height: 50px;
+}
+
+.slider-span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-setting-slider {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.notification-setting-slider-label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 40px;
+    height: 20px;
+    background: grey;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+}
+
+    .notification-setting-slider-label:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 14px;
+        transition: 0.3s;
+    }
+
+.notification-setting-slider:checked + .notification-setting-slider-label {
+    background: #F88634;
+}
+
+    .notification-setting-slider:checked + .notification-setting-slider-label:after {
+        left: calc(100% - 3px);
+        transform: translateX(-100%);
+    }
+
+.notification-setting-slider-label:active:after {
+    width: 25px;
+}
+
+.notification-profile-pic {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.notification-modal-body {
+    height: 400px !important;
+    overflow-x: auto;
+}
+
+.read-unread-icon {
+    width: 15px;
+}
+
+.remove_style {
+    border: none;
+    padding: 0;
+    background: none;
+}

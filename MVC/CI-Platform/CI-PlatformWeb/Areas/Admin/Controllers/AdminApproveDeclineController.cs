@@ -1,4 +1,5 @@
-﻿using CI_Platform.Models.ViewModels;
+﻿using CI_Platform.Models;
+using CI_Platform.Models.ViewModels;
 using CI_Platform.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -50,11 +51,16 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         public IActionResult ChangeMissionApplicationStatus(long id, bool action)
         {
             var application = _adminApproveDeclineRepository.GetMissionApplicationById(id);
+            var notificationSetting = _commonRepository.GetNotificationSettingsByUser((int)application.UserId);
             application.UpdatedAt = DateTime.Now;
+            Notification notification = new Notification();
+            notification.CreatedAt = DateTime.Now;
             if (action)
             {
                 if (_adminApproveDeclineRepository.isSeatAvailable(application.MissionId))
                 {
+                    notification.NotificationText = "Mission Application has been approved for this mission : " + application.Mission.Title;
+                    notification.NotificationType = 1;
                     application.ApprovalStatus = "APPROVE";
                     TempData["msg"] = "Mission Application Approved successfully!";
                 }
@@ -65,9 +71,17 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             }
             else
             {
+                notification.NotificationText = "Mission Application has been declined for this mission : " + application.Mission.Title;
+                notification.NotificationType = 3;
                 application.ApprovalStatus = "DECLINE";
                 TempData["msg"] = "Mission Application Declined successfully!";
             }
+            UserNotification userNotification = new UserNotification();
+            userNotification.UserId = application.UserId;
+            userNotification.CreatedAt = DateTime.Now;
+            notification.UserNotifications.Add(userNotification);
+            if (TempData["err"] == null && notificationSetting.MissionApplicationApprovation == 1)
+                _commonRepository.InserNotification(notification);
             _adminApproveDeclineRepository.UpdateMissionApplicationStatus(application);
             _commonRepository.Save();
             return RedirectToAction("MissionApplication", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
@@ -104,16 +118,29 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         {
             var story = _adminApproveDeclineRepository.GetStoryById(id);
             story.UpdatedAt = DateTime.Now;
+            var notificationSetting = _commonRepository.GetNotificationSettingsByUser((int)story.UserId);
+            Notification notification = new Notification();
+            notification.CreatedAt = DateTime.Now;
             if (action)
             {
+                notification.NotificationText = "Your Story has been published : " + story.Title;
+                notification.NotificationType = 1;
                 story.Status = "PUBLISHED";
                 TempData["msg"] = "Story Approved successfully!";
             }
             else
             {
+                notification.NotificationText = "Your Story has been Declined : " + story.Title;
+                notification.NotificationType = 3;
                 story.Status = "DECLINE";
                 TempData["msg"] = "Story Declined successfully!";
             }
+            UserNotification userNotification = new UserNotification();
+            userNotification.UserId = story.UserId;
+            userNotification.CreatedAt = DateTime.Now;
+            notification.UserNotifications.Add(userNotification);
+            if (notificationSetting.MissionApplicationApprovation == 1)
+                _commonRepository.InserNotification(notification);
             _adminApproveDeclineRepository.UpdateStoryStatus(story);
             _commonRepository.Save();
             return RedirectToAction("Story", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });

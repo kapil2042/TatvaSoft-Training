@@ -77,5 +77,34 @@ namespace CI_Platform.Repositories.Interfaces
         bool isUniqueMissionThemeEdit(long id, string themeName);
 
         bool isUniqueSkillEdit(long id, string skillName);
+
+
+        // For Notifications
+
+        List<UserNotification> GetOlderNotifications(int userid);
+
+        List<UserNotification> GetNewerNotifications(int userid);
+
+        void UpdateNotificationStatusById(long usernotificationid);
+
+        NotificationSettings GetNotificationSettingsById(int userid);
+
+        void UpdateNotificationSettingsByUser(NotificationSettings notificationSettings);
+
+        void DoAllSettingInactive(NotificationSettings notificationSettings);
+
+        void DeleteNotificationsByUser(int userid);
+
+        //void AddNotificationSettingsByUser(int userid);
+
+        string getMissionTitleById(int missionId);
+
+        string getStoryTitleById(int storyId);
+
+        void InserNotification(Notification notification);
+
+        NotificationSettings GetNotificationSettingsByUser(int userid);
+
+        int getTotalNotificationByUser(int userId);
     }
 }

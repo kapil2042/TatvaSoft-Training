@@ -50,7 +50,7 @@
                             <td>@i.FisrtName</td>
                             <td>@i.LastName</td>
                             <td>@i.Email</td>
-                            <td class="@(i.DeletedAt == null ? "text-ci-success": "text-ci-danger")">@(i.DeletedAt == null ? "Active":"Deactive")</td>
+                            <td class="@(i.DeletedAt == null ? "text-ci-success": "text-ci-danger")">@(i.DeletedAt == null ? "Active":"Inactive")</td>
                             <td class="text-nowrap">
                                 @if (i.Email != "mayapatel8105@gmail.com")
                                 {

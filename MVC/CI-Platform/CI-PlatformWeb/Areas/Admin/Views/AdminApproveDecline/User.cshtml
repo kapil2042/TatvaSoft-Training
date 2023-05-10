@@ -50,7 +50,7 @@
                             <td>@i.Email</td>
                             <td>@i.EmployeeId</td>
                             <td>@i.Department</td>
-                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Deactive")</td>
+                            <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">@(i.Status== 1 ? "Active":"Inactive")</td>
                             <td class="text-nowrap">
                                 <a asp-action="ChangeUserStatus" asp-controller="AdminApproveDecline" asp-area="Admin" asp-route-id="@i.UserId">
                                     <i class="bi @(i.Status == 1 ? "bi-x-circle text-ci-danger": "bi-check-circle text-ci-success")" me-2"></i>

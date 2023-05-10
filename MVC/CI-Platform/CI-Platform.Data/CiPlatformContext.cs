@@ -64,6 +64,12 @@ public partial class CiPlatformContext : DbContext
 
     public virtual DbSet<UserToken> UserTokens { get; set; }
 
+    public virtual DbSet<Notification> Notification { get; set; }
+
+    public virtual DbSet<NotificationSettings> NotificationSettings { get; set; }
+
+    public virtual DbSet<UserNotification> UserNotification { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=PCA112\\SQL2019; Initial Catalog=CI-Platform; user id=sa; password=K@pil2042; TrustServerCertificate=True; Trusted_Connection=True;");
@@ -875,6 +881,8 @@ public partial class CiPlatformContext : DbContext
                 .HasForeignKey(d => d.CountryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__users__country_i__4A4E069C");
+
+
         });
 
         modelBuilder.Entity<UserSkill>(entity =>

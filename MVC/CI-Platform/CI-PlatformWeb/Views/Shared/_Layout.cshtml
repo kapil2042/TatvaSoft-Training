@@ -45,21 +45,21 @@
                             <a class="nav-link" asp-area="Volunteer" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         @*<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    Privacy
-                                    <img src="~/images/drop-down.png" />
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                           asp-action="Privacy">Action</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
-                                           asp-action="Privacy">Logout</a>
-                                    </li>
-                                </ul>
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Privacy
+                            <img src="~/images/drop-down.png" />
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li>
+                            <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
+                            asp-action="Privacy">Action</a>
+                            </li>
+                            <li>
+                            <a class="dropdown-item" asp-area="Volunteer" asp-controller="Home"
+                            asp-action="Privacy">Logout</a>
+                            </li>
+                            </ul>
                             </li>*@
                     </ul>
                 </div>
@@ -70,52 +70,86 @@
                     var avtar = identity?.FindFirst(ClaimTypes.Thumbprint)?.Value;
                     var email = identity?.FindFirst(ClaimTypes.Email)?.Value;
                 }
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
-                        <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
-                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="avtar-nav">
-                                @if (avtar != null)
-                                {
-                                    <img src="~/images/@avtar" alt="user image" />
-                                }
-                                else
-                                {
-                                    <img src="~/images/profile.png" />
-                                }
+                <div class="d-flex align-items-center">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="position-relative">
+                            <a class="me-2 p-2 avatar-hover" id="notification-btn">
+                                <img src="~/images/bell.png" alt="">
+                            </a>
+                            <span class="notification-round" id="notification-count">
+                                
+                            </span>
+                            <div class="position-absolute d-none end-0 border bg-white shadow" id="notification">
+                                <div class="w-100 d-flex justify-content-between align-items-center px-3 py-2 border-bottom">
+                                    <a id="open-notify-setting">
+                                        <img src="~/images/settings.png" alt="">
+                                    </a>
+                                    <div class="ms-3">
+                                        Notifications
+                                    </div>
+                                    <a class="fs-7" onclick="ClearAllNotification()">Clear All</a>
+                                </div>
+                                <div class="notification-main-body">
+                                    <div class="d-flex justify-content-center align-items-center h-100 d-none" id="notification-spinner">
+                                        <div class="spinner-border text-ci-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <div id="notification-body">
+                                        
+                                    </div>
+                                    <div id="notification-setting-body" class="d-none">
+
+                                    </div>
+                                </div>
                             </div>
-                            <span class="px-2 text-secondary d-none d-sm-block">@name @surname</span>
-                            <img class="d-none d-sm-block" src="~/images/drop-down.png" />
                         </div>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="User"
+                        <div class="dropdown drop-avatar avatar-hover px-1 px-sm-3 py-1 d-flex align-items-center">
+                            <div class="dropdown-toggle d-inline-flex align-items-center" role="button"
+                             data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avtar-nav">
+                                    @if (avtar != null)
+                                    {
+                                        <img src="~/images/@avtar" alt="user image" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/profile.png" />
+                                    }
+                                </div>
+                                <span class="px-2 text-secondary d-none d-sm-block">@name @surname</span>
+                                <img class="d-none d-sm-block" src="~/images/drop-down.png" />
+                            </div>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="User"
                                    asp-action="UserProfile">Update Profile</a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="TimeSheet"
                                    asp-action="Index">Volunteering Timesheet</a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" asp-area="Volunteer" asp-controller="Login" asp-action="Logout">
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                }
-                else
-                {
-                    <a asp-action="Index" asp-area="Volunteer" asp-controller="Login" class="d-flex align-items-center avatar-hover px-1 px-sm-3 py-1">
-                        <div class="avtar-nav">
-                            <img src="~/images/profile.png" />
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Volunteer" asp-controller="Login" asp-action="Logout">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <span class="px-2 text-secondary d-none d-sm-block">Login</span>
-                    </a>
-                }
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-area="Volunteer" asp-controller="Login" class="d-flex align-items-center avatar-hover px-1 px-sm-3 py-1">
+                            <div class="avtar-nav">
+                                <img src="~/images/profile.png" />
+                            </div>
+                            <span class="px-2 text-secondary d-none d-sm-block">Login</span>
+                        </a>
+                    }
+                </div>
             </div>
         </nav>
     </header>
@@ -173,17 +207,18 @@
     <script src="~/lib/toastr/toastr.min.js" asp-append-version="true"></script>
     <script>
         $(document).ready(()=>{
-        @if (ViewBag.error != null)
-        {
-            @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
-        }
-        @if (ViewBag.success != null)
-        {
-            @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
-        }
+            GetTotalNotifications();
+            @if (ViewBag.error != null)
+            {
+                @:toastr.error("@ViewBag.error", "Error Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
+            }
+            @if (ViewBag.success != null)
+            {
+                @:toastr.success("@ViewBag.success", "Success Message",{ timeOut: 5000, "positionClass": "toast-top-right","closeButton": true,"progressBar": true});
+            }
         });
     </script>
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

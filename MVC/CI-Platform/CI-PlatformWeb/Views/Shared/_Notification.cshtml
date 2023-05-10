@@ -1,0 +1,226 @@
+﻿@using CI_Platform.Models.ViewModels
+@model VMNotification
+<div id="notification-body-partial">
+    @if (Model.OldUserNotifications.Count > 0 || Model.NewUserNotifications.Count > 0)
+    {
+        @if (Model.NewUserNotifications.Count > 0)
+        {
+            <div class="d-flex justify-content-between flex-column align-items-center">
+                @foreach (var notification in Model.NewUserNotifications)
+                {
+                    <div class="d-flex justify-content-between align-items-center gap-3 px-3 py-2 border-bottom">
+                        <div class="d-flex gap-2 align-items-center">
+                            <div>
+                                @switch (notification.Notification.NotificationType)
+                                {
+                                    case 0:
+                                        var record = notification.Notification.FromUserId;
+                                        var avtar = @Model.Users.FirstOrDefault(x => x.UserId == record);
+                                        if (avtar != null)
+                                        {
+                                            <img src="~/images/@avtar.Avatar" class="notification-profile-pic" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/profile.png" class="notification-profile-pic" />
+                                        }
+                                        break;
+                                    case 1:
+                                        <img src="~/images/approve.png" width="40px" />
+                                        break;
+                                    case 2:
+                                        <img src="~/images/add.png" width="40px" />
+                                        break;
+                                    case 3:
+                                        <img src="~/images/decline.png" width="40px" />
+                                        break;
+                                }
+                            </div>
+                            <div>
+                                @notification.Notification.NotificationText
+                            </div>
+                        </div>
+                        <div>
+                            @if (notification.Isread == 1)
+                            {
+                                <div class="readed-@notification.UserNotificationId"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+                                <button class="remove_style unreaded-@notification.UserNotificationId d-none"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                            }
+                            else
+                            {
+                                <div class="readed-@notification.UserNotificationId d-none"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+                                <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="bg-light px-3 py-2 text-center border-0 border-bottom border-top">
+                Older
+            </div>
+            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+                @if (Model.OldUserNotifications.Count > 0)
+                {
+                    @foreach (var notification in Model.OldUserNotifications)
+                    {
+                        <div class="d-flex justify-content-between align-items-center gap-3 m-3">
+                            <div class="d-flex gap-2 align-items-center">
+                                <div>
+                                    @switch (notification.Notification.NotificationType)
+                                    {
+                                        case 0:
+                                            var record = notification.Notification.FromUserId;
+                                            var avtar = @Model.Users.FirstOrDefault(x => x.UserId == record);
+                                            if (avtar != null)
+                                            {
+                                                <img src="~/images/@avtar.Avatar" class="notification-profile-pic" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/images/profile.png" class="notification-profile-pic" />
+                                            }
+                                            break;
+                                        case 1:
+                                            <img src="~/images/approve.png" width="40px" />
+                                            break;
+                                        case 2:
+                                            <img src="~/images/add.png" width="40px" />
+                                            break;
+                                        case 3:
+                                            <img src="~/images/decline.png" width="40px" />
+                                            break;
+                                    }
+                                </div>
+                                <div>
+                                    @notification.Notification.NotificationText
+                                </div>
+                            </div>
+                            <div>
+                                @if (notification.Isread == 1)
+                                {
+                                    <div class="readed-@notification.UserNotificationId"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+                                    <button class="remove_style unreaded-@notification.UserNotificationId d-none"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                                }
+                                else
+                                {
+                                    <div class="readed-@notification.UserNotificationId d-none"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+                                    <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        }
+    }
+</div>
+<div id="notification-setting-body-partial" class="d-none">
+    <div class="bg-light px-3 py-2">
+        <a id="notification-back" onclick="notificationBack()" class="me-2">
+            <i class="bi bi-arrow-90deg-left text-ci-primary"></i>
+        </a>
+        Get a notification for
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Recommended Missions</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="recommended-mission" value="recommendedmission" @(Model.NotificationSettings.RecommendMission == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="recommended-mission">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Volunteering Hours</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="volunteering-hours" value="volunteerhour" @(Model.NotificationSettings.VolunteerHour == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="volunteering-hours">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Volunteering Goals</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="volunteering-goals" value="volunteergoal" @(Model.NotificationSettings.VolunteerGoal == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="volunteering-goals">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>My Comments</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="my-comments" value="mycomment" @(Model.NotificationSettings.CommentApprovation == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="my-comments">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>My Stories</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="my-stories" value="mystory" @(Model.NotificationSettings.StoryApprovation == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="my-stories">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>New Missions</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="new-missions" value="newmission" @(Model.NotificationSettings.NewMisson == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="new-missions">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>New Messages</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="new-messages" value="newmessage" @(Model.NotificationSettings.NewMessage == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="new-messages">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Recommended Story</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="recommended-story" value="recommendedstory" @(Model.NotificationSettings.RecommendStory == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="recommended-story">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Mission Application</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="mission-application" value="missionapplication" @(Model.NotificationSettings.MissionApplicationApprovation == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="mission-application">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>News</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="news" value="news" @(Model.NotificationSettings.News == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label" for="news">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-3 py-2">
+        <span>Receive Notifications by Email</span>
+        <span class="slider-span">
+            <input type="checkbox" class="notification-setting-slider" name="settings"
+                   id="by-email" value="fromemail" @(Model.NotificationSettings.FromEmail == 1 ? "checked" : "") />
+            <label class="notification-setting-slider-label"
+                   for="by-email">Toggle</label>
+        </span>
+    </div>
+    <div class="d-flex justify-content-center gap-3 align-items-center px-3 py-2">
+        <button type="button" class="btn-ci-primary" onclick="SaveNotificationSettings()">Save</button>
+        <button class="btn-ci-secondary" onclick="notificationBack()">Cancel</button>
+    </div>
+</div>

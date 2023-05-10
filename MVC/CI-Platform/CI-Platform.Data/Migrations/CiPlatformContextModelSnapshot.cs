@@ -48,11 +48,13 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("email");
 
                     b.Property<string>("FisrtName")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)")
                         .HasColumnName("fisrt_name");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)")
                         .HasColumnName("last_name");
@@ -99,18 +101,22 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("image");
 
                     b.Property<int?>("SortOrder")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("sort_order")
                         .HasDefaultValueSql("((0))");
 
                     b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(2000)
                         .HasColumnType("text")
                         .HasColumnName("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -234,6 +240,7 @@ namespace CI_Platform.Data.Migrations
                         .HasDefaultValueSql("('PENDING')");
 
                     b.Property<string>("CommentText")
+                        .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("text")
                         .HasColumnName("comment_text");
@@ -290,6 +297,7 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("Iso")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)")
                         .HasColumnName("ISO");
@@ -827,6 +835,98 @@ namespace CI_Platform.Data.Migrations
                     b.ToTable("mission_theme", (string)null);
                 });
 
+            modelBuilder.Entity("CI_Platform.Models.Notification", b =>
+                {
+                    b.Property<long>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("NotificationId"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("FromUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("NotificationText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NotificationType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("NotificationId");
+
+                    b.ToTable("Notification");
+                });
+
+            modelBuilder.Entity("CI_Platform.Models.NotificationSettings", b =>
+                {
+                    b.Property<long>("NotificationSettingsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("NotificationSettingsId"), 1L, 1);
+
+                    b.Property<int>("CommentApprovation")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FromEmail")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MissionApplicationApprovation")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NewMessage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NewMisson")
+                        .HasColumnType("int");
+
+                    b.Property<int>("News")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecommendMission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecommendStory")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoryApprovation")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("VolunteerGoal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VolunteerHour")
+                        .HasColumnType("int");
+
+                    b.HasKey("NotificationSettingsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("NotificationSettings");
+                });
+
             modelBuilder.Entity("CI_Platform.Models.Skill", b =>
                 {
                     b.Property<int>("SkillId")
@@ -889,7 +989,8 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(4000)
+                        .IsRequired()
+                        .HasMaxLength(40000)
                         .HasColumnType("text")
                         .HasColumnName("description");
 
@@ -902,7 +1003,8 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("published_at");
 
                     b.Property<string>("ShortDescription")
-                        .HasMaxLength(255)
+                        .IsRequired()
+                        .HasMaxLength(600)
                         .HasColumnType("text")
                         .HasColumnName("short_description");
 
@@ -914,6 +1016,7 @@ namespace CI_Platform.Data.Migrations
                         .HasDefaultValueSql("('DRAFT')");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("title");
@@ -1188,6 +1291,7 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("phone_number");
 
                     b.Property<string>("ProfileText")
+                        .HasMaxLength(1000)
                         .HasColumnType("text")
                         .HasColumnName("profile_text");
 
@@ -1205,6 +1309,7 @@ namespace CI_Platform.Data.Migrations
                         .HasColumnName("updated_at");
 
                     b.Property<string>("WhyIVolunteer")
+                        .HasMaxLength(1000)
                         .HasColumnType("text")
                         .HasColumnName("why_i_volunteer");
 
@@ -1216,6 +1321,41 @@ namespace CI_Platform.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("CI_Platform.Models.UserNotification", b =>
+                {
+                    b.Property<long>("UserNotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserNotificationId"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Isread")
+                        .HasColumnType("int");
+
+                    b.Property<long>("NotificationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("UserNotificationId");
+
+                    b.HasIndex("NotificationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserNotification");
                 });
 
             modelBuilder.Entity("CI_Platform.Models.UserSkill", b =>
@@ -1485,6 +1625,17 @@ namespace CI_Platform.Data.Migrations
                     b.Navigation("Skill");
                 });
 
+            modelBuilder.Entity("CI_Platform.Models.NotificationSettings", b =>
+                {
+                    b.HasOne("CI_Platform.Models.User", "User")
+                        .WithMany("NotificationSettings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CI_Platform.Models.Story", b =>
                 {
                     b.HasOne("CI_Platform.Models.Mission", "Mission")
@@ -1580,6 +1731,25 @@ namespace CI_Platform.Data.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("CI_Platform.Models.UserNotification", b =>
+                {
+                    b.HasOne("CI_Platform.Models.Notification", "Notification")
+                        .WithMany("UserNotifications")
+                        .HasForeignKey("NotificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CI_Platform.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Notification");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CI_Platform.Models.UserSkill", b =>
                 {
                     b.HasOne("CI_Platform.Models.Skill", "Skill")
@@ -1645,6 +1815,11 @@ namespace CI_Platform.Data.Migrations
                     b.Navigation("Missions");
                 });
 
+            modelBuilder.Entity("CI_Platform.Models.Notification", b =>
+                {
+                    b.Navigation("UserNotifications");
+                });
+
             modelBuilder.Entity("CI_Platform.Models.Skill", b =>
                 {
                     b.Navigation("MissionSkills");
@@ -1672,6 +1847,8 @@ namespace CI_Platform.Data.Migrations
                     b.Navigation("MissionInviteToUsers");
 
                     b.Navigation("MissionRatings");
+
+                    b.Navigation("NotificationSettings");
 
                     b.Navigation("Stories");
 

@@ -46,7 +46,7 @@
                                 @i.Title
                             </td>
                             <td class="@(i.Status == 1 ? "text-ci-success": "text-ci-danger")">
-                                @(i.Status== 1 ? "Active":"Deactive")
+                                @(i.Status== 1 ? "Active":"Inactive")
                             </td>
                             <td class="text-nowrap">
                                 <a class="open-loader" asp-action="EditMissionTheme" asp-controller="MissionTheme" asp-area="Admin" asp-route-id="@i.MissionThemeId">

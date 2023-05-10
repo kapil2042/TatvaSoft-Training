@@ -155,8 +155,8 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
             ViewBag.pager = pager;
             return PartialView("partialFilterMissions", model);
         }
-        
-        
+
+
         [HttpPost]
         [AllowAnonymous]
         public IActionResult RelatedMission(string country, string cities, string theme)
@@ -178,7 +178,7 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
                 favoriteMission = _missionRepository.GetFavoriteMissionsByUserId(Convert.ToInt32(uid)),
                 missionApplicatoin = _missionRepository.GetMissionApplicatoinsByUserId(Convert.ToInt32(uid)),
                 missionAppAll = _missionRepository.GetAllMissionApplicationSum(),
-                mission = _missionRepository.GetMissions().Where(x=>x.Theme.Title == theme || x.Country.Name == country || x.City.Name == cities).OrderBy(x=>x.Theme.Title).ThenBy(x=>x.Country.Name).ThenBy(x=>x.City.Name).ToList(),
+                mission = _missionRepository.GetMissions().Where(x => x.Theme.Title == theme || x.Country.Name == country || x.City.Name == cities).OrderBy(x => x.Theme.Title).ThenBy(x => x.Country.Name).ThenBy(x => x.City.Name).ToList(),
             };
             return PartialView("partialFilterMissions", model);
         }
@@ -285,20 +285,39 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
         [HttpPost]
         public void Recommended_Mission(int missoinid, string[] mailids)
         {
+            int cnt = 0;
             var identity = User.Identity as ClaimsIdentity;
             var uid = identity?.FindFirst(ClaimTypes.Sid)?.Value;
+            var firstName = identity?.FindFirst(ClaimTypes.Name)?.Value;
+            var lastName = identity?.FindFirst(ClaimTypes.Surname)?.Value;
             var link = Url.Action("Mission_volunteering", "Mission", new { Area = "Volunteer", id = missoinid });
-            var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44304" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
+            var mailBody = "<h1>Mission For You:</h1><br> <a href='https://localhost:44332" + link + "'> <b style='color:green;'>Click Here to See Mission Details</b>  </a>";
+            Notification notification = new Notification();
+            notification.NotificationText = firstName + " " + lastName + " - Recommends this mission - " + _commonRepository.getMissionTitleById(missoinid);
+            notification.FromUserId = Convert.ToInt32(uid);
+            notification.NotificationType = 0;
+            notification.CreatedAt = DateTime.Now;
 
             foreach (var mail in mailids)
             {
                 long toUserId = _commonRepository.GetUserIdByEmail(mail);
+                if (_commonRepository.GetNotificationSettingsByUser((int)toUserId).RecommendMission == 1)
+                {
+                    UserNotification userNotification = new UserNotification();
+                    userNotification.UserId = toUserId;
+                    userNotification.Isread = 0;
+                    userNotification.CreatedAt = DateTime.Now;
+                    notification.UserNotifications.Add(userNotification);
+                    cnt++;
+                }
                 MissionInvite invite = new MissionInvite();
                 invite.MissionId = missoinid;
                 invite.FromUserId = Convert.ToInt64(uid);
                 invite.ToUserId = toUserId;
                 _missionRepository.InserMissionInvitation(invite);
             }
+            if (cnt != 0)
+                _commonRepository.InserNotification(notification);
             _commonRepository.Save();
             _commonRepository.SendMails("Mission Recommended", mailBody, mailids);
         }

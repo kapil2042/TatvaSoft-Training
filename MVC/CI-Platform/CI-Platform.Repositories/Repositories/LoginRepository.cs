@@ -41,6 +41,19 @@ namespace CI_Platform.Repositories.Repositories
             u.Email = user.Email;
             u.Password = _c.Encode(user.Password);
             u.PhoneNumber = user.MobileNo;
+            NotificationSettings notificationSettings = new NotificationSettings();
+            notificationSettings.RecommendMission = 0;
+            notificationSettings.RecommendStory = 0;
+            notificationSettings.VolunteerGoal = 0;
+            notificationSettings.VolunteerHour = 0;
+            notificationSettings.CommentApprovation = 0;
+            notificationSettings.MissionApplicationApprovation = 0;
+            notificationSettings.StoryApprovation = 0;
+            notificationSettings.NewMessage = 0;
+            notificationSettings.News = 0;
+            notificationSettings.FromEmail = 0;
+            notificationSettings.CreatedAt = DateTime.Now;
+            u.NotificationSettings.Add(notificationSettings);
             _db.Users.Add(u);
         }
 
