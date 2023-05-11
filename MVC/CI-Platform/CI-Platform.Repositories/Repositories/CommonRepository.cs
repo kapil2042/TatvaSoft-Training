@@ -263,7 +263,10 @@ namespace CI_Platform.Repositories.Repositories
             var record = _db.UserNotification.FirstOrDefault(x => x.UserNotificationId == usernotificationid);
             if (record != null)
             {
-                record.Isread = 1;
+                if (record.Isread == 0)
+                    record.Isread = 1;
+                else
+                    record.Isread = 0;
                 _db.UserNotification.Update(record);
             }
         }
@@ -327,7 +330,7 @@ namespace CI_Platform.Repositories.Repositories
         {
             return _db.Missions.Where(x => x.MissionId == missionId).Select(x => x.Title).FirstOrDefault().ToString();
         }
-        
+
         public string getStoryTitleById(int storyId)
         {
             return _db.Stories.Where(x => x.StoryId == storyId).Select(x => x.Title).FirstOrDefault().ToString();

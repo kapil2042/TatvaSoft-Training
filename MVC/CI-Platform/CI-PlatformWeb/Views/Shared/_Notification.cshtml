@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between flex-column align-items-center">
                 @foreach (var notification in Model.NewUserNotifications)
                 {
-                    <div class="d-flex justify-content-between align-items-center gap-3 px-3 py-2 border-bottom">
+                    <div class="d-flex justify-content-between align-items-center gap-3 px-3 py-2 border-bottom w-100">
                         <div class="d-flex gap-2 align-items-center">
                             <div>
                                 @switch (notification.Notification.NotificationType)
@@ -43,22 +43,22 @@
                         <div>
                             @if (notification.Isread == 1)
                             {
-                                <div class="readed-@notification.UserNotificationId"><img src="~/images/checked.png" class="read-unread-icon" /></div>
-                                <button class="remove_style unreaded-@notification.UserNotificationId d-none"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                                <button class="remove_style readed-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/checked.png" class="read-unread-icon" /></button>
+                                <button class="remove_style unreaded-@notification.UserNotificationId d-none" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
                             }
                             else
                             {
-                                <div class="readed-@notification.UserNotificationId d-none"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+                                <button class="remove_style readed-@notification.UserNotificationId d-none" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/checked.png" class="read-unread-icon" /></button>
                                 <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
                             }
                         </div>
                     </div>
                 }
             </div>
-            <div class="bg-light px-3 py-2 text-center border-0">
+            <div class="bg-light px-3 py-2 text-center border-0 w-100">
                 Older
             </div>
-            <div class="d-flex justify-content-between align-items-center px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center px-3 py-2 w-100">
                 @if (Model.OldUserNotifications.Count > 0)
                 {
                     @foreach (var notification in Model.OldUserNotifications)
@@ -112,6 +112,13 @@
                 }
             </div>
         }
+    }
+    else
+    {
+        <div class="d-flex justify-content-between flex-column align-items-center justify-content-center py-3">
+            <img src="~/images/bell-big.png" />
+            <div>No Notifications</div>
+        </div>
     }
 </div>
 <div id="notification-setting-body-partial" class="d-none">

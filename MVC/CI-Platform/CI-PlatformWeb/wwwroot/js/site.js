@@ -86,7 +86,10 @@ function ClearAllNotification() {
         type: 'POST',
         url: "/Volunteer/Notification/ClearAllNotification",
         success: function (res) {
-            $('#notification-body').html("");
+            $('#notification-body').html(`<div class="d-flex justify-content-between flex-column align-items-center justify-content-center py-3">
+            <img src="../images/bell-big.png" />
+            <div>No Notifications</div>
+        </div>`);
             GetTotalNotifications();
         },
         error: function (data) {
@@ -101,13 +104,15 @@ function GetTotalNotifications() {
         url: "/Volunteer/Notification/GetTotalNotifications",
         data: {},
         success: function (res) {
-            if(res > 0)
+            if (res > 0) {
                 $("#notification-count").html(res);
+                $("#notification-count").removeClass("d-none");
+            }
             else
                 $("#notification-count").addClass("d-none");
         },
         error: function (data) {
-            
+
         }
     });
 }
@@ -118,10 +123,9 @@ function MakeReadedNotification(usernotificationid) {
         type: 'POST',
         data: { 'usernotificationid': usernotificationid },
         success: function (res) {
-            $('.unreaded-' + res).addClass('d-none');
-            $('.readed-' + res).removeClass('d-none');
+            $('.unreaded-' + res).toggleClass('d-none');
+            $('.readed-' + res).toggleClass('d-none');
             GetTotalNotifications();
-            toastr.success("Notification marked as read", "EVPP Says", { timeOut: 5000, "positionClass": "toast-top-right", "closeButton": true, "progressBar": true });
         },
         error: function (data) {
             alert("some error from read-unread.");
