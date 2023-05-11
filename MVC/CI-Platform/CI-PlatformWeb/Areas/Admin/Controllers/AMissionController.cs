@@ -148,6 +148,30 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
                         }
                     }
                 }
+                List<string> mails = new List<string>();
+                Notification notification = new Notification();
+                notification.CreatedAt = DateTime.Now;
+                notification.NotificationText = "New Mission - " + vmAdminMission.Title;
+                notification.NotificationType = 2;
+                int cnt = 0;
+                foreach (var user in _commonRepository.GetAllUsers())
+                {
+                    var notificationSetting = _commonRepository.GetNotificationSettingsByUser((int)user.UserId);
+                    if (notificationSetting.NewMisson == 1)
+                    {
+                        cnt++;
+                        UserNotification userNotification = new UserNotification();
+                        userNotification.UserId = user.UserId;
+                        userNotification.CreatedAt = DateTime.Now;
+                        notification.UserNotifications.Add(userNotification);
+                        if (notificationSetting.FromEmail == 1)
+                            mails.Add(user.Email);
+                    }
+                }
+                if (mails.Count > 0)
+                    _commonRepository.SendMails("New Mission", notification.NotificationText, mails.ToArray());
+                if (cnt != 0)
+                    _commonRepository.InserNotification(notification);
                 _adminMissionRepository.InsertMission(mission);
                 _commonRepository.Save();
                 TempData["msg"] = "Record Inserted Successfully!";

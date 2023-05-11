@@ -85,8 +85,9 @@ function ClearAllNotification() {
     $.ajax({
         type: 'POST',
         url: "/Volunteer/Notification/ClearAllNotification",
-        data: { 'userid': parseInt(userid) },
         success: function (res) {
+            $('#notification-body').html("");
+            GetTotalNotifications();
         },
         error: function (data) {
             alert("some Error from Notification Partial");

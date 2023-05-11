@@ -81,7 +81,11 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             userNotification.CreatedAt = DateTime.Now;
             notification.UserNotifications.Add(userNotification);
             if (TempData["err"] == null && notificationSetting.MissionApplicationApprovation == 1)
+            {
                 _commonRepository.InserNotification(notification);
+                if (notificationSetting.FromEmail == 1)
+                    _commonRepository.SendMails("Mission Application Status", notification.NotificationText, new[] { application.User.Email });
+            }
             _adminApproveDeclineRepository.UpdateMissionApplicationStatus(application);
             _commonRepository.Save();
             return RedirectToAction("MissionApplication", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
@@ -139,8 +143,12 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
             userNotification.UserId = story.UserId;
             userNotification.CreatedAt = DateTime.Now;
             notification.UserNotifications.Add(userNotification);
-            if (notificationSetting.MissionApplicationApprovation == 1)
+            if (notificationSetting.StoryApprovation == 1)
+            {
                 _commonRepository.InserNotification(notification);
+                if (notificationSetting.FromEmail == 1)
+                    _commonRepository.SendMails("Your Story Status", notification.NotificationText, new[] { story.User.Email });
+            }
             _adminApproveDeclineRepository.UpdateStoryStatus(story);
             _commonRepository.Save();
             return RedirectToAction("Story", "AdminApproveDecline", new { Area = "Admin", pg = TempData["pg"] });
@@ -250,15 +258,32 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         {
             var comment = _adminApproveDeclineRepository.GetCommentById(id);
             comment.UpdatedAt = DateTime.Now;
+            var notificationSetting = _commonRepository.GetNotificationSettingsByUser((int)comment.UserId);
+            Notification notification = new Notification();
+            notification.CreatedAt = DateTime.Now;
             if (action)
             {
+                notification.NotificationText = "Your comment on " + comment.Mission.Title + " mission has been approved";
+                notification.NotificationType = 1;
                 comment.ApprovalStatus = "APPROVE";
                 TempData["msg"] = "Comment Approved successfully!";
             }
             else
             {
+                notification.NotificationText = "Your comment on " + comment.Mission.Title + " mission has been declined";
+                notification.NotificationType = 3;
                 comment.ApprovalStatus = "DECLINE";
                 TempData["msg"] = "Comment Declined successfully!";
+            }
+            UserNotification userNotification = new UserNotification();
+            userNotification.UserId = comment.UserId;
+            userNotification.CreatedAt = DateTime.Now;
+            notification.UserNotifications.Add(userNotification);
+            if (notificationSetting.CommentApprovation == 1)
+            {
+                _commonRepository.InserNotification(notification);
+                if (notificationSetting.FromEmail == 1)
+                    _commonRepository.SendMails("Your Story Status", notification.NotificationText, new[] { comment.User.Email });
             }
             _adminApproveDeclineRepository.UpdateComments(comment);
             _commonRepository.Save();
@@ -297,15 +322,44 @@ namespace CI_PlatformWeb.Areas.Admin.Controllers
         {
             var timesheet = _adminApproveDeclineRepository.GetTimeSheetById(id);
             timesheet.UpdatedAt = DateTime.Now;
+            var notificationSetting = _commonRepository.GetNotificationSettingsByUser((int)timesheet.UserId);
+            Notification notification = new Notification();
+            notification.CreatedAt = DateTime.Now;
             if (action)
             {
+                if (timesheet.Mission.MissionType.Equals("GOAL"))
+                    notification.NotificationText = "Volunteering Goal request has been approved for this mission : " + timesheet.Mission.Title;
+                else
+                    notification.NotificationText = "Volunteering Hour request has been approved for this mission : " + timesheet.Mission.Title;
+                notification.NotificationType = 1;
                 timesheet.Status = "APPROVED";
                 TempData["msg"] = "Mission Application Approved successfully!";
             }
             else
             {
+                if (timesheet.Mission.MissionType.Equals("GOAL"))
+                    notification.NotificationText = "Volunteering Goal request has been declined for this mission : " + timesheet.Mission.Title;
+                else
+                    notification.NotificationText = "Volunteering Hour request has been declined for this mission : " + timesheet.Mission.Title;
+                notification.NotificationType = 3;
                 timesheet.Status = "DECLINED";
                 TempData["msg"] = "Mission Application Declined successfully!";
+            }
+            UserNotification userNotification = new UserNotification();
+            userNotification.UserId = timesheet.UserId;
+            userNotification.CreatedAt = DateTime.Now;
+            notification.UserNotifications.Add(userNotification);
+            if (notificationSetting.VolunteerGoal == 1 && timesheet.Mission.MissionType.Equals("GOAL"))
+            {
+                _commonRepository.InserNotification(notification);
+                if (notificationSetting.FromEmail == 1)
+                    _commonRepository.SendMails("Your Story Status", notification.NotificationText, new[] { timesheet.User.Email });
+            }
+            if (notificationSetting.VolunteerHour == 1 && timesheet.Mission.MissionType.Equals("TIME"))
+            {
+                _commonRepository.InserNotification(notification);
+                if (notificationSetting.FromEmail == 1)
+                    _commonRepository.SendMails("Your Story Status", notification.NotificationText, new[] { timesheet.User.Email });
             }
             _adminApproveDeclineRepository.UpdateTimeSheetStatus(timesheet);
             _commonRepository.Save();

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AW0EEye14nLr3otzHqiSOMoaVpMPtgyfFK5tbLYjacg=",
+  "Hash": "DMe9U9MCBohr+HRjEWVC7YfShDT74mmIy2cFI59pgSI=",
   "Source": "CI-PlatformWeb",
   "BasePath": "_content/CI-PlatformWeb",
   "Mode": "Default",
@@ -2414,23 +2414,6 @@
       "OriginalItemSpec": "wwwroot\\images\\storyimages\\6117e7d9-5634-4d77-bdab-6b19238ac994.png"
     },
     {
-      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\storyimages\\674aea79-1a2f-4721-9ba1-47937283bc60.gif",
-      "SourceId": "CI-PlatformWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
-      "BasePath": "_content/CI-PlatformWeb",
-      "RelativePath": "images/storyimages/674aea79-1a2f-4721-9ba1-47937283bc60.gif",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\storyimages\\674aea79-1a2f-4721-9ba1-47937283bc60.gif"
-    },
-    {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\storyimages\\94a710fd-82c2-40ef-b256-a5f749ee84a9.png",
       "SourceId": "CI-PlatformWeb",
       "SourceType": "Discovered",
@@ -2463,6 +2446,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\storyimages\\a912ef5e-957a-4ced-abf3-42ff8908bc29.png"
+    },
+    {
+      "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\storyimages\\ebf76a40-f51e-47e8-a67c-300d90ce6dea.gif",
+      "SourceId": "CI-PlatformWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\",
+      "BasePath": "_content/CI-PlatformWeb",
+      "RelativePath": "images/storyimages/ebf76a40-f51e-47e8-a67c-300d90ce6dea.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\storyimages\\ebf76a40-f51e-47e8-a67c-300d90ce6dea.gif"
     },
     {
       "Identity": "D:\\KAPIL\\Tatvasoft\\TatvaSoft-Training\\MVC\\CI-Platform\\CI-PlatformWeb\\wwwroot\\images\\twitter.png",

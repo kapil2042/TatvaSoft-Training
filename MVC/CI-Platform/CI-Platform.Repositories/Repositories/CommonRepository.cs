@@ -345,7 +345,7 @@ namespace CI_Platform.Repositories.Repositories
 
         public int getTotalNotificationByUser(int userId)
         {
-            return _db.UserNotification.Count(User => User.UserId == userId && User.Isread == 0);
+            return _db.UserNotification.Count(User => User.UserId == userId && User.Isread == 0 && User.DeletedAt == null);
         }
     }
 }

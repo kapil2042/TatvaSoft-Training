@@ -93,8 +93,10 @@ namespace CI_PlatformWeb.Areas.Volunteer.Controllers
 
 
         [HttpPost]
-        public void ClearAllNotification(int userid)
+        public void ClearAllNotification()
         {
+            var identity = User.Identity as ClaimsIdentity;
+            var userid = Convert.ToInt32(identity?.FindFirst(ClaimTypes.Sid)?.Value);
             _commonRepository.DeleteNotificationsByUser(userid);
             _commonRepository.Save();
         }
