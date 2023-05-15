@@ -3,9 +3,9 @@
 <div id="notification-body-partial">
     @if (Model.OldUserNotifications.Count > 0 || Model.NewUserNotifications.Count > 0)
     {
-        @if (Model.NewUserNotifications.Count > 0)
-        {
-            <div class="d-flex justify-content-between flex-column align-items-center">
+        <div class="d-flex justify-content-between flex-column align-items-center">
+            @if (Model.NewUserNotifications.Count > 0)
+            {
                 @foreach (var notification in Model.NewUserNotifications)
                 {
                     <div class="d-flex justify-content-between align-items-center gap-3 px-3 py-2 border-bottom w-100">
@@ -54,64 +54,121 @@
                         </div>
                     </div>
                 }
+            }
+            else
+            {
+            <div class="px-3 py-2 text-center">
+                No any newer notifications
             </div>
+            }
             <div class="bg-light px-3 py-2 text-center border-0 w-100">
                 Older
             </div>
-            <div class="d-flex justify-content-between align-items-center px-3 py-2 w-100">
-                @if (Model.OldUserNotifications.Count > 0)
+            @if (Model.OldUserNotifications.Count > 0)
+            {
+                @foreach (var notification in Model.OldUserNotifications)
                 {
-                    @foreach (var notification in Model.OldUserNotifications)
-                    {
-                        <div class="d-flex justify-content-between align-items-center gap-3 m-3">
-                            <div class="d-flex gap-2 align-items-center">
-                                <div>
-                                    @switch (notification.Notification.NotificationType)
-                                    {
-                                        case 0:
-                                            var record = notification.Notification.FromUserId;
-                                            var avtar = @Model.Users.FirstOrDefault(x => x.UserId == record);
-                                            if (avtar != null)
-                                            {
-                                                <img src="~/images/@avtar.Avatar" class="notification-profile-pic" />
-                                            }
-                                            else
-                                            {
-                                                <img src="~/images/profile.png" class="notification-profile-pic" />
-                                            }
-                                            break;
-                                        case 1:
-                                            <img src="~/images/approve.png" width="40px" />
-                                            break;
-                                        case 2:
-                                            <img src="~/images/add.png" width="40px" />
-                                            break;
-                                        case 3:
-                                            <img src="~/images/decline.png" width="40px" />
-                                            break;
-                                    }
-                                </div>
-                                <div>
-                                    @notification.Notification.NotificationText
-                                </div>
+                    <div class="d-flex justify-content-between align-items-center gap-3 px-3 py-2 border-bottom w-100">
+                        <div class="d-flex gap-2 align-items-center">
+                            <div>
+                                @switch (notification.Notification.NotificationType)
+                                {
+                                    case 0:
+                                        var record = notification.Notification.FromUserId;
+                                        var avtar = @Model.Users.FirstOrDefault(x => x.UserId == record);
+                                        if (avtar != null)
+                                        {
+                                            <img src="~/images/@avtar.Avatar" class="notification-profile-pic" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/profile.png" class="notification-profile-pic" />
+                                        }
+                                        break;
+                                    case 1:
+                                        <img src="~/images/approve.png" width="40px" />
+                                        break;
+                                    case 2:
+                                        <img src="~/images/add.png" width="40px" />
+                                        break;
+                                    case 3:
+                                        <img src="~/images/decline.png" width="40px" />
+                                        break;
+                                }
                             </div>
                             <div>
-                                @if (notification.Isread == 1)
-                                {
-                                    <div class="readed-@notification.UserNotificationId"><img src="~/images/checked.png" class="read-unread-icon" /></div>
-                                    <button class="remove_style unreaded-@notification.UserNotificationId d-none"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
-                                }
-                                else
-                                {
-                                    <div class="readed-@notification.UserNotificationId d-none"><img src="~/images/checked.png" class="read-unread-icon" /></div>
-                                    <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
-                                }
+                                @notification.Notification.NotificationText
                             </div>
                         </div>
-                    }
+                        <div>
+                            @if (notification.Isread == 1)
+                            {
+                                <button class="remove_style readed-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/checked.png" class="read-unread-icon" /></button>
+                                <button class="remove_style unreaded-@notification.UserNotificationId d-none" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                            }
+                            else
+                            {
+                                <button class="remove_style readed-@notification.UserNotificationId d-none" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/checked.png" class="read-unread-icon" /></button>
+                                <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+                            }
+                        </div>
+                    </div>
                 }
+            }
+        </div>
+        @*<div class="d-flex justify-content-between align-items-center px-3 py-2 w-100">
+            @if (Model.OldUserNotifications.Count > 0)
+            {
+            @foreach (var notification in Model.OldUserNotifications)
+            {
+            <div class="d-flex justify-content-between align-items-center gap-3 m-3">
+            <div class="d-flex gap-2 align-items-center">
+            <div>
+            @switch (notification.Notification.NotificationType)
+            {
+            case 0:
+            var record = notification.Notification.FromUserId;
+            var avtar = @Model.Users.FirstOrDefault(x => x.UserId == record);
+            if (avtar != null)
+            {
+            <img src="~/images/@avtar.Avatar" class="notification-profile-pic" />
+            }
+            else
+            {
+            <img src="~/images/profile.png" class="notification-profile-pic" />
+            }
+            break;
+            case 1:
+            <img src="~/images/approve.png" width="40px" />
+            break;
+            case 2:
+            <img src="~/images/add.png" width="40px" />
+            break;
+            case 3:
+            <img src="~/images/decline.png" width="40px" />
+            break;
+            }
             </div>
-        }
+            <div>
+            @notification.Notification.NotificationText
+            </div>
+            </div>
+            <div>
+            @if (notification.Isread == 1)
+            {
+            <div class="readed-@notification.UserNotificationId"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+            <button class="remove_style unreaded-@notification.UserNotificationId d-none"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+            }
+            else
+            {
+            <div class="readed-@notification.UserNotificationId d-none"><img src="~/images/checked.png" class="read-unread-icon" /></div>
+            <button class="remove_style unreaded-@notification.UserNotificationId" onclick="MakeReadedNotification(@notification.UserNotificationId)"><img src="~/images/ellips-colored.png" class="read-unread-icon" /></button>
+            }
+            </div>
+            </div>
+            }
+            }
+            </div>*@
     }
     else
     {
